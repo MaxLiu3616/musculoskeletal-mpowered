@@ -1,0 +1,15 @@
+export const nameScreenCopy = {
+  backLabel: 'Back',
+  title: 'Your name',
+  placeholder: 'Type your name',
+  personalisationLead: 'Your health and wellbeing is uniquely',
+  personalisationEmphasis: 'YOU!',
+  continueLabel: 'Continue',
+  addressMessage: 'By having your name, we will know how to address you :)',
+  greetingPrefix: 'Hello',
+  greetingWave: '👋🏻',
+  greetingIntro: 'A few quick questions so we can make things more relevant for you',
+  termsLead: 'By continuing you agree to',
+  termsAndConditions: 'Mpowered’s Terms and Conditions',
+  privacyPolicy: 'and Privacy Policy',
+} as const;
