@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Image,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -19,15 +22,66 @@ type SplashScreenProps = {
 export default function SplashScreen({ onGetStarted }: SplashScreenProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [actionMessage, setActionMessage] = useState('');
+  const [galleryWidth, setGalleryWidth] = useState(0);
+  const galleryRef = useRef<ScrollView>(null);
   const slide = splashSlides[activeSlide];
 
   useEffect(() => {
+    if (galleryWidth === 0) {
+      return;
+    }
+
     const timer = setTimeout(() => {
-      setActiveSlide(current => (current + 1) % splashSlides.length);
+      const nextSlide = (activeSlide + 1) % splashSlides.length;
+
+      setActiveSlide(nextSlide);
+      galleryRef.current?.scrollTo({
+        animated: true,
+        x: nextSlide * galleryWidth,
+      });
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, [activeSlide]);
+  }, [activeSlide, galleryWidth]);
+
+  useEffect(() => {
+    if (galleryWidth === 0) {
+      return;
+    }
+
+    galleryRef.current?.scrollTo({
+      animated: false,
+      x: activeSlide * galleryWidth,
+    });
+  }, [galleryWidth]);
+
+  const showSlide = (index: number) => {
+    setActiveSlide(index);
+    galleryRef.current?.scrollTo({
+      animated: true,
+      x: index * galleryWidth,
+    });
+  };
+
+  const updateSlideFromScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    if (galleryWidth === 0) {
+      return;
+    }
+
+    const nextSlide = Math.round(
+      event.nativeEvent.contentOffset.x / galleryWidth,
+    );
+
+    if (nextSlide >= 0 && nextSlide < splashSlides.length) {
+      setActiveSlide(nextSlide);
+    }
+  };
+
+  const measureGallery = (event: LayoutChangeEvent) => {
+    setGalleryWidth(event.nativeEvent.layout.width);
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -48,12 +102,31 @@ export default function SplashScreen({ onGetStarted }: SplashScreenProps) {
 
         <View style={styles.content}>
           <View style={styles.hero}>
-            <Image
-              accessibilityIgnoresInvertColors
-              resizeMode="contain"
-              source={slide.image}
-              style={styles.preview}
-            />
+            <View onLayout={measureGallery} style={styles.gallery}>
+              <ScrollView
+                bounces={false}
+                decelerationRate="fast"
+                horizontal
+                onMomentumScrollEnd={updateSlideFromScroll}
+                pagingEnabled
+                ref={galleryRef}
+                showsHorizontalScrollIndicator={false}
+                style={styles.galleryScroll}
+              >
+                {splashSlides.map(item => (
+                  <Image
+                    accessibilityIgnoresInvertColors
+                    key={item.id}
+                    resizeMode="contain"
+                    source={item.image}
+                    style={[
+                      styles.preview,
+                      galleryWidth > 0 && { width: galleryWidth },
+                    ]}
+                  />
+                ))}
+              </ScrollView>
+            </View>
 
             <View style={styles.pagination}>
               {splashSlides.map((item, index) => {
@@ -66,7 +139,7 @@ export default function SplashScreen({ onGetStarted }: SplashScreenProps) {
                     accessibilityState={{ selected: isActive }}
                     hitSlop={6}
                     key={item.id}
-                    onPress={() => setActiveSlide(index)}
+                    onPress={() => showSlide(index)}
                     style={styles.dotButton}
                   >
                     <View style={[styles.dot, isActive && styles.activeDot]} />

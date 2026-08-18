@@ -32,7 +32,17 @@ export const styles = StyleSheet.create({
   hero: {
     flexGrow: 1,
   },
+  gallery: {
+    height: 408,
+    overflow: 'hidden',
+    width: '100%',
+  },
+  galleryScroll: {
+    height: 408,
+    width: '100%',
+  },
   preview: {
+    flexShrink: 0,
     height: 408,
     width: '100%',
   },

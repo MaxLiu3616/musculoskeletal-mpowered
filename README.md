@@ -18,4 +18,4 @@ An empty Expo TypeScript application for Android, iPhone, iPad, and web.
 
 Press `w` for web, `i` for the iOS Simulator, or `a` for the Android Emulator. You can also scan the QR code with a compatible development client.
 
-Start development in `App.tsx`.
+Routes live in `src/app`, while screen content lives in `src/features`.
