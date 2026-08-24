@@ -11,5 +11,4 @@ export const sexScreenCopy = {
   continueLabel: 'Continue',
   researchMessage:
     'Research shows that people may experience pain differently depending on their sex',
-  nextStepMessage: 'Year of birth is the next onboarding step.',
 } as const;

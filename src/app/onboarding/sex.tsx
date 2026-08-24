@@ -6,7 +6,9 @@ import SexScreen from '@/features/onboarding/components/SexScreen';
 export default function SexRoute() {
   return (
     <OnboardingScreen onBack={() => router.back()} variant="sex">
-      <SexScreen />
+      <SexScreen
+        onContinue={() => router.push('/onboarding/year-of-birth')}
+      />
     </OnboardingScreen>
   );
 }
