@@ -1053,3 +1053,353 @@
 {"_e":"metro:server_log","_t":1787531945807,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
 {"_e":"metro:server_log","_t":1787532063464,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
 {"_e":"metro:server_log","_t":1787533175120,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787534916097,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787536110521,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787537185046,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787538132001,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787539584967,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787541113953,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787542206902,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787544049863,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787544533255,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787545631823,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787546927018,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787547439782,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787548458757,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787549669160,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787549826733,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"root:init","_t":1787550105573,"format":"v0-jsonl","version":"57.0.15"}
+{"_e":"env:mode","_t":1787550105574,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1787550105576,"mode":"development","files":[],"env":{}}
+{"_e":"metro:bundling:started","_t":1787550229408,"id":"1m","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787550229408,"id":"1m","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787550229416,"id":"1m","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787550229638,"id":"1m","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1787550229738,"id":"1m","progress":0.09972299168975068,"total":19,"current":6}
+{"_e":"metro:bundling:progress","_t":1787550229845,"id":"1m","progress":0.155188246097337,"total":33,"current":13}
+{"_e":"metro:bundling:progress","_t":1787550229945,"id":"1m","progress":0.155188246097337,"total":183,"current":30}
+{"_e":"metro:bundling:progress","_t":1787550230045,"id":"1m","progress":0.155188246097337,"total":217,"current":41}
+{"_e":"metro:bundling:progress","_t":1787550230153,"id":"1m","progress":0.155188246097337,"total":231,"current":55}
+{"_e":"metro:bundling:progress","_t":1787550230253,"id":"1m","progress":0.155188246097337,"total":259,"current":74}
+{"_e":"metro:bundling:progress","_t":1787550230353,"id":"1m","progress":0.155188246097337,"total":301,"current":116}
+{"_e":"metro:bundling:progress","_t":1787550230453,"id":"1m","progress":0.22393176020408162,"total":336,"current":159}
+{"_e":"metro:bundling:progress","_t":1787550230553,"id":"1m","progress":0.30159903251814035,"total":366,"current":201}
+{"_e":"metro:bundling:progress","_t":1787550230653,"id":"1m","progress":0.30607531721536346,"total":432,"current":239}
+{"_e":"metro:bundling:progress","_t":1787550230754,"id":"1m","progress":0.311828252132144,"total":505,"current":282}
+{"_e":"metro:bundling:progress","_t":1787550230856,"id":"1m","progress":0.35371191135734065,"total":570,"current":339}
+{"_e":"metro:bundling:progress","_t":1787550230956,"id":"1m","progress":0.3577429522708734,"total":637,"current":381}
+{"_e":"metro:bundling:progress","_t":1787550231058,"id":"1m","progress":0.3954158006140234,"total":687,"current":432}
+{"_e":"metro:bundling:progress","_t":1787550231157,"id":"1m","progress":0.4052701843495777,"total":743,"current":473}
+{"_e":"metro:bundling:progress","_t":1787550231259,"id":"1m","progress":0.48999999999999994,"total":760,"current":532}
+{"_e":"metro:bundling:progress","_t":1787550231358,"id":"1m","progress":0.529740165983159,"total":812,"current":591}
+{"_e":"metro:bundling:progress","_t":1787550231458,"id":"1m","progress":0.5456421712051864,"total":861,"current":636}
+{"_e":"metro:bundling:progress","_t":1787550231558,"id":"1m","progress":0.5733612420784558,"total":902,"current":683}
+{"_e":"metro:bundling:progress","_t":1787550231660,"id":"1m","progress":0.5980007540936513,"total":944,"current":730}
+{"_e":"metro:bundling:progress","_t":1787550231758,"id":"1m","progress":0.6006250000000001,"total":1000,"current":775}
+{"_e":"metro:bundling:progress","_t":1787550231858,"id":"1m","progress":0.6270630725845978,"total":1009,"current":799}
+{"_e":"metro:bundling:progress","_t":1787550231958,"id":"1m","progress":0.6532182398198536,"total":1022,"current":826}
+{"_e":"metro:bundling:progress","_t":1787550232059,"id":"1m","progress":0.6982105511263089,"total":1034,"current":864}
+{"_e":"metro:bundling:progress","_t":1787550232161,"id":"1m","progress":0.7323566947543763,"total":1047,"current":896}
+{"_e":"metro:bundling:progress","_t":1787550232261,"id":"1m","progress":0.7560016751526373,"total":1065,"current":926}
+{"_e":"metro:bundling:progress","_t":1787550232361,"id":"1m","progress":0.7800867689765264,"total":1079,"current":953}
+{"_e":"metro:bundling:progress","_t":1787550232461,"id":"1m","progress":0.8029597584861007,"total":1097,"current":983}
+{"_e":"metro:bundling:progress","_t":1787550232561,"id":"1m","progress":0.8464,"total":1100,"current":1012}
+{"_e":"metro:bundling:progress","_t":1787550232661,"id":"1m","progress":0.875184890954553,"total":1101,"current":1030}
+{"_e":"metro:bundling:progress","_t":1787550232849,"id":"1m","progress":0.8768851040380266,"total":1101,"current":1031}
+{"_e":"metro:bundling:progress","_t":1787550232950,"id":"1m","progress":0.8880723115034456,"total":1128,"current":1063}
+{"_e":"metro:bundling:progress","_t":1787550233050,"id":"1m","progress":0.9244266825337918,"total":1142,"current":1098}
+{"_e":"metro:bundling:progress","_t":1787550233151,"id":"1m","progress":0.9426765435278776,"total":1169,"current":1135}
+{"_e":"metro:bundling:progress","_t":1787550233253,"id":"1m","progress":0.9426765435278776,"total":1206,"current":1163}
+{"_e":"metro:bundling:progress","_t":1787550233353,"id":"1m","progress":0.9501887197182809,"total":1229,"current":1198}
+{"_e":"metro:bundling:progress","_t":1787550233454,"id":"1m","progress":0.9594109803063022,"total":1268,"current":1242}
+{"_e":"metro:bundling:progress","_t":1787550233555,"id":"1m","progress":0.9892017759977128,"total":1293,"current":1286}
+{"_e":"metro:bundling:progress","_t":1787550233656,"id":"1m","progress":0.999,"total":1307,"current":1307}
+{"_e":"metro:bundling:done","_t":1787550233805,"id":"1m","total":1307,"ms":4397.181292}
+{"_e":"metro:server_log","_t":1787550951238,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787552194693,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787552369497,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787553553660,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787553895114,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787554890624,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787556886571,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787558097714,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787559045518,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787561100478,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787562337804,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787562519370,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787562784491,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787563915405,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787565220374,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787565449614,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787566571345,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787567871340,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787568366767,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787568880297,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787569205136,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787569763326,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787569870847,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787570902240,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787572540201,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787572857634,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787573630177,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787574688154,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787576200116,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787577309093,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787579319044,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787581330994,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787583449942,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787585398904,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787587500853,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787588617822,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787590615775,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787592624728,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787594538682,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787596577634,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787598631594,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787600750537,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787602724489,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787603210476,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787604190454,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787605450082,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787606540402,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787608501355,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787610393307,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787611743297,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787612833252,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787614382778,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787615403188,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787615754770,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787616467095,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787616678039,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787616876802,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787617903132,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787619063100,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787620126074,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787622186031,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787623824994,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787625323607,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787626384927,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787626549055,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787627347798,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787627720439,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787628551945,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787629208689,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787630436975,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787631399816,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787632052577,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787632299263,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787632790785,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787633735760,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787634091328,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787635725168,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"root:init","_t":1787635867022,"format":"v0-jsonl","version":"57.0.15"}
+{"_e":"env:mode","_t":1787635867023,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1787635867024,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1787635867238,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../src/app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1787635867514,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1787635867662,"plugins":[]}
+{"_e":"metro:instantiate","_t":1787635868032,"atlas":false,"workers":6,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1787635874852,"id":"1","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787635874852,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787635874855,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787635875234,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1787635875335,"id":"1","progress":0.0625,"total":16,"current":4}
+{"_e":"metro:bundling:progress","_t":1787635875453,"id":"1","progress":0.09972299168975068,"total":19,"current":6}
+{"_e":"metro:bundling:progress","_t":1787635875571,"id":"1","progress":0.13573407202216065,"total":19,"current":7}
+{"_e":"metro:bundling:progress","_t":1787635875672,"id":"1","progress":0.14387633769322233,"total":29,"current":11}
+{"_e":"metro:bundling:progress","_t":1787635875782,"id":"1","progress":0.14387633769322233,"total":38,"current":14}
+{"_e":"metro:bundling:progress","_t":1787635875882,"id":"1","progress":0.14387633769322233,"total":107,"current":37}
+{"_e":"metro:bundling:progress","_t":1787635875982,"id":"1","progress":0.14387633769322233,"total":281,"current":60}
+{"_e":"metro:bundling:progress","_t":1787635876083,"id":"1","progress":0.14387633769322233,"total":300,"current":93}
+{"_e":"metro:bundling:progress","_t":1787635876184,"id":"1","progress":0.14387633769322233,"total":329,"current":108}
+{"_e":"metro:bundling:progress","_t":1787635876285,"id":"1","progress":0.14387633769322233,"total":365,"current":128}
+{"_e":"metro:bundling:progress","_t":1787635876385,"id":"1","progress":0.14387633769322233,"total":381,"current":142}
+{"_e":"metro:bundling:progress","_t":1787635876485,"id":"1","progress":0.18483872241749932,"total":421,"current":181}
+{"_e":"metro:bundling:progress","_t":1787635876585,"id":"1","progress":0.25,"total":450,"current":225}
+{"_e":"metro:bundling:progress","_t":1787635876685,"id":"1","progress":0.25,"total":522,"current":260}
+{"_e":"metro:bundling:progress","_t":1787635876785,"id":"1","progress":0.276102479338843,"total":550,"current":289}
+{"_e":"metro:bundling:progress","_t":1787635876885,"id":"1","progress":0.28300967021505746,"total":594,"current":316}
+{"_e":"metro:bundling:progress","_t":1787635876985,"id":"1","progress":0.3228720348131678,"total":623,"current":354}
+{"_e":"metro:bundling:progress","_t":1787635877086,"id":"1","progress":0.3665852293791347,"total":659,"current":399}
+{"_e":"metro:bundling:progress","_t":1787635877187,"id":"1","progress":0.3817976013688017,"total":704,"current":435}
+{"_e":"metro:bundling:progress","_t":1787635877292,"id":"1","progress":0.4184701075680679,"total":708,"current":458}
+{"_e":"metro:bundling:progress","_t":1787635877392,"id":"1","progress":0.44383914053857404,"total":734,"current":489}
+{"_e":"metro:bundling:progress","_t":1787635877492,"id":"1","progress":0.44383914053857404,"total":792,"current":516}
+{"_e":"metro:bundling:progress","_t":1787635877593,"id":"1","progress":0.4526519247404845,"total":816,"current":549}
+{"_e":"metro:bundling:progress","_t":1787635877692,"id":"1","progress":0.48133055561914784,"total":836,"current":580}
+{"_e":"metro:bundling:progress","_t":1787635877792,"id":"1","progress":0.5130557057869118,"total":860,"current":616}
+{"_e":"metro:bundling:progress","_t":1787635877893,"id":"1","progress":0.5377777777777777,"total":870,"current":638}
+{"_e":"metro:bundling:progress","_t":1787635877994,"id":"1","progress":0.574025027927802,"total":883,"current":669}
+{"_e":"metro:bundling:progress","_t":1787635878095,"id":"1","progress":0.6060988243772802,"total":894,"current":696}
+{"_e":"metro:bundling:progress","_t":1787635878195,"id":"1","progress":0.62261962890625,"total":896,"current":707}
+{"_e":"metro:bundling:progress","_t":1787635878297,"id":"1","progress":0.6477425746383503,"total":912,"current":734}
+{"_e":"metro:bundling:progress","_t":1787635878399,"id":"1","progress":0.6477425746383503,"total":950,"current":762}
+{"_e":"metro:bundling:progress","_t":1787635878500,"id":"1","progress":0.6490549658282703,"total":993,"current":800}
+{"_e":"metro:bundling:progress","_t":1787635878602,"id":"1","progress":0.6597611243167951,"total":1028,"current":835}
+{"_e":"metro:bundling:progress","_t":1787635878702,"id":"1","progress":0.6835263047221869,"total":1039,"current":859}
+{"_e":"metro:bundling:progress","_t":1787635878804,"id":"1","progress":0.7194387334415923,"total":1054,"current":894}
+{"_e":"metro:bundling:progress","_t":1787635878904,"id":"1","progress":0.7523073641843272,"total":1063,"current":922}
+{"_e":"metro:bundling:progress","_t":1787635879005,"id":"1","progress":0.812703941370486,"total":1066,"current":961}
+{"_e":"metro:bundling:progress","_t":1787635879114,"id":"1","progress":0.834900919382764,"total":1078,"current":985}
+{"_e":"metro:bundling:progress","_t":1787635879214,"id":"1","progress":0.8731523783929052,"total":1098,"current":1026}
+{"_e":"metro:bundling:progress","_t":1787635879314,"id":"1","progress":0.8823594009745027,"total":1121,"current":1053}
+{"_e":"metro:bundling:progress","_t":1787635879414,"id":"1","progress":0.8894042467051689,"total":1142,"current":1077}
+{"_e":"metro:bundling:progress","_t":1787635879514,"id":"1","progress":0.8991160811827477,"total":1178,"current":1117}
+{"_e":"metro:bundling:progress","_t":1787635879614,"id":"1","progress":0.9250477367799473,"total":1204,"current":1158}
+{"_e":"metro:bundling:progress","_t":1787635879715,"id":"1","progress":0.9642886129372615,"total":1221,"current":1199}
+{"_e":"metro:bundling:progress","_t":1787635879815,"id":"1","progress":0.9642886129372615,"total":1280,"current":1238}
+{"_e":"metro:bundling:progress","_t":1787635879916,"id":"1","progress":0.9845800304804992,"total":1292,"current":1282}
+{"_e":"metro:bundling:progress","_t":1787635880016,"id":"1","progress":0.9984668457600963,"total":1304,"current":1303}
+{"_e":"metro:bundling:progress","_t":1787635880130,"id":"1","progress":0.999,"total":1304,"current":1304}
+{"_e":"metro:bundling:progress","_t":1787635880230,"id":"1","progress":0.999,"total":1307,"current":1307}
+{"_e":"metro:bundling:done","_t":1787635880388,"id":"1","total":1307,"ms":5535.895334}
+{"_e":"metro:client_log","_t":1787635881014,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:client_log","_t":1787638190937,"level":"error","data":["[ReferenceError: Property 'showNextStepMessage' doesn't exist]","\n\n\u001b[1mCode: LoadingBridgeScreen.tsx\u001b[22m\n\u001b[0m \u001b[90m 71 |\u001b[39m               \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mPressable\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 72 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 73 |\u001b[39m               {showNextStepMessage \u001b[33m?\u001b[39m (\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 74 |\u001b[39m                 \u001b[33m<\u001b[39m\u001b[33mText\u001b[39m\n \u001b[90m 75 |\u001b[39m                   accessibilityLiveRegion\u001b[33m=\u001b[39m\u001b[32m\"polite\"\u001b[39m\n \u001b[90m 76 |\u001b[39m                   style\u001b[33m=\u001b[39m{styles\u001b[33m.\u001b[39mactionMessage}\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[90m  LoadingBridgeScreen (src/features/onboarding/components/LoadingBridgeScreen.tsx:73:16)\u001b[39m","\n\n\u001b[1mCode: loading.tsx\u001b[22m\n\u001b[0m \u001b[90m  5 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[36mfunction\u001b[39m \u001b[33mLoadingBridgeRoute\u001b[39m() {\n \u001b[90m  6 |\u001b[39m   \u001b[36mreturn\u001b[39m (\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[33mLoadingBridgeScreen\u001b[39m onContinue\u001b[33m=\u001b[39m{() \u001b[33m=>\u001b[39m router\u001b[33m.\u001b[39mpush(\u001b[32m'/home'\u001b[39m)} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   )\u001b[33m;\u001b[39m\n \u001b[90m  9 |\u001b[39m }\n \u001b[90m 10 |\u001b[39m\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[90m  LoadingBridgeRoute (src/app/onboarding/loading.tsx:7:5)\u001b[39m\n\u001b[90m  RootLayout (src/app/_layout.tsx:10:9)\u001b[39m"]}
+{"_e":"root:init","_t":1787638408173,"format":"v0-jsonl","version":"57.0.15"}
+{"_e":"env:mode","_t":1787638408174,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1787638408175,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1787638408392,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../src/app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1787638408690,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1787638408856,"plugins":[]}
+{"_e":"metro:instantiate","_t":1787638409203,"atlas":false,"workers":6,"host":"::","port":8082}
+{"_e":"metro:bundling:started","_t":1787638409771,"id":"1","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787638409772,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787638409774,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787638410025,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787638410032,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1787638410143,"id":"1","progress":0.09972299168975068,"total":19,"current":6}
+{"_e":"metro:bundling:progress","_t":1787638410248,"id":"1","progress":0.09972299168975068,"total":112,"current":15}
+{"_e":"metro:bundling:progress","_t":1787638410347,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410392,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410392,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410400,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410440,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410445,"id":"1","progress":0.09972299168975068,"total":117,"current":31}
+{"_e":"metro:bundling:progress","_t":1787638410448,"id":"1","progress":0.138692033293698,"total":145,"current":54}
+{"_e":"metro:bundling:progress","_t":1787638410548,"id":"1","progress":0.21633315305570577,"total":172,"current":80}
+{"_e":"metro:bundling:progress","_t":1787638410649,"id":"1","progress":0.2903702112808398,"total":193,"current":104}
+{"_e":"metro:bundling:progress","_t":1787638410750,"id":"1","progress":0.3362050702633995,"total":238,"current":138}
+{"_e":"metro:bundling:progress","_t":1787638410851,"id":"1","progress":0.41362552864282975,"total":255,"current":164}
+{"_e":"metro:bundling:progress","_t":1787638410952,"id":"1","progress":0.5597256515775034,"total":270,"current":202}
+{"_e":"metro:bundling:progress","_t":1787638411053,"id":"1","progress":0.5597256515775034,"total":343,"current":226}
+{"_e":"metro:bundling:progress","_t":1787638411157,"id":"1","progress":0.5597256515775034,"total":401,"current":266}
+{"_e":"metro:bundling:progress","_t":1787638411260,"id":"1","progress":0.5597256515775034,"total":429,"current":303}
+{"_e":"metro:bundling:progress","_t":1787638411362,"id":"1","progress":0.560849230530381,"total":454,"current":340}
+{"_e":"metro:bundling:progress","_t":1787638411462,"id":"1","progress":0.560849230530381,"total":527,"current":380}
+{"_e":"metro:bundling:progress","_t":1787638411563,"id":"1","progress":0.560849230530381,"total":562,"current":413}
+{"_e":"metro:bundling:progress","_t":1787638411663,"id":"1","progress":0.5682057961205634,"total":593,"current":447}
+{"_e":"metro:bundling:progress","_t":1787638411767,"id":"1","progress":0.5957910156249999,"total":640,"current":494}
+{"_e":"metro:bundling:progress","_t":1787638411867,"id":"1","progress":0.6151934527380987,"total":677,"current":531}
+{"_e":"metro:bundling:progress","_t":1787638411969,"id":"1","progress":0.6157580913096165,"total":706,"current":554}
+{"_e":"metro:bundling:progress","_t":1787638412070,"id":"1","progress":0.6338014893015363,"total":721,"current":574}
+{"_e":"metro:bundling:progress","_t":1787638412170,"id":"1","progress":0.6688281603666818,"total":752,"current":615}
+{"_e":"metro:bundling:progress","_t":1787638412270,"id":"1","progress":0.7676020811654526,"total":775,"current":679}
+{"_e":"metro:bundling:progress","_t":1787638412371,"id":"1","progress":0.8321769463131856,"total":809,"current":738}
+{"_e":"metro:bundling:progress","_t":1787638412471,"id":"1","progress":0.9029502931201006,"total":844,"current":802}
+{"_e":"metro:bundling:progress","_t":1787638412572,"id":"1","progress":0.9185872237837954,"total":866,"current":830}
+{"_e":"metro:bundling:progress","_t":1787638412672,"id":"1","progress":0.9216829392309523,"total":926,"current":889}
+{"_e":"metro:bundling:progress","_t":1787638412772,"id":"1","progress":0.9872477393719795,"total":938,"current":932}
+{"_e":"metro:bundling:progress","_t":1787638412872,"id":"1","progress":0.9978847176730774,"total":945,"current":944}
+{"_e":"metro:bundling:progress","_t":1787638413043,"id":"1","progress":0.999,"total":945,"current":945}
+{"_e":"metro:bundling:done","_t":1787638413124,"id":"1","total":945,"ms":3352.023959}
+{"_e":"metro:client_log","_t":1787638413268,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787638413268,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787638454508,"id":"8","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787638454511,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787638454574,"id":"8","total":1,"ms":63.71725}
+{"_e":"metro:client_log","_t":1787638454751,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787638454751,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1787638491260,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
+{"_e":"metro:bundling:started","_t":1787639002722,"id":"b","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639002723,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639002758,"id":"b","total":1,"ms":35.477542}
+{"_e":"metro:client_log","_t":1787639002940,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639002940,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787639015502,"id":"f","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639015503,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639015537,"id":"f","total":1,"ms":34.681125}
+{"_e":"metro:client_log","_t":1787639015641,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639015641,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787639043292,"id":"h","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639043293,"id":"h","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639043329,"id":"h","total":1,"ms":36.013}
+{"_e":"metro:client_log","_t":1787639043417,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639043417,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787639110327,"id":"k","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639110327,"id":"k","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639110435,"id":"k","total":1,"ms":107.375083}
+{"_e":"metro:client_log","_t":1787639110537,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639110537,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787639626985,"id":"m","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639626985,"id":"m","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639627022,"id":"m","total":1,"ms":37.484417}
+{"_e":"metro:client_log","_t":1787639627199,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639627200,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787639829794,"id":"o","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787639829795,"id":"o","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787639829832,"id":"o","total":1,"ms":37.590875}
+{"_e":"metro:client_log","_t":1787639830007,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787639830007,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1787640568947,"id":"q","platform":"web","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787640568948,"id":"q","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787640569011,"id":"q","total":1,"ms":62.780292}
+{"_e":"metro:client_log","_t":1787640569173,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787640569173,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:server_log","_t":1787642624031,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787642780803,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787643741638,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787644305494,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:bundling:started","_t":1787647007637,"id":"z","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787647007638,"id":"z","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787647007727,"id":"z","total":1,"ms":88.852666}
+{"_e":"metro:client_log","_t":1787647008437,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:server_log","_t":1787650391613,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787650391619,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787651384644,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787651384670,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787652149132,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787652149135,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787653098451,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787653098455,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787653871587,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787653871587,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:bundling:started","_t":1787655949190,"id":"14","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787655949191,"id":"14","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787655949268,"id":"14","total":1,"ms":77.262}
+{"_e":"metro:client_log","_t":1787655949908,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:bundling:started","_t":1787655963287,"id":"19","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1787655963288,"id":"19","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787655963331,"id":"19","total":1,"ms":43.920125}
+{"_e":"metro:client_log","_t":1787656008107,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:server_log","_t":1787658396361,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787658396363,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787658770822,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787658770822,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787683510784,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787683510788,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787686069732,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787686069738,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787687250697,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787687250700,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787687674681,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787687674685,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787688621659,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787688621663,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787689838638,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787689838648,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787690859605,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787690859608,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787696224490,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787696224491,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787696700659,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787696700660,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787697648911,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787697648912,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787698601435,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787698601437,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787699812412,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787699812413,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787700825383,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787700825387,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787701195373,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
+{"_e":"metro:server_log","_t":1787701195376,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.Exponent","iPhone 17","60"]}
