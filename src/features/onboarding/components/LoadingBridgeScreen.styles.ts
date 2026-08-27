@@ -55,10 +55,4 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
   },
-  actionMessage: {
-    color: '#57418D',
-    fontSize: 13,
-    marginTop: 14,
-    textAlign: 'center',
-  },
 });

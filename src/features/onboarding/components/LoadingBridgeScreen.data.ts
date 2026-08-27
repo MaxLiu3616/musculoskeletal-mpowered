@@ -23,7 +23,6 @@ export const loadingBridgeSlides = [
 
 export const loadingBridgeCopy = {
   continueLabel: 'Continue',
-  nextStepMessage: 'The homescreen will connect here.',
 } as const;
 
 export const loadingBridgeSlideDuration = 1800;
