@@ -1,0 +1,88 @@
+import { useEffect, useState } from 'react';
+import {
+  Image,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
+
+import {
+  loadingBridgeCopy,
+  loadingBridgeSlideDuration,
+  loadingBridgeSlides,
+} from './LoadingBridgeScreen.data';
+import { styles } from './LoadingBridgeScreen.styles';
+
+export default function LoadingBridgeScreen() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [showNextStepMessage, setShowNextStepMessage] = useState(false);
+  const slide = loadingBridgeSlides[activeSlide];
+  const isFinalSlide = activeSlide === loadingBridgeSlides.length - 1;
+
+  useEffect(() => {
+    if (isFinalSlide) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setActiveSlide((currentSlide) => currentSlide + 1);
+    }, loadingBridgeSlideDuration);
+
+    return () => clearTimeout(timer);
+  }, [activeSlide, isFinalSlide]);
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.content}>
+          <View style={styles.hero}>
+            <Image
+              accessibilityIgnoresInvertColors
+              accessibilityLabel={slide.imageLabel}
+              resizeMode="contain"
+              source={slide.image}
+              style={styles.illustration}
+            />
+            <Text accessibilityLiveRegion="polite" style={styles.message}>
+              {slide.message}
+            </Text>
+          </View>
+
+          {isFinalSlide ? (
+            <View style={styles.actions}>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => setShowNextStepMessage(true)}
+                style={({ pressed }) => [
+                  styles.continueButton,
+                  pressed && styles.continueButtonPressed,
+                ]}
+              >
+                <Text style={styles.continueButtonText}>
+                  {loadingBridgeCopy.continueLabel}
+                </Text>
+              </Pressable>
+
+              {showNextStepMessage ? (
+                <Text
+                  accessibilityLiveRegion="polite"
+                  style={styles.actionMessage}
+                >
+                  {loadingBridgeCopy.nextStepMessage}
+                </Text>
+              ) : null}
+            </View>
+          ) : null}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

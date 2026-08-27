@@ -8,14 +8,24 @@ import {
 } from './SexScreen.data';
 import { styles } from './SexScreen.styles';
 
-export default function SexScreen() {
+type SexScreenProps = {
+  onContinue: () => void;
+};
+
+export default function SexScreen({ onContinue }: SexScreenProps) {
   const [selectedSex, setSelectedSex] = useState<SexOptionId | null>(null);
-  const [showNextStepMessage, setShowNextStepMessage] = useState(false);
   const canContinue = selectedSex !== null;
 
   const selectSex = (sex: SexOptionId) => {
     setSelectedSex(sex);
-    setShowNextStepMessage(false);
+  };
+
+  const continueToYearOfBirth = () => {
+    if (selectedSex === null) {
+      return;
+    }
+
+    onContinue();
   };
 
   return (
@@ -55,7 +65,7 @@ export default function SexScreen() {
         accessibilityRole="button"
         accessibilityState={{ disabled: !canContinue }}
         disabled={!canContinue}
-        onPress={() => setShowNextStepMessage(true)}
+        onPress={continueToYearOfBirth}
         style={({ pressed }) => [
           styles.continueButton,
           !canContinue && styles.continueButtonDisabled,
@@ -72,18 +82,7 @@ export default function SexScreen() {
         </Text>
       </Pressable>
 
-      {showNextStepMessage ? (
-        <Text accessibilityLiveRegion="polite" style={styles.actionMessage}>
-          {sexScreenCopy.nextStepMessage}
-        </Text>
-      ) : null}
-
-      <View
-        style={[
-          styles.research,
-          showNextStepMessage && styles.researchWithMessage,
-        ]}
-      >
+      <View style={styles.research}>
         <Image
           accessibilityIgnoresInvertColors
           resizeMode="contain"
