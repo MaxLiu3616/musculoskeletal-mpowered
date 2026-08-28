@@ -249,6 +249,7 @@ export default function HomeScreen({
                       </View>
 
                       <Pressable
+                        accessibilityLabel={`${homeScreenCopy.recordLabel} ${assessment.label}`}
                         accessibilityRole="button"
                         onPress={() =>
                           onAssessmentPress?.(

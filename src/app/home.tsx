@@ -1,10 +1,11 @@
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 
 import HomeScreen from '@/features/home/components/HomeScreen';
 import type {
   HomeAssessmentId,
   HomeAssessmentStatus,
 } from '@/features/home/components/HomeScreen.data';
+import { useOnboarding } from '@/features/onboarding/OnboardingContext';
 
 const initialAssessmentStatus: Record<
   HomeAssessmentId,
@@ -28,18 +29,33 @@ const initialAssessmentStatus: Record<
 };
 
 export default function HomeRoute() {
-  const { name } = useLocalSearchParams<{
+  const { name: routeNameParam } = useLocalSearchParams<{
     name?: string | string[];
   }>();
+  const { name: onboardingName, setName } = useOnboarding();
 
-  const userName = Array.isArray(name)
-    ? name[0]
-    : (name ?? '');
+  const routeName = Array.isArray(routeNameParam)
+    ? routeNameParam[0]
+    : (routeNameParam ?? '');
+  const userName = routeName || onboardingName;
+
+  const openAssessment = (assessmentId: HomeAssessmentId) => {
+    if (assessmentId !== 'movement') {
+      return;
+    }
+
+    if (userName) {
+      setName(userName);
+    }
+
+    router.push('/assessment/movement');
+  };
 
   return (
     <HomeScreen
-      userName={userName}
       assessmentStatus={initialAssessmentStatus}
+      onAssessmentPress={openAssessment}
+      userName={userName}
     />
   );
 }
