@@ -40,12 +40,17 @@ export default function HomeRoute() {
   const userName = routeName || onboardingName;
 
   const openAssessment = (assessmentId: HomeAssessmentId) => {
-    if (assessmentId !== 'movement') {
+    if (assessmentId !== 'pain' && assessmentId !== 'movement') {
       return;
     }
 
     if (userName) {
       setName(userName);
+    }
+
+    if (assessmentId === 'pain') {
+      router.push('/assessment/pain');
+      return;
     }
 
     router.push('/assessment/movement');
