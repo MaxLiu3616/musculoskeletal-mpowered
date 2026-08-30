@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import {
@@ -24,9 +25,22 @@ export default function InsightCard({
   onPlanAppointment,
   onCheckPainGuide,
 }: InsightCardProps) {
-  if (!insight) {
+  const [isDismissed, setIsDismissed] =
+    useState(false);
+
+  // Show a newly received insight again.
+  useEffect(() => {
+    setIsDismissed(false);
+  }, [insight]);
+
+  if (!insight || isDismissed) {
     return null;
   }
+
+  const handleDismiss = () => {
+    setIsDismissed(true);
+    onDismiss?.();
+  };
 
   return (
     <View style={styles.container}>
@@ -41,7 +55,7 @@ export default function InsightCard({
             insightCardCopy.dismissAccessibilityLabel
           }
           accessibilityRole="button"
-          onPress={onDismiss}
+          onPress={handleDismiss}
           style={({ pressed }) => [
             styles.dismissButton,
             pressed && styles.buttonPressed,
@@ -56,13 +70,14 @@ export default function InsightCard({
         {insight.message}
       </Text>
 
-      {/* White chart card */}
+      {/* Chart and actions */}
       <View style={styles.chartCard}>
         <View style={styles.chartWrapper}>
-          <PainTrendChart data={insight.painTrend} />
+          <PainTrendChart
+            data={insight.painTrend}
+          />
         </View>
 
-        {/* Actions */}
         <View style={styles.actionsRow}>
           <Pressable
             accessibilityRole="button"
@@ -74,7 +89,9 @@ export default function InsightCard({
             ]}
           >
             <Text style={styles.actionText}>
-              {insightCardCopy.checkPainHistoryLabel}
+              {
+                insightCardCopy.checkPainHistoryLabel
+              }
             </Text>
           </Pressable>
 
@@ -88,7 +105,9 @@ export default function InsightCard({
             ]}
           >
             <Text style={styles.actionText}>
-              {insightCardCopy.planAppointmentLabel}
+              {
+                insightCardCopy.planAppointmentLabel
+              }
             </Text>
           </Pressable>
 
@@ -101,7 +120,9 @@ export default function InsightCard({
             ]}
           >
             <Text style={styles.actionText}>
-              {insightCardCopy.checkPainGuideLabel}
+              {
+                insightCardCopy.checkPainGuideLabel
+              }
             </Text>
           </Pressable>
         </View>
