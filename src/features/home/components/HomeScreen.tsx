@@ -1,4 +1,9 @@
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import {
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   Platform,
   Pressable,
   ScrollView,
@@ -6,15 +11,19 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import { useRef, useState } from 'react';
 
-import InsightCard from './InsightCard';
-import type { PainInsight } from './InsightCard.data';
+import BottomNavigation from '@/components/navigation/BottomNavigation';
+import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
 
 import HomeSummarySwipe from './HomeSummarySwipe';
 import type {
   HomeSummaryItem,
   HomeSummaryType,
 } from './HomeSummaryCard.data';
+
+import InsightCard from './InsightCard';
+import type { PainInsight } from './InsightCard.data';
 
 import {
   homeAssessments,
@@ -56,6 +65,9 @@ type HomeScreenProps = {
   ) => void;
 };
 
+const SCROLL_THRESHOLD = 12;
+const SCROLL_STEP = 260;
+
 export default function HomeScreen({
   userName,
   assessmentStatus,
@@ -69,8 +81,20 @@ export default function HomeScreen({
   onCheckPainGuide,
   onSummaryPress,
 }: HomeScreenProps) {
+  const scrollViewRef =
+    useRef<ScrollView>(null);
+
   const { height: viewportHeight } =
     useWindowDimensions();
+
+  const [scrollY, setScrollY] =
+    useState(0);
+
+  const [contentHeight, setContentHeight] =
+    useState(0);
+
+  const [scrollViewHeight, setScrollViewHeight] =
+    useState(0);
 
   // Keep a phone-sized viewport on web.
   const appHeight =
@@ -97,6 +121,63 @@ export default function HomeScreen({
     totalAssessments -
     completedAssessments;
 
+  const hasScrollableContent =
+    contentHeight >
+    scrollViewHeight + SCROLL_THRESHOLD;
+
+  const hasMoreContentBelow =
+    scrollY +
+      scrollViewHeight <
+    contentHeight - SCROLL_THRESHOLD;
+
+  const showScrollHint =
+    hasScrollableContent &&
+    hasMoreContentBelow;
+
+  const handleScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    setScrollY(
+      event.nativeEvent.contentOffset.y,
+    );
+  };
+
+  const handleScrollLayout = (
+    event: LayoutChangeEvent,
+  ) => {
+    setScrollViewHeight(
+      event.nativeEvent.layout.height,
+    );
+  };
+
+  const handleScrollDown = () => {
+    scrollViewRef.current?.scrollTo({
+      y: scrollY + SCROLL_STEP,
+      animated: true,
+    });
+  };
+
+  const handleBottomNavigationPress = (
+    itemId: BottomNavigationId,
+  ) => {
+    switch (itemId) {
+      case 'pain-tracker':
+        router.replace({
+          pathname: '/home',
+          params: {
+            name: userName,
+          },
+        });
+        break;
+
+      case 'my-health':
+      case 'care-planner':
+      case 'setting':
+        // Routes will be connected when available.
+        break;
+    }
+  };
+
   return (
     <View
       style={[
@@ -109,11 +190,20 @@ export default function HomeScreen({
         },
       ]}
     >
+      {/* Scrollable content */}
       <ScrollView
         bounces={false}
         contentContainerStyle={
           styles.scrollContent
         }
+        onContentSizeChange={(
+          _width,
+          height,
+        ) => setContentHeight(height)}
+        onLayout={handleScrollLayout}
+        onScroll={handleScroll}
+        ref={scrollViewRef}
+        scrollEventThrottle={16}
         showsVerticalScrollIndicator
         style={styles.screen}
       >
@@ -169,6 +259,12 @@ export default function HomeScreen({
             </Text>
           </View>
 
+          {/* Health summary */}
+          <HomeSummarySwipe
+            items={summaryItems}
+            onItemPress={onSummaryPress}
+          />
+
           {/* Pain insight */}
           <InsightCard
             insight={painInsight}
@@ -182,12 +278,6 @@ export default function HomeScreen({
             onCheckPainGuide={
               onCheckPainGuide
             }
-          />
-
-          {/* Health summary cards */}
-          <HomeSummarySwipe
-            items={summaryItems}
-            onItemPress={onSummaryPress}
           />
 
           {/* Weekly assessments */}
@@ -314,6 +404,38 @@ export default function HomeScreen({
           </Text>
         </View>
       </ScrollView>
+
+      {/* Scroll hint */}
+      {showScrollHint ? (
+        <Pressable
+          accessibilityLabel="Scroll down"
+          accessibilityRole="button"
+          onPress={handleScrollDown}
+          style={({ pressed }) => [
+            styles.scrollHint,
+            pressed &&
+              styles.scrollHintPressed,
+          ]}
+        >
+          <Text style={styles.scrollHintText}>
+            Scroll down
+          </Text>
+
+          <Ionicons
+            color="#17151B"
+            name="chevron-down"
+            size={18}
+          />
+        </Pressable>
+      ) : null}
+
+      {/* Fixed bottom navigation */}
+      <BottomNavigation
+        activeItem="pain-tracker"
+        onItemPress={
+          handleBottomNavigationPress
+        }
+      />
     </View>
   );
 }

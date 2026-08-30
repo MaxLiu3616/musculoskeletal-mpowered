@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   viewport: {
     backgroundColor: '#FFFFFF',
     overflow: 'hidden',
+    position: 'relative',
     width: '100%',
   },
 
@@ -20,7 +21,7 @@ export const styles = StyleSheet.create({
 
   scrollContent: {
     alignItems: 'center',
-    paddingBottom: 60,
+    paddingBottom: 24,
     width: '100%',
   },
 
@@ -200,5 +201,29 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 24,
     textAlign: 'center',
+  },
+
+  scrollHint: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#D9D9D9',
+    borderRadius: 12,
+    bottom: 78,
+    flexDirection: 'row',
+    gap: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    position: 'absolute',
+    zIndex: 20,
+  },
+
+  scrollHintPressed: {
+    opacity: 0.75,
+  },
+
+  scrollHintText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '600',
   },
 });
