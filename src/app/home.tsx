@@ -18,7 +18,11 @@ export default function HomeRoute() {
   const userName = routeName || onboardingName;
 
   const openAssessment = (assessmentId: HomeAssessmentId) => {
-    if (assessmentId !== 'pain' && assessmentId !== 'movement') {
+    if (
+      assessmentId !== 'pain' &&
+      assessmentId !== 'movement' &&
+      assessmentId !== 'management'
+    ) {
       return;
     }
 
@@ -31,7 +35,12 @@ export default function HomeRoute() {
       return;
     }
 
-    router.push('/assessment/movement');
+    if (assessmentId === 'movement') {
+      router.push('/assessment/movement');
+      return;
+    }
+
+    router.push('/assessment/management');
   };
 
   return (
