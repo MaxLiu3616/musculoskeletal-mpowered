@@ -16,9 +16,14 @@ import {
 } from './LoadingBridgeScreen.data';
 import { styles } from './LoadingBridgeScreen.styles';
 
-export default function LoadingBridgeScreen() {
+type LoadingBridgeScreenProps = {
+  onContinue: () => void;
+};
+
+export default function LoadingBridgeScreen({
+  onContinue,
+}: LoadingBridgeScreenProps) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [showNextStepMessage, setShowNextStepMessage] = useState(false);
   const slide = loadingBridgeSlides[activeSlide];
   const isFinalSlide = activeSlide === loadingBridgeSlides.length - 1;
 
@@ -60,7 +65,7 @@ export default function LoadingBridgeScreen() {
             <View style={styles.actions}>
               <Pressable
                 accessibilityRole="button"
-                onPress={() => setShowNextStepMessage(true)}
+                onPress={onContinue}
                 style={({ pressed }) => [
                   styles.continueButton,
                   pressed && styles.continueButtonPressed,
@@ -70,15 +75,6 @@ export default function LoadingBridgeScreen() {
                   {loadingBridgeCopy.continueLabel}
                 </Text>
               </Pressable>
-
-              {showNextStepMessage ? (
-                <Text
-                  accessibilityLiveRegion="polite"
-                  style={styles.actionMessage}
-                >
-                  {loadingBridgeCopy.nextStepMessage}
-                </Text>
-              ) : null}
             </View>
           ) : null}
         </View>
