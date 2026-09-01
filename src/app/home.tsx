@@ -34,10 +34,15 @@ export default function HomeRoute() {
     router.push('/assessment/movement');
   };
 
+  const openReflection = () => {
+    router.push('/reflection');
+  };
+
   return (
     <HomeScreen
       assessmentStatus={assessmentStatus}
       onAssessmentPress={openAssessment}
+      onReflectionPress={openReflection}
       userName={userName}
     />
   );
