@@ -22,38 +22,65 @@ const initialAssessmentStatus: Record<
 };
 
 type HomeAssessmentContextValue = {
-  assessmentStatus: Record<HomeAssessmentId, HomeAssessmentStatus>;
-  markAssessmentComplete: (assessmentId: HomeAssessmentId) => void;
+  assessmentStatus: Record<
+    HomeAssessmentId,
+    HomeAssessmentStatus
+  >;
+
+  markAssessmentComplete: (
+    assessmentId: HomeAssessmentId,
+  ) => void;
 };
 
-const HomeAssessmentContext = createContext<HomeAssessmentContextValue | null>(
-  null,
-);
+const HomeAssessmentContext =
+  createContext<HomeAssessmentContextValue | null>(
+    null,
+  );
 
 type HomeAssessmentProviderProps = {
   children: ReactNode;
 };
 
+function getCurrentDateLabel() {
+  return new Intl.DateTimeFormat(
+    'en-AU',
+    {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    },
+  ).format(new Date());
+}
+
 export function HomeAssessmentProvider({
   children,
 }: HomeAssessmentProviderProps) {
-  const [assessmentStatus, setAssessmentStatus] = useState(
-    initialAssessmentStatus,
-  );
+  const [assessmentStatus, setAssessmentStatus] =
+    useState(initialAssessmentStatus);
 
-  const markAssessmentComplete = (assessmentId: HomeAssessmentId) => {
-    setAssessmentStatus((currentStatus) => ({
-      ...currentStatus,
-      [assessmentId]: {
-        ...currentStatus[assessmentId],
-        completed: true,
-      },
-    }));
+  const markAssessmentComplete = (
+    assessmentId: HomeAssessmentId,
+  ) => {
+    setAssessmentStatus(
+      (currentStatus) => ({
+        ...currentStatus,
+
+        [assessmentId]: {
+          ...currentStatus[assessmentId],
+          completed: true,
+          updatedAt:
+            getCurrentDateLabel(),
+        },
+      }),
+    );
   };
 
   return (
     <HomeAssessmentContext.Provider
-      value={{ assessmentStatus, markAssessmentComplete }}
+      value={{
+        assessmentStatus,
+        markAssessmentComplete,
+      }}
     >
       {children}
     </HomeAssessmentContext.Provider>
@@ -61,7 +88,8 @@ export function HomeAssessmentProvider({
 }
 
 export function useHomeAssessment() {
-  const context = useContext(HomeAssessmentContext);
+  const context =
+    useContext(HomeAssessmentContext);
 
   if (!context) {
     throw new Error(
