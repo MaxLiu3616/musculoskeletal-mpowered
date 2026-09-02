@@ -53,11 +53,16 @@ export default function HomeRoute() {
 
       case 'social-health':
         router.push(
-          '/assessment/social-health',
+            '/assessment/social-health',
         );
         break;
 
       case 'personal-care':
+        router.push(
+            '/assessment/personal-care',
+        );
+        break;
+
       case 'management':
         break;
     }
