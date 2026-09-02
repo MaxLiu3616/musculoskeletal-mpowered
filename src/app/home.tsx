@@ -24,8 +24,14 @@ export default function HomeRoute() {
     ? routeNameParam[0]
     : (routeNameParam ?? '');
 
-  const userName =
-    routeName || onboardingName;
+  const openAssessment = (assessmentId: HomeAssessmentId) => {
+    if (
+      assessmentId !== 'pain' &&
+      assessmentId !== 'movement' &&
+      assessmentId !== 'management'
+    ) {
+      return;
+    }
 
   const openAssessment = (
     assessmentId: HomeAssessmentId,
