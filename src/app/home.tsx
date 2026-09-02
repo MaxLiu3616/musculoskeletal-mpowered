@@ -43,6 +43,7 @@ export default function HomeRoute() {
         break;
 
       case "personal-care":
+        router.push("/assessment/personal-care");
         break;
     }
   };
