@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { router } from 'expo-router';
 import {
     Pressable,
     SafeAreaView,
@@ -7,6 +8,9 @@ import {
     Text,
     View,
 } from 'react-native';
+
+import BottomNavigation from '@/components/navigation/BottomNavigation';
+import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
 
 import { usePersonalCareAssessment } from '@/features/personal-care/PersonalCareAssessmentContext';
 import {
@@ -44,6 +48,15 @@ export default function PersonalCareSummaryScreen({
         responses.personalCare,
         responses.sleep,
     );
+    const description = getPersonalCareSummaryDescription(totalScore);
+
+    const handleBottomNavigationPress = (
+        itemId: BottomNavigationId,
+    ) => {
+        if (itemId === 'pain-tracker') {
+            router.replace('/home');
+        }
+    };
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -75,9 +88,6 @@ export default function PersonalCareSummaryScreen({
                     </View>
 
                     <Text style={styles.assessmentTitle}>My Pain Summary</Text>
-                    <Text style={styles.prompt}>
-                        {personalCareAssessmentCopy.summaryIntro}
-                    </Text>
 
                     <View style={styles.questionCard}>
                         <View style={styles.header}>
@@ -89,69 +99,69 @@ export default function PersonalCareSummaryScreen({
                             </Text>
                         </View>
 
-                        <View style={styles.summarySection}>
-                            <Text style={styles.summarySectionTitle}>Summary</Text>
+                        <View style={styles.divider} />
 
-                            <View style={styles.summaryHighlightBox}>
-                                <Text style={styles.summaryHighlightText}>
-                                    {getPersonalCareSummaryDescription(totalScore).firstLine}{' '}
-                                    <Text style={styles.summaryHighlightBold}>
-                                        {getPersonalCareSummaryDescription(totalScore).boldPhrase}
-                                    </Text>{' '}
-                                    {getPersonalCareSummaryDescription(totalScore).secondLine}
+                        <Text style={styles.summarySectionTitle}>Summary</Text>
+
+                        <View style={styles.summaryHighlightBox}>
+                            <Text style={styles.summaryHighlightText}>
+                                {description.firstLine}{' '}
+                                <Text style={styles.summaryHighlightBold}>
+                                    {description.boldPhrase}
+                                </Text>{' '}
+                                {description.secondLine}
+                            </Text>
+
+                            <Pressable
+                                accessibilityRole="button"
+                                style={({ pressed }) => [
+                                    styles.exploreTipsButton,
+                                    pressed && { opacity: 0.78 },
+                                ]}
+                            >
+                                <Text style={styles.exploreTipsText}>
+                                    🔍 Explore tips on daily living
                                 </Text>
-
-                                <Pressable
-                                    accessibilityRole="button"
-                                    style={({ pressed }) => [
-                                        styles.exploreTipsButton,
-                                        pressed && styles.recordButtonPressed,
-                                    ]}
-                                >
-                                    <Text style={styles.exploreTipsText}>
-                                        🔍 Explore tips on daily living
-                                    </Text>
-                                </Pressable>
-                            </View>
+                            </Pressable>
                         </View>
 
-                        <View style={styles.summarySection}>
-                            <Text style={styles.summarySectionTitle}>My results:</Text>
+                        <Text style={[styles.summarySectionTitle, { marginTop: 22 }]}>
+                            My results:
+                        </Text>
 
-                            <View style={{ marginTop: 8 }}>
-                                <Text style={styles.summaryItem}>General Activities:</Text>
-                                <Text style={styles.summaryText}>
-                                    {generalActivityLabels.length > 0
-                                        ? generalActivityLabels.join(', ')
-                                        : 'No impacts selected.'}
-                                </Text>
-                            </View>
-
-                            <View style={{ marginTop: 12 }}>
-                                <Text style={styles.summaryItem}>
-                                    Personal care (washing, dressing, etc):
-                                </Text>
-                                <Text style={styles.summaryText}>
-                                    {personalCareLabel ?? 'Not recorded'}
-                                </Text>
-                            </View>
-
-                            <View style={{ marginTop: 12 }}>
-                                <Text style={styles.summaryItem}>Sleeping:</Text>
-                                <Text style={styles.summaryText}>
-                                    {sleepLabel ?? 'Not recorded'}
-                                </Text>
-                            </View>
+                        <View style={{ marginLeft: 14, marginTop: 14 }}>
+                            <Text style={styles.summaryItem}>General Activities:</Text>
+                            <Text style={styles.summaryText}>
+                                {generalActivityLabels.length > 0
+                                    ? generalActivityLabels.join(', ')
+                                    : 'No impacts selected.'}
+                            </Text>
                         </View>
 
-                        {responses.reflection ? (
-                            <View style={styles.summarySection}>
-                                <Text style={styles.summarySectionTitle}>
-                                    My reflections:
-                                </Text>
-                                <Text style={styles.summaryText}>{responses.reflection}</Text>
-                            </View>
-                        ) : null}
+                        <View style={{ marginLeft: 14, marginTop: 14 }}>
+                            <Text style={styles.summaryItem}>
+                                Personal care (washing, dressing, etc):
+                            </Text>
+                            <Text style={styles.summaryText}>
+                                {personalCareLabel ?? 'Not recorded.'}
+                            </Text>
+                        </View>
+
+                        <View style={{ marginLeft: 14, marginTop: 14 }}>
+                            <Text style={styles.summaryItem}>Sleeping:</Text>
+                            <Text style={styles.summaryText}>
+                                {sleepLabel ?? 'Not recorded.'}
+                            </Text>
+                        </View>
+
+                        <View style={{ marginTop: 24 }}>
+                            <Text style={styles.summarySectionTitle}>My reflections:</Text>
+                            <Text
+                                style={[styles.summaryText, { marginLeft: 14, marginTop: 8 }]}
+                            >
+                                {responses.reflection.trim() || 'No reflection recorded.'}
+                            </Text>
+                        </View>
 
                         <View style={styles.summaryFooter}>
                             <Text style={styles.sessionNote}>
@@ -164,7 +174,7 @@ export default function PersonalCareSummaryScreen({
                                 style={({ pressed }) => [
                                     styles.recordButton,
                                     styles.summaryCloseButton,
-                                    pressed && styles.recordButtonPressed,
+                                    pressed && { backgroundColor: '#F3ECF7' },
                                 ]}
                             >
                                 <Text
@@ -180,6 +190,11 @@ export default function PersonalCareSummaryScreen({
                     </View>
                 </View>
             </ScrollView>
+
+            <BottomNavigation
+                activeItem="pain-tracker"
+                onItemPress={handleBottomNavigationPress}
+            />
         </SafeAreaView>
     );
 }

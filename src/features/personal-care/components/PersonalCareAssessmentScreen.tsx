@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import {
     Keyboard,
@@ -11,6 +12,9 @@ import {
     Text,
     View,
 } from 'react-native';
+
+import BottomNavigation from '@/components/navigation/BottomNavigation';
+import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
 
 import { personalCareAssessmentCopy } from '@/features/personal-care/definitions/PersonalCareAssessment.data';
 
@@ -36,6 +40,14 @@ export default function PersonalCareAssessmentScreen({
     const goBack = () => {
         Keyboard.dismiss();
         onBack();
+    };
+
+    const handleBottomNavigationPress = (
+        itemId: BottomNavigationId,
+    ) => {
+        if (itemId === 'pain-tracker') {
+            router.replace('/home');
+        }
     };
 
     return (
@@ -115,6 +127,11 @@ export default function PersonalCareAssessmentScreen({
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
+
+            <BottomNavigation
+                activeItem="pain-tracker"
+                onItemPress={handleBottomNavigationPress}
+            />
         </SafeAreaView>
     );
 }
