@@ -14,7 +14,7 @@ export const personalCareAssessmentCopy = {
     generalActivitiesTitle: 'General Activities Impacts',
     generalActivitiesPrompt: 'Select ALL relevant statements:',
 
-    personalCareTitle: 'Personal care.tsx (washing, dressing, etc)',
+    personalCareTitle: 'Personal care (washing, dressing, etc)',
     personalCarePrompt: 'Select the MOST relevant statement:',
 
     sleepingTitle: 'Sleeping',
@@ -107,23 +107,26 @@ export function getPersonalCareSummaryDescription(
 ): PersonalCareSummaryDescription {
     if (totalScore <= 3) {
         return {
-            firstLine: 'Pain does not really',
-            boldPhrase: 'impact',
-            secondLine: 'your personal care.',
+            firstLine: 'Your answers indicate that pain does',
+            boldPhrase: 'not really',
+            secondLine:
+                'impact your personal care. Keep monitoring how you feel each week to stay on top of any changes.',
         };
     }
     if (totalScore <= 5) {
         return {
-            firstLine: 'Pain',
+            firstLine: 'Your answers indicate that pain',
             boldPhrase: 'mildly impacts',
-            secondLine: 'your personal care.',
+            secondLine:
+                'your personal care. With the right care and guidance, you can keep these tasks manageable.',
         };
     }
     if (totalScore <= 10) {
         return {
-            firstLine: 'Pain',
+            firstLine: 'Your answers indicate that pain',
             boldPhrase: 'moderately impacts',
-            secondLine: 'your personal care.',
+            secondLine:
+                'your personal care. With the right care and guidance, these tasks can become more manageable over time.',
         };
     }
     return {

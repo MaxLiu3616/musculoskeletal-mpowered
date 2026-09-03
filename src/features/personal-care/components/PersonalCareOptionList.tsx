@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { styles } from './PersonalCareAssessmentScreen.styles';
 
@@ -16,15 +16,12 @@ export default function PersonalCareOptionList<T extends string>({
                                                                      onToggle,
                                                                      multiSelect = false,
                                                                  }: PersonalCareOptionListProps<T>) {
-    return (
-        <ScrollView
-            contentContainerStyle={styles.options}
-            style={styles.optionsScroll}
-        >
-            {options.map((option) => {
-                const isSelected = selectedIds.includes(option.id);
+    if (multiSelect) {
+        return (
+            <View style={styles.optionList}>
+                {options.map((option, index) => {
+                    const isSelected = selectedIds.includes(option.id);
 
-                if (multiSelect) {
                     return (
                         <Pressable
                             accessibilityRole="checkbox"
@@ -32,23 +29,18 @@ export default function PersonalCareOptionList<T extends string>({
                             key={option.id}
                             onPress={() => onToggle(option.id)}
                             style={({ pressed }) => [
-                                styles.option,
-                                pressed && styles.optionPressed,
+                                styles.optionRow,
+                                index === options.length - 1 && styles.optionRowLast,
+                                isSelected && styles.optionRowSelected,
+                                pressed && styles.optionRowPressed,
                             ]}
                         >
-                            <Text
-                                style={[
-                                    styles.optionText,
-                                    isSelected && styles.optionTextSelected,
-                                ]}
-                            >
-                                {option.label}
-                            </Text>
+                            <Text style={styles.optionTextCheckbox}>{option.label}</Text>
 
                             <View
                                 style={[
-                                    styles.checkbox,
-                                    isSelected && styles.checkboxSelected,
+                                    styles.checkboxSquare,
+                                    isSelected && styles.checkboxSquareSelected,
                                 ]}
                             >
                                 {isSelected ? (
@@ -57,7 +49,15 @@ export default function PersonalCareOptionList<T extends string>({
                             </View>
                         </Pressable>
                     );
-                }
+                })}
+            </View>
+        );
+    }
+
+    return (
+        <View style={styles.optionList}>
+            {options.map((option, index) => {
+                const isSelected = selectedIds.includes(option.id);
 
                 return (
                     <Pressable
@@ -66,32 +66,22 @@ export default function PersonalCareOptionList<T extends string>({
                         key={option.id}
                         onPress={() => onToggle(option.id)}
                         style={({ pressed }) => [
-                            styles.option,
-                            pressed && styles.optionPressed,
+                            styles.optionRow,
+                            index === options.length - 1 && styles.optionRowLast,
+                            isSelected && styles.optionRowSelected,
+                            pressed && styles.optionRowPressed,
                         ]}
                     >
-                        <View style={styles.selectorOuter}>
-                            <View
-                                style={[
-                                    styles.radioOuter,
-                                    isSelected && styles.radioOuterSelected,
-                                ]}
-                            >
-                                {isSelected ? <View style={styles.radioDot} /> : null}
-                            </View>
+                        <View
+                            style={[styles.radio, isSelected && styles.radioSelected]}
+                        >
+                            {isSelected ? <View style={styles.radioDot} /> : null}
                         </View>
 
-                        <Text
-                            style={[
-                                styles.optionText,
-                                isSelected && styles.optionTextSelected,
-                            ]}
-                        >
-                            {option.label}
-                        </Text>
+                        <Text style={styles.optionText}>{option.label}</Text>
                     </Pressable>
                 );
             })}
-        </ScrollView>
+        </View>
     );
 }
