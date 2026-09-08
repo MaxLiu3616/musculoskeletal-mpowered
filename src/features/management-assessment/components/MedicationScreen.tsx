@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
 import { useManagementAssessment } from '@/features/management-assessment/ManagementAssessmentContext';
+import { useMyHealth } from '@/features/my-health/MyHealthContext';
+import { prescriptionName, prescriptionSchedule } from '@/features/my-health/MyHealth.data';
 import {
   managementAssessmentCopy,
-  managementMedicationOptions,
 } from '@/features/management-assessment/definitions/ManagementAssessment.data';
 import type { ManagementMedicationId } from '@/features/management-assessment/types/ManagementAssessment';
 
@@ -21,9 +22,10 @@ export default function MedicationScreen({
   onContinue,
 }: MedicationScreenProps) {
   const { responses, updateMedications } = useManagementAssessment();
+  const { prescriptions } = useMyHealth();
   const [selectedMedications, setSelectedMedications] = useState<
     ManagementMedicationId[]
-  >(responses.medications);
+  >(responses.medications.filter((id) => prescriptions.some((item) => item.id === id)));
 
   const toggleMedication = (medicationId: ManagementMedicationId) => {
     setSelectedMedications((currentSelection) =>
@@ -34,7 +36,8 @@ export default function MedicationScreen({
   };
 
   const recordMedications = () => {
-    updateMedications(selectedMedications);
+    const selected = prescriptions.filter((item) => selectedMedications.includes(item.id));
+    updateMedications(selected.map((item) => item.id), selected.map(prescriptionName));
     onContinue();
   };
 
@@ -61,7 +64,8 @@ export default function MedicationScreen({
         showsVerticalScrollIndicator
         style={styles.medicationList}
       >
-        {managementMedicationOptions.map((medication) => {
+        {prescriptions.length === 0 ? <Text style={styles.helper}>Your prescriptions list is empty. Add prescriptions in My Health, or continue without selecting medication.</Text> : null}
+        {prescriptions.map((medication) => {
           const isSelected = selectedMedications.includes(medication.id);
 
           return (
@@ -76,9 +80,9 @@ export default function MedicationScreen({
               ]}
             >
               <View style={styles.medicationTextGroup}>
-                <Text style={styles.medicationName}>{medication.name}</Text>
+                <Text style={styles.medicationName}>{prescriptionName(medication)}</Text>
                 <Text style={styles.medicationSchedule}>
-                  {medication.schedule}
+                  {prescriptionSchedule(medication)}
                 </Text>
               </View>
 

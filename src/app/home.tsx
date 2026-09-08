@@ -52,6 +52,10 @@ export default function HomeRoute() {
     <HomeScreen
       assessmentStatus={assessmentStatus}
       onAssessmentPress={openAssessment}
+      onMyHealthPress={() => {
+        if (userName) setName(userName);
+        router.push('/my-health');
+      }}
       userName={userName}
     />
   );

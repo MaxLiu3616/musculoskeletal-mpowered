@@ -13,6 +13,7 @@ import type {
 
 const initialResponses: ManagementAssessmentResponses = {
   medications: [],
+  medicationNames: [],
   otcMedication: '',
   exerciseFrequency: null,
   emotionStrategy: '',
@@ -20,7 +21,7 @@ const initialResponses: ManagementAssessmentResponses = {
 
 type ManagementAssessmentContextValue = {
   responses: ManagementAssessmentResponses;
-  updateMedications: (medications: ManagementMedicationId[]) => void;
+  updateMedications: (medications: ManagementMedicationId[], medicationNames: string[]) => void;
   updateOtcMedication: (medication: string) => void;
   updateExerciseFrequency: (frequency: ExerciseFrequencyId) => void;
   updateEmotionStrategy: (strategy: string) => void;
@@ -39,10 +40,11 @@ export function ManagementAssessmentProvider({
 }: ManagementAssessmentProviderProps) {
   const [responses, setResponses] = useState(initialResponses);
 
-  const updateMedications = (medications: ManagementMedicationId[]) => {
+  const updateMedications = (medications: ManagementMedicationId[], medicationNames: string[]) => {
     setResponses((currentResponses) => ({
       ...currentResponses,
       medications,
+      medicationNames,
     }));
   };
 

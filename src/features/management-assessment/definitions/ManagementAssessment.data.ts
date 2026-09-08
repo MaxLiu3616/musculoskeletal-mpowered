@@ -1,40 +1,7 @@
 import type {
   ExerciseFrequencyId,
   ManagementAssessmentResponses,
-  ManagementMedicationId,
 } from '@/features/management-assessment/types/ManagementAssessment';
-
-export const managementMedicationOptions: readonly {
-  id: ManagementMedicationId;
-  name: string;
-  schedule: string;
-}[] = [
-  {
-    id: 'perindopril',
-    name: 'Perindopril arginine 5 mg',
-    schedule: 'Once daily',
-  },
-  {
-    id: 'candesartan',
-    name: 'Candesartan 16 mg',
-    schedule: 'Once daily',
-  },
-  {
-    id: 'amlodipine',
-    name: 'Amlodipine 5 mg',
-    schedule: 'Once daily',
-  },
-  {
-    id: 'vitamin-d3',
-    name: 'Vitamin D3 1000 IU',
-    schedule: 'Once daily',
-  },
-  {
-    id: 'raloxifene',
-    name: 'Raloxifene 60 mg',
-    schedule: 'Once daily',
-  },
-];
 
 export const exerciseFrequencyOptions: readonly {
   id: ExerciseFrequencyId;
@@ -106,9 +73,7 @@ export function findExerciseFrequencyLabel(id: ExerciseFrequencyId) {
 export function getMedicationResult(
   responses: ManagementAssessmentResponses,
 ) {
-  const prescribedNames = managementMedicationOptions
-    .filter((option) => responses.medications.includes(option.id))
-    .map((option) => option.name);
+  const prescribedNames = responses.medicationNames;
   const otcMedication = responses.otcMedication.trim();
 
   if (prescribedNames.length === 0 && !otcMedication) {

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Keyboard, Pressable, Text, TextInput, View } from 'react-native';
 
+import { useOnboarding } from '../OnboardingContext';
+
 import { otherConditionsScreenCopy } from './HealthConditionsScreen.data';
 import { styles } from './HealthConditionsScreen.styles';
 
@@ -11,7 +13,8 @@ type OtherConditionsScreenProps = {
 export default function OtherConditionsScreen({
   onContinue,
 }: OtherConditionsScreenProps) {
-  const [conditions, setConditions] = useState('');
+  const { profile, updateProfile } = useOnboarding();
+  const [conditions, setConditions] = useState(profile.otherConditions);
   const canContinue = conditions.trim().length > 0;
 
   const updateConditions = (value: string) => {
@@ -24,11 +27,13 @@ export default function OtherConditionsScreen({
     }
 
     Keyboard.dismiss();
+    updateProfile({ otherConditions: conditions.trim() });
     onContinue();
   };
 
   const skipToNextStep = () => {
     Keyboard.dismiss();
+    updateProfile({ otherConditions: '' });
     onContinue();
   };
 

@@ -47,6 +47,8 @@ export default function PersonalCareAssessmentScreen({
     ) => {
         if (itemId === 'pain-tracker') {
             router.replace('/home');
+        } else if (itemId === 'my-health') {
+            router.push('/my-health');
         }
     };
 

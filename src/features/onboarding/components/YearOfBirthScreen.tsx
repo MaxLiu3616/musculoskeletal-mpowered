@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 
+import { useOnboarding } from '../OnboardingContext';
+
 import { yearOfBirthScreenCopy } from './YearOfBirthScreen.data';
 import { styles } from './YearOfBirthScreen.styles';
 
@@ -13,7 +15,8 @@ type YearOfBirthScreenProps = {
 export default function YearOfBirthScreen({
   onContinue,
 }: YearOfBirthScreenProps) {
-  const [year, setYear] = useState('');
+  const { profile, updateProfile } = useOnboarding();
+  const [year, setYear] = useState(profile.yearOfBirth);
   const canContinue =
     /^[1-9]\d{3}$/.test(year) && Number(year) <= currentYear;
 
@@ -26,6 +29,7 @@ export default function YearOfBirthScreen({
       return;
     }
 
+    updateProfile({ yearOfBirth: year });
     onContinue();
   };
 
