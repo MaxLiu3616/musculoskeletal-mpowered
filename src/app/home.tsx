@@ -48,10 +48,15 @@ export default function HomeRoute() {
     }
   };
 
+  const openReflection = () => {
+    router.push('/reflection');
+  };
+
   return (
     <HomeScreen
       assessmentStatus={assessmentStatus}
       onAssessmentPress={openAssessment}
+      onReflectionPress={openReflection}
       userName={userName}
     />
   );
