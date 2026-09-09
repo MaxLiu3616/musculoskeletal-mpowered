@@ -28,29 +28,75 @@ export default function PainLocationScreen({
   onBack,
   onContinue,
 }: PainLocationScreenProps) {
-  const { responses, updateLocations } = usePainAssessment();
-  const [selectedLocations, setSelectedLocations] = useState<
-    PainLocationId[]
-  >(responses.locations);
-  const [otherLocation, setOtherLocation] = useState(responses.otherLocation);
-  const [otherDraft, setOtherDraft] = useState(responses.otherLocation);
-  const [isOtherDialogVisible, setIsOtherDialogVisible] = useState(false);
-  const trimmedOtherLocation = otherLocation.trim();
-  const canRecord =
-    selectedLocations.length > 0 &&
-    (!selectedLocations.includes('other') || trimmedOtherLocation.length > 0);
-  const visibleLocationOptions = painLocationOptions.map((option) =>
-    option.id === 'other' && trimmedOtherLocation
-      ? { ...option, label: `Other: ${trimmedOtherLocation}` }
-      : option,
+  const {
+    responses,
+    updateLocations,
+  } = usePainAssessment();
+
+  const [
+    selectedLocations,
+    setSelectedLocations,
+  ] = useState<PainLocationId[]>(
+    responses.locations,
   );
 
-  const toggleLocation = (locationId: PainLocationId) => {
+  const [
+    otherLocation,
+    setOtherLocation,
+  ] = useState(
+    responses.otherLocation,
+  );
+
+  const [
+    otherDraft,
+    setOtherDraft,
+  ] = useState(
+    responses.otherLocation,
+  );
+
+  const [
+    isOtherDialogVisible,
+    setIsOtherDialogVisible,
+  ] = useState(false);
+
+  const trimmedOtherLocation =
+    otherLocation.trim();
+
+  const canRecord =
+    selectedLocations.length > 0 &&
+    (!selectedLocations.includes(
+      'other',
+    ) ||
+      trimmedOtherLocation.length > 0);
+
+  const visibleLocationOptions =
+    painLocationOptions.map(
+      (option) =>
+        option.id === 'other' &&
+        trimmedOtherLocation
+          ? {
+              ...option,
+              label: `Other: ${trimmedOtherLocation}`,
+            }
+          : option,
+    );
+
+  const toggleLocation = (
+    locationId: PainLocationId,
+  ) => {
     if (locationId === 'other') {
-      if (selectedLocations.includes('other')) {
-        setSelectedLocations((currentSelection) =>
-          currentSelection.filter((id) => id !== 'other'),
+      if (
+        selectedLocations.includes(
+          'other',
+        )
+      ) {
+        setSelectedLocations(
+          (currentSelection) =>
+            currentSelection.filter(
+              (id) => id !== 'other',
+            ),
         );
+
         setOtherLocation('');
         setOtherDraft('');
         return;
@@ -61,33 +107,55 @@ export default function PainLocationScreen({
       return;
     }
 
-    setSelectedLocations((currentSelection) =>
-      currentSelection.includes(locationId)
-        ? currentSelection.filter((id) => id !== locationId)
-        : [...currentSelection, locationId],
+    setSelectedLocations(
+      (currentSelection) =>
+        currentSelection.includes(
+          locationId,
+        )
+          ? currentSelection.filter(
+              (id) =>
+                id !== locationId,
+            )
+          : [
+              ...currentSelection,
+              locationId,
+            ],
     );
   };
 
   const closeOtherDialog = () => {
     Keyboard.dismiss();
+
     setOtherDraft(otherLocation);
     setIsOtherDialogVisible(false);
   };
 
   const addOtherLocation = () => {
-    const trimmedLocation = otherDraft.trim();
+    const trimmedLocation =
+      otherDraft.trim();
 
     if (!trimmedLocation) {
       return;
     }
 
     Keyboard.dismiss();
-    setOtherLocation(trimmedLocation);
-    setSelectedLocations((currentSelection) =>
-      currentSelection.includes('other')
-        ? currentSelection
-        : [...currentSelection, 'other'],
+
+    setOtherLocation(
+      trimmedLocation,
     );
+
+    setSelectedLocations(
+      (currentSelection) =>
+        currentSelection.includes(
+          'other',
+        )
+          ? currentSelection
+          : [
+              ...currentSelection,
+              'other',
+            ],
+    );
+
     setIsOtherDialogVisible(false);
   };
 
@@ -96,7 +164,11 @@ export default function PainLocationScreen({
       return;
     }
 
-    updateLocations(selectedLocations, trimmedOtherLocation);
+    updateLocations(
+      selectedLocations,
+      trimmedOtherLocation,
+    );
+
     onContinue();
   };
 
@@ -106,78 +178,150 @@ export default function PainLocationScreen({
         canRecord={canRecord}
         onBack={onBack}
         onRecord={recordLocations}
-        sectionTitle={painAssessmentCopy.locationTitle}
+        sectionTitle={
+          painAssessmentCopy.locationTitle
+        }
         step={1}
       >
-        <Text style={styles.prompt}>{painAssessmentCopy.locationPrompt}</Text>
-        <Text style={styles.helper}>{painAssessmentCopy.locationHelper}</Text>
+        <Text style={styles.prompt}>
+          {
+            painAssessmentCopy.locationPrompt
+          }
+        </Text>
+
+        <Text style={styles.helper}>
+          {
+            painAssessmentCopy.locationHelper
+          }
+        </Text>
 
         <PainOptionList
           onToggle={toggleLocation}
-          options={visibleLocationOptions}
-          selectedIds={selectedLocations}
+          options={
+            visibleLocationOptions
+          }
+          selectedIds={
+            selectedLocations
+          }
         />
       </PainAssessmentScreen>
 
       <Modal
         accessibilityViewIsModal
         animationType="fade"
-        onRequestClose={closeOtherDialog}
+        onRequestClose={
+          closeOtherDialog
+        }
         transparent
-        visible={isOtherDialogVisible}
+        visible={
+          isOtherDialogVisible
+        }
       >
-        <View style={styles.modalBackdrop}>
-          <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>
-              {painAssessmentCopy.otherLocationTitle}
-            </Text>
+        <View
+          style={styles.modalBackdrop}
+        >
+          <View
+            style={styles.modalCard}
+          >
+            <View
+              style={
+                styles.modalInputContainer
+              }
+            >
+              <Text
+                style={
+                  styles.modalInputLabel
+                }
+              >
+                {
+                  painAssessmentCopy.otherLocationTitle
+                }
+              </Text>
 
-            <TextInput
-              accessibilityLabel={painAssessmentCopy.otherLocationTitle}
-              autoFocus
-              onChangeText={setOtherDraft}
-              onSubmitEditing={addOtherLocation}
-              placeholder={painAssessmentCopy.otherLocationPlaceholder}
-              placeholderTextColor="#7A747D"
-              returnKeyType="done"
-              selectionColor="#6D50AC"
-              style={styles.modalInput}
-              value={otherDraft}
-            />
+              <TextInput
+                accessibilityLabel={
+                  painAssessmentCopy.otherLocationTitle
+                }
+                autoFocus
+                onChangeText={
+                  setOtherDraft
+                }
+                onSubmitEditing={
+                  addOtherLocation
+                }
+                placeholder={
+                  painAssessmentCopy.otherLocationPlaceholder
+                }
+                placeholderTextColor="#8B858D"
+                returnKeyType="done"
+                selectionColor="#6D50AC"
+                style={styles.modalInput}
+                value={otherDraft}
+              />
+            </View>
 
-            <View style={styles.modalActions}>
+            <View
+              style={
+                styles.modalActions
+              }
+            >
               <Pressable
                 accessibilityRole="button"
-                onPress={closeOtherDialog}
-                style={({ pressed }) => [
+                onPress={
+                  closeOtherDialog
+                }
+                style={({
+                  pressed,
+                }) => [
                   styles.modalButton,
-                  pressed && styles.modalButtonPressed,
+                  pressed &&
+                    styles.modalButtonPressed,
                 ]}
               >
-                <Text style={styles.modalButtonText}>
-                  {painAssessmentCopy.cancelLabel}
+                <Text
+                  style={
+                    styles.modalButtonText
+                  }
+                >
+                  {
+                    painAssessmentCopy.cancelLabel
+                  }
                 </Text>
               </Pressable>
 
               <Pressable
                 accessibilityRole="button"
-                accessibilityState={{ disabled: !otherDraft.trim() }}
-                disabled={!otherDraft.trim()}
-                onPress={addOtherLocation}
-                style={({ pressed }) => [
+                accessibilityState={{
+                  disabled:
+                    !otherDraft.trim(),
+                }}
+                disabled={
+                  !otherDraft.trim()
+                }
+                onPress={
+                  addOtherLocation
+                }
+                style={({
+                  pressed,
+                }) => [
                   styles.modalButton,
                   pressed &&
-                    otherDraft.trim().length > 0 &&
+                    otherDraft.trim()
+                      .length >
+                      0 &&
                     styles.modalButtonPressed,
                 ]}
               >
                 <Text
                   style={[
                     styles.modalButtonText,
-                    !otherDraft.trim() && styles.modalButtonTextDisabled,
+                    !otherDraft.trim() &&
+                      styles.modalButtonTextDisabled,
                   ]}
                 >
-                  {painAssessmentCopy.addLabel}
+                  {
+                    painAssessmentCopy.addLabel
+                  }
                 </Text>
               </Pressable>
             </View>

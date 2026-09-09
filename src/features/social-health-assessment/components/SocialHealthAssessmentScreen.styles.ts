@@ -129,38 +129,35 @@ export const styles = StyleSheet.create({
 
   recordButton: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#CFC5D7',
-    borderRadius: 18,
-    borderWidth: 1,
+    backgroundColor: '#6D50AC',
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    minHeight: 34,
-    minWidth: 82,
-    paddingHorizontal: 12,
+    minHeight: 44,
+    minWidth: 112,
+    paddingHorizontal: 18,
   },
 
   recordButtonDisabled: {
-    backgroundColor: '#F7F4F8',
-    borderColor: '#E1DAE6',
+    backgroundColor: '#E7D8FF',
   },
 
   recordButtonPressed: {
-    backgroundColor: '#F3ECF7',
+    opacity: 0.82,
   },
 
   recordButtonText: {
-    color: '#514D57',
-    fontSize: 12,
+    color: '#FFFFFF',
+    fontSize: 14,
     fontWeight: '600',
   },
 
   recordButtonTextDisabled: {
-    color: '#AAA2AF',
+    color: '#554766',
   },
 
   recordArrow: {
-    color: '#514D57',
+    color: '#FFFFFF',
     fontSize: 16,
     marginLeft: 7,
   },

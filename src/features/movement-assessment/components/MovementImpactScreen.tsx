@@ -24,11 +24,14 @@ export default function MovementImpactScreen({
   onContinue,
   step,
 }: MovementImpactScreenProps) {
-  const { responses, updateImpact } = useMovementAssessment();
-  const [selectedScore, setSelectedScore] = useState<number | null>(
-    responses[area],
-  );
+  const { responses, updateImpact } =
+    useMovementAssessment();
+
+  const [selectedScore, setSelectedScore] =
+    useState<number | null>(responses[area]);
+
   const section = movementImpactSections[area];
+
   const canRecord = selectedScore !== null;
 
   const recordImpact = () => {
@@ -50,36 +53,59 @@ export default function MovementImpactScreen({
       totalSteps={7}
     >
       <Text style={styles.instruction}>
-        {movementAssessmentCopy.selectMostPrompt}
+        Select the{' '}
+        <Text style={styles.instructionEmphasis}>
+          MOST
+        </Text>{' '}
+        relevant statement:
       </Text>
+
       <View style={styles.optionList}>
         {section.options.map((option, index) => {
-          const isSelected = selectedScore === option.score;
+          const isSelected =
+            selectedScore === option.score;
 
           return (
             <Pressable
               aria-checked={isSelected}
               accessibilityRole="radio"
-              accessibilityState={{ checked: isSelected }}
+              accessibilityState={{
+                checked: isSelected,
+              }}
               key={option.score}
-              onPress={() => setSelectedScore(option.score)}
+              onPress={() =>
+                setSelectedScore(option.score)
+              }
               style={({ pressed }) => [
                 styles.optionRow,
-                index === section.options.length - 1 && styles.optionRowLast,
-                isSelected && styles.optionRowSelected,
-                pressed && styles.optionRowPressed,
+                index ===
+                  section.options.length - 1 &&
+                  styles.optionRowLast,
+                isSelected &&
+                  styles.optionRowSelected,
+                pressed &&
+                  styles.optionRowPressed,
               ]}
             >
               <View
                 style={[
                   styles.selectionControl,
                   styles.radio,
-                  isSelected && styles.selectionControlSelected,
+                  isSelected &&
+                    styles.selectionControlSelected,
                 ]}
               >
-                {isSelected && <View style={styles.radioDot} />}
+                {isSelected && (
+                  <View style={styles.radioDot} />
+                )}
               </View>
-              <Text style={[styles.optionText, styles.optionTextAfterControl]}>
+
+              <Text
+                style={[
+                  styles.optionText,
+                  styles.optionTextAfterControl,
+                ]}
+              >
                 {option.label}
               </Text>
             </Pressable>

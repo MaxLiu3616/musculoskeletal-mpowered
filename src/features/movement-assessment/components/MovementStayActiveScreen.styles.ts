@@ -2,25 +2,32 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   question: {
-    color: '#342E3A',
-    fontSize: 15,
-    fontWeight: '600',
-    lineHeight: 22,
-  },
-  input: {
-    backgroundColor: '#F1EDF4',
-    borderRadius: 8,
     color: '#17151B',
-    fontSize: 16,
-    height: 48,
-    marginTop: 14,
-    paddingHorizontal: 14,
+    fontSize: 12,
+    fontWeight: '700',
+    lineHeight: 18,
   },
-  helperText: {
-    color: '#6A646E',
+
+  input: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#D5CFD8',
+    borderRadius: 6,
+    borderWidth: 1,
+    color: '#17151B',
     fontSize: 13,
+    fontWeight: '500',
+    height: 42,
+    marginTop: 18,
+    outlineColor: 'transparent',
+    outlineStyle: 'solid',
+    paddingHorizontal: 12,
+  },
+
+  helperText: {
+    color: '#6C6472',
+    fontSize: 11,
     fontStyle: 'italic',
-    lineHeight: 19,
-    marginTop: 8,
+    lineHeight: 16,
+    marginTop: 12,
   },
 });

@@ -8,7 +8,7 @@ import type {
 export const socialHealthAssessmentCopy = {
   trackerTitle: 'Pain Tracker',
   assessmentTitle: 'My Social Health',
-  backLabel: 'Back',
+  backLabel: '← Back',
   recordLabel: 'Record',
 
   socialLifeTitle: 'Social life',
@@ -17,7 +17,8 @@ export const socialHealthAssessmentCopy = {
   relationshipTitle: 'Relation with others',
   enjoymentTitle: 'Enjoyment of life',
 
-  statementPrompt: 'Select the MOST relevant statement:',
+  statementPrompt:
+    'Select the MOST relevant statement:',
 
   moodQuestion:
     'Over the past week, how much has pain impacted your mood?',
@@ -44,11 +45,13 @@ export const socialHealthAssessmentCopy = {
 export const socialLifeOptions: readonly SocialHealthStatementOption[] = [
   {
     score: 0,
-    label: 'My social life is normal and gives me no extra pain',
+    label:
+      'My social life is normal and gives me no extra pain',
   },
   {
     score: 1,
-    label: 'My social life is normal but increases the degree of pain',
+    label:
+      'My social life is normal but increases the degree of pain',
   },
   {
     score: 2,
@@ -62,30 +65,36 @@ export const socialLifeOptions: readonly SocialHealthStatementOption[] = [
   },
   {
     score: 4,
-    label: 'Pain has restricted my social life to my home',
+    label:
+      'Pain has restricted my social life to my home',
   },
   {
     score: 5,
-    label: 'I have no social life because of pain',
+    label:
+      'I have no social life because of pain',
   },
 ];
 
 export const travellingOptions: readonly SocialHealthStatementOption[] = [
   {
     score: 0,
-    label: 'I can travel anywhere without pain',
+    label:
+      'I can travel anywhere without pain',
   },
   {
     score: 1,
-    label: 'I can travel anywhere but it gives me extra pain',
+    label:
+      'I can travel anywhere but it gives me extra pain',
   },
   {
     score: 2,
-    label: 'Pain is bad but I manage journeys over two hours',
+    label:
+      'Pain is bad but I manage journeys over two hours',
   },
   {
     score: 3,
-    label: 'Pain restricts me to journeys of less than one hour',
+    label:
+      'Pain restricts me to journeys of less than one hour',
   },
   {
     score: 4,

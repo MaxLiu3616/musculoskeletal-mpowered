@@ -58,25 +58,31 @@ export const painIntensityQuestions: Record<
     prompt: 'My current pain is',
     usesPastTense: false,
   },
+
   mildest: {
     id: 'mildest',
     responseKey: 'mildestPain',
     step: 4,
-    prompt: 'My mildest pain last week was',
+    prompt:
+      'My mildest pain last week was',
     usesPastTense: true,
   },
+
   worst: {
     id: 'worst',
     responseKey: 'worstPain',
     step: 5,
-    prompt: 'My worst pain last week was',
+    prompt:
+      'My worst pain last week was',
     usesPastTense: true,
   },
+
   average: {
     id: 'average',
     responseKey: 'averagePain',
     step: 6,
-    prompt: 'My average pain last week was',
+    prompt:
+      'My average pain last week was',
     usesPastTense: true,
   },
 };
@@ -84,34 +90,62 @@ export const painIntensityQuestions: Record<
 export const painAssessmentCopy = {
   trackerTitle: 'Pain Tracker',
   assessmentTitle: 'My Pain',
-  backLabel: '‹ Back',
+
+  backLabel: '← Back',
   recordLabel: 'Record →',
+
   locationTitle: 'Pain location',
-  locationPrompt: 'I have had pain in these areas last week.',
-  locationHelper: 'Select all that apply. Scroll down for more options.',
-  otherLocationTitle: 'Other pain location',
-  otherLocationPlaceholder: 'Type a pain location',
+
+  locationPrompt:
+    'I have had pain in these areas last week.',
+
+  locationHelper:
+    '(scroll down for more options)',
+
+  otherLocationTitle: 'Other',
+
+  otherLocationPlaceholder:
+    'Type a pain location',
+
   cancelLabel: 'Cancel',
-  addLabel: 'Add',
-  characteristicsTitle: 'Pain characteristics',
+  addLabel: 'OK',
+
+  characteristicsTitle:
+    'Pain characteristics',
+
   characteristicsPrompt:
-    'For each following word, check if that adjective applies to your pain.',
+    'For each following words, check if that adjectives applies to your pain.',
+
   characteristicsHelper:
-    'Select all that apply. Scroll down for more options.',
+    '(scroll down for more options)',
+
   intensityTitle: 'Pain intensity',
+
   intensityRange: 'out of 10',
+
   summaryTitle: 'My Pain Summary',
-  summaryIntro: 'This helps guide your treatment and support your recovery.',
-  summarySessionNote: 'Available during this session',
+
+  summaryIntro:
+    'This helps guide your treatment and support your recovery.',
+
+  summarySessionNote:
+    'Saved to My Health',
+
   closeLabel: 'Close',
 } as const;
 
-export function getPainDescription(value: number, usesPastTense: boolean) {
+export function getPainDescription(
+  value: number,
+  usesPastTense: boolean,
+) {
   if (value === 0) {
-    return usesPastTense ? 'I had no pain at all' : 'I have no pain at all';
+    return usesPastTense
+      ? 'I had no pain at all'
+      : 'I have no pain at all';
   }
 
-  const verb = usesPastTense ? 'was' : 'is';
+  const verb =
+    usesPastTense ? 'was' : 'is';
 
   if (value <= 3) {
     return `The pain ${verb} very mild`;
@@ -132,15 +166,21 @@ export function getPainDescription(value: number, usesPastTense: boolean) {
   return `The pain ${verb} the worst imaginable`;
 }
 
-export function findPainLocationLabel(locationId: PainLocationId) {
-  return painLocationOptions.find((option) => option.id === locationId)?.label;
+export function findPainLocationLabel(
+  locationId: PainLocationId,
+) {
+  return painLocationOptions.find(
+    (option) =>
+      option.id === locationId,
+  )?.label;
 }
 
 export function findPainCharacteristicLabel(
   characteristicId: PainCharacteristicId,
 ) {
   return painCharacteristicOptions.find(
-    (option) => option.id === characteristicId,
+    (option) =>
+      option.id === characteristicId,
   )?.label;
 }
 
@@ -148,17 +188,18 @@ export function getPainSummaryDescription(
   responseKey: PainIntensityResponseKey,
   value: number,
 ) {
-  const severity = value === 0
-    ? 'no'
-    : value <= 3
-      ? 'mild'
-      : value <= 6
-        ? 'moderate'
-        : value <= 8
-          ? 'severe'
-          : value === 9
-            ? 'very severe'
-            : 'the worst imaginable';
+  const severity =
+    value === 0
+      ? 'no'
+      : value <= 3
+        ? 'mild'
+        : value <= 6
+          ? 'moderate'
+          : value <= 8
+            ? 'severe'
+            : value === 9
+              ? 'very severe'
+              : 'the worst imaginable';
 
   if (responseKey === 'currentPain') {
     return value === 0
@@ -172,7 +213,10 @@ export function getPainSummaryDescription(
       : `My worst pain was ${severity}`;
   }
 
-  if (responseKey === 'averagePain' && value === 0) {
+  if (
+    responseKey === 'averagePain' &&
+    value === 0
+  ) {
     return 'I had no pain on average';
   }
 
@@ -181,21 +225,38 @@ export function getPainSummaryDescription(
     : `I have experienced ${severity} pain`;
 }
 
-export function getAssessmentPeriodLabel(today = new Date()) {
+export function getAssessmentPeriodLabel(
+  today = new Date(),
+) {
   const periodEnd = new Date(today);
-  periodEnd.setDate(periodEnd.getDate() - 1);
 
-  const periodStart = new Date(periodEnd);
-  periodStart.setDate(periodStart.getDate() - 6);
+  const periodStart = new Date(today);
 
-  const startDay = periodStart.getDate();
-  const endDay = periodEnd.getDate();
-  const startMonth = periodStart.toLocaleDateString('en-AU', {
-    month: 'short',
-  });
-  const endMonth = periodEnd.toLocaleDateString('en-AU', {
-    month: 'short',
-  });
+  periodStart.setDate(
+    periodStart.getDate() - 6,
+  );
+
+  const startDay =
+    periodStart.getDate();
+
+  const endDay =
+    periodEnd.getDate();
+
+  const startMonth =
+    periodStart.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
+
+  const endMonth =
+    periodEnd.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
 
   if (startMonth === endMonth) {
     return `${startDay}-${endDay} ${endMonth}`;

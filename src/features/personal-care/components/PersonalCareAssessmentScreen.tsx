@@ -2,15 +2,16 @@ import * as React from 'react';
 import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import {
-    Keyboard,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    Text,
-    View,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  useWindowDimensions,
+  View,
 } from 'react-native';
 
 import BottomNavigation from '@/components/navigation/BottomNavigation';
@@ -21,117 +22,164 @@ import { personalCareAssessmentCopy } from '@/features/personal-care/definitions
 import { styles } from './PersonalCareAssessmentScreen.styles';
 
 type PersonalCareAssessmentScreenProps = {
-    children: ReactNode;
-    sectionTitle: string;
-    step: number;
-    canRecord: boolean;
-    onBack: () => void;
-    onRecord: () => void;
+  children: ReactNode;
+  sectionTitle: string;
+  step: number;
+  canRecord: boolean;
+  onBack: () => void;
+  onRecord: () => void;
 };
 
 export default function PersonalCareAssessmentScreen({
-                                                         children,
-                                                         sectionTitle,
-                                                         step,
-                                                         canRecord,
-                                                         onBack,
-                                                         onRecord,
-                                                     }: PersonalCareAssessmentScreenProps) {
-    const goBack = () => {
-        Keyboard.dismiss();
-        onBack();
-    };
+  children,
+  sectionTitle,
+  step,
+  canRecord,
+  onBack,
+  onRecord,
+}: PersonalCareAssessmentScreenProps) {
+  const { height: viewportHeight } = useWindowDimensions();
 
-    const handleBottomNavigationPress = (
-        itemId: BottomNavigationId,
-    ) => {
-        if (itemId === 'pain-tracker') {
-            router.replace('/home');
-        }
-    };
+  const appHeight =
+    Platform.OS === 'web'
+      ? Math.min(viewportHeight, 844)
+      : viewportHeight;
 
-    return (
-        <SafeAreaView style={styles.safeArea}>
-            <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+  const goBack = () => {
+    Keyboard.dismiss();
+    onBack();
+  };
 
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                style={styles.keyboardView}
-            >
-                <ScrollView
-                    contentContainerStyle={styles.scrollContent}
-                    keyboardShouldPersistTaps="handled"
-                    showsVerticalScrollIndicator={false}
+  const handleBottomNavigationPress = (
+    itemId: BottomNavigationId,
+  ) => {
+    if (itemId === 'pain-tracker') {
+      router.replace('/home');
+    }
+  };
+
+  return (
+    <View
+      style={[
+        styles.viewport,
+        Platform.OS === 'web' && styles.webViewport,
+        {
+          height: appHeight,
+          maxHeight: appHeight,
+        },
+      ]}
+    >
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="#FFFFFF"
+        />
+
+        <KeyboardAvoidingView
+          behavior={
+            Platform.OS === 'ios'
+              ? 'padding'
+              : undefined
+          }
+          style={styles.keyboardView}
+        >
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.screen}>
+              <View style={styles.header}>
+                <Pressable
+                  accessibilityRole="button"
+                  hitSlop={4}
+                  onPress={goBack}
+                  style={({ pressed }) => [
+                    styles.backButton,
+                    pressed &&
+                      styles.backButtonPressed,
+                  ]}
                 >
-                    <View style={styles.screen}>
-                        <View style={styles.header}>
-                            <Pressable
-                                accessibilityRole="button"
-                                hitSlop={4}
-                                onPress={goBack}
-                                style={({ pressed }) => [
-                                    styles.backButton,
-                                    pressed && styles.backButtonPressed,
-                                ]}
-                            >
-                                <Text style={styles.backButtonText}>
-                                    {personalCareAssessmentCopy.backLabel}
-                                </Text>
-                            </Pressable>
+                  <Text style={styles.backButtonText}>
+                    {
+                      personalCareAssessmentCopy.backLabel
+                    }
+                  </Text>
+                </Pressable>
 
-                            <Text style={styles.trackerTitle}>
-                                {personalCareAssessmentCopy.trackerTitle}
-                            </Text>
-                        </View>
+                <Text style={styles.trackerTitle}>
+                  {
+                    personalCareAssessmentCopy.trackerTitle
+                  }
+                </Text>
+              </View>
 
-                        <Text style={styles.assessmentTitle}>
-                            {personalCareAssessmentCopy.assessmentTitle}
-                        </Text>
+              <Text style={styles.assessmentTitle}>
+                {
+                  personalCareAssessmentCopy.assessmentTitle
+                }
+              </Text>
 
-                        <View style={styles.questionCard}>
-                            <Text style={styles.sectionTitle}>{sectionTitle}</Text>
-                            <View style={styles.divider} />
+              <View style={styles.questionCard}>
+                <Text style={styles.sectionTitle}>
+                  {sectionTitle}
+                </Text>
 
-                            {children}
+                <View style={styles.divider} />
 
-                            <View style={styles.actionRow}>
-                                <View
-                                    accessibilityLabel={`Question ${step} of 4`}
-                                    style={styles.stepBadge}
-                                >
-                                    <Text style={styles.stepText}>{step}/4</Text>
-                                </View>
+                {children}
 
-                                <Pressable
-                                    accessibilityRole="button"
-                                    accessibilityState={{ disabled: !canRecord }}
-                                    disabled={!canRecord}
-                                    onPress={onRecord}
-                                    style={({ pressed }) => [
-                                        styles.recordButton,
-                                        !canRecord && styles.recordButtonDisabled,
-                                        pressed && canRecord && styles.recordButtonPressed,
-                                    ]}
-                                >
-                                    <Text
-                                        style={[
-                                            styles.recordButtonText,
-                                            !canRecord && styles.recordButtonTextDisabled,
-                                        ]}
-                                    >
-                                        {personalCareAssessmentCopy.recordLabel}
-                                    </Text>
-                                </Pressable>
-                            </View>
-                        </View>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                <View style={styles.actionRow}>
+                  <View
+                    accessibilityLabel={`Question ${step} of 4`}
+                    style={styles.stepBadge}
+                  >
+                    <Text style={styles.stepText}>
+                      {step}/4
+                    </Text>
+                  </View>
 
-            <BottomNavigation
-                activeItem="pain-tracker"
-                onItemPress={handleBottomNavigationPress}
-            />
-        </SafeAreaView>
-    );
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityState={{
+                      disabled: !canRecord,
+                    }}
+                    disabled={!canRecord}
+                    onPress={onRecord}
+                    style={({ pressed }) => [
+                      styles.recordButton,
+                      !canRecord &&
+                        styles.recordButtonDisabled,
+                      pressed &&
+                        canRecord &&
+                        styles.recordButtonPressed,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.recordButtonText,
+                        !canRecord &&
+                          styles.recordButtonTextDisabled,
+                      ]}
+                    >
+                      {
+                        personalCareAssessmentCopy.recordLabel
+                      }
+                    </Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+
+        <BottomNavigation
+          activeItem="pain-tracker"
+          onItemPress={
+            handleBottomNavigationPress
+          }
+        />
+      </SafeAreaView>
+    </View>
+  );
 }

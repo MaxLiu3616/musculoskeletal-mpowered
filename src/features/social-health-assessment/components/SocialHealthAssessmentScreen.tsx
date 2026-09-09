@@ -96,33 +96,18 @@ export default function SocialHealthAssessmentScreen({
                       styles.backButtonPressed,
                   ]}
                 >
-                  <Text
-                    style={
-                      styles.backButtonText
-                    }
-                  >
-                    ←{' '}
-                    {
-                      socialHealthAssessmentCopy.backLabel
-                    }
+                  <Text style={styles.backButtonText}>
+                    {socialHealthAssessmentCopy.backLabel}
                   </Text>
                 </Pressable>
 
-                <Text
-                  style={styles.trackerTitle}
-                >
-                  {
-                    socialHealthAssessmentCopy.trackerTitle
-                  }
+                <Text style={styles.trackerTitle}>
+                  {socialHealthAssessmentCopy.trackerTitle}
                 </Text>
               </View>
 
-              <Text
-                style={styles.assessmentTitle}
-              >
-                {
-                  socialHealthAssessmentCopy.assessmentTitle
-                }
+              <Text style={styles.assessmentTitle}>
+                {socialHealthAssessmentCopy.assessmentTitle}
               </Text>
 
               <View
@@ -133,28 +118,20 @@ export default function SocialHealthAssessmentScreen({
                     : styles.questionCardFull,
                 ]}
               >
-                <Text
-                  style={styles.sectionTitle}
-                >
+                <Text style={styles.sectionTitle}>
                   {sectionTitle}
                 </Text>
 
-                <View
-                  style={styles.divider}
-                />
+                <View style={styles.divider} />
 
                 {children}
 
-                <View
-                  style={styles.actionRow}
-                >
+                <View style={styles.actionRow}>
                   <View
                     accessibilityLabel={`Question ${step} of ${totalSteps}`}
                     style={styles.stepBadge}
                   >
-                    <Text
-                      style={styles.stepText}
-                    >
+                    <Text style={styles.stepText}>
                       {step}/{totalSteps}
                     </Text>
                   </View>
@@ -182,9 +159,7 @@ export default function SocialHealthAssessmentScreen({
                           styles.recordButtonTextDisabled,
                       ]}
                     >
-                      {
-                        socialHealthAssessmentCopy.recordLabel
-                      }
+                      {socialHealthAssessmentCopy.recordLabel}
                     </Text>
 
                     <Text

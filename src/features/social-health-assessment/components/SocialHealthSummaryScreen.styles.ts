@@ -1,6 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  viewport: {
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    width: '100%',
+  },
+
+  webViewport: {
+    maxWidth: 390,
+  },
+
   safeArea: {
     backgroundColor: '#FFFFFF',
     flex: 1,
@@ -11,10 +22,8 @@ export const styles = StyleSheet.create({
   },
 
   screen: {
-    alignSelf: 'center',
     flexGrow: 1,
-    maxWidth: 560,
-    paddingBottom: 28,
+    paddingBottom: 24,
     paddingHorizontal: 20,
     width: '100%',
   },
@@ -23,19 +32,19 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minHeight: 52,
+    minHeight: 48,
   },
 
   backButton: {
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 6,
     justifyContent: 'center',
-    minHeight: 44,
-    paddingHorizontal: 8,
+    minHeight: 36,
+    paddingHorizontal: 4,
   },
 
   backButtonPressed: {
-    backgroundColor: '#F2EEF8',
+    backgroundColor: '#F5F0F8',
   },
 
   backButtonText: {
@@ -55,12 +64,13 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     lineHeight: 27,
-    marginTop: 8,
+    marginTop: 4,
   },
 
   helper: {
     color: '#6C6472',
     fontSize: 12,
+    fontWeight: '400',
     lineHeight: 17,
     marginBottom: 14,
     marginTop: 5,
@@ -68,14 +78,14 @@ export const styles = StyleSheet.create({
 
   summaryCard: {
     backgroundColor: '#FFFFFF',
-    borderColor: '#C8C1CC',
-    borderRadius: 10,
+    borderColor: '#BEB8C2',
+    borderRadius: 8,
     borderWidth: 1,
-    padding: 14,
+    padding: 12,
   },
 
   titleRow: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -83,45 +93,45 @@ export const styles = StyleSheet.create({
   cardTitle: {
     color: '#17151B',
     flex: 1,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '700',
-    lineHeight: 22,
+    lineHeight: 20,
   },
 
   period: {
     color: '#514D57',
     fontSize: 11,
     fontWeight: '600',
-    marginLeft: 12,
+    marginLeft: 10,
     textAlign: 'right',
   },
 
   divider: {
     backgroundColor: '#D5CFD8',
     height: 1,
-    marginBottom: 18,
-    marginTop: 10,
+    marginBottom: 14,
+    marginTop: 9,
   },
 
   sectionTitle: {
     color: '#17151B',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
-    lineHeight: 19,
+    lineHeight: 18,
   },
 
   summaryPanel: {
-    borderRadius: 10,
+    borderRadius: 8,
     marginTop: 12,
     overflow: 'hidden',
   },
 
   summaryMessageArea: {
     alignItems: 'center',
-    backgroundColor: '#F1F1F3',
-    paddingBottom: 18,
-    paddingHorizontal: 22,
-    paddingTop: 18,
+    backgroundColor: '#F3F0F5',
+    paddingBottom: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
 
   summaryMessage: {
@@ -138,31 +148,31 @@ export const styles = StyleSheet.create({
 
   tipsButton: {
     alignItems: 'center',
-    backgroundColor: '#B9B9BC',
+    backgroundColor: '#C9C5CA',
     flexDirection: 'row',
     justifyContent: 'center',
-    minHeight: 40,
+    minHeight: 44,
     paddingHorizontal: 12,
   },
 
   tipsButtonPressed: {
-    opacity: 0.78,
+    opacity: 0.82,
   },
 
   tipsButtonText: {
-    color: '#342E3A',
-    fontSize: 11,
+    color: '#17151B',
+    fontSize: 12,
     fontWeight: '700',
-    marginLeft: 7,
+    marginLeft: 8,
     textAlign: 'center',
   },
 
   resultsTitle: {
     color: '#17151B',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
-    lineHeight: 19,
-    marginTop: 22,
+    lineHeight: 18,
+    marginTop: 20,
   },
 
   resultGroup: {
@@ -172,8 +182,8 @@ export const styles = StyleSheet.create({
 
   resultLabel: {
     color: '#514D57',
-    fontSize: 12,
-    fontWeight: '400',
+    fontSize: 11,
+    fontWeight: '700',
     lineHeight: 17,
   },
 
@@ -186,14 +196,14 @@ export const styles = StyleSheet.create({
   },
 
   reflectionGroup: {
-    marginTop: 26,
+    marginTop: 24,
   },
 
   reflectionLabel: {
     color: '#17151B',
     fontSize: 12,
     fontWeight: '700',
-    lineHeight: 17,
+    lineHeight: 18,
   },
 
   reflectionText: {
@@ -212,13 +222,15 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 28,
-    paddingTop: 18,
+    paddingTop: 16,
   },
 
   savedText: {
     color: '#817B83',
+    flex: 1,
     fontSize: 11,
     fontWeight: '500',
+    marginRight: 12,
   },
 
   closeButton: {

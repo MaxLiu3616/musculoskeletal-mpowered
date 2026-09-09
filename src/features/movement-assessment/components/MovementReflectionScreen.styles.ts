@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   question: {
     color: '#342E3A',
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: '600',
-    lineHeight: 22,
+    lineHeight: 18,
   },
+
   input: {
     borderColor: '#D8CEE1',
     borderRadius: 10,
