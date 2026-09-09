@@ -249,7 +249,9 @@ export default function HomeScreen({
 
           <View style={styles.progressRow}>
             <Text style={styles.progressLabel}>
-              {homeScreenCopy.progressLabel}
+              {completedAssessments === totalAssessments
+                  ? homeScreenCopy.completedProgressLabel
+                  : homeScreenCopy.progressLabel}
             </Text>
 
             <Text style={styles.progressCount}>
