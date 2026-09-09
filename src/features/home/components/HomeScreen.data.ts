@@ -6,7 +6,8 @@ export const homeAssessments = [
   { id: 'management', label: 'My Management' },
 ] as const;
 
-export type HomeAssessmentId = (typeof homeAssessments)[number]['id'];
+export type HomeAssessmentId =
+  (typeof homeAssessments)[number]['id'];
 
 export const homeScreenCopy = {
   greetingPrefix: 'Good morning',
@@ -15,14 +16,19 @@ export const homeScreenCopy = {
     'Assess your pain intensity and its impacts weekly to obtain empowered plan',
 
   progressLabel: 'This week progress',
+  completedProgressLabel:
+    '✨ You completed all tasks',
   assessmentsLabel: 'assessments',
 
-  assessmentSectionTitle: "This week's assessment",
+  assessmentSectionTitle:
+    "This week's assessment",
   recordLabel: 'Record',
   updatedLabel: 'Updated by',
 
-  reflectionLabel: 'Add a reflection for this week',
-  supportedByLabel: 'Supported by ABBVIE',
+  reflectionLabel:
+    'Add a reflection for this week',
+  supportedByLabel:
+    'Supported by ABBVIE',
 } as const;
 
 export type HomeAssessmentStatus = {

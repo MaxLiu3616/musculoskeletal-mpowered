@@ -1,200 +1,249 @@
+import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
-import { router } from 'expo-router';
 import {
-    Pressable,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    Text,
-    View,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  useWindowDimensions,
+  View,
 } from 'react-native';
-
-import BottomNavigation from '@/components/navigation/BottomNavigation';
-import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
 
 import { usePersonalCareAssessment } from '@/features/personal-care/PersonalCareAssessmentContext';
 import {
-    findGeneralActivityLabel,
-    findPersonalCareLabel,
-    findSleepLabel,
-    getAssessmentPeriodLabel,
-    getPersonalCareSummaryDescription,
-    getPersonalCareTotalScore,
-    personalCareAssessmentCopy,
+  findGeneralActivityLabel,
+  findPersonalCareLabel,
+  findSleepLabel,
+  getAssessmentPeriodLabel,
+  getPersonalCareSummaryDescription,
+  getPersonalCareTotalScore,
+  personalCareAssessmentCopy,
 } from '@/features/personal-care/definitions/PersonalCareAssessment.data';
 
 import { styles } from './PersonalCareAssessmentScreen.styles';
 
 type PersonalCareSummaryScreenProps = {
-    onBack: () => void;
-    onClose: () => void;
+  onBack: () => void;
+  onClose: () => void;
+  onExploreTips: () => void;
 };
 
 export default function PersonalCareSummaryScreen({
-                                                      onBack,
-                                                      onClose,
-                                                  }: PersonalCareSummaryScreenProps) {
-    const { responses } = usePersonalCareAssessment();
+  onBack,
+  onClose,
+  onExploreTips,
+}: PersonalCareSummaryScreenProps) {
+  const { height: viewportHeight } = useWindowDimensions();
 
-    const generalActivityLabels = responses.generalActivityImpacts.map(
-        (id) => findGeneralActivityLabel(id) ?? id,
+  const appHeight =
+    Platform.OS === 'web'
+      ? Math.min(viewportHeight, 844)
+      : viewportHeight;
+
+  const { responses } = usePersonalCareAssessment();
+
+  const generalActivityLabels =
+    responses.generalActivityImpacts.map(
+      (id) => findGeneralActivityLabel(id) ?? id,
     );
-    const personalCareLabel = responses.personalCare
-        ? findPersonalCareLabel(responses.personalCare)
-        : null;
-    const sleepLabel = responses.sleep ? findSleepLabel(responses.sleep) : null;
-    const totalScore = getPersonalCareTotalScore(
-        responses.generalActivityImpacts,
-        responses.personalCare,
-        responses.sleep,
-    );
-    const description = getPersonalCareSummaryDescription(totalScore);
 
-    const handleBottomNavigationPress = (
-        itemId: BottomNavigationId,
-    ) => {
-        if (itemId === 'pain-tracker') {
-            router.replace('/home');
-        }
-    };
+  const personalCareLabel = responses.personalCare
+    ? findPersonalCareLabel(responses.personalCare)
+    : null;
 
-    return (
-        <SafeAreaView style={styles.safeArea}>
-            <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+  const sleepLabel = responses.sleep
+    ? findSleepLabel(responses.sleep)
+    : null;
 
-            <ScrollView
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-            >
-                <View style={styles.screen}>
-                    <View style={styles.header}>
-                        <Pressable
-                            accessibilityRole="button"
-                            hitSlop={4}
-                            onPress={onBack}
-                            style={({ pressed }) => [
-                                styles.backButton,
-                                pressed && styles.backButtonPressed,
-                            ]}
-                        >
-                            <Text style={styles.backButtonText}>
-                                {personalCareAssessmentCopy.backLabel}
-                            </Text>
-                        </Pressable>
+  const totalScore = getPersonalCareTotalScore(
+    responses.generalActivityImpacts,
+    responses.personalCare,
+    responses.sleep,
+  );
 
-                        <Text style={styles.trackerTitle}>
-                            {personalCareAssessmentCopy.trackerTitle}
-                        </Text>
-                    </View>
+  const description =
+    getPersonalCareSummaryDescription(totalScore);
 
-                    <Text style={styles.assessmentTitle}>My Pain Summary</Text>
+  const reflection = responses.reflection.trim();
 
-                    <View style={styles.questionCard}>
-                        <View style={styles.header}>
-                            <Text style={styles.sectionTitle}>
-                                {personalCareAssessmentCopy.assessmentTitle}
-                            </Text>
-                            <Text style={styles.summaryPeriod}>
-                                Period: {getAssessmentPeriodLabel()}
-                            </Text>
-                        </View>
+  return (
+    <View
+      style={[
+        styles.viewport,
+        Platform.OS === 'web' && styles.webViewport,
+        {
+          height: appHeight,
+          maxHeight: appHeight,
+        },
+      ]}
+    >
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="#FFFFFF"
+        />
 
-                        <View style={styles.divider} />
+        <ScrollView
+          contentContainerStyle={styles.summaryScrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.summaryScreen}>
+            <View style={styles.header}>
+              <Pressable
+                accessibilityRole="button"
+                hitSlop={4}
+                onPress={onBack}
+                style={({ pressed }) => [
+                  styles.backButton,
+                  pressed && styles.backButtonPressed,
+                ]}
+              >
+                <Text style={styles.backButtonText}>
+                  {personalCareAssessmentCopy.backLabel}
+                </Text>
+              </Pressable>
 
-                        <Text style={styles.summarySectionTitle}>Summary</Text>
+              <Text style={styles.trackerTitle}>
+                {personalCareAssessmentCopy.trackerTitle}
+              </Text>
+            </View>
 
-                        <View style={styles.summaryHighlightBox}>
-                            <Text style={styles.summaryHighlightText}>
-                                {description.firstLine}{' '}
-                                <Text style={styles.summaryHighlightBold}>
-                                    {description.boldPhrase}
-                                </Text>{' '}
-                                {description.secondLine}
-                            </Text>
+            <Text style={styles.assessmentTitle}>
+              {personalCareAssessmentCopy.summaryScreenTitle}
+            </Text>
 
-                            <Pressable
-                                accessibilityRole="button"
-                                style={({ pressed }) => [
-                                    styles.exploreTipsButton,
-                                    pressed && { opacity: 0.78 },
-                                ]}
-                            >
-                                <Text style={styles.exploreTipsText}>
-                                    🔍 Explore tips on daily living
-                                </Text>
-                            </Pressable>
-                        </View>
+            <Text style={styles.summaryIntro}>
+              {personalCareAssessmentCopy.summaryIntro}
+            </Text>
 
-                        <Text style={[styles.summarySectionTitle, { marginTop: 22 }]}>
-                            My results:
-                        </Text>
+            <View style={styles.summaryCard}>
+              <View style={styles.summaryTitleRow}>
+                <Text style={styles.summaryCardTitle}>
+                  {personalCareAssessmentCopy.summaryTitle}
+                </Text>
 
-                        <View style={{ marginLeft: 14, marginTop: 14 }}>
-                            <Text style={styles.summaryItem}>General Activities:</Text>
-                            <Text style={styles.summaryText}>
-                                {generalActivityLabels.length > 0
-                                    ? generalActivityLabels.join(', ')
-                                    : 'No impacts selected.'}
-                            </Text>
-                        </View>
+                <Text style={styles.summaryPeriod}>
+                  Period: {getAssessmentPeriodLabel()}
+                </Text>
+              </View>
 
-                        <View style={{ marginLeft: 14, marginTop: 14 }}>
-                            <Text style={styles.summaryItem}>
-                                Personal care (washing, dressing, etc):
-                            </Text>
-                            <Text style={styles.summaryText}>
-                                {personalCareLabel ?? 'Not recorded.'}
-                            </Text>
-                        </View>
+              <View style={styles.summaryDivider} />
 
-                        <View style={{ marginLeft: 14, marginTop: 14 }}>
-                            <Text style={styles.summaryItem}>Sleeping:</Text>
-                            <Text style={styles.summaryText}>
-                                {sleepLabel ?? 'Not recorded.'}
-                            </Text>
-                        </View>
+              <Text style={styles.summarySectionTitle}>
+                Summary
+              </Text>
 
-                        <View style={{ marginTop: 24 }}>
-                            <Text style={styles.summarySectionTitle}>My reflections:</Text>
-                            <Text
-                                style={[styles.summaryText, { marginLeft: 14, marginTop: 8 }]}
-                            >
-                                {responses.reflection.trim() || 'No reflection recorded.'}
-                            </Text>
-                        </View>
+              <View style={styles.summaryHighlightBox}>
+                <Text style={styles.summaryHighlightText}>
+                  {description.firstLine}{' '}
+                  <Text style={styles.summaryHighlightBold}>
+                    {description.boldPhrase}
+                  </Text>{' '}
+                  {description.secondLine}
+                </Text>
 
-                        <View style={styles.summaryFooter}>
-                            <Text style={styles.sessionNote}>
-                                {personalCareAssessmentCopy.summarySessionNote}
-                            </Text>
+                <Pressable
+                  accessibilityRole="link"
+                  onPress={onExploreTips}
+                  style={({ pressed }) => [
+                    styles.exploreTipsButton,
+                    pressed && styles.exploreTipsButtonPressed,
+                  ]}
+                >
+                  <Ionicons
+                    name="search-outline"
+                    size={15}
+                    color="#17151B"
+                  />
 
-                            <Pressable
-                                accessibilityRole="button"
-                                onPress={onClose}
-                                style={({ pressed }) => [
-                                    styles.recordButton,
-                                    styles.summaryCloseButton,
-                                    pressed && { backgroundColor: '#F3ECF7' },
-                                ]}
-                            >
-                                <Text
-                                    style={[
-                                        styles.recordButtonText,
-                                        styles.summaryCloseButtonText,
-                                    ]}
-                                >
-                                    {personalCareAssessmentCopy.closeLabel}
-                                </Text>
-                            </Pressable>
-                        </View>
-                    </View>
+                  <Text style={styles.exploreTipsText}>
+                    Explore tips on daily living
+                  </Text>
+                </Pressable>
+              </View>
+
+              <View style={styles.summaryResultsSection}>
+                <Text style={styles.summarySectionTitle}>
+                  My results:
+                </Text>
+
+                <View style={styles.summaryResultsContent}>
+                  <View style={styles.summaryResultGroup}>
+                    <Text style={styles.summaryItem}>
+                      General Activities:
+                    </Text>
+
+                    <Text style={styles.summaryText}>
+                      {generalActivityLabels.length > 0
+                        ? `${generalActivityLabels.join(', ')}.`
+                        : 'No impacts selected.'}
+                    </Text>
+                  </View>
+
+                  <View style={styles.summaryResultGroup}>
+                    <Text style={styles.summaryItem}>
+                      Personal care (washing, dressing, etc):
+                    </Text>
+
+                    <Text style={styles.summaryText}>
+                      {personalCareLabel
+                        ? `${personalCareLabel}.`
+                        : 'Not recorded.'}
+                    </Text>
+                  </View>
+
+                  <View style={styles.summaryResultGroup}>
+                    <Text style={styles.summaryItem}>
+                      Sleeping:
+                    </Text>
+
+                    <Text style={styles.summaryText}>
+                      {sleepLabel
+                        ? `${sleepLabel}.`
+                        : 'Not recorded.'}
+                    </Text>
+                  </View>
                 </View>
-            </ScrollView>
+              </View>
 
-            <BottomNavigation
-                activeItem="pain-tracker"
-                onItemPress={handleBottomNavigationPress}
-            />
-        </SafeAreaView>
-    );
+              <View style={styles.summaryReflectionSection}>
+                <Text style={styles.summarySectionTitle}>
+                  My reflections:
+                </Text>
+
+                <View style={styles.summaryReflectionContent}>
+                  <Text style={styles.summaryText}>
+                    {reflection || 'No reflection recorded.'}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.summaryFooterDivider} />
+
+              <View style={styles.summaryFooter}>
+                <Text style={styles.sessionNote}>
+                  {personalCareAssessmentCopy.summarySessionNote}
+                </Text>
+
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={onClose}
+                  style={({ pressed }) => [
+                    styles.summaryCloseButton,
+                    pressed && styles.summaryCloseButtonPressed,
+                  ]}
+                >
+                  <Text style={styles.summaryCloseButtonText}>
+                    {personalCareAssessmentCopy.closeLabel}
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
+  );
 }

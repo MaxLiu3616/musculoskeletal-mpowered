@@ -1,344 +1,489 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    safeArea: {
-        backgroundColor: '#FFFFFF',
-        flex: 1,
-    },
-    keyboardView: {
-        flex: 1,
-    },
-    scrollContent: {
-        flexGrow: 1,
-    },
-    screen: {
-        alignSelf: 'center',
-        flexGrow: 1,
-        maxWidth: 560,
-        paddingBottom: 24,
-        paddingHorizontal: 20,
-        width: '100%',
-    },
-    header: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        minHeight: 48,
-    },
-    backButton: {
-        alignItems: 'center',
-        borderRadius: 6,
-        justifyContent: 'center',
-        minHeight: 36,
-        paddingHorizontal: 4,
-    },
-    backButtonPressed: {
-        backgroundColor: '#F5F0F8',
-    },
-    backButtonText: {
-        color: '#514D57',
-        fontSize: 12,
-        fontWeight: '500',
-    },
-    trackerTitle: {
-        color: '#17151B',
-        fontSize: 12,
-        fontWeight: '700',
-    },
-    assessmentTitle: {
-        color: '#17151B',
-        fontSize: 20,
-        fontWeight: '700',
-        lineHeight: 27,
-        marginBottom: 18,
-        marginTop: 4,
-    },
-    questionCard: {
-        backgroundColor: '#FFFFFF',
-        borderColor: '#BEB8C2',
-        borderRadius: 8,
-        borderWidth: 1,
-        padding: 12,
-    },
-    sectionTitle: {
-        color: '#17151B',
-        fontSize: 14,
-        fontWeight: '700',
-        lineHeight: 20,
-    },
-    divider: {
-        backgroundColor: '#D5CFD8',
-        height: 1,
-        marginBottom: 12,
-        marginTop: 9,
-    },
-    prompt: {
-        color: '#17151B',
-        fontSize: 12,
-        fontWeight: '600',
-        lineHeight: 18,
-    },
-    promptUnderline: {
-        fontWeight: '700',
-        textDecorationLine: 'underline',
-    },
-    helper: {
-        color: '#6C6472',
-        fontSize: 11,
-        fontStyle: 'italic',
-        lineHeight: 16,
-        marginTop: 4,
-    },
+  viewport: {
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    width: '100%',
+  },
 
-    optionsScroll: {
-        backgroundColor: '#F9F7FA',
-        borderRadius: 8,
-        height: 340,
-        marginTop: 12,
-    },
-    options: {
-        paddingHorizontal: 4,
-    },
-    option: {
-        alignItems: 'center',
-        borderBottomColor: '#E5E0E7',
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        minHeight: 52,
-        paddingHorizontal: 4,
-    },
-    optionPressed: {
-        backgroundColor: '#F3ECF7',
-    },
-    optionTextCheckbox: {
-        color: '#17151B',
-        flex: 1,
-        fontSize: 12,
-        fontWeight: '600',
-        lineHeight: 17,
-        marginRight: 10,
-    },
-    checkboxSquare: {
-        alignItems: 'center',
-        borderColor: '#514D57',
-        borderRadius: 3,
-        borderWidth: 1.5,
-        height: 18,
-        justifyContent: 'center',
-        width: 18,
-    },
-    checkboxSquareSelected: {
-        backgroundColor: '#6D50AC',
-        borderColor: '#6D50AC',
-    },
-    checkmark: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        fontWeight: '700',
-        lineHeight: 15,
-    },
+  webViewport: {
+    maxWidth: 390,
+  },
 
-    optionText: {
-        color: '#17151B',
-        flex: 1,
-        fontSize: 12,
-        fontWeight: '600',
-        lineHeight: 17,
-        marginLeft: 10,
-        paddingRight: 14,
-    },
-    optionTextSelected: {
-        color: '#514D57',
-    },
+  safeArea: {
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+  },
 
-    optionList: {
-        backgroundColor: '#FBF3FC',
-        borderRadius: 6,
-        marginTop: 10,
-        overflow: 'hidden',
-    },
-    optionRow: {
-        alignItems: 'center',
-        borderBottomColor: '#D9D0DE',
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        minHeight: 54,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-    },
-    optionRowLast: {
-        borderBottomWidth: 0,
-    },
-    optionRowSelected: {
-        backgroundColor: '#F1E4F7',
-    },
-    optionRowPressed: {
-        opacity: 0.76,
-    },
-    radio: {
-        alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-        borderColor: '#514D57',
-        borderRadius: 9,
-        borderWidth: 1.5,
-        height: 18,
-        justifyContent: 'center',
-        width: 18,
-    },
-    radioSelected: {
-        borderColor: '#6D50AC',
-    },
-    radioDot: {
-        backgroundColor: '#6D50AC',
-        borderRadius: 4,
-        height: 8,
-        width: 8,
-    },
+  keyboardView: {
+    flex: 1,
+  },
 
-    actionRow: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 18,
-    },
-    stepBadge: {
-        alignItems: 'center',
-        borderColor: '#CFC6D5',
-        borderRadius: 5,
-        borderWidth: 1,
-        justifyContent: 'center',
-        minHeight: 30,
-        minWidth: 38,
-        paddingHorizontal: 7,
-    },
-    stepText: {
-        color: '#514D57',
-        fontSize: 11,
-        fontWeight: '600',
-    },
-    recordButton: {
-        alignItems: 'center',
-        backgroundColor: '#6D50AC',
-        borderRadius: 10,
-        justifyContent: 'center',
-        minHeight: 44,
-        minWidth: 112,
-        paddingHorizontal: 18,
-    },
-    recordButtonDisabled: {
-        backgroundColor: '#E7D8FF',
-    },
-    recordButtonPressed: {
-        opacity: 0.82,
-    },
-    recordButtonText: {
-        color: '#FFFFFF',
-        fontSize: 14,
-        fontWeight: '600',
-    },
-    recordButtonTextDisabled: {
-        color: '#554766',
-    },
-    modalInput: {
-        borderColor: '#D5CFD8',
-        borderRadius: 8,
-        borderWidth: 1,
-        color: '#17151B',
-        fontSize: 12,
-        fontWeight: '500',
-        lineHeight: 17,
-        marginTop: 18,
-        minHeight: 92,
-        paddingHorizontal: 12,
-        paddingVertical: 11,
-    },
-    summarySection: {
-        borderBottomColor: '#D5CFD8',
-        borderBottomWidth: 1,
-        paddingVertical: 14,
-    },
-    summarySectionTitle: {
-        color: '#17151B',
-        fontSize: 13,
-        fontWeight: '700',
-        lineHeight: 19,
-    },
-    summaryPeriod: {
-        color: '#514D57',
-        fontSize: 11,
-        fontWeight: '600',
-    },
-    summaryText: {
-        color: '#17151B',
-        fontSize: 12,
-        lineHeight: 18,
-        marginTop: 5,
-    },
-    summaryItem: {
-        color: '#17151B',
-        fontSize: 12,
-        lineHeight: 18,
-        marginTop: 3,
-    },
-    summaryValue: {
-        fontWeight: '700',
-    },
-    summaryHighlightBox: {
-        backgroundColor: '#F1F1F3',
-        borderRadius: 10,
-        overflow: 'hidden',
-    },
-    summaryHighlightText: {
-        color: '#17151B',
-        fontSize: 12,
-        lineHeight: 18,
-        paddingBottom: 18,
-        paddingHorizontal: 22,
-        paddingTop: 18,
-        textAlign: 'center',
-    },
-    summaryHighlightBold: {
-        fontWeight: '700',
-    },
-    exploreTipsButton: {
-        alignItems: 'center',
-        backgroundColor: '#B9B9BC',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        minHeight: 40,
-        paddingHorizontal: 12,
-    },
-    exploreTipsText: {
-        color: '#342E3A',
-        fontSize: 11,
-        fontWeight: '700',
-    },
-    summaryFooter: {
-        alignItems: 'center',
-        borderTopColor: '#D5CFD8',
-        borderTopWidth: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 20,
-        paddingTop: 16,
-    },
-    sessionNote: {
-        color: '#817B83',
-        fontSize: 11,
-        fontWeight: '500',
-        marginRight: 12,
-    },
-    summaryCloseButton: {
-        backgroundColor: '#FFFFFF',
-        borderColor: '#CFC5D7',
-        borderRadius: 20,
-        borderWidth: 1,
-        minHeight: 38,
-        minWidth: 100,
-    },
-    summaryCloseButtonText: {
-        color: '#514D57',
-        fontSize: 13,
-        fontWeight: '600',
-    },
+  scrollContent: {
+    flexGrow: 1,
+  },
+
+  screen: {
+    flexGrow: 1,
+    paddingBottom: 24,
+    paddingHorizontal: 20,
+    width: '100%',
+  },
+
+  header: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    minHeight: 48,
+  },
+
+  backButton: {
+    alignItems: 'center',
+    borderRadius: 6,
+    justifyContent: 'center',
+    minHeight: 36,
+    paddingHorizontal: 4,
+  },
+
+  backButtonPressed: {
+    backgroundColor: '#F5F0F8',
+  },
+
+  backButtonText: {
+    color: '#514D57',
+    fontSize: 12,
+    fontWeight: '500',
+  },
+
+  trackerTitle: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+
+  assessmentTitle: {
+    color: '#17151B',
+    fontSize: 20,
+    fontWeight: '700',
+    lineHeight: 27,
+    marginBottom: 18,
+    marginTop: 4,
+  },
+
+  questionCard: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#BEB8C2',
+    borderRadius: 8,
+    borderWidth: 1,
+    flex: 1,
+    padding: 12,
+  },
+
+  sectionTitle: {
+    color: '#17151B',
+    fontSize: 14,
+    fontWeight: '700',
+    lineHeight: 20,
+  },
+
+  divider: {
+    backgroundColor: '#D5CFD8',
+    height: 1,
+    marginBottom: 12,
+    marginTop: 9,
+  },
+
+  prompt: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '600',
+    lineHeight: 18,
+  },
+
+  promptUnderline: {
+    fontWeight: '700',
+    textDecorationLine: 'underline',
+  },
+
+  helper: {
+    color: '#6C6472',
+    fontSize: 11,
+    fontStyle: 'italic',
+    lineHeight: 16,
+    marginTop: 4,
+  },
+
+  optionsScroll: {
+    backgroundColor: '#F9F7FA',
+    borderRadius: 8,
+    height: 340,
+    marginTop: 12,
+  },
+
+  options: {
+    paddingHorizontal: 4,
+  },
+
+  option: {
+    alignItems: 'center',
+    borderBottomColor: '#E5E0E7',
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    minHeight: 52,
+    paddingHorizontal: 4,
+  },
+
+  optionPressed: {
+    backgroundColor: '#F3ECF7',
+  },
+
+  optionTextCheckbox: {
+    color: '#17151B',
+    flex: 1,
+    fontSize: 12,
+    fontWeight: '600',
+    lineHeight: 17,
+    marginRight: 10,
+  },
+
+  checkboxSquare: {
+    alignItems: 'center',
+    borderColor: '#514D57',
+    borderRadius: 3,
+    borderWidth: 1.5,
+    height: 18,
+    justifyContent: 'center',
+    width: 18,
+  },
+
+  checkboxSquareSelected: {
+    backgroundColor: '#6D50AC',
+    borderColor: '#6D50AC',
+  },
+
+  checkmark: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '700',
+    lineHeight: 15,
+  },
+
+  optionText: {
+    color: '#17151B',
+    flex: 1,
+    fontSize: 12,
+    fontWeight: '600',
+    lineHeight: 17,
+    marginLeft: 10,
+    paddingRight: 14,
+  },
+
+  optionTextSelected: {
+    color: '#514D57',
+  },
+
+  optionList: {
+    backgroundColor: '#FBF3FC',
+    borderRadius: 6,
+    marginTop: 10,
+    overflow: 'hidden',
+  },
+
+  optionRow: {
+    alignItems: 'center',
+    borderBottomColor: '#D9D0DE',
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    minHeight: 54,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+
+  optionRowLast: {
+    borderBottomWidth: 0,
+  },
+
+  optionRowSelected: {
+    backgroundColor: '#F1E4F7',
+  },
+
+  optionRowPressed: {
+    opacity: 0.76,
+  },
+
+  radio: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderColor: '#514D57',
+    borderRadius: 9,
+    borderWidth: 1.5,
+    height: 18,
+    justifyContent: 'center',
+    width: 18,
+  },
+
+  radioSelected: {
+    borderColor: '#6D50AC',
+  },
+
+  radioDot: {
+    backgroundColor: '#6D50AC',
+    borderRadius: 4,
+    height: 8,
+    width: 8,
+  },
+
+  actionRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 'auto',
+    paddingTop: 18,
+  },
+
+  stepBadge: {
+    alignItems: 'center',
+    borderColor: '#CFC6D5',
+    borderRadius: 5,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 30,
+    minWidth: 38,
+    paddingHorizontal: 7,
+  },
+
+  stepText: {
+    color: '#514D57',
+    fontSize: 11,
+    fontWeight: '600',
+  },
+
+  recordButton: {
+    alignItems: 'center',
+    backgroundColor: '#6D50AC',
+    borderRadius: 10,
+    justifyContent: 'center',
+    minHeight: 44,
+    minWidth: 112,
+    paddingHorizontal: 18,
+  },
+
+  recordButtonDisabled: {
+    backgroundColor: '#E7D8FF',
+  },
+
+  recordButtonPressed: {
+    opacity: 0.82,
+  },
+
+  recordButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+
+  recordButtonTextDisabled: {
+    color: '#554766',
+  },
+
+  modalInput: {
+    borderColor: '#D5CFD8',
+    borderRadius: 8,
+    borderWidth: 1,
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '500',
+    lineHeight: 17,
+    marginTop: 18,
+    minHeight: 92,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
+  },
+
+  // Summary
+  summaryScrollContent: {
+    flexGrow: 1,
+  },
+
+  summaryScreen: {
+    flexGrow: 1,
+    paddingBottom: 24,
+    paddingHorizontal: 20,
+    width: '100%',
+  },
+
+  summaryIntro: {
+    color: '#6C6472',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 17,
+    marginBottom: 14,
+    marginTop: -10,
+  },
+
+  summaryCard: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#BEB8C2',
+    borderRadius: 8,
+    borderWidth: 1,
+    padding: 12,
+  },
+
+  summaryTitleRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  summaryCardTitle: {
+    color: '#17151B',
+    fontSize: 14,
+    fontWeight: '700',
+    lineHeight: 20,
+  },
+
+  summaryPeriod: {
+    color: '#514D57',
+    fontSize: 11,
+    fontWeight: '600',
+    marginLeft: 10,
+    textAlign: 'right',
+  },
+
+  summaryDivider: {
+    backgroundColor: '#D5CFD8',
+    height: 1,
+    marginBottom: 14,
+    marginTop: 9,
+  },
+
+  summarySectionTitle: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '700',
+    lineHeight: 18,
+  },
+
+  summaryHighlightBox: {
+    backgroundColor: '#F3F0F5',
+    borderRadius: 8,
+    marginTop: 12,
+    overflow: 'hidden',
+  },
+
+  summaryHighlightText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    textAlign: 'center',
+  },
+
+  summaryHighlightBold: {
+    fontWeight: '700',
+  },
+
+  exploreTipsButton: {
+    alignItems: 'center',
+    backgroundColor: '#C9C5CA',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    minHeight: 44,
+    paddingHorizontal: 12,
+  },
+
+  exploreTipsButtonPressed: {
+    opacity: 0.82,
+  },
+
+  exploreTipsText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '700',
+    marginLeft: 8,
+  },
+
+  summaryResultsSection: {
+    marginTop: 20,
+  },
+
+  summaryResultsContent: {
+    paddingHorizontal: 14,
+    paddingTop: 10,
+  },
+
+  summaryResultGroup: {
+    marginBottom: 16,
+  },
+
+  summaryItem: {
+    color: '#514D57',
+    fontSize: 11,
+    fontWeight: '700',
+    lineHeight: 17,
+  },
+
+  summaryText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    marginTop: 2,
+  },
+
+  summaryReflectionSection: {
+    marginTop: 2,
+  },
+
+  summaryReflectionContent: {
+    paddingHorizontal: 14,
+    paddingTop: 10,
+  },
+
+  summaryFooterDivider: {
+    backgroundColor: '#D5CFD8',
+    height: 1,
+    marginTop: 10,
+  },
+
+  summaryFooter: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 16,
+  },
+
+  sessionNote: {
+    color: '#817B83',
+    flex: 1,
+    fontSize: 11,
+    fontWeight: '500',
+    marginRight: 12,
+  },
+
+  summaryCloseButton: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderColor: '#CFC5D7',
+    borderRadius: 20,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 38,
+    minWidth: 100,
+    paddingHorizontal: 20,
+  },
+
+  summaryCloseButtonPressed: {
+    backgroundColor: '#F3ECF7',
+  },
+
+  summaryCloseButtonText: {
+    color: '#514D57',
+    fontSize: 13,
+    fontWeight: '600',
+  },
 });

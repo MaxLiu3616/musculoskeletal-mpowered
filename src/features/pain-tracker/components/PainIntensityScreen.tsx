@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import Slider from '@react-native-community/slider';
-import { Keyboard, Text, TextInput, View } from 'react-native';
+import {
+  Keyboard,
+  type LayoutChangeEvent,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext';
 import {
@@ -19,22 +25,53 @@ type PainIntensityScreenProps = {
   onContinue: () => void;
 };
 
+const THUMB_WIDTH = 10;
+const VALUE_BADGE_WIDTH = 28;
+
 export default function PainIntensityScreen({
   questionId,
   onBack,
   onContinue,
 }: PainIntensityScreenProps) {
-  const { responses, updateIntensity } = usePainAssessment();
-  const question = painIntensityQuestions[questionId];
-  const savedValue = responses[question.responseKey];
-  const [valueText, setValueText] = useState(String(savedValue ?? 0));
-  const isValidValue = /^(?:[0-9]|10)$/.test(valueText);
-  const value = isValidValue ? Number(valueText) : 0;
+  const {
+    responses,
+    updateIntensity,
+  } = usePainAssessment();
 
-  const updateValueText = (nextValue: string) => {
-    const digits = nextValue.replace(/\D/g, '').slice(0, 2);
+  const question =
+    painIntensityQuestions[questionId];
 
-    if (Number(digits) > 10) {
+  const savedValue =
+    responses[question.responseKey];
+
+  const [valueText, setValueText] =
+    useState(
+      savedValue === null
+        ? ''
+        : String(savedValue),
+    );
+
+  const [trackWidth, setTrackWidth] =
+    useState(0);
+
+  const isValidValue =
+    /^(?:[0-9]|10)$/.test(valueText);
+
+  const value = isValidValue
+    ? Number(valueText)
+    : 0;
+
+  const updateValueText = (
+    nextValue: string,
+  ) => {
+    const digits = nextValue
+      .replace(/\D/g, '')
+      .slice(0, 2);
+
+    if (
+      digits &&
+      Number(digits) > 10
+    ) {
       setValueText('10');
       return;
     }
@@ -42,8 +79,20 @@ export default function PainIntensityScreen({
     setValueText(digits);
   };
 
-  const updateSliderValue = (nextValue: number) => {
-    setValueText(String(nextValue));
+  const updateSliderValue = (
+    nextValue: number,
+  ) => {
+    setValueText(
+      String(Math.round(nextValue)),
+    );
+  };
+
+  const handleTrackLayout = (
+    event: LayoutChangeEvent,
+  ) => {
+    setTrackWidth(
+      event.nativeEvent.layout.width,
+    );
   };
 
   const recordIntensity = () => {
@@ -52,67 +101,209 @@ export default function PainIntensityScreen({
     }
 
     Keyboard.dismiss();
-    updateIntensity(question.responseKey, value);
+
+    updateIntensity(
+      question.responseKey,
+      value,
+    );
+
     onContinue();
   };
+
+  const renderPrompt = () => {
+    if (questionId === 'mildest') {
+      return (
+        <Text style={styles.intensityPrompt}>
+          My{' '}
+          <Text
+            style={{
+              textDecorationLine: 'underline',
+            }}
+          >
+            mildest pain
+          </Text>{' '}
+          last week was
+        </Text>
+      );
+    }
+
+    if (questionId === 'worst') {
+      return (
+        <Text style={styles.intensityPrompt}>
+          My{' '}
+          <Text
+            style={{
+              textDecorationLine: 'underline',
+            }}
+          >
+            worst pain
+          </Text>{' '}
+          last week was
+        </Text>
+      );
+    }
+
+    if (questionId === 'average') {
+      return (
+        <Text style={styles.intensityPrompt}>
+          My{' '}
+          <Text
+            style={{
+              textDecorationLine: 'underline',
+            }}
+          >
+            average pain
+          </Text>{' '}
+          last week was
+        </Text>
+      );
+    }
+
+    return (
+      <Text style={styles.intensityPrompt}>
+        {question.prompt}
+      </Text>
+    );
+  };
+
+  const usableTrackWidth = Math.max(
+    trackWidth - THUMB_WIDTH,
+    0,
+  );
+
+  const thumbLeft =
+    usableTrackWidth *
+    (value / 10);
+
+  const thumbCenter =
+    thumbLeft + THUMB_WIDTH / 2;
+
+  const fillWidth =
+    usableTrackWidth *
+    (value / 10);
+
+  const valueBadgeLeft = Math.min(
+    Math.max(
+      thumbCenter -
+        VALUE_BADGE_WIDTH / 2,
+      0,
+    ),
+    Math.max(
+      trackWidth -
+        VALUE_BADGE_WIDTH,
+      0,
+    ),
+  );
 
   return (
     <PainAssessmentScreen
       canRecord={isValidValue}
+      compactCard
       onBack={onBack}
       onRecord={recordIntensity}
-      sectionTitle={painAssessmentCopy.intensityTitle}
+      sectionTitle={
+        painAssessmentCopy.intensityTitle
+      }
       step={question.step}
     >
-      <View style={styles.intensityPromptRow}>
-        <Text style={styles.intensityPrompt}>{question.prompt}</Text>
+      <View
+        style={styles.intensityPromptRow}
+      >
+        {renderPrompt()}
+
         <TextInput
           accessibilityLabel={`${question.prompt}, 0 to 10`}
           inputMode="numeric"
           keyboardType="number-pad"
           maxLength={2}
           onChangeText={updateValueText}
-          onSubmitEditing={recordIntensity}
+          onSubmitEditing={
+            recordIntensity
+          }
+          placeholder="0 to 10"
+          placeholderTextColor="#817B83"
           returnKeyType="done"
           selectionColor="#6D50AC"
           style={styles.intensityInput}
           value={valueText}
         />
-        <Text style={styles.intensityPrompt}>
-          {painAssessmentCopy.intensityRange}
-        </Text>
       </View>
 
-      <Slider
-        accessibilityLabel={`${question.prompt}, pain intensity slider`}
-        accessibilityValue={{
-          max: 10,
-          min: 0,
-          now: value,
-          text: isValidValue
-            ? getPainDescription(value, question.usesPastTense)
-            : undefined,
-        }}
-        maximumTrackTintColor="#DDD5E5"
-        maximumValue={10}
-        minimumTrackTintColor="#6D50AC"
-        minimumValue={0}
-        onValueChange={updateSliderValue}
-        step={1}
-        style={styles.slider}
-        thumbTintColor="#6D50AC"
-        value={value}
-      />
+      <View
+        onLayout={handleTrackLayout}
+        style={styles.sliderContainer}
+      >
+        <View style={styles.sliderRail}>
+          <View style={styles.sliderTrack}>
+            <View
+              style={[
+                styles.sliderTrackFill,
+                {
+                  width: fillWidth,
+                },
+              ]}
+            />
+          </View>
+        </View>
 
-      <View style={styles.scaleLabels}>
-        <Text style={styles.scaleLabel}>0 - No pain</Text>
-        <Text style={styles.scaleLabel}>10 - Worst imaginable</Text>
+        <View
+          pointerEvents="none"
+          style={[
+            styles.valueBubble,
+            {
+              left: valueBadgeLeft,
+            },
+          ]}
+        >
+          <Text
+            style={
+              styles.valueBubbleText
+            }
+          >
+            {value}
+          </Text>
+        </View>
+
+        <View
+          pointerEvents="none"
+          style={[
+            styles.thumbBar,
+            {
+              left: thumbLeft,
+            },
+          ]}
+        />
+
+        <Slider
+          accessibilityLabel={`${question.prompt}, pain intensity slider`}
+          accessibilityValue={{
+            max: 10,
+            min: 0,
+            now: value,
+            text: getPainDescription(
+              value,
+              question.usesPastTense,
+            ),
+          }}
+          maximumValue={10}
+          minimumValue={0}
+          onValueChange={
+            updateSliderValue
+          }
+          step={1}
+          style={styles.sliderInput}
+          value={value}
+        />
       </View>
 
-      <Text accessibilityLiveRegion="polite" style={styles.painDescription}>
-        {isValidValue
-          ? getPainDescription(value, question.usesPastTense)
-          : 'Enter a value from 0 to 10'}
+      <Text
+        accessibilityLiveRegion="polite"
+        style={styles.painDescription}
+      >
+        {getPainDescription(
+          value,
+          question.usesPastTense,
+        )}
       </Text>
     </PainAssessmentScreen>
   );

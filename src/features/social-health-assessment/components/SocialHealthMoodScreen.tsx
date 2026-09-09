@@ -40,7 +40,7 @@ const moodIcons: Record<
   frustrated: {
     selectedIcon: 'emoticon-angry',
     unselectedIcon: 'emoticon-angry-outline',
-    selectedColor: '#E88181',
+    selectedColor: '#E85C5C',
   },
 
   sad: {
@@ -52,19 +52,19 @@ const moodIcons: Record<
   okay: {
     selectedIcon: 'emoticon-neutral',
     unselectedIcon: 'emoticon-neutral-outline',
-    selectedColor: '#E7B56A',
+    selectedColor: '#F29B38',
   },
 
   calm: {
     selectedIcon: 'emoticon-happy',
     unselectedIcon: 'emoticon-happy-outline',
-    selectedColor: '#F0D565',
+    selectedColor: '#EFA3C8',
   },
 
   delighted: {
     selectedIcon: 'emoticon-excited',
     unselectedIcon: 'emoticon-excited-outline',
-    selectedColor: '#F2D300',
+    selectedColor: '#F2C900',
   },
 };
 

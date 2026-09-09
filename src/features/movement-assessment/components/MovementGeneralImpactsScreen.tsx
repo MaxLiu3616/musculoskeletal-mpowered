@@ -20,16 +20,23 @@ export default function MovementGeneralImpactsScreen({
   onBack,
   onContinue,
 }: MovementGeneralImpactsScreenProps) {
-  const { responses, updateGeneralImpacts } = useMovementAssessment();
+  const { responses, updateGeneralImpacts } =
+    useMovementAssessment();
+
   const [selectedImpacts, setSelectedImpacts] = useState<
     GeneralMovementImpactId[]
   >(responses.generalImpacts);
+
   const canRecord = selectedImpacts.length > 0;
 
-  const toggleImpact = (impact: GeneralMovementImpactId) => {
+  const toggleImpact = (
+    impact: GeneralMovementImpactId,
+  ) => {
     setSelectedImpacts((currentImpacts) =>
       currentImpacts.includes(impact)
-        ? currentImpacts.filter((value) => value !== impact)
+        ? currentImpacts.filter(
+            (value) => value !== impact,
+          )
         : [...currentImpacts, impact],
     );
   };
@@ -48,45 +55,71 @@ export default function MovementGeneralImpactsScreen({
       canRecord={canRecord}
       onBack={onBack}
       onRecord={recordImpacts}
-      sectionTitle={movementAssessmentCopy.generalImpactsTitle}
+      sectionTitle={
+        movementAssessmentCopy.generalImpactsTitle
+      }
       step={2}
       totalSteps={7}
     >
       <Text style={styles.instruction}>
-        {movementAssessmentCopy.selectAllPrompt}
+        Select{' '}
+        <Text style={styles.instructionEmphasis}>
+          ALL
+        </Text>{' '}
+        relevant statements:
       </Text>
-      <View style={styles.optionList}>
-        {generalMovementImpactOptions.map((option, index) => {
-          const isSelected = selectedImpacts.includes(option.id);
 
-          return (
-            <Pressable
-              aria-checked={isSelected}
-              accessibilityRole="checkbox"
-              accessibilityState={{ checked: isSelected }}
-              key={option.id}
-              onPress={() => toggleImpact(option.id)}
-              style={({ pressed }) => [
-                styles.optionRow,
-                index === generalMovementImpactOptions.length - 1 &&
-                  styles.optionRowLast,
-                isSelected && styles.optionRowSelected,
-                pressed && styles.optionRowPressed,
-              ]}
-            >
-              <Text style={styles.optionText}>{option.label}</Text>
-              <View
-                style={[
-                  styles.selectionControl,
-                  styles.checkbox,
-                  isSelected && styles.selectionControlSelected,
+      <View style={styles.optionList}>
+        {generalMovementImpactOptions.map(
+          (option, index) => {
+            const isSelected =
+              selectedImpacts.includes(option.id);
+
+            return (
+              <Pressable
+                aria-checked={isSelected}
+                accessibilityRole="checkbox"
+                accessibilityState={{
+                  checked: isSelected,
+                }}
+                key={option.id}
+                onPress={() =>
+                  toggleImpact(option.id)
+                }
+                style={({ pressed }) => [
+                  styles.optionRow,
+                  index ===
+                    generalMovementImpactOptions.length -
+                      1 &&
+                    styles.optionRowLast,
+                  isSelected &&
+                    styles.optionRowSelected,
+                  pressed &&
+                    styles.optionRowPressed,
                 ]}
               >
-                {isSelected && <Text style={styles.checkmark}>✓</Text>}
-              </View>
-            </Pressable>
-          );
-        })}
+                <Text style={styles.optionText}>
+                  {option.label}
+                </Text>
+
+                <View
+                  style={[
+                    styles.selectionControl,
+                    styles.checkbox,
+                    isSelected &&
+                      styles.selectionControlSelected,
+                  ]}
+                >
+                  {isSelected && (
+                    <Text style={styles.checkmark}>
+                      ✓
+                    </Text>
+                  )}
+                </View>
+              </Pressable>
+            );
+          },
+        )}
       </View>
     </MovementAssessmentScreen>
   );

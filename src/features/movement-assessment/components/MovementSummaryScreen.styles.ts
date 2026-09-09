@@ -1,157 +1,250 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  viewport: {
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    width: '100%',
+  },
+
+  webViewport: {
+    maxWidth: 390,
+  },
+
   safeArea: {
     backgroundColor: '#FFFFFF',
     flex: 1,
   },
+
   scrollContent: {
     flexGrow: 1,
   },
+
   screen: {
-    alignSelf: 'center',
-    maxWidth: 560,
-    paddingBottom: 32,
+    flexGrow: 1,
+    paddingBottom: 24,
     paddingHorizontal: 20,
     width: '100%',
   },
+
   header: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minHeight: 52,
+    minHeight: 48,
   },
+
   backButton: {
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 6,
     justifyContent: 'center',
-    minHeight: 44,
-    paddingHorizontal: 8,
+    minHeight: 36,
+    paddingHorizontal: 4,
   },
+
   backButtonPressed: {
-    backgroundColor: '#F2EEF8',
+    backgroundColor: '#F5F0F8',
   },
+
   backButtonText: {
-    color: '#57418D',
-    fontSize: 15,
-    fontWeight: '600',
+    color: '#514D57',
+    fontSize: 12,
+    fontWeight: '500',
   },
+
   trackerTitle: {
-    color: '#342E3A',
-    fontSize: 14,
+    color: '#17151B',
+    fontSize: 12,
     fontWeight: '700',
   },
+
   screenTitle: {
     color: '#17151B',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
-    lineHeight: 32,
-    marginBottom: 6,
-    marginTop: 8,
+    lineHeight: 27,
+    marginBottom: 18,
+    marginTop: 4,
   },
+
   helper: {
-    color: '#5E5862',
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 16,
+    color: '#6C6472',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 17,
+    marginBottom: 14,
+    marginTop: -10,
   },
+
   summaryCard: {
-    borderColor: '#DDD5E5',
-    borderRadius: 14,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#BEB8C2',
+    borderRadius: 8,
     borderWidth: 1,
-    padding: 18,
+    padding: 12,
   },
+
   titleRow: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+
   cardTitle: {
-    color: '#342E3A',
-    fontSize: 18,
+    color: '#17151B',
+    fontSize: 14,
     fontWeight: '700',
+    lineHeight: 20,
   },
+
   period: {
-    color: '#5E5862',
-    fontSize: 12,
+    color: '#514D57',
+    fontSize: 11,
     fontWeight: '600',
+    marginLeft: 10,
+    textAlign: 'right',
   },
+
   divider: {
-    backgroundColor: '#E7E0EB',
+    backgroundColor: '#D5CFD8',
     height: 1,
-    marginVertical: 14,
+    marginBottom: 14,
+    marginTop: 9,
   },
+
   sectionTitle: {
-    color: '#342E3A',
-    fontSize: 15,
+    color: '#17151B',
+    fontSize: 12,
     fontWeight: '700',
-    marginBottom: 12,
+    lineHeight: 18,
   },
+
   scorePanel: {
-    backgroundColor: '#F3F1F5',
-    borderRadius: 10,
+    backgroundColor: '#F3F0F5',
+    borderRadius: 8,
+    marginTop: 12,
     overflow: 'hidden',
   },
+
   scoreMessage: {
-    color: '#342E3A',
-    fontSize: 14,
-    lineHeight: 21,
-    padding: 16,
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
     textAlign: 'center',
   },
+
   scoreEmphasis: {
     fontWeight: '700',
   },
+
   tipsButton: {
     alignItems: 'center',
-    backgroundColor: '#D4CED8',
+    backgroundColor: '#C9C5CA',
+    flexDirection: 'row',
     justifyContent: 'center',
-    minHeight: 48,
-    paddingHorizontal: 16,
+    minHeight: 44,
+    paddingHorizontal: 12,
   },
+
   tipsButtonPressed: {
-    opacity: 0.78,
-  },
-  tipsButtonText: {
-    color: '#342E3A',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  resultGroup: {
-    marginTop: 18,
-  },
-  resultLabel: {
-    color: '#4F4855',
-    fontSize: 13,
-    fontWeight: '700',
-    marginBottom: 5,
-  },
-  resultText: {
-    color: '#342E3A',
-    fontSize: 14,
-    lineHeight: 21,
-  },
-  closeRow: {
-    alignItems: 'center',
-    borderTopColor: '#E7E0EB',
-    borderTopWidth: 1,
-    marginTop: 22,
-    paddingTop: 16,
-  },
-  closeButton: {
-    alignItems: 'center',
-    backgroundColor: '#6D50AC',
-    borderRadius: 10,
-    justifyContent: 'center',
-    minHeight: 46,
-    paddingHorizontal: 32,
-  },
-  closeButtonPressed: {
     opacity: 0.82,
   },
+
+  tipsButtonText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '700',
+    marginLeft: 8,
+  },
+
+  resultsSection: {
+    marginTop: 20,
+  },
+
+  resultsTitle: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '700',
+    lineHeight: 18,
+  },
+
+  resultsContent: {
+    paddingHorizontal: 14,
+    paddingTop: 10,
+  },
+
+  resultGroup: {
+    marginBottom: 16,
+  },
+
+  resultLabel: {
+    color: '#514D57',
+    fontSize: 11,
+    fontWeight: '700',
+    lineHeight: 17,
+  },
+
+  resultText: {
+    color: '#17151B',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    marginTop: 2,
+  },
+
+  reflectionSection: {
+    marginTop: 2,
+  },
+
+  reflectionContent: {
+    paddingHorizontal: 14,
+    paddingTop: 10,
+  },
+
+  footerDivider: {
+    backgroundColor: '#D5CFD8',
+    height: 1,
+    marginTop: 10,
+  },
+
+  footer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 16,
+  },
+
+  savedText: {
+    color: '#817B83',
+    flex: 1,
+    fontSize: 11,
+    fontWeight: '500',
+    marginRight: 12,
+  },
+
+  closeButton: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderColor: '#CFC5D7',
+    borderRadius: 20,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 38,
+    minWidth: 100,
+    paddingHorizontal: 20,
+  },
+
+  closeButtonPressed: {
+    backgroundColor: '#F3ECF7',
+  },
+
   closeButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
+    color: '#514D57',
+    fontSize: 13,
     fontWeight: '600',
   },
 });

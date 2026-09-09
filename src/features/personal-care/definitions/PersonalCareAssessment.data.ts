@@ -1,149 +1,309 @@
 import type {
-    GeneralActivityImpactId,
-    PersonalCareOptionId,
-    SleepOptionId,
+  GeneralActivityImpactId,
+  PersonalCareOptionId,
+  SleepOptionId,
 } from '@/features/personal-care/types/PersonalCareAssessment';
 
 export const personalCareAssessmentCopy = {
-    backLabel: '← Back',
-    trackerTitle: 'Pain Tracker',
-    assessmentTitle: 'My Personal Care',
-    recordLabel: 'Record →',
-    closeLabel: 'Close',
+  backLabel: '← Back',
+  trackerTitle: 'Pain Tracker',
+  assessmentTitle: 'My Personal Care',
+  recordLabel: 'Record →',
+  closeLabel: 'Close',
 
-    generalActivitiesTitle: 'General Activities Impacts',
-    generalActivitiesPrompt: 'Select ALL relevant statements:',
+  generalActivitiesTitle:
+    'General Activities Impacts',
 
-    personalCareTitle: 'Personal care (washing, dressing, etc)',
-    personalCarePrompt: 'Select the MOST relevant statement:',
+  generalActivitiesPrompt:
+    'Select ALL relevant statements:',
 
-    sleepingTitle: 'Sleeping',
-    sleepingPrompt: 'Select the MOST relevant statement:',
+  personalCareTitle:
+    'Personal care (washing, dressing, etc)',
 
-    reflectionTitle: 'Reflection on your personal care',
-    reflectionPrompt: 'Write any reflections of pain impacts on your daily life/',
-    reflectionPlaceholder:
-        'For instance, this week, I felt that I could not everything at all, I felt hopeless, even doing the laundry felt miserable',
+  personalCarePrompt:
+    'Select the MOST relevant statement:',
 
-    summaryTitle: 'My Personal Care',
-    summaryIntro: 'This helps guide your treatment and support your recovery.',
-    summarySessionNote: 'Saved to Care Journal',
-};
+  sleepingTitle:
+    'Sleeping',
+
+  sleepingPrompt:
+    'Select the MOST relevant statement:',
+
+  reflectionTitle:
+    'Reflection on your personal care',
+
+  reflectionPrompt:
+    'Write any reflections of pain impacts on your daily life/',
+
+  reflectionPlaceholder:
+    'For instance, this week, I felt that I could not everything at all, I felt hopeless, even doing the laundry felt miserable',
+
+  summaryScreenTitle:
+    'My Personal Care Summary',
+
+  summaryTitle:
+    'My Personal Care',
+
+  summaryIntro:
+    'This helps guide your treatment and support your recovery.',
+
+  summarySessionNote:
+    'Saved to Care Journal',
+} as const;
 
 export const generalActivityImpactOptions: {
-    id: GeneralActivityImpactId;
-    label: string;
+  id: GeneralActivityImpactId;
+  label: string;
 }[] = [
-    { id: 'houseJobs', label: 'I am not doing any jobs that I usually do around the house' },
-    { id: 'dressingSlower', label: 'I get dressed more slowly than usual because of my pain' },
-    { id: 'sleepingWorse', label: 'I sleep less well because of my pain' },
-    { id: 'irritable', label: 'I am more irritable and bad tempered with people than usual' },
-    { id: 'delegating', label: 'I try to get other people to do things for me because of my pain' },
+  {
+    id: 'houseJobs',
+    label:
+      'I am not doing any jobs that I usually do around the house',
+  },
+  {
+    id: 'dressingSlower',
+    label:
+      'I get dressed more slowly than usual because of my pain',
+  },
+  {
+    id: 'sleepingWorse',
+    label:
+      'I sleep less well because of my pain',
+  },
+  {
+    id: 'irritable',
+    label:
+      'I am more irritable and bad tempered with people than usual',
+  },
+  {
+    id: 'delegating',
+    label:
+      'I try to get other people to do things for me because of my pain',
+  },
 ];
 
 export const personalCareOptions: {
-    id: PersonalCareOptionId;
-    label: string;
-    score: number;
+  id: PersonalCareOptionId;
+  label: string;
+  score: number;
 }[] = [
-    { id: 'normal', label: 'I can look after myself normally without causing extra pain', score: 0 },
-    { id: 'normalButPainful', label: 'I can look after myself normally but it causes extra pain', score: 1 },
-    { id: 'painfulSlow', label: 'It is painful to look after myself and I am slow and careful', score: 2 },
-    { id: 'needSomeHelp', label: 'I need some help but manage most of my personal care', score: 3 },
-    { id: 'needHelpDaily', label: 'I need help everyday in most aspects of self-care', score: 4 },
-    { id: 'doNotGetDressed', label: 'I do not get dressed, I wash with difficulty and stay in bed', score: 5 },
+  {
+    id: 'normal',
+    label:
+      'I can look after myself normally without causing extra pain',
+    score: 0,
+  },
+  {
+    id: 'normalButPainful',
+    label:
+      'I can look after myself normally but it causes extra pain',
+    score: 1,
+  },
+  {
+    id: 'painfulSlow',
+    label:
+      'It is painful to look after myself and I am slow and careful',
+    score: 2,
+  },
+  {
+    id: 'needSomeHelp',
+    label:
+      'I need some help but manage most of my personal care',
+    score: 3,
+  },
+  {
+    id: 'needHelpDaily',
+    label:
+      'I need help everyday in most aspects of self-care',
+    score: 4,
+  },
+  {
+    id: 'doNotGetDressed',
+    label:
+      'I do not get dressed, I wash with difficulty and stay in bed',
+    score: 5,
+  },
 ];
 
 export const sleepOptions: {
-    id: SleepOptionId;
-    label: string;
-    score: number;
+  id: SleepOptionId;
+  label: string;
+  score: number;
 }[] = [
-    { id: 'neverDisturbed', label: 'My sleep is never disturbed by pain', score: 0 },
-    { id: 'occasionallyDisturbed', label: 'My sleep is occasionally disturbed by pain', score: 1 },
-    { id: 'lessThan6Hours', label: 'Because of pain I have less than 6 hours of sleep', score: 2 },
-    { id: 'lessThan4Hours', label: 'Because of pain I have less than 4 hours of sleep', score: 3 },
-    { id: 'lessThan2Hours', label: 'Because of pain I have less than 2 hours of sleep', score: 4 },
-    { id: 'painPreventsSleep', label: 'Pain prevents me from sleeping at all', score: 5 },
+  {
+    id: 'neverDisturbed',
+    label:
+      'My sleep is never disturbed by pain',
+    score: 0,
+  },
+  {
+    id: 'occasionallyDisturbed',
+    label:
+      'My sleep is occasionally disturbed by pain',
+    score: 1,
+  },
+  {
+    id: 'lessThan6Hours',
+    label:
+      'Because of pain I have less than 6 hours of sleep',
+    score: 2,
+  },
+  {
+    id: 'lessThan4Hours',
+    label:
+      'Because of pain I have less than 4 hours of sleep',
+    score: 3,
+  },
+  {
+    id: 'lessThan2Hours',
+    label:
+      'Because of pain I have less than 2 hours of sleep',
+    score: 4,
+  },
+  {
+    id: 'painPreventsSleep',
+    label:
+      'Pain prevents me from sleeping at all',
+    score: 5,
+  },
 ];
 
-export function findPersonalCareLabel(id: PersonalCareOptionId): string | undefined {
-    return personalCareOptions.find((option) => option.id === id)?.label;
+export const personalCareLivingWellUrl =
+  'https://muscha.org/living-well-with-a-musculoskeletal-condition';
+
+export function findPersonalCareLabel(
+  id: PersonalCareOptionId,
+): string | undefined {
+  return personalCareOptions.find(
+    (option) => option.id === id,
+  )?.label;
 }
 
-export function findSleepLabel(id: SleepOptionId): string | undefined {
-    return sleepOptions.find((option) => option.id === id)?.label;
+export function findSleepLabel(
+  id: SleepOptionId,
+): string | undefined {
+  return sleepOptions.find(
+    (option) => option.id === id,
+  )?.label;
 }
 
 export function findGeneralActivityLabel(
-    id: GeneralActivityImpactId,
+  id: GeneralActivityImpactId,
 ): string | undefined {
-    return generalActivityImpactOptions.find((option) => option.id === id)
-        ?.label;
+  return generalActivityImpactOptions.find(
+    (option) => option.id === id,
+  )?.label;
 }
 
 export function getPersonalCareTotalScore(
-    generalActivityImpacts: GeneralActivityImpactId[],
-    personalCare: PersonalCareOptionId | null,
-    sleep: SleepOptionId | null,
+  generalActivityImpacts: GeneralActivityImpactId[],
+  personalCare: PersonalCareOptionId | null,
+  sleep: SleepOptionId | null,
 ): number {
-    const generalScore = generalActivityImpacts.length;
-    const personalCareScore =
-        personalCareOptions.find((option) => option.id === personalCare)?.score ?? 0;
-    const sleepScore =
-        sleepOptions.find((option) => option.id === sleep)?.score ?? 0;
+  const generalScore =
+    generalActivityImpacts.length;
 
-    return generalScore + personalCareScore + sleepScore;
+  const personalCareScore =
+    personalCareOptions.find(
+      (option) => option.id === personalCare,
+    )?.score ?? 0;
+
+  const sleepScore =
+    sleepOptions.find(
+      (option) => option.id === sleep,
+    )?.score ?? 0;
+
+  return (
+    generalScore +
+    personalCareScore +
+    sleepScore
+  );
 }
 
 export type PersonalCareSummaryDescription = {
-    firstLine: string;
-    boldPhrase: string;
-    secondLine: string;
+  firstLine: string;
+  boldPhrase: string;
+  secondLine: string;
 };
 
 export function getPersonalCareSummaryDescription(
-    totalScore: number,
+  totalScore: number,
 ): PersonalCareSummaryDescription {
-    if (totalScore <= 3) {
-        return {
-            firstLine: 'Your answers indicate that pain does',
-            boldPhrase: 'not really',
-            secondLine:
-                'impact your personal care. Keep monitoring how you feel each week to stay on top of any changes.',
-        };
-    }
-    if (totalScore <= 5) {
-        return {
-            firstLine: 'Your answers indicate that pain',
-            boldPhrase: 'mildly impacts',
-            secondLine:
-                'your personal care. With the right care and guidance, you can keep these tasks manageable.',
-        };
-    }
-    if (totalScore <= 10) {
-        return {
-            firstLine: 'Your answers indicate that pain',
-            boldPhrase: 'moderately impacts',
-            secondLine:
-                'your personal care. With the right care and guidance, these tasks can become more manageable over time.',
-        };
-    }
+  if (totalScore <= 3) {
     return {
-        firstLine: 'Pain is currently having a',
-        boldPhrase: 'significant impact',
-        secondLine:
-            'on your personal care. With the right care and guidance, these tasks can become more manageable over time.',
+      firstLine:
+        'Your answers indicate that pain does',
+      boldPhrase:
+        'not really',
+      secondLine:
+        'impact your personal care. Keep monitoring how you feel each week to stay on top of any changes.',
     };
+  }
+
+  if (totalScore <= 5) {
+    return {
+      firstLine:
+        'Your answers indicate that pain',
+      boldPhrase:
+        'mildly impacts',
+      secondLine:
+        'your personal care. With the right care and guidance, you can keep these tasks manageable.',
+    };
+  }
+
+  if (totalScore <= 10) {
+    return {
+      firstLine:
+        'Your answers indicate that pain',
+      boldPhrase:
+        'moderately impacts',
+      secondLine:
+        'your personal care. With the right care and guidance, these tasks can become more manageable over time.',
+    };
+  }
+
+  return {
+    firstLine:
+      'Pain is currently having a',
+    boldPhrase:
+      'significant impact',
+    secondLine:
+      'on your personal care. With the right care and guidance, these tasks can become more manageable over time.',
+  };
 }
 
-export function getAssessmentPeriodLabel(): string {
-    const today = new Date();
-    const start = new Date(today);
-    start.setDate(today.getDate() - 6);
+export function getAssessmentPeriodLabel(
+  today = new Date(),
+): string {
+  const periodEnd = new Date(today);
+  const periodStart = new Date(today);
 
-    const format = (date: Date) =>
-        date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+  periodStart.setDate(
+    periodStart.getDate() - 6,
+  );
 
-    return `${format(start)} - ${format(today)}`;
+  const startDay = periodStart.getDate();
+  const endDay = periodEnd.getDate();
+
+  const startMonth =
+    periodStart.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
+
+  const endMonth =
+    periodEnd.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
+
+  if (startMonth === endMonth) {
+    return `${startDay}-${endDay} ${endMonth}`;
+  }
+
+  return `${startDay} ${startMonth}-${endDay} ${endMonth}`;
 }

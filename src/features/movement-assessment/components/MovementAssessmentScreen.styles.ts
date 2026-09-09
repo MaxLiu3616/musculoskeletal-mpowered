@@ -1,98 +1,132 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  viewport: {
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    width: '100%',
+  },
+
+  webViewport: {
+    maxWidth: 390,
+  },
+
   safeArea: {
     backgroundColor: '#FFFFFF',
     flex: 1,
   },
+
   keyboardView: {
     flex: 1,
   },
+
   scrollContent: {
     flexGrow: 1,
   },
+
   screen: {
-    alignSelf: 'center',
     flexGrow: 1,
-    maxWidth: 560,
-    paddingBottom: 28,
+    paddingBottom: 24,
     paddingHorizontal: 20,
     width: '100%',
   },
+
   header: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minHeight: 52,
+    minHeight: 48,
   },
+
   backButton: {
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 6,
     justifyContent: 'center',
-    minHeight: 44,
-    paddingHorizontal: 8,
+    minHeight: 36,
+    paddingHorizontal: 4,
   },
+
   backButtonPressed: {
-    backgroundColor: '#F2EEF8',
+    backgroundColor: '#F5F0F8',
   },
+
   backButtonText: {
-    color: '#57418D',
-    fontSize: 15,
-    fontWeight: '600',
+    color: '#514D57',
+    fontSize: 12,
+    fontWeight: '500',
   },
+
   trackerTitle: {
-    color: '#342E3A',
-    fontSize: 14,
+    color: '#17151B',
+    fontSize: 12,
     fontWeight: '700',
   },
+
   assessmentTitle: {
     color: '#17151B',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
-    lineHeight: 32,
-    marginBottom: 14,
-    marginTop: 8,
+    lineHeight: 27,
+    marginBottom: 18,
+    marginTop: 4,
   },
+
   questionCard: {
     backgroundColor: '#FFFFFF',
-    borderColor: '#DDD5E5',
-    borderRadius: 14,
+    borderColor: '#BEB8C2',
+    borderRadius: 8,
     borderWidth: 1,
-    padding: 18,
+    padding: 12,
   },
+
+  questionCardFull: {
+    flex: 1,
+  },
+
+  questionCardCompact: {
+    minHeight: 360,
+  },
+
   sectionTitle: {
-    color: '#342E3A',
-    fontSize: 17,
-    fontWeight: '600',
-    lineHeight: 24,
+    color: '#17151B',
+    fontSize: 14,
+    fontWeight: '700',
+    lineHeight: 20,
   },
+
   divider: {
-    backgroundColor: '#E7E0EB',
+    backgroundColor: '#D5CFD8',
     height: 1,
-    marginBottom: 18,
-    marginTop: 12,
+    marginBottom: 15,
+    marginTop: 9,
   },
+
   actionRow: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 18,
+    marginTop: 'auto',
+    paddingTop: 18,
   },
+
   stepBadge: {
     alignItems: 'center',
-    borderColor: '#D8CEE1',
-    borderRadius: 10,
+    borderColor: '#CFC6D5',
+    borderRadius: 5,
     borderWidth: 1,
     justifyContent: 'center',
-    minHeight: 36,
-    minWidth: 52,
-    paddingHorizontal: 10,
+    minHeight: 30,
+    minWidth: 38,
+    paddingHorizontal: 7,
   },
+
   stepText: {
-    color: '#574F5D',
-    fontSize: 13,
+    color: '#514D57',
+    fontSize: 11,
     fontWeight: '600',
   },
+
   recordButton: {
     alignItems: 'center',
     backgroundColor: '#6D50AC',
@@ -102,17 +136,21 @@ export const styles = StyleSheet.create({
     minWidth: 112,
     paddingHorizontal: 18,
   },
+
   recordButtonDisabled: {
     backgroundColor: '#E7D8FF',
   },
+
   recordButtonPressed: {
     opacity: 0.82,
   },
+
   recordButtonText: {
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
   },
+
   recordButtonTextDisabled: {
     color: '#554766',
   },

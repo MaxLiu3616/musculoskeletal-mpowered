@@ -69,7 +69,8 @@ export function findSocialLifeLabel(
 ) {
   return (
     socialLifeOptions.find(
-      (option) => option.score === score,
+      (option) =>
+        option.score === score,
     )?.label ?? ''
   );
 }
@@ -79,7 +80,8 @@ export function findTravellingLabel(
 ) {
   return (
     travellingOptions.find(
-      (option) => option.score === score,
+      (option) =>
+        option.score === score,
     )?.label ?? ''
   );
 }
@@ -89,7 +91,8 @@ export function findGeneralMoodLabel(
 ) {
   return (
     generalMoodOptions.find(
-      (option) => option.id === moodId,
+      (option) =>
+        option.id === moodId,
     )?.label ?? ''
   );
 }
@@ -170,4 +173,48 @@ export function getEnjoymentSummaryText(
   }
 
   return 'Pain completely prevents me from enjoying life.';
+}
+
+export function getSocialHealthAssessmentPeriodLabel(
+  today = new Date(),
+) {
+  const periodEnd =
+    new Date(today);
+
+  const periodStart =
+    new Date(today);
+
+  periodStart.setDate(
+    periodStart.getDate() - 6,
+  );
+
+  const startDay =
+    periodStart.getDate();
+
+  const endDay =
+    periodEnd.getDate();
+
+  const startMonth =
+    periodStart.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
+
+  const endMonth =
+    periodEnd.toLocaleDateString(
+      'en-AU',
+      {
+        month: 'short',
+      },
+    );
+
+  if (
+    startMonth === endMonth
+  ) {
+    return `${startDay}-${endDay} ${endMonth}`;
+  }
+
+  return `${startDay} ${startMonth}-${endDay} ${endMonth}`;
 }
