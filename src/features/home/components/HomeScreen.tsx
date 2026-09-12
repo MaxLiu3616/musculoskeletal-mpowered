@@ -52,6 +52,10 @@ type HomeScreenProps = {
 
   onReflectionPress?: () => void;
 
+  onMyHealthPress?: () => void;
+
+  onCarePlannerPress?: () => void;
+
   onDismissInsight?: () => void;
 
   onCheckPainHistory?: () => void;
@@ -75,6 +79,8 @@ export default function HomeScreen({
   summaryItems = [],
   onAssessmentPress,
   onReflectionPress,
+  onMyHealthPress,
+  onCarePlannerPress,
   onDismissInsight,
   onCheckPainHistory,
   onPlanAppointment,
@@ -171,7 +177,11 @@ export default function HomeScreen({
         break;
 
       case 'my-health':
+        onMyHealthPress?.();
+        break;
       case 'care-planner':
+        onCarePlannerPress?.();
+        break;
       case 'setting':
         // Routes will be connected when available.
         break;

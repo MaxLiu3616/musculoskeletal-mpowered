@@ -1,6 +1,9 @@
-import { Redirect, router } from 'expo-router';
+import { Redirect, router, useFocusEffect } from 'expo-router';
 import { Linking } from 'react-native';
+import { useCallback } from 'react';
 
+import { useMyHealth } from '@/features/my-health/MyHealthContext';
+import { socialHealthSections } from '@/features/my-health/HealthRecord.data';
 import { useHomeAssessment } from '@/features/home/HomeAssessmentContext';
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import SocialHealthSummaryScreen from '@/features/social-health-assessment/components/SocialHealthSummaryScreen';
@@ -14,6 +17,7 @@ export default function SocialHealthSummaryRoute() {
 
   const { markAssessmentComplete } =
     useHomeAssessment();
+  const { saveAssessment } = useMyHealth();
 
   const hasCompletedRequiredQuestions =
     responses.socialLife !== null &&
@@ -22,6 +26,12 @@ export default function SocialHealthSummaryRoute() {
     responses.relationshipImpact !== null &&
     responses.enjoymentImpact !== null &&
     responses.generalMood !== null;
+
+  useFocusEffect(useCallback(() => {
+    if (hasCompletedRequiredQuestions) {
+      saveAssessment({ type: 'social-health', sections: socialHealthSections(responses) });
+    }
+  }, [responses, hasCompletedRequiredQuestions, saveAssessment]));
 
   if (!hasCompletedRequiredQuestions) {
     return (

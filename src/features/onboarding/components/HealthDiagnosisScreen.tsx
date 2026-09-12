@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { useOnboarding } from '../OnboardingContext';
+
 import {
   diagnosisOptions,
   healthDiagnosisScreenCopy,
@@ -15,8 +17,9 @@ type HealthDiagnosisScreenProps = {
 export default function HealthDiagnosisScreen({
   onContinue,
 }: HealthDiagnosisScreenProps) {
+  const { profile, updateProfile } = useOnboarding();
   const [selectedDiagnosis, setSelectedDiagnosis] =
-    useState<DiagnosisOptionId | null>(null);
+    useState<DiagnosisOptionId | null>(profile.diagnosis);
   const canContinue = selectedDiagnosis !== null;
 
   const continueToConditionSelection = () => {
@@ -24,6 +27,7 @@ export default function HealthDiagnosisScreen({
       return;
     }
 
+    updateProfile({ diagnosis: selectedDiagnosis });
     onContinue();
   };
 

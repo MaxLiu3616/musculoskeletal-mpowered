@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 
+import { useOnboarding } from '../OnboardingContext';
+
 import {
   sexOptions,
   sexScreenCopy,
@@ -13,7 +15,8 @@ type SexScreenProps = {
 };
 
 export default function SexScreen({ onContinue }: SexScreenProps) {
-  const [selectedSex, setSelectedSex] = useState<SexOptionId | null>(null);
+  const { profile, updateProfile } = useOnboarding();
+  const [selectedSex, setSelectedSex] = useState<SexOptionId | null>(profile.sex);
   const canContinue = selectedSex !== null;
 
   const selectSex = (sex: SexOptionId) => {
@@ -25,6 +28,7 @@ export default function SexScreen({ onContinue }: SexScreenProps) {
       return;
     }
 
+    updateProfile({ sex: selectedSex });
     onContinue();
   };
 

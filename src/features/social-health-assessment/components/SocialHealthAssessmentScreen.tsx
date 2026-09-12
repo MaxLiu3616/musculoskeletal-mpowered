@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import {
   Keyboard,
@@ -180,6 +181,11 @@ export default function SocialHealthAssessmentScreen({
 
         <BottomNavigation
           activeItem="pain-tracker"
+          onItemPress={(id) => {
+            if (id === 'my-health') router.push('/my-health');
+            if (id === 'care-planner') router.push('/care-planner');
+            if (id === 'pain-tracker') router.replace('/home');
+          }}
         />
       </SafeAreaView>
     </View>

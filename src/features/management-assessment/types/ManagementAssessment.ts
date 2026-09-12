@@ -1,9 +1,4 @@
-export type ManagementMedicationId =
-  | 'perindopril'
-  | 'candesartan'
-  | 'amlodipine'
-  | 'vitamin-d3'
-  | 'raloxifene';
+export type ManagementMedicationId = string;
 
 export type ExerciseFrequencyId =
   | '0-days'
@@ -14,6 +9,7 @@ export type ExerciseFrequencyId =
 
 export type ManagementAssessmentResponses = {
   medications: ManagementMedicationId[];
+  medicationNames: string[];
   otcMedication: string;
   exerciseFrequency: ExerciseFrequencyId | null;
   emotionStrategy: string;
