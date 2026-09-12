@@ -57,6 +57,14 @@ export default function HomeRoute() {
       assessmentStatus={assessmentStatus}
       onAssessmentPress={openAssessment}
       onReflectionPress={openReflection}
+      onMyHealthPress={() => {
+        if (userName) setName(userName);
+        router.push('/my-health');
+      }}
+      onCarePlannerPress={() => {
+        if (userName) setName(userName);
+        router.push('/care-planner');
+      }}
       userName={userName}
     />
   );

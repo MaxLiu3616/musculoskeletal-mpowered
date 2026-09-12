@@ -6,10 +6,11 @@ import {
   View,
 } from 'react-native';
 
+import { useMyHealth } from '@/features/my-health/MyHealthContext';
+import { prescriptionName, prescriptionSchedule } from '@/features/my-health/MyHealth.data';
 import { useManagementAssessment } from '@/features/management-assessment/ManagementAssessmentContext';
 import {
   managementAssessmentCopy,
-  managementMedicationOptions,
 } from '@/features/management-assessment/definitions/ManagementAssessment.data';
 import type { ManagementMedicationId } from '@/features/management-assessment/types/ManagementAssessment';
 
@@ -29,12 +30,13 @@ export default function MedicationScreen({
     responses,
     updateMedications,
   } = useManagementAssessment();
+  const { prescriptions } = useMyHealth();
 
   const [
     selectedMedications,
     setSelectedMedications,
   ] = useState<ManagementMedicationId[]>(
-    responses.medications,
+    responses.medications.filter((id) => prescriptions.some((item) => item.id === id)),
   );
 
   const toggleMedication = (
@@ -57,9 +59,8 @@ export default function MedicationScreen({
   };
 
   const recordMedications = () => {
-    updateMedications(
-      selectedMedications,
-    );
+    const selected = prescriptions.filter((item) => selectedMedications.includes(item.id));
+    updateMedications(selected.map((item) => item.id), selected.map(prescriptionName));
 
     onContinue();
   };
@@ -97,7 +98,8 @@ export default function MedicationScreen({
         showsVerticalScrollIndicator
         style={styles.medicationList}
       >
-        {managementMedicationOptions.map(
+        {prescriptions.length === 0 ? <Text style={styles.helper}>Your prescriptions list is empty. Add prescriptions in My Health, or continue without selecting medication.</Text> : null}
+        {prescriptions.map(
           (medication) => {
             const isSelected =
               selectedMedications.includes(
@@ -132,7 +134,7 @@ export default function MedicationScreen({
                       styles.medicationName
                     }
                   >
-                    {medication.name}
+                    {prescriptionName(medication)}
                   </Text>
 
                   <Text
@@ -140,7 +142,7 @@ export default function MedicationScreen({
                       styles.medicationSchedule
                     }
                   >
-                    {medication.schedule}
+                    {prescriptionSchedule(medication)}
                   </Text>
                 </View>
 

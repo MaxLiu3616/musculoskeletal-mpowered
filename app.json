@@ -25,7 +25,21 @@
     "plugins": [
       "expo-router",
       "expo-status-bar",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow MPOWERED to record a healthcare practitioner's answer after they give consent.",
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow MPOWERED to fill in a support person from a contact you choose."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

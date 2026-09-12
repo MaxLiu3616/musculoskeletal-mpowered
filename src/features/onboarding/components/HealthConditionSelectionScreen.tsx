@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
+import { useOnboarding } from '../OnboardingContext';
+
 import {
   conditionOptions,
   conditionSelectionScreenCopy,
@@ -17,10 +19,11 @@ export default function HealthConditionSelectionScreen({
   onContinue,
   onSkip,
 }: HealthConditionSelectionScreenProps) {
+  const { profile, updateProfile } = useOnboarding();
   const [query, setQuery] = useState('');
   const [selectedConditions, setSelectedConditions] = useState<
     ConditionOptionId[]
-  >([]);
+  >(profile.conditions);
   const canContinue = selectedConditions.length > 0;
   const visibleConditions = useMemo(() => {
     const normalisedQuery = query.trim().toLocaleLowerCase();
@@ -47,6 +50,7 @@ export default function HealthConditionSelectionScreen({
       return;
     }
 
+    updateProfile({ conditions: selectedConditions });
     onContinue();
   };
 
@@ -150,7 +154,7 @@ export default function HealthConditionSelectionScreen({
 
       <Pressable
         accessibilityRole="button"
-        onPress={onSkip}
+        onPress={() => { updateProfile({ conditions: [] }); onSkip(); }}
         style={({ pressed }) => [
           styles.skipButton,
           pressed && styles.skipButtonPressed,
