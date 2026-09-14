@@ -15,14 +15,15 @@ import { useRef, useState } from 'react';
 
 import BottomNavigation from '@/components/navigation/BottomNavigation';
 import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
-import InsightCard from '@/features/insights/components/InsightCard';
-import type { PainInsight } from '@/features/insights/InsightCard.data';
 
 import HomeSummarySwipe from './HomeSummarySwipe';
 import type {
   HomeSummaryItem,
   HomeSummaryType,
 } from './HomeSummaryCard.data';
+
+import InsightCard from './InsightCard';
+import type { PainInsight } from './InsightCard.data';
 
 import {
   homeAssessments,
@@ -98,17 +99,13 @@ export default function HomeScreen({
   const [contentHeight, setContentHeight] =
     useState(0);
 
-  const [
-    scrollViewHeight,
-    setScrollViewHeight,
-  ] = useState(0);
+  const [scrollViewHeight, setScrollViewHeight] =
+    useState(0);
 
+  // Keep a phone-sized viewport on web.
   const appHeight =
     Platform.OS === 'web'
-      ? Math.min(
-          viewportHeight,
-          844,
-        )
+      ? Math.min(viewportHeight, 844)
       : viewportHeight;
 
   const totalAssessments =
@@ -117,9 +114,8 @@ export default function HomeScreen({
   const completedAssessments =
     homeAssessments.filter(
       (assessment) =>
-        assessmentStatus[
-          assessment.id
-        ].completed,
+        assessmentStatus[assessment.id]
+          .completed,
     ).length;
 
   const progressPercentage =
@@ -133,14 +129,12 @@ export default function HomeScreen({
 
   const hasScrollableContent =
     contentHeight >
-    scrollViewHeight +
-      SCROLL_THRESHOLD;
+    scrollViewHeight + SCROLL_THRESHOLD;
 
   const hasMoreContentBelow =
     scrollY +
       scrollViewHeight <
-    contentHeight -
-      SCROLL_THRESHOLD;
+    contentHeight - SCROLL_THRESHOLD;
 
   const showScrollHint =
     hasScrollableContent &&
@@ -150,8 +144,7 @@ export default function HomeScreen({
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) => {
     setScrollY(
-      event.nativeEvent.contentOffset
-        .y,
+      event.nativeEvent.contentOffset.y,
     );
   };
 
@@ -164,39 +157,36 @@ export default function HomeScreen({
   };
 
   const handleScrollDown = () => {
-    scrollViewRef.current?.scrollTo(
-      {
-        y: scrollY + SCROLL_STEP,
-        animated: true,
-      },
-    );
+    scrollViewRef.current?.scrollTo({
+      y: scrollY + SCROLL_STEP,
+      animated: true,
+    });
   };
 
-  const handleBottomNavigationPress =
-    (itemId: BottomNavigationId) => {
-      switch (itemId) {
-        case 'pain-tracker':
-          router.replace({
-            pathname: '/home',
-            params: {
-              name: userName,
-            },
-          });
-          break;
+  const handleBottomNavigationPress = (
+    itemId: BottomNavigationId,
+  ) => {
+    switch (itemId) {
+      case 'pain-tracker':
+        router.replace({
+          pathname: '/home',
+          params: {
+            name: userName,
+          },
+        });
+        break;
 
-        case 'my-health':
-          onMyHealthPress?.();
-          break;
-
-        case 'care-planner':
-          onCarePlannerPress?.();
-          break;
-
-        case 'setting':
-          // Routes will be connected when available.
-          break;
-      }
-    };
+      case 'my-health':
+        onMyHealthPress?.();
+        break;
+      case 'care-planner':
+        onCarePlannerPress?.();
+        break;
+      case 'setting':
+        router.push('/setting');
+        break;
+    }
+  };
 
   return (
     <View
@@ -210,6 +200,7 @@ export default function HomeScreen({
         },
       ]}
     >
+      {/* Scrollable content */}
       <ScrollView
         bounces={false}
         contentContainerStyle={
@@ -218,12 +209,8 @@ export default function HomeScreen({
         onContentSizeChange={(
           _width,
           height,
-        ) =>
-          setContentHeight(height)
-        }
-        onLayout={
-          handleScrollLayout
-        }
+        ) => setContentHeight(height)}
+        onLayout={handleScrollLayout}
         onScroll={handleScroll}
         ref={scrollViewRef}
         scrollEventThrottle={16}
@@ -231,30 +218,23 @@ export default function HomeScreen({
         style={styles.screen}
       >
         <View style={styles.content}>
-          <Text
-            style={styles.greeting}
-          >
-            {
-              homeScreenCopy.greetingPrefix
-            }
-            , {userName} ☀️
+          {/* Greeting */}
+          <Text style={styles.greeting}>
+            {homeScreenCopy.greetingPrefix},{' '}
+            {userName} ☀️
           </Text>
 
-          <Text
-            style={styles.heading}
-          >
+          {/* Heading */}
+          <Text style={styles.heading}>
             {homeScreenCopy.heading}
           </Text>
 
-          <Text
-            style={styles.subtitle}
-          >
+          <Text style={styles.subtitle}>
             {homeScreenCopy.subtitle}
           </Text>
 
-          <View
-            style={styles.progressTrack}
-          >
+          {/* Weekly progress */}
+          <View style={styles.progressTrack}>
             <View
               style={[
                 styles.progressFill,
@@ -266,86 +246,55 @@ export default function HomeScreen({
             />
           </View>
 
-          {completedAssessments >
-            0 &&
-          remainingAssessments >
-            0 ? (
-            <Text
-              style={
-                styles.taskRemaining
-              }
-            >
-              ✨{' '}
-              {
-                remainingAssessments
-              }{' '}
-              more{' '}
-              {remainingAssessments ===
-              1
+          {completedAssessments > 0 &&
+          remainingAssessments > 0 ? (
+            <Text style={styles.taskRemaining}>
+              ✨ {remainingAssessments} more{' '}
+              {remainingAssessments === 1
                 ? 'task'
                 : 'tasks'}{' '}
               this week
             </Text>
           ) : null}
 
-          <View
-            style={styles.progressRow}
-          >
-            <Text
-              style={
-                styles.progressLabel
-              }
-            >
-              {completedAssessments ===
-              totalAssessments
-                ? homeScreenCopy.completedProgressLabel
-                : homeScreenCopy.progressLabel}
+          <View style={styles.progressRow}>
+            <Text style={styles.progressLabel}>
+              {completedAssessments === totalAssessments
+                  ? homeScreenCopy.completedProgressLabel
+                  : homeScreenCopy.progressLabel}
             </Text>
 
-            <Text
-              style={
-                styles.progressCount
-              }
-            >
-              {
-                completedAssessments
-              }
-              /{totalAssessments}{' '}
-              {
-                homeScreenCopy.assessmentsLabel
-              }
+            <Text style={styles.progressCount}>
+              {completedAssessments}/
+              {totalAssessments}{' '}
+              {homeScreenCopy.assessmentsLabel}
             </Text>
           </View>
 
+          {/* Health summary */}
           <HomeSummarySwipe
             items={summaryItems}
-            onItemPress={
-              onSummaryPress
+            onItemPress={onSummaryPress}
+          />
+
+          {/* Pain insight */}
+          <InsightCard
+            insight={painInsight}
+            onDismiss={onDismissInsight}
+            onCheckPainHistory={
+              onCheckPainHistory
+            }
+            onPlanAppointment={
+              onPlanAppointment
+            }
+            onCheckPainGuide={
+              onCheckPainGuide
             }
           />
 
-          <View style={styles.insightSection}>
-            <InsightCard
-              insight={painInsight}
-              onDismiss={
-                onDismissInsight
-              }
-              onCheckPainHistory={
-                onCheckPainHistory
-              }
-              onPlanAppointment={
-                onPlanAppointment
-              }
-              onCheckPainGuide={
-                onCheckPainGuide
-              }
-            />
-           </View>
-
+          {/* Weekly assessments */}
           <View
-            style={
-              styles.assessmentSection
-            }
+            style={styles.assessmentSection}
           >
             <Text
               style={
@@ -358,9 +307,7 @@ export default function HomeScreen({
             </Text>
 
             <View
-              style={
-                styles.assessmentList
-              }
+              style={styles.assessmentList}
             >
               {homeAssessments.map(
                 (assessment) => {
@@ -371,9 +318,7 @@ export default function HomeScreen({
 
                   return (
                     <View
-                      key={
-                        assessment.id
-                      }
+                      key={assessment.id}
                       style={
                         styles.assessmentCard
                       }
@@ -388,9 +333,7 @@ export default function HomeScreen({
                             styles.assessmentLabel
                           }
                         >
-                          {
-                            assessment.label
-                          }
+                          {assessment.label}
                         </Text>
 
                         {status.updatedAt ? (
@@ -402,9 +345,7 @@ export default function HomeScreen({
                             {
                               homeScreenCopy.updatedLabel
                             }{' '}
-                            {
-                              status.updatedAt
-                            }
+                            {status.updatedAt}
                           </Text>
                         ) : null}
                       </View>
@@ -450,64 +391,45 @@ export default function HomeScreen({
             </View>
           </View>
 
+          {/* Reflection */}
           <Pressable
             accessibilityRole="button"
-            onPress={
-              onReflectionPress
-            }
+            onPress={onReflectionPress}
             style={({ pressed }) => [
               styles.reflectionButton,
               pressed &&
                 styles.reflectionButtonPressed,
             ]}
           >
-            <Text
-              style={
-                styles.reflectionPlus
-              }
-            >
+            <Text style={styles.reflectionPlus}>
               ＋
             </Text>
 
-            <Text
-              style={
-                styles.reflectionText
-              }
-            >
-              {
-                homeScreenCopy.reflectionLabel
-              }
+            <Text style={styles.reflectionText}>
+              {homeScreenCopy.reflectionLabel}
             </Text>
           </Pressable>
 
-          <Text
-            style={styles.supportedBy}
-          >
-            {
-              homeScreenCopy.supportedByLabel
-            }
+          {/* Sponsor */}
+          <Text style={styles.supportedBy}>
+            {homeScreenCopy.supportedByLabel}
           </Text>
         </View>
       </ScrollView>
 
+      {/* Scroll hint */}
       {showScrollHint ? (
         <Pressable
           accessibilityLabel="Scroll down"
           accessibilityRole="button"
-          onPress={
-            handleScrollDown
-          }
+          onPress={handleScrollDown}
           style={({ pressed }) => [
             styles.scrollHint,
             pressed &&
               styles.scrollHintPressed,
           ]}
         >
-          <Text
-            style={
-              styles.scrollHintText
-            }
-          >
+          <Text style={styles.scrollHintText}>
             Scroll down
           </Text>
 
@@ -519,6 +441,7 @@ export default function HomeScreen({
         </Pressable>
       ) : null}
 
+      {/* Fixed bottom navigation */}
       <BottomNavigation
         activeItem="pain-tracker"
         onItemPress={
