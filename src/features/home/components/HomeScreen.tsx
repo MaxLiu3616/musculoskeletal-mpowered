@@ -183,7 +183,7 @@ export default function HomeScreen({
         onCarePlannerPress?.();
         break;
       case 'setting':
-        // Routes will be connected when available.
+        router.push('/setting');
         break;
     }
   };
