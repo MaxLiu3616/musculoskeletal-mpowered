@@ -94,6 +94,11 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
+  insightSection: {
+    marginTop: 18,
+    marginBottom: 18,
+  },
+
   assessmentSection: {
     backgroundColor: '#F5F2F8',
     borderRadius: 14,

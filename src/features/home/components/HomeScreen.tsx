@@ -22,8 +22,8 @@ import type {
   HomeSummaryType,
 } from './HomeSummaryCard.data';
 
-import InsightCard from './InsightCard';
-import type { PainInsight } from './InsightCard.data';
+import InsightCard from '@/features/insights/components/InsightCard';
+import type { PainInsight } from '@/features/insights/InsightCard.data';
 
 import {
   homeAssessments,
