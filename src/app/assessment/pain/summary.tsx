@@ -1,24 +1,61 @@
-import { Redirect, router, useFocusEffect } from 'expo-router';
+import {
+  Redirect,
+  router,
+  useFocusEffect,
+} from 'expo-router';
 import { useCallback } from 'react';
 
-import { useMyHealth } from '@/features/my-health/MyHealthContext';
+import { useHomeAssessment } from '@/features/home/HomeAssessmentContext';
 import { painSections } from '@/features/my-health/HealthRecord.data';
-import { getAssessmentPeriodLabel } from '@/features/pain-tracker/definitions/PainAssessment.data';
+import { useMyHealth } from '@/features/my-health/MyHealthContext';
 import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext';
 import PainAssessmentSummaryScreen from '@/features/pain-tracker/components/PainAssessmentSummaryScreen';
 
 export default function PainAssessmentSummaryRoute() {
-  const { responses } = usePainAssessment();
-  const { saveAssessment } = useMyHealth();
+  const { responses } =
+    usePainAssessment();
 
-  useFocusEffect(useCallback(() => {
-    if (responses.averagePain !== null) {
-      saveAssessment({ type: 'pain', sections: painSections(responses), pain: responses, periodLabel: getAssessmentPeriodLabel() });
-    }
-  }, [responses, saveAssessment]));
+  const { saveAssessment } =
+    useMyHealth();
 
-  if (responses.averagePain === null) {
-    return <Redirect href="/assessment/pain" />;
+  const {
+    cycleStart,
+    cyclePeriodLabel,
+  } = useHomeAssessment();
+
+  useFocusEffect(
+    useCallback(() => {
+      if (
+        responses.averagePain !== null &&
+        cycleStart &&
+        cyclePeriodLabel
+      ) {
+        saveAssessment(
+          {
+            type: 'pain',
+            sections:
+              painSections(responses),
+            pain: responses,
+            periodLabel:
+              cyclePeriodLabel,
+          },
+          cycleStart,
+        );
+      }
+    }, [
+      responses,
+      saveAssessment,
+      cycleStart,
+      cyclePeriodLabel,
+    ]),
+  );
+
+  if (
+    responses.averagePain === null
+  ) {
+    return (
+      <Redirect href="/assessment/pain" />
+    );
   }
 
   const closeAssessment = () => {
@@ -27,8 +64,15 @@ export default function PainAssessmentSummaryRoute() {
 
   return (
     <PainAssessmentSummaryScreen
-      onBack={() => router.back()}
-      onClose={closeAssessment}
+      periodLabel={
+        cyclePeriodLabel ?? ''
+      }
+      onBack={() =>
+        router.back()
+      }
+      onClose={
+        closeAssessment
+      }
     />
   );
 }

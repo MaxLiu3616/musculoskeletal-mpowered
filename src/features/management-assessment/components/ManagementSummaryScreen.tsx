@@ -15,7 +15,6 @@ import {
   getEmotionResult,
   getExerciseResult,
   getManagementOverview,
-  getManagementPeriodLabel,
   getMedicationResult,
   managementAssessmentCopy,
 } from '@/features/management-assessment/definitions/ManagementAssessment.data';
@@ -23,12 +22,14 @@ import {
 import { styles } from './ManagementAssessmentScreen.styles';
 
 type ManagementSummaryScreenProps = {
+  periodLabel: string;
   onBack: () => void;
   onClose: () => void;
   onExploreTips: () => void;
 };
 
 export default function ManagementSummaryScreen({
+  periodLabel,
   onBack,
   onClose,
   onExploreTips,
@@ -96,20 +97,26 @@ export default function ManagementSummaryScreen({
                 </Text>
               </Pressable>
 
-              <Text style={styles.trackerTitle}>
+              <Text
+                style={styles.trackerTitle}
+              >
                 {
                   managementAssessmentCopy.trackerTitle
                 }
               </Text>
             </View>
 
-            <Text style={styles.assessmentTitle}>
+            <Text
+              style={styles.assessmentTitle}
+            >
               {
                 managementAssessmentCopy.summaryScreenTitle
               }
             </Text>
 
-            <Text style={styles.summaryIntro}>
+            <Text
+              style={styles.summaryIntro}
+            >
               {
                 managementAssessmentCopy.summaryIntro
               }
@@ -120,7 +127,9 @@ export default function ManagementSummaryScreen({
                 style={styles.summaryTitleRow}
               >
                 <Text
-                  style={styles.summaryCardTitle}
+                  style={
+                    styles.summaryCardTitle
+                  }
                 >
                   {
                     managementAssessmentCopy.assessmentTitle
@@ -130,8 +139,7 @@ export default function ManagementSummaryScreen({
                 <Text
                   style={styles.summaryPeriod}
                 >
-                  Period:{' '}
-                  {getManagementPeriodLabel()}
+                  Period: {periodLabel}
                 </Text>
               </View>
 
@@ -140,15 +148,21 @@ export default function ManagementSummaryScreen({
               />
 
               <Text
-                style={styles.summarySectionTitle}
+                style={
+                  styles.summarySectionTitle
+                }
               >
                 {
                   managementAssessmentCopy.summaryTitle
                 }
               </Text>
 
-              <View style={styles.overviewPanel}>
-                <Text style={styles.overviewText}>
+              <View
+                style={styles.overviewPanel}
+              >
+                <Text
+                  style={styles.overviewText}
+                >
                   {getManagementOverview(
                     responses,
                   )}
@@ -170,7 +184,9 @@ export default function ManagementSummaryScreen({
                   />
 
                   <Text
-                    style={styles.tipsButtonText}
+                    style={
+                      styles.tipsButtonText
+                    }
                   >
                     {
                       managementAssessmentCopy.exploreTipsLabel
@@ -180,7 +196,9 @@ export default function ManagementSummaryScreen({
               </View>
 
               <View
-                style={styles.resultsSection}
+                style={
+                  styles.resultsSection
+                }
               >
                 <Text
                   style={
@@ -193,19 +211,27 @@ export default function ManagementSummaryScreen({
                 </Text>
 
                 <View
-                  style={styles.resultsContent}
+                  style={
+                    styles.resultsContent
+                  }
                 >
                   <View
-                    style={styles.resultGroup}
+                    style={
+                      styles.resultGroup
+                    }
                   >
                     <Text
-                      style={styles.resultLabel}
+                      style={
+                        styles.resultLabel
+                      }
                     >
                       Medication:
                     </Text>
 
                     <Text
-                      style={styles.resultText}
+                      style={
+                        styles.resultText
+                      }
                     >
                       {getMedicationResult(
                         responses,
@@ -214,16 +240,22 @@ export default function ManagementSummaryScreen({
                   </View>
 
                   <View
-                    style={styles.resultGroup}
+                    style={
+                      styles.resultGroup
+                    }
                   >
                     <Text
-                      style={styles.resultLabel}
+                      style={
+                        styles.resultLabel
+                      }
                     >
                       Exercise:
                     </Text>
 
                     <Text
-                      style={styles.resultText}
+                      style={
+                        styles.resultText
+                      }
                     >
                       {getExerciseResult(
                         exerciseFrequency,
@@ -232,16 +264,22 @@ export default function ManagementSummaryScreen({
                   </View>
 
                   <View
-                    style={styles.resultGroup}
+                    style={
+                      styles.resultGroup
+                    }
                   >
                     <Text
-                      style={styles.resultLabel}
+                      style={
+                        styles.resultLabel
+                      }
                     >
                       Emotion:
                     </Text>
 
                     <Text
-                      style={styles.resultText}
+                      style={
+                        styles.resultText
+                      }
                     >
                       {getEmotionResult(
                         responses.emotionStrategy,
@@ -252,12 +290,18 @@ export default function ManagementSummaryScreen({
               </View>
 
               <View
-                style={styles.summaryFooterDivider}
+                style={
+                  styles.summaryFooterDivider
+                }
               />
 
-              <View style={styles.summaryFooter}>
+              <View
+                style={styles.summaryFooter}
+              >
                 <Text
-                  style={styles.journalStatus}
+                  style={
+                    styles.journalStatus
+                  }
                 >
                   {
                     managementAssessmentCopy.journalStatus
@@ -274,7 +318,9 @@ export default function ManagementSummaryScreen({
                   ]}
                 >
                   <Text
-                    style={styles.closeButtonText}
+                    style={
+                      styles.closeButtonText
+                    }
                   >
                     {
                       managementAssessmentCopy.closeLabel

@@ -1,7 +1,27 @@
-import { router } from 'expo-router';
+import {
+  router,
+  useLocalSearchParams,
+} from 'expo-router';
 
 import HealthProfileScreen from '@/features/my-health/components/HealthProfileScreen';
 
 export default function HealthProfileRoute() {
-  return <HealthProfileScreen onBack={() => router.dismissTo('/my-health')} />;
+  const { from } = useLocalSearchParams<{
+    from?: string;
+  }>();
+
+  const handleBack = () => {
+    if (from === 'home') {
+      router.dismissTo('/home');
+      return;
+    }
+
+    router.dismissTo('/my-health');
+  };
+
+  return (
+    <HealthProfileScreen
+      onBack={handleBack}
+    />
+  );
 }

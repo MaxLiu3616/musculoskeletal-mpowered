@@ -16,7 +16,6 @@ import {
   findGeneralActivityLabel,
   findPersonalCareLabel,
   findSleepLabel,
-  getAssessmentPeriodLabel,
   getPersonalCareSummaryDescription,
   getPersonalCareTotalScore,
   personalCareAssessmentCopy,
@@ -25,54 +24,71 @@ import {
 import { styles } from './PersonalCareAssessmentScreen.styles';
 
 type PersonalCareSummaryScreenProps = {
+  periodLabel: string;
   onBack: () => void;
   onClose: () => void;
   onExploreTips: () => void;
 };
 
 export default function PersonalCareSummaryScreen({
+  periodLabel,
   onBack,
   onClose,
   onExploreTips,
 }: PersonalCareSummaryScreenProps) {
-  const { height: viewportHeight } = useWindowDimensions();
+  const { height: viewportHeight } =
+    useWindowDimensions();
 
   const appHeight =
     Platform.OS === 'web'
       ? Math.min(viewportHeight, 844)
       : viewportHeight;
 
-  const { responses } = usePersonalCareAssessment();
+  const { responses } =
+    usePersonalCareAssessment();
 
   const generalActivityLabels =
     responses.generalActivityImpacts.map(
-      (id) => findGeneralActivityLabel(id) ?? id,
+      (id) =>
+        findGeneralActivityLabel(id) ??
+        id,
     );
 
-  const personalCareLabel = responses.personalCare
-    ? findPersonalCareLabel(responses.personalCare)
-    : null;
+  const personalCareLabel =
+    responses.personalCare
+      ? findPersonalCareLabel(
+          responses.personalCare,
+        )
+      : null;
 
-  const sleepLabel = responses.sleep
-    ? findSleepLabel(responses.sleep)
-    : null;
+  const sleepLabel =
+    responses.sleep
+      ? findSleepLabel(
+          responses.sleep,
+        )
+      : null;
 
-  const totalScore = getPersonalCareTotalScore(
-    responses.generalActivityImpacts,
-    responses.personalCare,
-    responses.sleep,
-  );
+  const totalScore =
+    getPersonalCareTotalScore(
+      responses.generalActivityImpacts,
+      responses.personalCare,
+      responses.sleep,
+    );
 
   const description =
-    getPersonalCareSummaryDescription(totalScore);
+    getPersonalCareSummaryDescription(
+      totalScore,
+    );
 
-  const reflection = responses.reflection.trim();
+  const reflection =
+    responses.reflection.trim();
 
   return (
     <View
       style={[
         styles.viewport,
-        Platform.OS === 'web' && styles.webViewport,
+        Platform.OS === 'web' &&
+          styles.webViewport,
         {
           height: appHeight,
           maxHeight: appHeight,
@@ -86,7 +102,9 @@ export default function PersonalCareSummaryScreen({
         />
 
         <ScrollView
-          contentContainerStyle={styles.summaryScrollContent}
+          contentContainerStyle={
+            styles.summaryScrollContent
+          }
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.summaryScreen}>
@@ -97,49 +115,96 @@ export default function PersonalCareSummaryScreen({
                 onPress={onBack}
                 style={({ pressed }) => [
                   styles.backButton,
-                  pressed && styles.backButtonPressed,
+                  pressed &&
+                    styles.backButtonPressed,
                 ]}
               >
-                <Text style={styles.backButtonText}>
-                  {personalCareAssessmentCopy.backLabel}
+                <Text
+                  style={styles.backButtonText}
+                >
+                  {
+                    personalCareAssessmentCopy.backLabel
+                  }
                 </Text>
               </Pressable>
 
-              <Text style={styles.trackerTitle}>
-                {personalCareAssessmentCopy.trackerTitle}
+              <Text
+                style={styles.trackerTitle}
+              >
+                {
+                  personalCareAssessmentCopy.trackerTitle
+                }
               </Text>
             </View>
 
-            <Text style={styles.assessmentTitle}>
-              {personalCareAssessmentCopy.summaryScreenTitle}
+            <Text
+              style={styles.assessmentTitle}
+            >
+              {
+                personalCareAssessmentCopy.summaryScreenTitle
+              }
             </Text>
 
-            <Text style={styles.summaryIntro}>
-              {personalCareAssessmentCopy.summaryIntro}
+            <Text
+              style={styles.summaryIntro}
+            >
+              {
+                personalCareAssessmentCopy.summaryIntro
+              }
             </Text>
 
             <View style={styles.summaryCard}>
-              <View style={styles.summaryTitleRow}>
-                <Text style={styles.summaryCardTitle}>
-                  {personalCareAssessmentCopy.summaryTitle}
+              <View
+                style={styles.summaryTitleRow}
+              >
+                <Text
+                  style={
+                    styles.summaryCardTitle
+                  }
+                >
+                  {
+                    personalCareAssessmentCopy.summaryTitle
+                  }
                 </Text>
 
-                <Text style={styles.summaryPeriod}>
-                  Period: {getAssessmentPeriodLabel()}
+                <Text
+                  style={styles.summaryPeriod}
+                >
+                  Period: {periodLabel}
                 </Text>
               </View>
 
-              <View style={styles.summaryDivider} />
+              <View
+                style={styles.summaryDivider}
+              />
 
-              <Text style={styles.summarySectionTitle}>
+              <Text
+                style={
+                  styles.summarySectionTitle
+                }
+              >
                 Summary
               </Text>
 
-              <View style={styles.summaryHighlightBox}>
-                <Text style={styles.summaryHighlightText}>
+              <View
+                style={
+                  styles.summaryHighlightBox
+                }
+              >
+                <Text
+                  style={
+                    styles.summaryHighlightText
+                  }
+                >
                   {description.firstLine}{' '}
-                  <Text style={styles.summaryHighlightBold}>
-                    {description.boldPhrase}
+                  <Text
+                    style={
+                      styles.summaryHighlightBold
+                    }
+                  >
+                    {
+                      description.boldPhrase
+                    }
                   </Text>{' '}
                   {description.secondLine}
                 </Text>
@@ -149,7 +214,8 @@ export default function PersonalCareSummaryScreen({
                   onPress={onExploreTips}
                   style={({ pressed }) => [
                     styles.exploreTipsButton,
-                    pressed && styles.exploreTipsButtonPressed,
+                    pressed &&
+                      styles.exploreTipsButtonPressed,
                   ]}
                 >
                   <Ionicons
@@ -158,48 +224,106 @@ export default function PersonalCareSummaryScreen({
                     color="#17151B"
                   />
 
-                  <Text style={styles.exploreTipsText}>
-                    Explore tips on daily living
+                  <Text
+                    style={
+                      styles.exploreTipsText
+                    }
+                  >
+                    Explore tips on daily
+                    living
                   </Text>
                 </Pressable>
               </View>
 
-              <View style={styles.summaryResultsSection}>
-                <Text style={styles.summarySectionTitle}>
+              <View
+                style={
+                  styles.summaryResultsSection
+                }
+              >
+                <Text
+                  style={
+                    styles.summarySectionTitle
+                  }
+                >
                   My results:
                 </Text>
 
-                <View style={styles.summaryResultsContent}>
-                  <View style={styles.summaryResultGroup}>
-                    <Text style={styles.summaryItem}>
+                <View
+                  style={
+                    styles.summaryResultsContent
+                  }
+                >
+                  <View
+                    style={
+                      styles.summaryResultGroup
+                    }
+                  >
+                    <Text
+                      style={
+                        styles.summaryItem
+                      }
+                    >
                       General Activities:
                     </Text>
 
-                    <Text style={styles.summaryText}>
-                      {generalActivityLabels.length > 0
-                        ? `${generalActivityLabels.join(', ')}.`
+                    <Text
+                      style={
+                        styles.summaryText
+                      }
+                    >
+                      {generalActivityLabels.length >
+                      0
+                        ? `${generalActivityLabels.join(
+                            ', ',
+                          )}.`
                         : 'No impacts selected.'}
                     </Text>
                   </View>
 
-                  <View style={styles.summaryResultGroup}>
-                    <Text style={styles.summaryItem}>
-                      Personal care (washing, dressing, etc):
+                  <View
+                    style={
+                      styles.summaryResultGroup
+                    }
+                  >
+                    <Text
+                      style={
+                        styles.summaryItem
+                      }
+                    >
+                      Personal care
+                      (washing, dressing,
+                      etc):
                     </Text>
 
-                    <Text style={styles.summaryText}>
+                    <Text
+                      style={
+                        styles.summaryText
+                      }
+                    >
                       {personalCareLabel
                         ? `${personalCareLabel}.`
                         : 'Not recorded.'}
                     </Text>
                   </View>
 
-                  <View style={styles.summaryResultGroup}>
-                    <Text style={styles.summaryItem}>
+                  <View
+                    style={
+                      styles.summaryResultGroup
+                    }
+                  >
+                    <Text
+                      style={
+                        styles.summaryItem
+                      }
+                    >
                       Sleeping:
                     </Text>
 
-                    <Text style={styles.summaryText}>
+                    <Text
+                      style={
+                        styles.summaryText
+                      }
+                    >
                       {sleepLabel
                         ? `${sleepLabel}.`
                         : 'Not recorded.'}
@@ -208,23 +332,50 @@ export default function PersonalCareSummaryScreen({
                 </View>
               </View>
 
-              <View style={styles.summaryReflectionSection}>
-                <Text style={styles.summarySectionTitle}>
+              <View
+                style={
+                  styles.summaryReflectionSection
+                }
+              >
+                <Text
+                  style={
+                    styles.summarySectionTitle
+                  }
+                >
                   My reflections:
                 </Text>
 
-                <View style={styles.summaryReflectionContent}>
-                  <Text style={styles.summaryText}>
-                    {reflection || 'No reflection recorded.'}
+                <View
+                  style={
+                    styles.summaryReflectionContent
+                  }
+                >
+                  <Text
+                    style={
+                      styles.summaryText
+                    }
+                  >
+                    {reflection ||
+                      'No reflection recorded.'}
                   </Text>
                 </View>
               </View>
 
-              <View style={styles.summaryFooterDivider} />
+              <View
+                style={
+                  styles.summaryFooterDivider
+                }
+              />
 
-              <View style={styles.summaryFooter}>
-                <Text style={styles.sessionNote}>
-                  {personalCareAssessmentCopy.summarySessionNote}
+              <View
+                style={styles.summaryFooter}
+              >
+                <Text
+                  style={styles.sessionNote}
+                >
+                  {
+                    personalCareAssessmentCopy.summarySessionNote
+                  }
                 </Text>
 
                 <Pressable
@@ -232,11 +383,18 @@ export default function PersonalCareSummaryScreen({
                   onPress={onClose}
                   style={({ pressed }) => [
                     styles.summaryCloseButton,
-                    pressed && styles.summaryCloseButtonPressed,
+                    pressed &&
+                      styles.summaryCloseButtonPressed,
                   ]}
                 >
-                  <Text style={styles.summaryCloseButtonText}>
-                    {personalCareAssessmentCopy.closeLabel}
+                  <Text
+                    style={
+                      styles.summaryCloseButtonText
+                    }
+                  >
+                    {
+                      personalCareAssessmentCopy.closeLabel
+                    }
                   </Text>
                 </Pressable>
               </View>

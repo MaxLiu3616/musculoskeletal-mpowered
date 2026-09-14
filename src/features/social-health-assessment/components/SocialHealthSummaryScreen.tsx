@@ -17,7 +17,6 @@ import {
   getEnjoymentSummaryText,
   getMoodSummaryText,
   getRelationshipSummaryText,
-  getSocialHealthAssessmentPeriodLabel,
   getSocialHealthImpactLevel,
   getSocialHealthTotalScore,
 } from '@/features/social-health-assessment/definitions/SocialHealthSummary.data';
@@ -25,12 +24,14 @@ import {
 import { styles } from './SocialHealthSummaryScreen.styles';
 
 type SocialHealthSummaryScreenProps = {
+  periodLabel: string;
   onBack: () => void;
   onClose: () => void;
   onExploreTips: () => void;
 };
 
 export default function SocialHealthSummaryScreen({
+  periodLabel,
   onBack,
   onClose,
   onExploreTips,
@@ -47,10 +48,14 @@ export default function SocialHealthSummaryScreen({
     useSocialHealthAssessment();
 
   const totalScore =
-    getSocialHealthTotalScore(responses);
+    getSocialHealthTotalScore(
+      responses,
+    );
 
   const impactLevel =
-    getSocialHealthImpactLevel(totalScore);
+    getSocialHealthImpactLevel(
+      totalScore,
+    );
 
   const socialLife =
     responses.socialLife === null
@@ -74,14 +79,16 @@ export default function SocialHealthSummaryScreen({
         );
 
   const relationship =
-    responses.relationshipImpact === null
+    responses.relationshipImpact ===
+    null
       ? 'Not recorded.'
       : getRelationshipSummaryText(
           responses.relationshipImpact,
         );
 
   const enjoyment =
-    responses.enjoymentImpact === null
+    responses.enjoymentImpact ===
+    null
       ? 'Not recorded.'
       : getEnjoymentSummaryText(
           responses.enjoymentImpact,
@@ -94,53 +101,82 @@ export default function SocialHealthSummaryScreen({
     switch (impactLevel) {
       case 'minimal':
         return (
-          <Text style={styles.summaryMessage}>
-            Your answers indicate that pain does{' '}
-            <Text style={styles.summaryEmphasis}>
+          <Text
+            style={styles.summaryMessage}
+          >
+            Your answers indicate that pain
+            does{' '}
+            <Text
+              style={
+                styles.summaryEmphasis
+              }
+            >
               not
             </Text>{' '}
-            really impact your social health. With
-            the right treatment and support, you
-            can stay more active and connected.
+            really impact your social
+            health. With the right treatment
+            and support, you can stay more
+            active and connected.
           </Text>
         );
 
       case 'mild':
         return (
-          <Text style={styles.summaryMessage}>
+          <Text
+            style={styles.summaryMessage}
+          >
             Your answers indicate that pain{' '}
-            <Text style={styles.summaryEmphasis}>
+            <Text
+              style={
+                styles.summaryEmphasis
+              }
+            >
               mildly
             </Text>{' '}
-            impacts your social health. With the
-            right treatment and support, you can
-            stay more active and connected.
+            impacts your social health. With
+            the right treatment and support,
+            you can stay more active and
+            connected.
           </Text>
         );
 
       case 'moderate':
         return (
-          <Text style={styles.summaryMessage}>
+          <Text
+            style={styles.summaryMessage}
+          >
             Your answers indicate that pain{' '}
-            <Text style={styles.summaryEmphasis}>
+            <Text
+              style={
+                styles.summaryEmphasis
+              }
+            >
               moderately
             </Text>{' '}
-            impacts your social health. With the
-            right treatment and support, you can
-            stay more active and connected.
+            impacts your social health. With
+            the right treatment and support,
+            you can stay more active and
+            connected.
           </Text>
         );
 
       case 'significant':
         return (
-          <Text style={styles.summaryMessage}>
+          <Text
+            style={styles.summaryMessage}
+          >
             Your answers indicate that pain{' '}
-            <Text style={styles.summaryEmphasis}>
+            <Text
+              style={
+                styles.summaryEmphasis
+              }
+            >
               significantly
             </Text>{' '}
-            impacts your social health. With the
-            right treatment and support, you can
-            stay more active and connected.
+            impacts your social health. With
+            the right treatment and support,
+            you can stay more active and
+            connected.
           </Text>
         );
     }
@@ -189,42 +225,53 @@ export default function SocialHealthSummaryScreen({
                 </Text>
               </Pressable>
 
-              <Text style={styles.trackerTitle}>
+              <Text
+                style={styles.trackerTitle}
+              >
                 Pain Tracker
               </Text>
             </View>
 
-            <Text style={styles.screenTitle}>
+            <Text
+              style={styles.screenTitle}
+            >
               My Social Health Summary
             </Text>
 
             <Text style={styles.helper}>
-              Your answers help your doctor focus
-              on what matters most to your daily
-              life.
+              Your answers help your doctor
+              focus on what matters most to
+              your daily life.
             </Text>
 
             <View style={styles.summaryCard}>
               <View style={styles.titleRow}>
-                <Text style={styles.cardTitle}>
+                <Text
+                  style={styles.cardTitle}
+                >
                   My Social Health
                 </Text>
 
                 <Text style={styles.period}>
-                  Period:{' '}
-                  {getSocialHealthAssessmentPeriodLabel()}
+                  Period: {periodLabel}
                 </Text>
               </View>
 
               <View style={styles.divider} />
 
-              <Text style={styles.sectionTitle}>
+              <Text
+                style={styles.sectionTitle}
+              >
                 Summary
               </Text>
 
-              <View style={styles.summaryPanel}>
+              <View
+                style={styles.summaryPanel}
+              >
                 <View
-                  style={styles.summaryMessageArea}
+                  style={
+                    styles.summaryMessageArea
+                  }
                 >
                   {renderImpactSummary()}
                 </View>
@@ -245,80 +292,131 @@ export default function SocialHealthSummaryScreen({
                   />
 
                   <Text
-                    style={styles.tipsButtonText}
+                    style={
+                      styles.tipsButtonText
+                    }
                   >
-                    Explore tips on managing emotions
+                    Explore tips on managing
+                    emotions
                   </Text>
                 </Pressable>
               </View>
 
-              <Text style={styles.resultsTitle}>
+              <Text
+                style={styles.resultsTitle}
+              >
                 My results:
               </Text>
 
-              <View style={styles.resultGroup}>
-                <Text style={styles.resultLabel}>
+              <View
+                style={styles.resultGroup}
+              >
+                <Text
+                  style={styles.resultLabel}
+                >
                   Social life:
                 </Text>
 
-                <Text style={styles.resultText}>
+                <Text
+                  style={styles.resultText}
+                >
                   {socialLife}
                 </Text>
               </View>
 
-              <View style={styles.resultGroup}>
-                <Text style={styles.resultLabel}>
+              <View
+                style={styles.resultGroup}
+              >
+                <Text
+                  style={styles.resultLabel}
+                >
                   Travelling:
                 </Text>
 
-                <Text style={styles.resultText}>
+                <Text
+                  style={styles.resultText}
+                >
                   {travelling}
                 </Text>
               </View>
 
-              <View style={styles.resultGroup}>
-                <Text style={styles.resultLabel}>
+              <View
+                style={styles.resultGroup}
+              >
+                <Text
+                  style={styles.resultLabel}
+                >
                   Mood:
                 </Text>
 
-                <Text style={styles.resultText}>
+                <Text
+                  style={styles.resultText}
+                >
                   {mood}
                 </Text>
               </View>
 
-              <View style={styles.resultGroup}>
-                <Text style={styles.resultLabel}>
+              <View
+                style={styles.resultGroup}
+              >
+                <Text
+                  style={styles.resultLabel}
+                >
                   Relation with others:
                 </Text>
 
-                <Text style={styles.resultText}>
+                <Text
+                  style={styles.resultText}
+                >
                   {relationship}
                 </Text>
               </View>
 
-              <View style={styles.resultGroup}>
-                <Text style={styles.resultLabel}>
+              <View
+                style={styles.resultGroup}
+              >
+                <Text
+                  style={styles.resultLabel}
+                >
                   Enjoyment of life:
                 </Text>
 
-                <Text style={styles.resultText}>
+                <Text
+                  style={styles.resultText}
+                >
                   {enjoyment}
                 </Text>
               </View>
 
-              <View style={styles.reflectionGroup}>
-                <Text style={styles.reflectionLabel}>
+              <View
+                style={
+                  styles.reflectionGroup
+                }
+              >
+                <Text
+                  style={
+                    styles.reflectionLabel
+                  }
+                >
                   My reflections on mood:
                 </Text>
 
-                <Text style={styles.reflectionText}>
+                <Text
+                  style={
+                    styles.reflectionText
+                  }
+                >
                   {reflection ||
                     'No reflection recorded.'}
                 </Text>
               </View>
 
-              <View style={styles.closeRow}>
-                <Text style={styles.savedText}>
+              <View
+                style={styles.closeRow}
+              >
+                <Text
+                  style={styles.savedText}
+                >
                   Saved to Care Journal
                 </Text>
 
@@ -332,7 +430,9 @@ export default function SocialHealthSummaryScreen({
                   ]}
                 >
                   <Text
-                    style={styles.closeButtonText}
+                    style={
+                      styles.closeButtonText
+                    }
                   >
                     Close
                   </Text>

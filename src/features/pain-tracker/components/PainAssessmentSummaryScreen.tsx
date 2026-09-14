@@ -13,7 +13,6 @@ import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext
 import {
   findPainCharacteristicLabel,
   findPainLocationLabel,
-  getAssessmentPeriodLabel,
   getPainSummaryDescription,
   painAssessmentCopy,
 } from '@/features/pain-tracker/definitions/PainAssessment.data';
@@ -21,11 +20,13 @@ import {
 import { styles } from './PainAssessmentScreen.styles';
 
 type PainAssessmentSummaryScreenProps = {
+  periodLabel: string;
   onBack: () => void;
   onClose: () => void;
 };
 
 export default function PainAssessmentSummaryScreen({
+  periodLabel,
   onBack,
   onClose,
 }: PainAssessmentSummaryScreenProps) {
@@ -175,8 +176,7 @@ export default function PainAssessmentSummaryScreen({
                 <Text
                   style={styles.summaryPeriod}
                 >
-                  Period:{' '}
-                  {getAssessmentPeriodLabel()}
+                  Period: {periodLabel}
                 </Text>
               </View>
 
@@ -256,11 +256,15 @@ export default function PainAssessmentSummaryScreen({
                       }
                     >
                       <Text
-                        style={styles.summaryItem}
+                        style={
+                          styles.summaryItem
+                        }
                       >
                         {response.label}:{' '}
                         <Text
-                          style={styles.summaryValue}
+                          style={
+                            styles.summaryValue
+                          }
                         >
                           {response.value ??
                             'Not recorded'}
@@ -270,7 +274,9 @@ export default function PainAssessmentSummaryScreen({
                       {response.value ===
                       null ? null : (
                         <Text
-                          style={styles.summaryText}
+                          style={
+                            styles.summaryText
+                          }
                         >
                           {getPainSummaryDescription(
                             response.key,
