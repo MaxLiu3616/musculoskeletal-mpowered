@@ -34,10 +34,9 @@ export default function SettingScreen(props: SettingScreenProps) {
                 />
             }
         >
-            <View style={{ height: 12 }} />
 
             <Text style={styles.subtitle}>
-                {name ? `Hi, ${name}` : ''}
+                {name}
             </Text>
 
             <View style={styles.assessmentCard}>
