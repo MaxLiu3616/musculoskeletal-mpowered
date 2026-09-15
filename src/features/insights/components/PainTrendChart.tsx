@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 
-import type { PainTrendPoint } from './InsightCard.data';
+import type { PainTrendPoint } from '../InsightCard.data';
 import { styles } from './PainTrendChart.styles';
 
 type PainTrendChartProps = {
