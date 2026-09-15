@@ -12,6 +12,8 @@ export const styles = StyleSheet.create({
     scroll: { flex: 1 },
     content: { paddingHorizontal: 20, paddingBottom: 24, flexGrow: 1, gap: 16 },
     card: { backgroundColor: '#F4F2F8', borderRadius: 14, padding: 18, gap: 14 },
+    cardButtonText: { color: '#4D3A67', fontSize: 14, fontWeight: '600', lineHeight: 20 },
+    previewTitle: { color: '#17151B', fontSize: 18, fontWeight: '700', lineHeight: 25 },
     label: { color: '#38313F', fontSize: 13, fontWeight: '600', lineHeight: 18 },
     value: { color: '#17151B', fontSize: 14, lineHeight: 21 },
     muted: { color: '#716979', fontSize: 12, lineHeight: 18 },

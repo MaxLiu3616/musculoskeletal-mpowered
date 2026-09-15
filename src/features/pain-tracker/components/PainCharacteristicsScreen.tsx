@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text } from 'react-native';
+import { AppText as Text } from '@/components/typography';
 
 import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext';
 import {

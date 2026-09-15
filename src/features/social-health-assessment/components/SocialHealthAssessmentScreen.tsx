@@ -1,19 +1,17 @@
-import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
+import { AppText as Text } from '@/components/typography';
+
 import { socialHealthAssessmentCopy } from '@/features/social-health-assessment/definitions/SocialHealthAssessment.data';
 
 import { styles } from './SocialHealthAssessmentScreen.styles';
@@ -39,13 +37,7 @@ export default function SocialHealthAssessmentScreen({
   onBack,
   onRecord,
 }: SocialHealthAssessmentScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
+  const { top } = useSafeAreaInsets();
 
   const goBack = () => {
     Keyboard.dismiss();
@@ -58,19 +50,17 @@ export default function SocialHealthAssessmentScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           backgroundColor="#FFFFFF"
           barStyle="dark-content"
         />
 
         <KeyboardAvoidingView
+          keyboardVerticalOffset={top}
           behavior={
             Platform.OS === 'ios'
               ? 'padding'
@@ -178,16 +168,7 @@ export default function SocialHealthAssessmentScreen({
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-
-        <BottomNavigation
-          activeItem="pain-tracker"
-          onItemPress={(id) => {
-            if (id === 'my-health') router.push('/my-health');
-            if (id === 'care-planner') router.push('/care-planner');
-            if (id === 'pain-tracker') router.replace('/home');
-          }}
-        />
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

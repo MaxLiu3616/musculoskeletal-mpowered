@@ -4,15 +4,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
+import { AppText as Text } from '@/components/typography';
+
 import { managementAssessmentCopy } from '@/features/management-assessment/definitions/ManagementAssessment.data';
 
 import { styles } from './ManagementAssessmentScreen.styles';
@@ -34,12 +33,7 @@ export default function ManagementAssessmentScreen({
   onBack,
   onRecord,
 }: ManagementAssessmentScreenProps) {
-  const { height: viewportHeight } = useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
+  const { top } = useSafeAreaInsets();
 
   const goBack = () => {
     Keyboard.dismiss();
@@ -51,19 +45,17 @@ export default function ManagementAssessmentScreen({
       style={[
         styles.viewport,
         Platform.OS === 'web' && styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
         />
 
         <KeyboardAvoidingView
+          keyboardVerticalOffset={top}
           behavior={
             Platform.OS === 'ios'
               ? 'padding'
@@ -151,9 +143,7 @@ export default function ManagementAssessmentScreen({
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-
-        <BottomNavigation activeItem="pain-tracker" />
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

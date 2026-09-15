@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
+import { Linking, Pressable, ScrollView, View } from 'react-native';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
+import { AppText as Text } from '@/components/typography';
+
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 
 import { useCarePlanner } from '../CarePlannerContext';
@@ -9,9 +10,9 @@ import { carePlannerCopy, formatAppointmentDate } from '../CarePlanner.data';
 import { styles } from './CarePlanner.styles';
 import { CareButton } from './CarePlannerUI';
 
-type Props = { onNew: () => void; onView: (id: string) => void; onHome: () => void; onMyHealth: () => void };
+type Props = { onNew: () => void; onView: (id: string) => void };
 
-export default function CarePlannerScreen({ onNew, onView, onHome, onMyHealth }: Props) {
+export default function CarePlannerScreen({ onNew, onView }: Props) {
   const { plans } = useCarePlanner();
   const [page, setPage] = useState(0);
   const [error, setError] = useState('');
@@ -19,12 +20,7 @@ export default function CarePlannerScreen({ onNew, onView, onHome, onMyHealth }:
     try { await Linking.openURL(carePlannerCopy.painGuideUrl); }
     catch { setError('The pain guide could not be opened. Please try again.'); }
   };
-  return <HealthScreen title={carePlannerCopy.title} footer={
-    <BottomNavigation activeItem="care-planner" onItemPress={(id) => {
-      if (id === 'pain-tracker') onHome();
-      if (id === 'my-health') onMyHealth();
-    }} />
-  }>
+  return <HealthScreen title={carePlannerCopy.title}>
     <View style={styles.divider} />
     <Text style={styles.subtitle}>{carePlannerCopy.description}</Text>
     <View style={styles.carousel}>

@@ -6,12 +6,11 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppText as Text } from '@/components/typography';
 
 import { styles } from './MyHealthScreen.styles';
 
@@ -28,16 +27,7 @@ export default function HealthScreen({
   onBack,
   footer,
 }: HealthScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(
-          viewportHeight,
-          844,
-        )
-      : viewportHeight;
+  const { top } = useSafeAreaInsets();
 
   return (
     <View
@@ -45,16 +35,14 @@ export default function HealthScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView
+      <View
         style={styles.safeArea}
       >
         <KeyboardAvoidingView
+          keyboardVerticalOffset={top}
           behavior={
             Platform.OS === 'ios'
               ? 'padding'
@@ -108,7 +96,7 @@ export default function HealthScreen({
 
           {footer}
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

@@ -1,6 +1,8 @@
 import { AudioModule, RecordingPresets, setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus, useAudioRecorder, useAudioRecorderState } from 'expo-audio';
 import { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import type { AppointmentAnswer, AppointmentQuestion } from '../CarePlanner.types';
 import { styles } from './CarePlanner.styles';

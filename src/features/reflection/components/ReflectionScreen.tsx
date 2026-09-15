@@ -5,16 +5,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
-import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
+
 import { useReflection } from '@/features/reflection/ReflectionContext';
 
 import {
@@ -26,14 +24,14 @@ import { styles } from './ReflectionScreen.styles';
 type ReflectionScreenProps = {
   onBack: () => void;
   onSave: () => void;
-  onPainTrackerPress: () => void;
 };
 
 export default function ReflectionScreen({
   onBack,
   onSave,
-  onPainTrackerPress,
 }: ReflectionScreenProps) {
+  const { top } = useSafeAreaInsets();
+
   const { savedNotes, saveNotes } = useReflection();
   const [notes, setNotes] = useState(savedNotes);
   const period = formatReflectionPeriod();
@@ -49,16 +47,8 @@ export default function ReflectionScreen({
     onSave();
   };
 
-  const handleBottomNavigationPress = (
-    itemId: BottomNavigationId,
-  ) => {
-    if (itemId === 'pain-tracker') {
-      onPainTrackerPress();
-    }
-  };
-
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <StatusBar
         backgroundColor="#FFFFFF"
         barStyle="dark-content"
@@ -71,6 +61,7 @@ export default function ReflectionScreen({
         ]}
       >
         <KeyboardAvoidingView
+          keyboardVerticalOffset={top}
           behavior={
             Platform.OS === 'ios'
               ? 'padding'
@@ -180,14 +171,7 @@ export default function ReflectionScreen({
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-
-        <BottomNavigation
-          activeItem="pain-tracker"
-          onItemPress={
-            handleBottomNavigationPress
-          }
-        />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

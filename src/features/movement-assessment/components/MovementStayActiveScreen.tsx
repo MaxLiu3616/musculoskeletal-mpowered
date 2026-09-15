@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput } from 'react-native';
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { useMovementAssessment } from '@/features/movement-assessment/MovementAssessmentContext';
 import { movementAssessmentCopy } from '@/features/movement-assessment/definitions/MovementAssessment.data';

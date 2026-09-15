@@ -1,6 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     createContext,
     useContext,
+    useEffect,
+    useRef,
     useState,
     type ReactNode,
 } from 'react';
@@ -46,6 +49,7 @@ type SettingProviderProps = {
 };
 
 let nextSupportPersonId = 1;
+const textSizeStorageKey = '@mpowered:text-size';
 
 export function SettingProvider({ children }: SettingProviderProps) {
     const [phone, setPhone] = useState('');
@@ -58,6 +62,20 @@ export function SettingProvider({ children }: SettingProviderProps) {
         textSize: 'medium',
     });
     const [supportPeople, setSupportPeople] = useState<SupportPerson[]>([]);
+    const displayChanged = useRef(false);
+
+    useEffect(() => {
+        let active = true;
+
+        AsyncStorage.getItem(textSizeStorageKey).then((textSize) => {
+            if (active && !displayChanged.current &&
+                (textSize === 'small' || textSize === 'medium' || textSize === 'large')) {
+                setDisplay({ textSize });
+            }
+        }).catch((error) => console.warn('Could not load text size', error));
+
+        return () => { active = false; };
+    }, []);
 
     const setPassword = (value: string) => {
         setPasswordState(value);
@@ -68,7 +86,13 @@ export function SettingProvider({ children }: SettingProviderProps) {
     };
 
     const updateDisplay = (changes: Partial<DisplayPreferences>) => {
+        displayChanged.current = true;
         setDisplay((current) => ({ ...current, ...changes }));
+
+        if (changes.textSize) {
+            AsyncStorage.setItem(textSizeStorageKey, changes.textSize)
+                .catch((error) => console.warn('Could not save text size', error));
+        }
     };
 
     const addSupportPerson = (person: Omit<SupportPerson, 'id'>) => {

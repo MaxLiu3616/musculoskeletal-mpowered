@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput } from 'react-native';
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { useManagementAssessment } from '@/features/management-assessment/ManagementAssessmentContext';
 import { managementAssessmentCopy } from '@/features/management-assessment/definitions/ManagementAssessment.data';

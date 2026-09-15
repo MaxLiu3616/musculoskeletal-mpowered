@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { useOnboarding } from '../OnboardingContext';
 

@@ -2,6 +2,7 @@ import {
   router,
   useLocalSearchParams,
 } from 'expo-router';
+import { useEffect } from 'react';
 
 import { Linking } from 'react-native';
 
@@ -116,6 +117,12 @@ export default function HomeRoute() {
   const userName =
     routeName ||
     onboardingName;
+
+  useEffect(() => {
+    if (routeName) {
+      setName(routeName);
+    }
+  }, [routeName, setName]);
 
   const allAssessmentsCompleted =
     Object.values(
@@ -322,28 +329,6 @@ export default function HomeRoute() {
       onCheckPainGuide={
         openPainGuide
       }
-      onMyHealthPress={() => {
-        if (userName) {
-          setName(
-            userName,
-          );
-        }
-
-        router.push(
-          '/my-health',
-        );
-      }}
-      onCarePlannerPress={() => {
-        if (userName) {
-          setName(
-            userName,
-          );
-        }
-
-        router.push(
-          '/care-planner',
-        );
-      }}
       userName={
         userName
       }

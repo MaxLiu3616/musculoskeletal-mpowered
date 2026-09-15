@@ -6,9 +6,10 @@ import {
 import {
   Pressable,
   ScrollView,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 import { SvgXml } from 'react-native-svg';
 
 import { useMyHealth } from '../MyHealthContext';

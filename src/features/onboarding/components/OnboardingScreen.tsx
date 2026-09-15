@@ -7,9 +7,10 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { nameScreenCopy } from './NameScreen.data';
 import { styles } from './NameScreen.styles';

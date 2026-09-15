@@ -10,7 +10,5 @@ export default function CarePlannerRoute() {
   return <CarePlannerScreen
     onNew={() => { startPlan(records); router.push('/care-planner/appointment'); }}
     onView={(id) => router.push({ pathname: '/care-planner/[id]', params: { id } })}
-    onHome={() => router.replace('/home')}
-    onMyHealth={() => router.replace('/my-health')}
   />;
 }

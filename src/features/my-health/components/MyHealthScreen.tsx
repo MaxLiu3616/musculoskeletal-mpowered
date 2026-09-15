@@ -1,10 +1,10 @@
 import {
   Pressable,
-  Text,
   View,
 } from 'react-native';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
+import { AppText as Text } from '@/components/typography';
+
 import InsightCard from '@/features/insights/components/InsightCard';
 import type { PainInsight } from '@/features/insights/InsightCard.data';
 
@@ -21,10 +21,6 @@ type MyHealthScreenProps = {
 
   onPrescriptions: () => void;
 
-  onHome: () => void;
-
-  onCarePlanner: () => void;
-
   painInsight?: PainInsight | null;
 
   onDismissInsight?: () => void;
@@ -40,8 +36,6 @@ export default function MyHealthScreen({
   onProfile,
   onTracking,
   onPrescriptions,
-  onHome,
-  onCarePlanner,
   painInsight = null,
   onCheckPainHistory,
   onPlanAppointment,
@@ -61,26 +55,6 @@ export default function MyHealthScreen({
   return (
     <HealthScreen
       title={myHealthCopy.title}
-      footer={
-        <BottomNavigation
-          activeItem="my-health"
-          onItemPress={(id) => {
-            if (
-              id ===
-              'pain-tracker'
-            ) {
-              onHome();
-            }
-
-            if (
-              id ===
-              'care-planner'
-            ) {
-              onCarePlanner();
-            }
-          }}
-        />
-      }
     >
       <View style={styles.card}>
         <Text

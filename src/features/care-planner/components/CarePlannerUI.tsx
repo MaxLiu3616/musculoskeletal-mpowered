@@ -1,5 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, Text, TextInput, View, type TextInputProps } from 'react-native';
+import { Pressable, View, type TextInputProps } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { formatAppointmentDate } from '../CarePlanner.data';
 import type { AppointmentPlan } from '../CarePlanner.types';

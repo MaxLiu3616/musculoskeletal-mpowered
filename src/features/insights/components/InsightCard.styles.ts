@@ -32,7 +32,7 @@ export const styles =
 
     dismissButton: {
       alignItems: 'center',
-      height: 28,
+      minHeight: 28,
       justifyContent: 'center',
       width: 28,
     },
@@ -87,6 +87,7 @@ export const styles =
       borderTopColor: '#D9D5DE',
       borderTopWidth: 1,
       flexDirection: 'row',
+      flexWrap: 'wrap',
       width: '100%',
     },
 
@@ -95,6 +96,7 @@ export const styles =
       flex: 1,
       justifyContent: 'center',
       minHeight: 62,
+      minWidth: 100,
       paddingHorizontal: 8,
       paddingVertical: 9,
     },

@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Keyboard, Pressable, Text, TextInput, View } from 'react-native';
+import { Keyboard, Pressable, View } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { emptyPrescription, isValidPrescription, medicationForms, strengthUnits, timeUnits } from '../MyHealth.data';
 import type { PrescriptionInput } from '../MyHealth.types';

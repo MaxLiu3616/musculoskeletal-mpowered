@@ -1,6 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
-import { Modal, Pressable, Text, View } from 'react-native';
+import { Modal, Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useMyHealth } from '../MyHealthContext';
 import { myHealthCopy, prescriptionName, prescriptionSchedule } from '../MyHealth.data';

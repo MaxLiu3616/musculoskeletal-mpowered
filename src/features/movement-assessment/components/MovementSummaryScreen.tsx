@@ -2,13 +2,12 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useMovementAssessment } from '@/features/movement-assessment/MovementAssessmentContext';
 import {
@@ -42,14 +41,6 @@ export default function MovementSummaryScreen({
   onClose,
   onExploreTips,
 }: MovementSummaryScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
-
   const { responses } =
     useMovementAssessment();
 
@@ -95,13 +86,10 @@ export default function MovementSummaryScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
@@ -436,7 +424,7 @@ export default function MovementSummaryScreen({
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

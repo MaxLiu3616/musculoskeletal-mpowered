@@ -1,6 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 

@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Modal, Platform, Text, View } from 'react-native';
+import { Modal, Platform, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { pickSupportContact } from '@/services/support-contact';

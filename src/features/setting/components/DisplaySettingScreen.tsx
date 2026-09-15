@@ -1,4 +1,6 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { useSetting } from '@/features/setting/SettingContext';
@@ -23,12 +25,17 @@ export default function DisplaySettingScreen(props: DisplaySettingsScreenProps) 
     return (
         <HealthScreen title="Display" onBack={onBack}>
             <Text style={styles.label}>Text size</Text>
+            <Text style={styles.subtitle}>
+                Choose a comfortable size. Changes apply throughout the app and are saved automatically.
+            </Text>
 
             <View style={styles.card}>
                 {textSizeOptions.map((option) => (
                     <Pressable
                         accessibilityRole="radio"
+                        accessibilityLabel={option.label}
                         accessibilityState={{ checked: display.textSize === option.id }}
+                        aria-checked={display.textSize === option.id}
                         key={option.id}
                         onPress={() => updateDisplay({ textSize: option.id })}
                         style={styles.row}
@@ -39,6 +46,16 @@ export default function DisplaySettingScreen(props: DisplaySettingsScreenProps) 
                         ) : null}
                     </Pressable>
                 ))}
+            </View>
+
+            <Text style={styles.label}>Preview</Text>
+            <View style={styles.card}>
+                <Text accessibilityRole="header" style={styles.previewTitle}>
+                    Your health, at a glance
+                </Text>
+                <Text style={styles.value}>
+                    Track how you feel, review your progress, and prepare for your next appointment.
+                </Text>
             </View>
         </HealthScreen>
     );

@@ -2,9 +2,10 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useState } from 'react';
 import {
   Pressable,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import {

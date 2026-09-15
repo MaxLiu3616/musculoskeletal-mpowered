@@ -2,13 +2,12 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import {
@@ -36,14 +35,6 @@ export default function SocialHealthSummaryScreen({
   onClose,
   onExploreTips,
 }: SocialHealthSummaryScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
-
   const { responses } =
     useSocialHealthAssessment();
 
@@ -188,13 +179,10 @@ export default function SocialHealthSummaryScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
@@ -441,7 +429,7 @@ export default function SocialHealthSummaryScreen({
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

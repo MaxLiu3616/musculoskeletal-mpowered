@@ -1,4 +1,6 @@
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { styles } from './PainAssessmentScreen.styles';
 

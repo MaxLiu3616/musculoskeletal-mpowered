@@ -3,13 +3,12 @@ import * as React from 'react';
 import {
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { usePersonalCareAssessment } from '@/features/personal-care/PersonalCareAssessmentContext';
 import {
@@ -36,14 +35,6 @@ export default function PersonalCareSummaryScreen({
   onClose,
   onExploreTips,
 }: PersonalCareSummaryScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
-
   const { responses } =
     usePersonalCareAssessment();
 
@@ -89,13 +80,10 @@ export default function PersonalCareSummaryScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
@@ -401,7 +389,7 @@ export default function PersonalCareSummaryScreen({
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

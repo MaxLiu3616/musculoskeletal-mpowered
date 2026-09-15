@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Platform, Pressable, Text, View } from 'react-native';
+import { Platform, Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { exportHealthReport } from '@/services/health-report';
 

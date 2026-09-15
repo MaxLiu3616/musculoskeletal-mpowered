@@ -8,9 +8,10 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { splashSlides } from './SplashScreen.data';
 import { styles } from './SplashScreen.styles';

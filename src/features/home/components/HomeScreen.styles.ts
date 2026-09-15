@@ -77,6 +77,8 @@ export const styles = StyleSheet.create({
   progressRow: {
     alignItems: 'center',
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
     justifyContent: 'space-between',
     marginBottom: 24,
     marginTop: 6,
@@ -213,7 +215,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#D9D9D9',
     borderRadius: 12,
-    bottom: 78,
+    bottom: 6,
     flexDirection: 'row',
     gap: 8,
     paddingHorizontal: 14,

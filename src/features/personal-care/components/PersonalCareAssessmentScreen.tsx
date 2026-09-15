@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
-import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
+import { AppText as Text } from '@/components/typography';
 
 import { personalCareAssessmentCopy } from '@/features/personal-care/definitions/PersonalCareAssessment.data';
 
@@ -38,28 +34,11 @@ export default function PersonalCareAssessmentScreen({
   onBack,
   onRecord,
 }: PersonalCareAssessmentScreenProps) {
-  const { height: viewportHeight } = useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
+  const { top } = useSafeAreaInsets();
 
   const goBack = () => {
     Keyboard.dismiss();
     onBack();
-  };
-
-  const handleBottomNavigationPress = (
-    itemId: BottomNavigationId,
-  ) => {
-    if (itemId === 'pain-tracker') {
-      router.replace('/home');
-    } else if (itemId === 'my-health') {
-      router.push('/my-health');
-    } else if (itemId === 'care-planner') {
-      router.push('/care-planner');
-    }
   };
 
   return (
@@ -67,19 +46,17 @@ export default function PersonalCareAssessmentScreen({
       style={[
         styles.viewport,
         Platform.OS === 'web' && styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
         />
 
         <KeyboardAvoidingView
+          keyboardVerticalOffset={top}
           behavior={
             Platform.OS === 'ios'
               ? 'padding'
@@ -176,14 +153,7 @@ export default function PersonalCareAssessmentScreen({
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-
-        <BottomNavigation
-          activeItem="pain-tracker"
-          onItemPress={
-            handleBottomNavigationPress
-          }
-        />
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

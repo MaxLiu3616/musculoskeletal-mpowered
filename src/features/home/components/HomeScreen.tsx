@@ -1,5 +1,4 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import {
   LayoutChangeEvent,
   NativeScrollEvent,
@@ -7,14 +6,11 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
-import { useRef, useState } from 'react';
 
-import BottomNavigation from '@/components/navigation/BottomNavigation';
-import type { BottomNavigationId } from '@/components/navigation/BottomNavigation.data';
+import { AppText as Text } from '@/components/typography';
+import { useRef, useState } from 'react';
 
 import HomeSummarySwipe from './HomeSummarySwipe';
 import type {
@@ -52,10 +48,6 @@ type HomeScreenProps = {
 
   onReflectionPress?: () => void;
 
-  onMyHealthPress?: () => void;
-
-  onCarePlannerPress?: () => void;
-
   onDismissInsight?: () => void;
 
   onCheckPainHistory?: () => void;
@@ -79,8 +71,6 @@ export default function HomeScreen({
   summaryItems = [],
   onAssessmentPress,
   onReflectionPress,
-  onMyHealthPress,
-  onCarePlannerPress,
   onDismissInsight,
   onCheckPainHistory,
   onPlanAppointment,
@@ -90,9 +80,6 @@ export default function HomeScreen({
   const scrollViewRef =
     useRef<ScrollView>(null);
 
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
   const [scrollY, setScrollY] =
     useState(0);
 
@@ -101,12 +88,6 @@ export default function HomeScreen({
 
   const [scrollViewHeight, setScrollViewHeight] =
     useState(0);
-
-  // Keep a phone-sized viewport on web.
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
 
   const totalAssessments =
     homeAssessments.length;
@@ -163,30 +144,6 @@ export default function HomeScreen({
     });
   };
 
-  const handleBottomNavigationPress = (
-    itemId: BottomNavigationId,
-  ) => {
-    switch (itemId) {
-      case 'pain-tracker':
-        router.replace({
-          pathname: '/home',
-          params: {
-            name: userName,
-          },
-        });
-        break;
-
-      case 'my-health':
-        onMyHealthPress?.();
-        break;
-      case 'care-planner':
-        onCarePlannerPress?.();
-        break;
-      case 'setting':
-        router.push('/setting');
-        break;
-    }
-  };
 
   return (
     <View
@@ -194,10 +151,7 @@ export default function HomeScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
       {/* Scrollable content */}
@@ -441,13 +395,6 @@ export default function HomeScreen({
         </Pressable>
       ) : null}
 
-      {/* Fixed bottom navigation */}
-      <BottomNavigation
-        activeItem="pain-tracker"
-        onItemPress={
-          handleBottomNavigationPress
-        }
-      />
     </View>
   );
 }

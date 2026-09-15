@@ -1,13 +1,12 @@
 import {
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext';
 import {
@@ -30,14 +29,6 @@ export default function PainAssessmentSummaryScreen({
   onBack,
   onClose,
 }: PainAssessmentSummaryScreenProps) {
-  const { height: viewportHeight } =
-    useWindowDimensions();
-
-  const appHeight =
-    Platform.OS === 'web'
-      ? Math.min(viewportHeight, 844)
-      : viewportHeight;
-
   const { responses } =
     usePainAssessment();
 
@@ -95,13 +86,10 @@ export default function PainAssessmentSummaryScreen({
         styles.viewport,
         Platform.OS === 'web' &&
           styles.webViewport,
-        {
-          height: appHeight,
-          maxHeight: appHeight,
-        },
+        { flex: 1 },
       ]}
     >
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
           backgroundColor="#FFFFFF"
@@ -324,7 +312,7 @@ export default function PainAssessmentSummaryScreen({
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

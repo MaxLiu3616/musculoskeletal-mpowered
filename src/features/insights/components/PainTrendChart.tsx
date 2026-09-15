@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import {
   LayoutChangeEvent,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import type { PainTrendPoint } from '../InsightCard.data';
 import { styles } from './PainTrendChart.styles';

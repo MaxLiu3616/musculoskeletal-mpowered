@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Keyboard, Pressable, Text, TextInput, View } from 'react-native';
+import { Keyboard, Pressable, View } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import {
   verificationCodeScreenCopy,

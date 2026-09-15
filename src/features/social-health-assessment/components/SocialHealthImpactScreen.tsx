@@ -2,10 +2,10 @@ import Slider from '@react-native-community/slider';
 import { useState } from 'react';
 import {
   type LayoutChangeEvent,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import {

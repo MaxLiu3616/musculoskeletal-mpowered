@@ -3,10 +3,10 @@ import Slider from '@react-native-community/slider';
 import {
   Keyboard,
   type LayoutChangeEvent,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { usePainAssessment } from '@/features/pain-tracker/PainAssessmentContext';
 import {

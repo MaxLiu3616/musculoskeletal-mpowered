@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Platform, Text, View, type GestureResponderEvent } from 'react-native';
+import { Platform, View, type GestureResponderEvent } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 import Svg, { Path } from 'react-native-svg';
 
 import { styles } from './CarePlanner.styles';

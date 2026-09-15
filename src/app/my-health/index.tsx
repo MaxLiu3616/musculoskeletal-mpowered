@@ -74,14 +74,6 @@ export default function MyHealthRoute() {
       onCheckPainGuide={
         openPainGuide
       }
-      onHome={() =>
-        router.replace('/home')
-      }
-      onCarePlanner={() =>
-        router.replace(
-          '/care-planner',
-        )
-      }
     />
   );
 }

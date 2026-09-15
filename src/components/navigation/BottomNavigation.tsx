@@ -1,5 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Keyboard, Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import {
   bottomNavigationItems,
@@ -10,32 +13,30 @@ import { styles } from './BottomNavigation.styles';
 
 type BottomNavigationProps = {
   activeItem: BottomNavigationId;
-
-  onItemPress?: (
-    itemId: BottomNavigationId,
-  ) => void;
 };
 
 export default function BottomNavigation({
   activeItem,
-  onItemPress,
 }: BottomNavigationProps) {
   return (
-    <View style={styles.container}>
+    <View accessibilityRole="tablist" accessibilityLabel="Main navigation" style={styles.container}>
       {bottomNavigationItems.map((item) => {
         const isActive =
           item.id === activeItem;
 
         return (
           <Pressable
-            accessibilityRole="button"
+            accessibilityRole="tab"
+            accessibilityLabel={item.label}
             accessibilityState={{
               selected: isActive,
             }}
+            aria-selected={isActive}
             key={item.id}
-            onPress={() =>
-              onItemPress?.(item.id)
-            }
+            onPress={() => {
+              Keyboard.dismiss();
+              router.navigate(item.href);
+            }}
             style={({ pressed }) => [
               styles.item,
               pressed &&

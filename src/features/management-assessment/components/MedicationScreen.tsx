@@ -2,9 +2,10 @@ import { useState } from 'react';
 import {
   Pressable,
   ScrollView,
-  Text,
   View,
 } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useMyHealth } from '@/features/my-health/MyHealthContext';
 import { prescriptionName, prescriptionSchedule } from '@/features/my-health/MyHealth.data';

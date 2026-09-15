@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 

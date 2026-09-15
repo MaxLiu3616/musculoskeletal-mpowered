@@ -1,4 +1,6 @@
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { nameScreenCopy } from './NameScreen.data';
 import { styles } from './NameScreen.styles';

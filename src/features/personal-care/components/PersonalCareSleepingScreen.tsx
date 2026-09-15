@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Text } from 'react-native';
+import { AppText as Text } from '@/components/typography';
 
 import { usePersonalCareAssessment } from '@/features/personal-care/PersonalCareAssessmentContext';
 import {

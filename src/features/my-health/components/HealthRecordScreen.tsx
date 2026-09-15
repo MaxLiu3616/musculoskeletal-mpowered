@@ -1,4 +1,6 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useMyHealth } from '../MyHealthContext';
 import { assessmentLabels, formatWeek, myHealthCopy } from '../MyHealth.data';

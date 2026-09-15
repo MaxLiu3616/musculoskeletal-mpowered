@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import { useMovementAssessment } from '@/features/movement-assessment/MovementAssessmentContext';
 import {

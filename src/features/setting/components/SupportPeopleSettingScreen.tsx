@@ -1,4 +1,6 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { AppText as Text } from '@/components/typography';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { useSetting } from '@/features/setting/SettingContext';

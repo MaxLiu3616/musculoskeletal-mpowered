@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput } from 'react-native';
+import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import { socialHealthAssessmentCopy } from '@/features/social-health-assessment/definitions/SocialHealthAssessment.data';

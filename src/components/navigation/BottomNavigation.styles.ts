@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5EDF8',
     flexDirection: 'row',
+    flexShrink: 0,
     justifyContent: 'space-around',
     minHeight: 72,
     paddingBottom: 8,
