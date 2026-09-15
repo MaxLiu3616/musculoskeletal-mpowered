@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Keyboard, Pressable, Text, TextInput, View } from 'react-native';
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { useSetting } from '@/features/setting/SettingContext';
@@ -25,6 +25,10 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    const updateCode = (value: string) => {
+        setCode(value.replace(/\D/g, '').slice(0, 4));
+    };
+
     const verify = () => {
         if (method === 'password') {
             if (oldPassword !== password) {
@@ -32,13 +36,14 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
                 return;
             }
         } else {
-            if (code.replace(/\D/g, '').length !== 4) {
+            if (code.length !== 4) {
                 setError('Enter the 4-digit code.');
                 return;
             }
             // Demo only: any 4-digit code is accepted.
         }
 
+        Keyboard.dismiss();
         setError('');
         setVerified(true);
     };
@@ -98,18 +103,44 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
                         />
                     </View>
                 ) : (
-                    <View style={styles.field}>
-                        <Text style={styles.label}>
+                    <View>
+                        <Text style={[styles.label, { marginTop: 16, textAlign: 'center' }]}>
                             Verification code sent to {phone || 'your phone'}
                         </Text>
-                        <TextInput
-                            value={code}
-                            onChangeText={setCode}
-                            placeholder="4-digit code"
-                            keyboardType="number-pad"
-                            maxLength={4}
-                            style={styles.input}
-                        />
+
+                        <View style={styles.codeInputArea}>
+                            <View style={styles.codeBoxes}>
+                                {[0, 1, 2, 3].map((index) => (
+                                    <View
+                                        key={index}
+                                        style={[
+                                            styles.codeBox,
+                                            index === Math.min(code.length, 3) &&
+                                            styles.codeBoxActive,
+                                        ]}
+                                    >
+                                        <Text style={styles.codeDigit}>{code[index] ?? ''}</Text>
+                                    </View>
+                                ))}
+                            </View>
+
+                            <TextInput
+                                accessibilityLabel="Verification code"
+                                autoComplete="one-time-code"
+                                caretHidden
+                                importantForAutofill="yes"
+                                inputMode="numeric"
+                                keyboardType="number-pad"
+                                maxLength={4}
+                                onChangeText={updateCode}
+                                onSubmitEditing={verify}
+                                returnKeyType="done"
+                                selectionColor="transparent"
+                                style={styles.codeInput}
+                                textContentType="oneTimeCode"
+                                value={code}
+                            />
+                        </View>
                     </View>
                 )}
 
@@ -121,7 +152,7 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
                     style={[
                         styles.cardButtonText,
                         styles.card,
-                        { textAlign: 'center', paddingVertical: 12 },
+                        { textAlign: 'center', paddingVertical: 12, marginTop: 16 },
                     ]}
                 >
                     Verify

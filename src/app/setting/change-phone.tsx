@@ -8,7 +8,7 @@ export default function ChangePhoneRoute() {
             onBack={() => router.back()}
             onContinue={(newPhone) =>
                 router.push({
-                    pathname: '/setting/verify-old-phone',
+                    pathname: '/setting/verify-new-phone',
                     params: { newPhone },
                 })
             }

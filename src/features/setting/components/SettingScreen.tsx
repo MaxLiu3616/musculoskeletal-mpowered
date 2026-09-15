@@ -20,6 +20,7 @@ export default function SettingScreen(props: SettingScreenProps) {
     const { name } = useOnboarding();
 
     return (
+
         <HealthScreen
             title="Setting"
             footer={
@@ -33,25 +34,26 @@ export default function SettingScreen(props: SettingScreenProps) {
                 />
             }
         >
+
             <Text style={styles.subtitle}>
-                {name ? `Hi, ${name}` : ''}
+                {name}
             </Text>
 
-            <View style={styles.card}>
-                <Pressable accessibilityRole="button" onPress={onAccount} style={styles.cardButton}>
-                    <Text style={styles.cardButtonText}>Account</Text>
+            <View style={styles.assessmentCard}>
+                <Pressable accessibilityRole="button" onPress={onAccount} style={styles.assessmentRow}>
+                    <Text style={styles.assessmentRowText}>Account</Text>
                 </Pressable>
 
-                <Pressable accessibilityRole="button" onPress={onNotifications} style={styles.cardButton}>
-                    <Text style={styles.cardButtonText}>Notification</Text>
+                <Pressable accessibilityRole="button" onPress={onNotifications} style={styles.assessmentRow}>
+                    <Text style={styles.assessmentRowText}>Notification</Text>
                 </Pressable>
 
-                <Pressable accessibilityRole="button" onPress={onSupportPeople} style={styles.cardButton}>
-                    <Text style={styles.cardButtonText}>Support People</Text>
+                <Pressable accessibilityRole="button" onPress={onSupportPeople} style={styles.assessmentRow}>
+                    <Text style={styles.assessmentRowText}>Support People</Text>
                 </Pressable>
 
-                <Pressable accessibilityRole="button" onPress={onDisplay} style={styles.cardButton}>
-                    <Text style={styles.cardButtonText}>Display</Text>
+                <Pressable accessibilityRole="button" onPress={onDisplay} style={styles.assessmentRow}>
+                    <Text style={styles.assessmentRowText}>Display</Text>
                 </Pressable>
             </View>
 

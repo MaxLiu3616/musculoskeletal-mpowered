@@ -1,12 +1,12 @@
 import { router, useLocalSearchParams } from 'expo-router';
 
-import VerifyOldPhoneScreen from '@/features/setting/components/VerifyOldPhoneScreen';
+import VerifyNewPhoneScreen from '@/features/setting/components/VerifyNewPhoneScreen';
 
-export default function VerifyOldPhoneRoute() {
+export default function VerifyNewPhoneRoute() {
     const { newPhone } = useLocalSearchParams<{ newPhone: string }>();
 
     return (
-        <VerifyOldPhoneScreen
+        <VerifyNewPhoneScreen
             newPhone={newPhone ?? ''}
             onBack={() => router.back()}
             onVerified={() => router.dismissTo('/setting/account')}
