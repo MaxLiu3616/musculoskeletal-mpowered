@@ -39,4 +39,13 @@ export const styles = StyleSheet.create({
     rowText: { color: '#17151B', fontSize: 15, fontWeight: '600' },
     deleteText: { color: '#AE283D', fontSize: 13, fontWeight: '600' },
     logoutText: { color: '#AE283D', fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 24, minHeight: 44, textAlignVertical: 'center' },
+    codeInputArea: { height: 58, marginTop: 24, maxWidth: 282, position: 'relative', width: '100%', alignSelf: 'center' },
+    codeBoxes: { flexDirection: 'row', gap: 12, height: 58, justifyContent: 'center', pointerEvents: 'none' },
+    codeBox: { alignItems: 'center', backgroundColor: '#EAE6EF', borderColor: '#7A747D', borderRadius: 7, borderWidth: 1, height: 58, justifyContent: 'center', width: 54 },
+    codeBoxActive: { borderColor: '#6D50AC', borderWidth: 2 },
+    codeDigit: { color: '#17151B', fontSize: 22, fontWeight: '600' },
+    codeInput: { color: 'transparent', height: 58, left: 0, opacity: 0.02, position: 'absolute', top: 0, width: '100%' },
+    assessmentCard: { backgroundColor: '#F4F2F8', borderRadius: 14, padding: 12, gap: 10 },
+    assessmentRow: { backgroundColor: '#FFFFFF', borderRadius: 12, minHeight: 56, justifyContent: 'center', paddingHorizontal: 16 },
+    assessmentRowText: { color: '#17151B', fontSize: 15, fontWeight: '700' },
 });
