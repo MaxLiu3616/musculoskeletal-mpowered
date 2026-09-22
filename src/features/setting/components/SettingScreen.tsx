@@ -12,11 +12,12 @@ type SettingScreenProps = {
     onNotifications: () => void;
     onSupportPeople: () => void;
     onDisplay: () => void;
+    onHelpSupport: () => void;
     onLogout: () => void;
 };
 
 export default function SettingScreen(props: SettingScreenProps) {
-    const { onAccount, onNotifications, onSupportPeople, onDisplay, onLogout } = props;
+    const { onAccount, onNotifications, onSupportPeople, onDisplay, onHelpSupport, onLogout } = props;
     const { name } = useOnboarding();
 
     return (
@@ -44,6 +45,11 @@ export default function SettingScreen(props: SettingScreenProps) {
 
                 <Pressable accessibilityRole="button" onPress={onDisplay} style={styles.assessmentRow}>
                     <Text style={styles.assessmentRowText}>Display</Text>
+                </Pressable>
+
+                <Pressable
+                    accessibilityRole="button" onPress={onHelpSupport} style={styles.assessmentRow}>
+                    <Text style={styles.assessmentRowText}>Help & Support</Text>
                 </Pressable>
             </View>
 

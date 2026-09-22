@@ -35,4 +35,142 @@ export const styles = StyleSheet.create({
     assessmentRow: { backgroundColor: '#FFFFFF', borderRadius: 12, minHeight: 56, justifyContent: 'center', paddingHorizontal: 16 },
     assessmentRowText: { color: '#17151B', fontSize: 15, fontWeight: '700' },
     greeting: { color: '#17151B', fontSize: 18, fontWeight: '700', marginBottom: 8 },
+    supportSection: {
+        gap: 16,
+    },
+
+    supportTitle: {
+        color: '#17151B',
+        fontSize: 17,
+        fontWeight: '700',
+        lineHeight: 24,
+    },
+
+    supportDescription: {
+        color: '#4F4B55',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    contactButton: {
+        backgroundColor: '#6D50AC',
+        borderRadius: 12,
+        minHeight: 52,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+    },
+
+    contactButtonText: {
+        color: '#FFFFFF',
+        fontSize: 15,
+        fontWeight: '600',
+    },
+    conditionsSection: {
+        marginTop: 32,
+        width: '100%',
+    },
+
+    conditionsTitle: {
+        color: '#17151B',
+        fontSize: 17,
+        fontWeight: '700',
+        marginBottom: 6,
+    },
+
+    conditionsHelper: {
+        color: '#4F4B55',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    searchContainer: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#F1EDF4',
+        borderBottomColor: '#5E5862',
+        borderBottomWidth: 1,
+        flexDirection: 'row',
+        height: 48,
+        marginTop: 20,
+        maxWidth: 340,
+        paddingLeft: 16,
+        width: '100%',
+    },
+
+    searchInput: {
+        color: '#17151B',
+        flex: 1,
+        fontSize: 15,
+        height: '100%',
+        paddingRight: 8,
+    },
+
+    clearSearchButton: {
+        alignItems: 'center',
+        height: 44,
+        justifyContent: 'center',
+        width: 44,
+    },
+
+    clearSearchButtonPressed: {
+        backgroundColor: '#E4DCEB',
+    },
+
+    clearSearchText: {
+        color: '#57418D',
+        fontSize: 24,
+        lineHeight: 26,
+    },
+
+    conditionsList: {
+        borderColor: '#E3DCE6',
+        borderWidth: 1,
+        height: 330,
+        marginTop: 14,
+        maxWidth: 340,
+        width: '100%',
+        alignSelf: 'center',
+    },
+
+    conditionsListContent: {
+        paddingBottom: 1,
+    },
+
+    conditionOption: {
+        backgroundColor: '#FFFFFF',
+        borderBottomColor: '#E3DCE6',
+        borderBottomWidth: 1,
+        justifyContent: 'center',
+        minHeight: 44,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+    },
+
+    conditionOptionSelected: {
+        backgroundColor: '#6D50AC',
+    },
+
+    conditionOptionText: {
+        color: '#342E3A',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    conditionOptionTextSelected: {
+        color: '#FFFFFF',
+        fontWeight: '600',
+    },
+
+    optionPressed: {
+        opacity: 0.82,
+    },
+
+    noResults: {
+        color: '#6A646E',
+        fontSize: 14,
+        paddingHorizontal: 16,
+        paddingVertical: 24,
+        textAlign: 'center',
+    },
 });

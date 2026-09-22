@@ -17,6 +17,7 @@ export default function SettingRoute() {
             onNotifications={() => router.push('/setting/notifications')}
             onSupportPeople={() => router.push('/setting/support-people')}
             onDisplay={() => router.push('/setting/display')}
+            onHelpSupport={() => router.push('/setting/help-support')}
             onLogout={logout}
         />
     );
