@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { Pressable, View } from 'react-native';
 
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
@@ -28,9 +29,9 @@ export default function NameEntryScreen({
         onChangeText={onNameChange}
         onSubmitEditing={onContinue}
         placeholder={nameScreenCopy.placeholder}
-        placeholderTextColor="#9A95A0"
+        placeholderTextColor={colors.muted}
         returnKeyType="done"
-        selectionColor="#6D50AC"
+        selectionColor={colors.primary}
         style={styles.input}
         value={name}
       />

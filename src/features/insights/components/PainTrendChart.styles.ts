@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -37,7 +38,7 @@ export const styles = StyleSheet.create({
   },
 
   valueLabel: {
-    color: '#4F4660',
+    color: colors.ink,
     fontSize: 11,
     fontWeight: '700',
     position: 'absolute',
@@ -52,7 +53,7 @@ export const styles = StyleSheet.create({
   },
 
   dateText: {
-    color: '#5E5865',
+    color: colors.muted,
     fontSize: 10,
     fontWeight: '600',
     textAlign: 'center',

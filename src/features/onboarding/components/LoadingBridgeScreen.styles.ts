@@ -1,8 +1,10 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  header: { backgroundColor: colors.peach, paddingHorizontal: 20, paddingVertical: 22, borderBottomLeftRadius: 22, borderBottomRightRadius: 22 },
   safeArea: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.canvas,
     flex: 1,
   },
   scrollContent: {
@@ -11,10 +13,10 @@ export const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     flexGrow: 1,
-    minHeight: 680,
+    minHeight: 610,
     paddingBottom: 30,
     paddingHorizontal: 32,
-    paddingTop: 56,
+    paddingTop: 32,
   },
   hero: {
     alignItems: 'center',
@@ -23,13 +25,18 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   illustration: {
-    height: 205,
-    width: 205,
+    height: 150,
+    width: 150,
+    borderRadius: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.sky,
   },
   message: {
-    color: '#17151B',
-    fontSize: 24,
-    lineHeight: 34,
+    fontFamily: fonts.display,
+    color: colors.ink,
+    fontSize: 28,
+    lineHeight: 35,
     marginTop: 46,
     maxWidth: 310,
     textAlign: 'center',
@@ -39,8 +46,9 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   continueButton: {
+    minHeight: 48,
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
@@ -51,7 +59,7 @@ export const styles = StyleSheet.create({
     opacity: 0.82,
   },
   continueButtonText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '600',
   },

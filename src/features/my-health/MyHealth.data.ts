@@ -23,7 +23,7 @@ export const myHealthCopy = {
   sessionNote:
     'Available during this session. Records reset when the app restarts.',
   trackingTitle:
-    'My health tracking records',
+    'Health history',
   trackingEmpty:
     'No health tracking records yet',
   trackingDescription:

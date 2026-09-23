@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { Platform, View, type GestureResponderEvent } from 'react-native';
 
@@ -21,7 +22,7 @@ export default function SignaturePad({ paths, onChange, readOnly = false }: { pa
     onResponderGrant={(event) => onChange([...paths, `M ${point(event)}`])}
     onResponderMove={(event) => { if (paths.length) onChange([...paths.slice(0, -1), `${paths[paths.length - 1]} L ${point(event)}`]); }}>
     <Svg width="100%" height={170} viewBox="0 0 320 170" style={styles.signatureDrawing}>
-      {paths.map((path, index) => <Path key={index} d={path} fill="none" stroke="#38313F" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />)}
+      {paths.map((path, index) => <Path key={index} d={path} fill="none" stroke={colors.ink} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />)}
     </Svg>
     {!paths.length ? <Text style={styles.signatureHint}>{Platform.OS === 'web' ? 'Draw your signature here' : 'Sign here with your finger'}</Text> : null}
   </View>;

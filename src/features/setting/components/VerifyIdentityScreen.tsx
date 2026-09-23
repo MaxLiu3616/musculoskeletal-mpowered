@@ -50,7 +50,7 @@ export default function VerifyIdentityScreen(props: VerifyIdentityScreenProps) {
     };
 
     return (
-        <HealthScreen title="Verify Your Identity" onBack={onBack}>
+        <HealthScreen title="Verify identity" onBack={onBack}>
             <Text style={styles.subtitle}>
                 Verify your identity before changing your phone number.
             </Text>
@@ -143,7 +143,7 @@ export default function VerifyIdentityScreen(props: VerifyIdentityScreenProps) {
                 onPress={verify}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12, marginTop: 16 },
                 ]}
             >

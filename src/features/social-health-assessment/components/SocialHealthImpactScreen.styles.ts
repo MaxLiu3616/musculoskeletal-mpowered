@@ -1,11 +1,12 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   question: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '700',
-    lineHeight: 17,
+    lineHeight: 21,
   },
 
   scoreRow: {
@@ -16,16 +17,16 @@ export const styles = StyleSheet.create({
   },
 
   scoreLabel: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 13,
     fontWeight: '700',
     marginRight: 8,
   },
 
   scoreInput: {
-    borderBottomColor: '#514D57',
+    borderBottomColor: colors.muted,
     borderBottomWidth: 1.5,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 13,
     fontWeight: '600',
     height: 28,
@@ -50,14 +51,14 @@ export const styles = StyleSheet.create({
   },
 
   sliderTrack: {
-    backgroundColor: '#E8DDF7',
+    backgroundColor: colors.sky,
     borderRadius: 6,
     height: 12,
     overflow: 'hidden',
   },
 
   sliderTrackFill: {
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 6,
     height: 12,
   },
@@ -73,7 +74,7 @@ export const styles = StyleSheet.create({
 
   valueBubble: {
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 2,
     height: 24,
     justifyContent: 'center',
@@ -84,13 +85,13 @@ export const styles = StyleSheet.create({
   },
 
   valueBubbleText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 12,
     fontWeight: '700',
   },
 
   thumbBar: {
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 2,
     height: 28,
     position: 'absolute',
@@ -99,7 +100,7 @@ export const styles = StyleSheet.create({
   },
 
   description: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontStyle: 'italic',
     fontWeight: '600',

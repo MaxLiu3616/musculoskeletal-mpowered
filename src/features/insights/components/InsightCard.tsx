@@ -1,3 +1,5 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from '@/theme';
 import {
   useEffect,
   useState,
@@ -86,11 +88,7 @@ export default function InsightCard({
                 styles.buttonPressed,
             ]}
           >
-            <Text
-              style={styles.dismissText}
-            >
-              ×
-            </Text>
+            <Ionicons name="close" size={22} color={colors.ink} />
           </Pressable>
         ) : null}
       </View>

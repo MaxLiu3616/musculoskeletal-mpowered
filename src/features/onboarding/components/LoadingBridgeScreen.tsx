@@ -1,6 +1,8 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { BrandMark } from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import { useEffect, useState } from 'react';
 import {
-  Image,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -42,21 +44,16 @@ export default function LoadingBridgeScreen({
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.peach} />
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.header}><BrandMark /></View>
         <View style={styles.content}>
           <View style={styles.hero}>
-            <Image
-              accessibilityIgnoresInvertColors
-              accessibilityLabel={slide.imageLabel}
-              resizeMode="contain"
-              source={slide.image}
-              style={styles.illustration}
-            />
+            <View style={styles.illustration}><Ionicons name={slide.icon} size={68} color={colors.primary} /></View>
             <Text accessibilityLiveRegion="polite" style={styles.message}>
               {slide.message}
             </Text>

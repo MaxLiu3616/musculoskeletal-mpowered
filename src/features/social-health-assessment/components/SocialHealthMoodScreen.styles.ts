@@ -1,19 +1,20 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   question: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '700',
-    lineHeight: 17,
+    lineHeight: 21,
     textAlign: 'center',
   },
 
   helper: {
-    color: '#817B83',
-    fontSize: 11,
+    color: colors.muted,
+    fontSize: 13,
     fontWeight: '400',
-    lineHeight: 16,
+    lineHeight: 19,
     marginTop: 6,
     textAlign: 'center',
   },
@@ -23,33 +24,33 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 18,
-    paddingHorizontal: 16,
+    paddingHorizontal: 0,
   },
 
   moodButton: {
     alignItems: 'center',
     borderRadius: 22,
-    height: 42,
+    height: 44,
     justifyContent: 'center',
-    width: 42,
+    width: 44,
   },
 
   moodButtonPressed: {
-    backgroundColor: '#F5F0F8',
+    backgroundColor: colors.sky,
   },
 
   moodValue: {
-    color: '#8E8891',
-    fontSize: 11,
+    color: colors.muted,
+    fontSize: 13,
     fontStyle: 'italic',
     fontWeight: '600',
-    lineHeight: 16,
+    lineHeight: 20,
     marginTop: 8,
     textAlign: 'center',
   },
 
   moodValueSelected: {
-    color: '#17151B',
+    color: colors.ink,
     fontWeight: '700',
   },
 });

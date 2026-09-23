@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
@@ -221,9 +222,9 @@ export default function PainIntensityScreen({
             recordIntensity
           }
           placeholder="0 to 10"
-          placeholderTextColor="#817B83"
+          placeholderTextColor={colors.muted}
           returnKeyType="done"
-          selectionColor="#6D50AC"
+          selectionColor={colors.primary}
           style={styles.intensityInput}
           value={valueText}
         />

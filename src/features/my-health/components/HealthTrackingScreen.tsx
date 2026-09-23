@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   useEffect,
@@ -514,7 +515,7 @@ export default function HealthTrackingScreen({
                     : 'chevron-down'
                 }
                 size={20}
-                color="#51465F"
+                color={colors.muted}
               />
             </Pressable>
 
@@ -565,7 +566,7 @@ export default function HealthTrackingScreen({
                         <Ionicons
                           name="chevron-forward"
                           size={18}
-                          color="#51465F"
+                          color={colors.muted}
                         />
                       </Pressable>
                     ) : null;

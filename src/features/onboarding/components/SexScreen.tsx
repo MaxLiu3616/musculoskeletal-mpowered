@@ -1,5 +1,7 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from '@/theme';
 import { useState } from 'react';
-import { Image, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
 
@@ -89,12 +91,7 @@ export default function SexScreen({ onContinue }: SexScreenProps) {
       </Pressable>
 
       <View style={styles.research}>
-        <Image
-          accessibilityIgnoresInvertColors
-          resizeMode="contain"
-          source={require('../../../../assets/images/sex-research-lightbulb.png')}
-          style={styles.researchIcon}
-        />
+        <Ionicons name="bulb-outline" size={24} color={colors.primary} />
         <Text style={styles.researchMessage}>
           {sexScreenCopy.researchMessage}
         </Text>

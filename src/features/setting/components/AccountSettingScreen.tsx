@@ -45,7 +45,7 @@ export default function AccountSettingsScreen(props: AccountSettingsScreenProps)
                     onPress={onChangePhone}
                     style={styles.row}
                 >
-                    <View>
+                    <View style={{ flex: 1 }}>
                         <Text style={styles.rowText}>Phone number</Text>
                         <Text style={styles.muted}>
                             {phone || 'Not set'}
@@ -59,7 +59,7 @@ export default function AccountSettingsScreen(props: AccountSettingsScreenProps)
                     onPress={hasPassword ? onChangePassword : onSetPassword}
                     style={styles.row}
                 >
-                    <View>
+                    <View style={{ flex: 1 }}>
                         <Text style={styles.rowText}>Password</Text>
                         <Text style={styles.muted}>
                             {hasPassword ? '••••••••' : 'Not set'}

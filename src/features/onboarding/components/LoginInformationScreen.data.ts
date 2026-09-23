@@ -14,7 +14,7 @@ export const phoneNumberScreenCopy = {
 } as const;
 
 export const verificationCodeScreenCopy = {
-  title: "We're sending the verification code to this number",
+  title: 'Enter your code',
   inputLabel: 'Four digit verification code',
   resendLabel: 'Resend the verification code',
   resendHelperPrefix: 'You can resend the code in',

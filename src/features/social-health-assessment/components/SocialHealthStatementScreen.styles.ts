@@ -1,11 +1,12 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   instruction: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '600',
-    lineHeight: 18,
+    lineHeight: 21,
   },
 
   instructionEmphasis: {
@@ -14,15 +15,15 @@ export const styles = StyleSheet.create({
   },
 
   optionList: {
-    backgroundColor: '#FBF3FC',
-    borderRadius: 6,
+    backgroundColor: colors.canvas,
+    borderRadius: 12,
     marginTop: 10,
     overflow: 'hidden',
   },
 
   optionRow: {
     alignItems: 'center',
-    borderBottomColor: '#D9D0DE',
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
     minHeight: 54,
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
   },
 
   optionRowSelected: {
-    backgroundColor: '#F1E4F7',
+    backgroundColor: colors.sky,
   },
 
   optionRowPressed: {
@@ -44,8 +45,8 @@ export const styles = StyleSheet.create({
 
   radio: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#514D57',
+    backgroundColor: colors.surface,
+    borderColor: colors.muted,
     borderRadius: 9,
     borderWidth: 1.5,
     height: 18,
@@ -54,22 +55,22 @@ export const styles = StyleSheet.create({
   },
 
   radioSelected: {
-    borderColor: '#6D50AC',
+    borderColor: colors.primary,
   },
 
   radioDot: {
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 4,
     height: 8,
     width: 8,
   },
 
   optionText: {
-    color: '#17151B',
+    color: colors.ink,
     flex: 1,
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '600',
-    lineHeight: 17,
+    lineHeight: 21,
     marginLeft: 10,
   },
 });
