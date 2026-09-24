@@ -12,11 +12,12 @@ type SettingScreenProps = {
   onNotifications: () => void;
   onSupportPeople: () => void;
   onDisplay: () => void;
+  onHelpSupport: () => void;
   onLogout: () => void;
 };
 
 export default function SettingScreen({
-  onAccount, onNotifications, onSupportPeople, onDisplay, onLogout,
+  onAccount, onNotifications, onSupportPeople, onDisplay, onHelpSupport, onLogout,
 }: SettingScreenProps) {
   const { name } = useOnboarding();
   const items = [
@@ -24,6 +25,7 @@ export default function SettingScreen({
     { label: 'Notifications', icon: 'notifications-outline', onPress: onNotifications },
     { label: 'Support people', icon: 'people-outline', onPress: onSupportPeople },
     { label: 'Display', icon: 'text-outline', onPress: onDisplay },
+    { label: 'Help & Support', icon: 'help-circle-outline', onPress: onHelpSupport },
   ] as const;
 
   return (

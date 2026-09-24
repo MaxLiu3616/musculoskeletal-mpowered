@@ -57,4 +57,146 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.display,
     lineHeight: 32,
     letterSpacing: -0.5, color: colors.ink, fontSize: 26, fontWeight: '400', marginBottom: 8 },
+    assessmentCard: { backgroundColor: colors.sky, borderRadius: 14, padding: 12, gap: 10 },
+    assessmentRow: { backgroundColor: colors.surface, borderRadius: 12, minHeight: 56, justifyContent: 'center', paddingHorizontal: 16, paddingVertical: 12 },
+    assessmentRowText: { color: colors.ink, fontSize: 15, fontWeight: '600', lineHeight: 22 },
+    supportSection: {
+        gap: 16,
+    },
+
+    supportTitle: {
+        color: colors.ink,
+        fontSize: 17,
+        fontWeight: '700',
+        lineHeight: 24,
+    },
+
+    supportDescription: {
+        color: colors.muted,
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    contactButton: {
+        backgroundColor: colors.primary,
+        borderRadius: 12,
+        minHeight: 52,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+    },
+
+    contactButtonText: {
+        color: colors.surface,
+        fontSize: 15,
+        fontWeight: '600',
+    },
+    conditionsSection: {
+        marginTop: 32,
+        width: '100%',
+    },
+
+    conditionsTitle: {
+        color: colors.ink,
+        fontSize: 17,
+        fontWeight: '700',
+        marginBottom: 6,
+    },
+
+    conditionsHelper: {
+        color: colors.muted,
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    searchContainer: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: colors.surface,
+        borderColor: colors.border,
+        borderWidth: 1,
+        borderRadius: 12,
+        flexDirection: 'row',
+        height: 48,
+        marginTop: 20,
+        maxWidth: 340,
+        paddingLeft: 16,
+        width: '100%',
+    },
+
+    searchInput: {
+        color: colors.ink,
+        flex: 1,
+        fontSize: 15,
+        height: '100%',
+        paddingRight: 8,
+    },
+
+    clearSearchButton: {
+        alignItems: 'center',
+        height: 44,
+        justifyContent: 'center',
+        width: 44,
+    },
+
+    clearSearchButtonPressed: {
+        backgroundColor: colors.border,
+    },
+
+    clearSearchText: {
+        color: colors.primary,
+        fontSize: 24,
+        lineHeight: 26,
+    },
+
+    conditionsList: {
+        borderColor: colors.border,
+        borderWidth: 1,
+        height: 330,
+        marginTop: 14,
+        maxWidth: 340,
+        width: '100%',
+        alignSelf: 'center',
+    },
+
+    conditionsListContent: {
+        paddingBottom: 1,
+    },
+
+    conditionOption: {
+        backgroundColor: colors.surface,
+        borderBottomColor: colors.border,
+        borderBottomWidth: 1,
+        justifyContent: 'center',
+        minHeight: 44,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+    },
+
+    conditionOptionSelected: {
+        backgroundColor: colors.primary,
+    },
+
+    conditionOptionText: {
+        color: colors.ink,
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    conditionOptionTextSelected: {
+        color: colors.surface,
+        fontWeight: '600',
+    },
+
+    optionPressed: {
+        opacity: 0.82,
+    },
+
+    noResults: {
+        color: colors.muted,
+        fontSize: 14,
+        paddingHorizontal: 16,
+        paddingVertical: 24,
+        textAlign: 'center',
+    },
 });
