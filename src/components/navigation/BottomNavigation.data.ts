@@ -2,7 +2,7 @@ export const bottomNavigationItems = [
   {
     id: 'pain-tracker',
     label: 'Pain Tracker',
-    icon: 'accessibility',
+    icon: 'person',
     href: '/home',
   },
   {
@@ -19,7 +19,7 @@ export const bottomNavigationItems = [
   },
   {
     id: 'setting',
-    label: 'Setting',
+    label: 'Settings',
     icon: 'settings',
     href: '/setting',
   },

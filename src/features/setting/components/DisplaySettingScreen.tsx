@@ -1,3 +1,5 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from '@/theme';
 import { Pressable, View } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
@@ -42,7 +44,7 @@ export default function DisplaySettingScreen(props: DisplaySettingsScreenProps) 
                     >
                         <Text style={styles.rowText}>{option.label}</Text>
                         {display.textSize === option.id ? (
-                            <Text style={styles.value}>✓</Text>
+                            <Ionicons name="checkmark-circle" size={23} color={colors.primary} />
                         ) : null}
                     </Pressable>
                 ))}

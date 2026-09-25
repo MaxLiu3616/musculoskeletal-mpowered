@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import { Modal, Pressable, ScrollView, View } from 'react-native';
@@ -18,14 +19,14 @@ export default function AppointmentDatePicker({ value, onChange }: { value: stri
     <Text style={styles.label}>Appointment date</Text>
     <Pressable accessibilityRole="button" accessibilityLabel={`Appointment date: ${value ? formatAppointmentDate(value) : 'Pick appointment date'}`} onPress={() => { setMonth(value ? new Date(`${value}T12:00:00`) : new Date()); setOpen(true); }} style={[styles.input, styles.selectButton]}>
       <Text style={styles.value}>{value ? formatAppointmentDate(value) : 'Pick appointment date'}</Text>
-      <Ionicons name="calendar-outline" size={20} color="#51465F" />
+      <Ionicons name="calendar-outline" size={20} color={colors.muted} />
     </Pressable>
     <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
       <View style={styles.modalBackdrop}><View accessibilityViewIsModal style={styles.modalCard}>
         <View style={styles.titleRow}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Previous month" style={styles.iconButton} onPress={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))}><Ionicons name="chevron-back" size={22} color="#51465F" /></Pressable>
+          <Pressable accessibilityRole="button" accessibilityLabel="Previous month" style={styles.iconButton} onPress={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))}><Ionicons name="chevron-back" size={22} color={colors.muted} /></Pressable>
           <Text accessibilityRole="header" style={styles.calendarHeading}>{month.toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}</Text>
-          <Pressable accessibilityRole="button" accessibilityLabel="Next month" style={styles.iconButton} onPress={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))}><Ionicons name="chevron-forward" size={22} color="#51465F" /></Pressable>
+          <Pressable accessibilityRole="button" accessibilityLabel="Next month" style={styles.iconButton} onPress={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))}><Ionicons name="chevron-forward" size={22} color={colors.muted} /></Pressable>
         </View>
         <ScrollView style={styles.calendarGrid}>
         <View style={styles.calendarRow}>{['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((day) => <View key={day} style={styles.calendarCell}><Text style={styles.muted}>{day}</Text></View>)}</View>

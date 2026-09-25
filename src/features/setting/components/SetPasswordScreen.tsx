@@ -75,7 +75,7 @@ export default function SetPasswordScreen(props: SetPasswordScreenProps) {
                 onPress={save}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12 },
                     !canSave && styles.disabled,
                 ]}

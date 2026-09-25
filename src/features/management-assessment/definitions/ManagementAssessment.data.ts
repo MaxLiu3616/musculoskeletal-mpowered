@@ -41,7 +41,7 @@ export const managementAssessmentCopy = {
     'Over the past week, select medications that you consumed to manage your pain.',
 
   medicationHelper:
-    'Not taking medications? Just click the record button.',
+    'Not taking medications? Tap Continue.',
 
   medicationSource:
     'Generated based on your medication scripts',
@@ -50,7 +50,7 @@ export const managementAssessmentCopy = {
     'Over the past week, did you consume any over-the-counter (OTC) medication.',
 
   otcHelper:
-    'Not taking OTC medications? Just click the record button.',
+    'Not taking OTC medications? Tap Continue.',
 
   otcPlaceholder:
     'Input name of over the counter medication',
@@ -92,7 +92,7 @@ export const managementAssessmentCopy = {
     'My results:',
 
   journalStatus:
-    'Saved to Care Journal',
+    'Saved to My Health',
 
   closeLabel:
     'Close',

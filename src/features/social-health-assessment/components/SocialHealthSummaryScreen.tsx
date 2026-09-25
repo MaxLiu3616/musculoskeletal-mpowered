@@ -1,3 +1,5 @@
+import ScreenHeader from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Platform,
@@ -185,7 +187,7 @@ export default function SocialHealthSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="#FFFFFF"
+          backgroundColor={colors.peach}
         />
 
         <ScrollView
@@ -195,36 +197,9 @@ export default function SocialHealthSummaryScreen({
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.screen}>
-            <View style={styles.header}>
-              <Pressable
-                accessibilityRole="button"
-                hitSlop={4}
-                onPress={onBack}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed &&
-                    styles.backButtonPressed,
-                ]}
-              >
-                <Text
-                  style={styles.backButtonText}
-                >
-                  ← Back
-                </Text>
-              </Pressable>
-
-              <Text
-                style={styles.trackerTitle}
-              >
-                Pain Tracker
-              </Text>
+            <View style={{ marginHorizontal: -20, marginBottom: 18 }}>
+              <ScreenHeader title="Social health summary" eyebrow="Weekly check-in" onBack={onBack} />
             </View>
-
-            <Text
-              style={styles.screenTitle}
-            >
-              My Social Health Summary
-            </Text>
 
             <Text style={styles.helper}>
               Your answers help your doctor
@@ -274,7 +249,7 @@ export default function SocialHealthSummaryScreen({
                   ]}
                 >
                   <Ionicons
-                    color="#17151B"
+                    color={colors.ink}
                     name="search-outline"
                     size={15}
                   />
@@ -405,7 +380,7 @@ export default function SocialHealthSummaryScreen({
                 <Text
                   style={styles.savedText}
                 >
-                  Saved to Care Journal
+                  Saved to My Health
                 </Text>
 
                 <Pressable

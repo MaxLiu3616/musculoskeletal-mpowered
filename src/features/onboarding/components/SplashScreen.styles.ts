@@ -1,121 +1,31 @@
 import { StyleSheet } from 'react-native';
+import { colors, fonts } from '@/theme';
 
 export const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
-  header: {
-    alignItems: 'center',
-    borderBottomColor: '#E3E3E3',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    height: 58,
-    justifyContent: 'center',
-  },
-  logo: {
-    height: 48,
-    width: 176,
-  },
-  content: {
-    alignSelf: 'center',
-    flexGrow: 1,
-    justifyContent: 'space-between',
-    maxWidth: 480,
-    paddingBottom: 18,
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    width: '100%',
-  },
-  hero: {
-    flexGrow: 1,
-  },
-  gallery: {
-    height: 408,
-    overflow: 'hidden',
-    width: '100%',
-  },
-  galleryScroll: {
-    height: 408,
-    width: '100%',
-  },
-  preview: {
-    flexShrink: 0,
-    height: 408,
-    width: '100%',
-  },
-  pagination: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 32,
-    justifyContent: 'center',
-  },
-  dotButton: {
-    alignItems: 'center',
-    height: 32,
-    justifyContent: 'center',
-    width: 36,
-  },
-  dot: {
-    backgroundColor: '#DDD8E8',
-    borderRadius: 5,
-    height: 10,
-    width: 10,
-  },
-  activeDot: {
-    backgroundColor: '#777777',
-    width: 30,
-  },
-  title: {
-    color: '#1E1E1E',
-    fontSize: 24,
-    fontWeight: '700',
-    lineHeight: 30,
-    minHeight: 60,
-  },
-  actions: {
-    marginTop: 18,
-  },
-  primaryButton: {
-    alignItems: 'center',
-    backgroundColor: '#57418D',
-    borderRadius: 9,
-    height: 50,
-    justifyContent: 'center',
-  },
-  primaryButtonPressed: {
-    opacity: 0.82,
-  },
-  primaryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  signInButton: {
-    alignItems: 'center',
-    height: 44,
-    justifyContent: 'center',
-  },
-  signInText: {
-    color: '#1E1E1E',
-    fontSize: 12,
-    fontWeight: '600',
-    textDecorationLine: 'underline',
-  },
-  actionMessage: {
-    color: '#57418D',
-    fontSize: 12,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  supportText: {
-    color: '#8A8A8A',
-    fontSize: 11,
-    textAlign: 'center',
-  },
-  sponsor: {
-    fontWeight: '700',
-  },
+  safeArea: { flex: 1, backgroundColor: colors.canvas },
+  scrollContent: { flexGrow: 1 },
+  hero: { backgroundColor: colors.peach, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 34, minHeight: 316 },
+  heroImage: { width: '100%', height: '100%' },
+  heroTitle: { color: colors.ink, fontFamily: fonts.display, fontSize: 43, lineHeight: 45, letterSpacing: -1, width: '58%', marginTop: 80 },
+  content: { paddingHorizontal: 17, paddingTop: 20, paddingBottom: 18, flexGrow: 1 },
+  gallery: { borderRadius: 16, overflow: 'hidden' },
+  feature: { backgroundColor: colors.primary, minHeight: 202, padding: 22, gap: 22, width: 356, justifyContent: 'space-between' },
+  blueFeature: { backgroundColor: colors.sky },
+  peachFeature: { backgroundColor: colors.peach },
+  featureTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  featureNumber: { color: colors.sky, fontSize: 12, lineHeight: 18, fontWeight: '600' },
+  featureTitle: { color: colors.surface, fontFamily: fonts.display, fontSize: 27, lineHeight: 33 },
+  darkText: { color: colors.ink },
+  pagination: { flexDirection: 'row', justifyContent: 'center', minHeight: 44, alignItems: 'center' },
+  dotButton: { minWidth: 36, minHeight: 44, justifyContent: 'center', alignItems: 'center' },
+  dot: { backgroundColor: colors.border, width: 7, height: 7, borderRadius: 4 },
+  activeDot: { backgroundColor: colors.primary, width: 24 },
+  actions: { marginTop: 'auto', paddingTop: 16 },
+  primaryButton: { backgroundColor: colors.primary, borderRadius: 12, minHeight: 52, paddingHorizontal: 20, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  primaryButtonText: { color: colors.surface, fontSize: 15, lineHeight: 22, fontWeight: '600' },
+  signInButton: { minHeight: 48, justifyContent: 'center', alignItems: 'center' },
+  signInText: { color: colors.ink, fontSize: 13, lineHeight: 20, fontWeight: '600', textDecorationLine: 'underline' },
+  actionMessage: { color: colors.muted, fontSize: 13, lineHeight: 20, textAlign: 'center' },
+  sponsor: { color: colors.muted, fontSize: 11, lineHeight: 17, textAlign: 'center', marginTop: 10 },
+  pressed: { opacity: 0.75 },
 });

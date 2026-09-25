@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -20,14 +21,14 @@ export const styles = StyleSheet.create({
   },
 
   dot: {
-    backgroundColor: '#C9C4CE',
+    backgroundColor: colors.border,
     borderRadius: 4,
     height: 6,
     width: 6,
   },
 
   dotActive: {
-    backgroundColor: '#8A8490',
+    backgroundColor: colors.muted,
     width: 46,
   },
 });

@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import * as React from 'react';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
@@ -41,7 +42,7 @@ export default function PersonalCareReflectionScreen({
                 multiline
                 onChangeText={setText}
                 placeholder={personalCareAssessmentCopy.reflectionPlaceholder}
-                placeholderTextColor="#9A95A0"
+                placeholderTextColor={colors.muted}
                 style={styles.modalInput}
                 value={text}
             />

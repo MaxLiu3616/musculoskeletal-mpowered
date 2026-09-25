@@ -1,3 +1,5 @@
+import ScreenHeader from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Platform,
@@ -92,7 +94,7 @@ export default function MovementSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="#FFFFFF"
+          backgroundColor={colors.peach}
         />
 
         <ScrollView
@@ -102,42 +104,9 @@ export default function MovementSummaryScreen({
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.screen}>
-            <View style={styles.header}>
-              <Pressable
-                accessibilityRole="button"
-                hitSlop={4}
-                onPress={onBack}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed &&
-                    styles.backButtonPressed,
-                ]}
-              >
-                <Text
-                  style={styles.backButtonText}
-                >
-                  {
-                    movementAssessmentCopy.backLabel
-                  }
-                </Text>
-              </Pressable>
-
-              <Text
-                style={styles.trackerTitle}
-              >
-                {
-                  movementAssessmentCopy.trackerTitle
-                }
-              </Text>
+            <View style={{ marginHorizontal: -20, marginBottom: 18 }}>
+              <ScreenHeader title="Movement summary" eyebrow="Weekly check-in" onBack={onBack} />
             </View>
-
-            <Text
-              style={styles.screenTitle}
-            >
-              {
-                movementAssessmentCopy.summaryScreenTitle
-              }
-            </Text>
 
             <Text style={styles.helper}>
               {
@@ -203,7 +172,7 @@ export default function MovementSummaryScreen({
                   <Ionicons
                     name="search-outline"
                     size={15}
-                    color="#17151B"
+                    color={colors.ink}
                   />
 
                   <Text

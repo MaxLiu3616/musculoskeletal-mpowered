@@ -1,120 +1,19 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { colors, fonts } from '@/theme';
 
-export const styles =
-  StyleSheet.create({
-    container: {
-      backgroundColor: '#F5F2F8',
-      marginBottom: 0,
-      paddingBottom: 30,
-      paddingHorizontal: 16,
-      paddingTop: 50,
-    },
-
-    header: {
-      alignItems: 'flex-start',
-      flexDirection: 'row',
-      justifyContent:
-        'space-between',
-    },
-
-    heading: {
-      color: '#17151B',
-      flex: 1,
-      fontSize: 16,
-      fontStyle: 'italic',
-      fontWeight: '700',
-      lineHeight: 21,
-      paddingRight: 12,
-      transform: [{ translateY: -30 }],
-    },
-
-    dismissButton: {
-      alignItems: 'center',
-      minHeight: 28,
-      justifyContent: 'center',
-      width: 28,
-    },
-
-    dismissText: {
-      color: '#17151B',
-      fontSize: 25,
-      fontWeight: '400',
-      lineHeight: 26,
-    },
-
-    message: {
-      color: '#17151B',
-      fontSize: 13,
-      fontWeight: '700',
-      lineHeight: 18,
-      marginBottom: 0,
-      marginTop: 12,
-    },
-
-    chartCard: {
-      backgroundColor: '#FFFFFF',
-      borderColor: '#D9D5DE',
-      borderRadius: 12,
-      borderWidth: 1,
-      marginTop: 18,
-      overflow: 'hidden',
-    },
-
-    chartWrapper: {
-      paddingHorizontal: 10,
-      paddingTop: 10,
-    },
-
-    emptyChartContent: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: 155,
-      paddingHorizontal: 24,
-      paddingVertical: 14,
-    },
-
-    emptyChartText: {
-      color: '#5E5865',
-      fontSize: 13,
-      fontWeight: '500',
-      lineHeight: 19,
-      textAlign: 'center',
-    },
-
-    actionsRow: {
-      borderTopColor: '#D9D5DE',
-      borderTopWidth: 1,
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      width: '100%',
-    },
-
-    actionButton: {
-      alignItems: 'center',
-      flex: 1,
-      justifyContent: 'center',
-      minHeight: 62,
-      minWidth: 100,
-      paddingHorizontal: 8,
-      paddingVertical: 9,
-    },
-
-    actionButtonDivider: {
-      borderRightColor: '#D9D5DE',
-      borderRightWidth: 1,
-    },
-
-    actionText: {
-      color: '#5E5865',
-      fontSize: 11,
-      fontWeight: '600',
-      lineHeight: 14,
-      textAlign: 'center',
-    },
-
-    buttonPressed: {
-      opacity: 0.65,
-    },
-  });
+export const styles = StyleSheet.create({
+  container: { backgroundColor: colors.sky, borderRadius: 16, padding: 18, gap: 12 },
+  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  heading: { color: colors.ink, flex: 1, fontFamily: fonts.display, fontSize: 26, lineHeight: 32, paddingRight: 12 },
+  dismissButton: { alignItems: 'center', justifyContent: 'center', minHeight: 44, width: 44 },
+  message: { color: colors.ink, fontSize: 13, lineHeight: 20 },
+  chartCard: { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 12, borderWidth: 1, overflow: 'hidden' },
+  chartWrapper: { paddingHorizontal: 10, paddingTop: 10 },
+  emptyChartContent: { alignItems: 'center', justifyContent: 'center', minHeight: 104, paddingHorizontal: 18, paddingVertical: 16 },
+  emptyChartText: { color: colors.muted, fontSize: 13, lineHeight: 20, textAlign: 'center' },
+  actionsRow: { borderTopColor: colors.border, borderTopWidth: 1, flexDirection: 'row', flexWrap: 'wrap', width: '100%' },
+  actionButton: { alignItems: 'center', flex: 1, justifyContent: 'center', minHeight: 52, minWidth: 82, paddingHorizontal: 6, paddingVertical: 10 },
+  actionButtonDivider: { borderRightColor: colors.border, borderRightWidth: 1 },
+  actionText: { color: colors.primary, fontSize: 12, fontWeight: '600', lineHeight: 17, textAlign: 'center' },
+  buttonPressed: { opacity: 0.65 },
+});

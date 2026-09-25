@@ -1,8 +1,11 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#F5F2F8',
+    borderColor: colors.softBorder,
+    borderWidth: 1,
+    backgroundColor: colors.surface,
     borderRadius: 14,
     justifyContent: 'space-between',
     minHeight: 190,
@@ -11,14 +14,16 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#17151B',
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 24,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 26,
+    fontWeight: '400',
+    lineHeight: 32,
   },
 
   updatedAt: {
-    color: '#8A8490',
+    color: colors.muted,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 14,
@@ -27,8 +32,8 @@ export const styles = StyleSheet.create({
   actionButton: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#D7D1DB',
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
     borderRadius: 24,
     borderWidth: 1,
     justifyContent: 'center',
@@ -42,7 +47,7 @@ export const styles = StyleSheet.create({
   },
 
   actionText: {
-    color: '#5E5865',
+    color: colors.muted,
     fontSize: 14,
     fontWeight: '600',
     textAlign: 'center',

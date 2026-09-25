@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { Keyboard, Pressable, View } from 'react-native';
 
@@ -37,7 +38,7 @@ export default function PhoneNumberScreen({
         onChangeText={setPhoneNumber}
         onSubmitEditing={continueToVerification}
         returnKeyType="done"
-        selectionColor="#6D50AC"
+        selectionColor={colors.primary}
         style={styles.phoneInput}
         textContentType="telephoneNumber"
         value={phoneNumber}

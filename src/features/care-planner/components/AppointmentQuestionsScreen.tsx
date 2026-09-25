@@ -14,7 +14,7 @@ export default function AppointmentQuestionsScreen({ plan, onBack, onSave }: { p
   const [selectedIds, setSelectedIds] = useState(plan.selectedIds);
   const categories = [...new Set(plan.questions.map((question) => question.category))];
   const toggle = (id: string) => setSelectedIds((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
-  return <HealthScreen title="Add Questions for My Appointment" onBack={onBack} footer={<View style={styles.footer}>
+  return <HealthScreen title="Your questions" onBack={onBack} footer={<View style={styles.footer}>
     <CareButton label={`Save${selectedIds.length ? ` (${selectedIds.length} selected)` : ''}`} disabled={!selectedIds.length} onPress={() => onSave(selectedIds)} />
   </View>}>
     <Text style={styles.subtitle}>{plan.hasAssessments

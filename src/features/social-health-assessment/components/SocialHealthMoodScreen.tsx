@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useState } from 'react';
 import {
@@ -139,6 +140,8 @@ export default function SocialHealthMoodScreen({
             return (
               <Pressable
                 accessibilityRole="radio"
+                accessibilityLabel={option.label}
+                aria-checked={isSelected}
                 accessibilityState={{
                   checked: isSelected,
                 }}
@@ -158,7 +161,7 @@ export default function SocialHealthMoodScreen({
                   color={
                     isSelected
                       ? icon.selectedColor
-                      : '#77717B'
+                      : colors.muted
                   }
                   name={
                     isSelected
@@ -181,7 +184,7 @@ export default function SocialHealthMoodScreen({
         ]}
       >
         {selectedMoodLabel ??
-          'String value'}
+          'Choose your mood'}
       </Text>
     </SocialHealthAssessmentScreen>
   );

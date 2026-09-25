@@ -16,7 +16,7 @@ export default function HealthProfileScreen({ onBack }: { onBack: () => void }) 
   const { name, profile } = useOnboarding();
   const sections = healthProfileSections(name, profile, records);
   return (
-    <HealthScreen title="My Pain Profile" onBack={onBack}>
+    <HealthScreen title="Pain profile" onBack={onBack}>
       <Text style={styles.subtitle}>A summary of your information and latest completed assessments.</Text>
       <HealthExportActions html={healthReportHtml('My Pain Profile', sections)} />
       {sections.map((section) => <HealthSectionCard key={section.title} section={section} />)}

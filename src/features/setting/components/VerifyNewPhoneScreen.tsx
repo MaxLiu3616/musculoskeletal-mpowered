@@ -37,7 +37,7 @@ export default function VerifyNewPhoneScreen(props: VerifyNewPhoneScreenProps) {
     };
 
     return (
-        <HealthScreen title="Verify New Number" onBack={onBack}>
+        <HealthScreen title="Verify number" onBack={onBack}>
             <Text style={styles.subtitle}>
                 We sent a 4-digit code to your new number {newPhone}. Enter it below
                 to confirm.
@@ -82,7 +82,7 @@ export default function VerifyNewPhoneScreen(props: VerifyNewPhoneScreenProps) {
                 onPress={verify}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12, marginTop: 24 },
                     !canVerify && styles.disabled,
                 ]}

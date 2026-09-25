@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import { Modal, Pressable, View } from 'react-native';
@@ -25,7 +26,7 @@ export default function PrescriptionsScreen({ onBack, onAdd, onEdit }: Prescript
     </Pressable>
   );
   return (
-    <HealthScreen title="My Prescriptions" onBack={onBack} footer={prescriptions.length ? <View style={styles.footer}>{addButton}</View> : null}>
+    <HealthScreen title="Prescriptions" onBack={onBack} footer={prescriptions.length ? <View style={styles.footer}>{addButton}</View> : null}>
       <Modal transparent visible={!!removing} animationType="fade" onRequestClose={() => setRemovingId(null)}>
         <View style={styles.modalBackdrop}>
         {removing ? <View accessibilityViewIsModal style={styles.modalCard}>
@@ -45,8 +46,8 @@ export default function PrescriptionsScreen({ onBack, onAdd, onEdit }: Prescript
                 <Text style={styles.label}>{prescriptionName(prescription)}</Text>
                 <Text style={styles.muted}>{prescriptionSchedule(prescription)}</Text>
               </View>
-              <Pressable accessibilityRole="button" accessibilityLabel={`Edit ${prescription.name}`} onPress={() => onEdit(prescription.id)} style={styles.iconButton}><Ionicons name="pencil-outline" size={21} color="#17151B" /></Pressable>
-              <Pressable accessibilityRole="button" accessibilityLabel={`Remove ${prescription.name}`} onPress={() => setRemovingId(prescription.id)} style={styles.iconButton}><Ionicons name="trash-outline" size={21} color="#17151B" /></Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={`Edit ${prescription.name}`} onPress={() => onEdit(prescription.id)} style={styles.iconButton}><Ionicons name="pencil-outline" size={21} color={colors.ink} /></Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={`Remove ${prescription.name}`} onPress={() => setRemovingId(prescription.id)} style={styles.iconButton}><Ionicons name="trash-outline" size={21} color={colors.ink} /></Pressable>
             </View>
           ))}
         </View>

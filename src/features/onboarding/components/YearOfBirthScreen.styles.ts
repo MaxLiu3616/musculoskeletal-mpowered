@@ -1,3 +1,4 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -8,17 +9,22 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    color: '#17151B',
-    fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 30,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 32,
+    fontWeight: '400',
+    lineHeight: 38,
     marginBottom: 38,
   },
   input: {
-    backgroundColor: '#EAE6EF',
-    borderBottomColor: '#5E5862',
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.muted,
     borderBottomWidth: 1,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 16,
     height: 58,
     paddingHorizontal: 16,
@@ -26,8 +32,9 @@ export const styles = StyleSheet.create({
     width: 182,
   },
   continueButton: {
+    minHeight: 48,
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
@@ -36,17 +43,17 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   continueButtonDisabled: {
-    backgroundColor: '#E7D8FF',
+    backgroundColor: colors.sky,
   },
   continueButtonPressed: {
     opacity: 0.82,
   },
   continueButtonText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '600',
   },
   continueButtonTextDisabled: {
-    color: '#554766',
+    color: colors.muted,
   },
 });
