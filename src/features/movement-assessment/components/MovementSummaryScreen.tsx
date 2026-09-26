@@ -1,9 +1,9 @@
+import MotionPressable from '@/components/motion/MotionPressable';
 import ScreenHeader from '@/components/ScreenHeader';
 import { colors } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Platform,
-  Pressable,
   ScrollView,
   StatusBar,
   View,
@@ -160,7 +160,7 @@ export default function MovementSummaryScreen({
                   }
                 </Text>
 
-                <Pressable
+                <MotionPressable
                   accessibilityRole="link"
                   onPress={onExploreTips}
                   style={({ pressed }) => [
@@ -184,7 +184,7 @@ export default function MovementSummaryScreen({
                       movementAssessmentCopy.exploreTipsLabel
                     }
                   </Text>
-                </Pressable>
+                </MotionPressable>
               </View>
 
               <View
@@ -370,7 +370,7 @@ export default function MovementSummaryScreen({
                   }
                 </Text>
 
-                <Pressable
+                <MotionPressable
                   accessibilityRole="button"
                   onPress={onClose}
                   style={({ pressed }) => [
@@ -388,7 +388,7 @@ export default function MovementSummaryScreen({
                       movementAssessmentCopy.closeLabel
                     }
                   </Text>
-                </Pressable>
+                </MotionPressable>
               </View>
             </View>
           </View>

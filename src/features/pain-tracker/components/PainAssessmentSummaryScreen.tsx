@@ -1,8 +1,8 @@
+import MotionPressable from '@/components/motion/MotionPressable';
 import ScreenHeader from '@/components/ScreenHeader';
 import { colors } from '@/theme';
 import {
   Platform,
-  Pressable,
   ScrollView,
   StatusBar,
   View,
@@ -258,7 +258,7 @@ export default function PainAssessmentSummaryScreen({
                   }
                 </Text>
 
-                <Pressable
+                <MotionPressable
                   accessibilityRole="button"
                   onPress={onClose}
                   style={({ pressed }) => [
@@ -276,7 +276,7 @@ export default function PainAssessmentSummaryScreen({
                       painAssessmentCopy.closeLabel
                     }
                   </Text>
-                </Pressable>
+                </MotionPressable>
               </View>
             </View>
           </View>

@@ -164,3 +164,60 @@ QA inputs were entered only in the local 127.0.0.1 browser session. Reloading re
 - Branch: `design-idea`
 - Changes remain uncommitted.
 - The Expo preview remains running.
+
+## Motion pass — 26 September 2026
+
+Implemented animation ideas 1, 2 and 3 on `design-idea` using React Native Animated, with no added dependencies.
+
+- Home greeting, progress panel and cards enter in a 440 ms stagger with an 8 px rise. Returning from an assessment summary does not replay the entrance.
+- Main cards and action buttons compress to 98% on press, spring back on release/cancel, and move their arrows 3 px. Shared assessment, Care Planner, reflection, insight and summary actions retain their handlers and disabled states.
+- Each newly completed assessment fills its own weekly segment over 420 ms and reveals a checkmark with a small pop. Playback waits until Home regains focus; scoring and saved-answer logic are unchanged.
+- A shared Reduce Motion preference disables these movements, including live preference changes. Completion uses instant state changes in this mode.
+
+### Verification
+
+- Frame sampling confirmed staggered opacity from 0 to 1, translation from 8 px to 0, held press scale 0.98, arrow travel 3 px, and release returning to scale 1.
+- Completed the Management flow with optional medication/emotion skipped and `0 days` selected. Continue remained disabled before an exercise answer, the summary saved to My Health, and Home updated to 1 of 5. Sampled the segment filling from 0 to 1 and the checkmark scaling above 1 before settling at 1.
+- Repeated the flow with emulated Reduce Motion: entrance and presses stayed still, and completion had no intermediate fill or pop frames. OS-level/native-device accessibility testing was not performed.
+- Verified keyboard activation of Reflection, Settings → Display, and Care Planner → appointment details; the empty appointment Save action stayed disabled.
+- Inspected Home and My Health at 320 × 740 with Large text. Home document width stayed at 320 px with all five assessment destinations retained. Restored Medium text and cleared the viewport and media overrides; local QA data was reset.
+- `npx tsc --noEmit`, all 21 existing tests, `git diff --check`, and web/iOS/Android exports passed. Exports verify bundle compilation, not native-device rendering.
+- Browser checks reported no warnings or runtime errors.
+
+Evidence: [frame checks](../output/design-idea-motion-20260926/frame-checks.json), [live preference check](../output/design-idea-motion-20260926/live-preference-check.json), [Home at 320 px](../output/design-idea-motion-20260926/home-320-large.png), [completed Home](../output/design-idea-motion-20260926/home-completed.png), [export log](../output/design-idea-motion-20260926/export.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Main-page entrances and compact assessments — 26 September 2026
+
+- Shared the existing 440 ms entrance between Home, My Health, Care Planner, and Settings. Headers and content sections fade in and rise in sequence on their first focused visit. Existing press and completion effects are retained.
+- Shortened assessment headers, progress panels, and spacing. Selection rows now have a 48 px minimum height and less vertical padding; wrapped labels still grow naturally.
+- Added a shared selection container capped at 132–260 px according to available screen height and safe-area insets. Long lists scroll within this box while Continue remains fixed. Short lists and empty medication lists use their natural height.
+- Preserved question wording, routes, validation, scoring, answer state, and the page-scroll fallback needed for larger text, smaller screens, and keyboard use.
+
+### Verification
+
+- Walked the actual assessment flows to inspect all 28 question pages at 390 × 844 and 390 × 720 with Medium text. Final results showed no outer-page overflow or horizontal overflow. Management Exercise initially overflowed by 28 px at the shorter size; reducing the selection height resolved it and the page was rechecked.
+- Selected bottom-of-list answers in Pain, Movement, Personal care, Social health, and Management. The inner list scrolls to these answers and required Continue actions enable after selection.
+- Checked 11 representative question pages and the three additional main pages at 320 × 740 with Large text. No horizontal overflow was measured. Long questions intentionally retain outer scrolling; Management Exercise needs 140 px at this size. No text-size setting or option was removed to force a fit.
+- Frame sampling on all four main pages confirmed sequential opacity/translation and a fully visible, settled state. Repeated with emulated Reduce Motion; every sampled entrance element stayed at opacity 1 and zero translation.
+- Restored Medium text and cleared emulated media and viewport overrides. Test answers were confined to the temporary QA tab; no summaries or new health records were saved.
+- TypeScript, all 21 existing tests, whitespace checks, and web/iOS/Android exports passed. Browser inspection found no runtime errors; the existing slider `pointerEvents` deprecation warning remains. Native exports verify compilation, not device rendering or native keyboard behavior.
+
+Evidence: [layout and animation checks](../output/design-idea-layout-motion-20260926/layout-checks.json), [compact Pain screen](../output/design-idea-layout-motion-20260926/pain-390-medium.png), [Pain with Large text](../output/design-idea-layout-motion-20260926/pain-320-large.png), [Movement with Large text](../output/design-idea-layout-motion-20260926/movement-320-large.png), [export log](../output/design-idea-layout-motion-export-20260926.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Home, Reflection, and summary date consistency — 26 September 2026
+
+- Reproduced the reported mismatch: a fresh Home showed `21–27 Sept`, then the first Management summary showed `26 Sept-2 Oct`.
+- Home now hides its period until the first assessment is completed. Removed the Monday–Sunday fallback and initial date preview; an absent assessment cycle produces no period label.
+- Reflection uses the same assessment context as Home and all five assessment summary routes. Removed its independent Monday–Sunday formatter and hide the calendar row until a cycle exists. Active-cycle timing and historical snapshots are unchanged.
+- Verified that a fresh Home and Reflection show no date. Saving and reopening a reflection before an assessment preserved the note and left Home at `0 of 5` with no period.
+- Completed Management through the actual question flow. Its summary, Home, and Reflection all displayed `26 Sept-2 Oct`. Saving and reopening Reflection retained the note, the period, and Home's `1 of 5` completion state.
+- Inspected the rendered Reflection date and confirmed no horizontal overflow at the existing preview size. Test notes and records were confined to a temporary tab, which was closed. Refreshed the user's Home preview and confirmed its initial date is hidden.
+- Regression tests cover an absent cycle, an established period remaining anchored as the current date changes, and month/year/leap-year boundaries. TypeScript, all 24 tests, and `git diff --check` passed.
+
+Evidence: [period and reflection checks](../output/design-idea-layout-motion-20260926/reflection-period-checks.json), [Home before the first assessment](../output/design-idea-layout-motion-20260926/home-before-first-assessment.png), [Reflection after the first assessment](../output/design-idea-layout-motion-20260926/reflection-period-matched.png).
+
+Changes remain uncommitted on `design-idea`.

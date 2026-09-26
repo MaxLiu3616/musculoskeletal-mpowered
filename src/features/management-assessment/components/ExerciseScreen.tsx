@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { useManagementAssessment } from '@/features/management-assessment/ManagementAssessmentContext';
 import {
@@ -51,7 +52,7 @@ export default function ExerciseScreen({
         {managementAssessmentCopy.exerciseHelper}
       </Text>
 
-      <View style={styles.choiceList}>
+      <AssessmentOptions style={styles.choiceList}>
         {exerciseFrequencyOptions.map((option) => {
           const isSelected = frequency === option.id;
 
@@ -76,7 +77,7 @@ export default function ExerciseScreen({
             </Pressable>
           );
         })}
-      </View>
+      </AssessmentOptions>
     </ManagementAssessmentScreen>
   );
 }

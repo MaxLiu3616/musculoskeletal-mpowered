@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { useSocialHealthAssessment } from '@/features/social-health-assessment/SocialHealthAssessmentContext';
 import {
@@ -90,7 +91,7 @@ export default function SocialHealthStatementScreen({
         relevant statement:
       </Text>
 
-      <View style={styles.optionList}>
+      <AssessmentOptions style={styles.optionList}>
         {options.map((option, index) => {
           const isSelected =
             selectedScore === option.score;
@@ -136,7 +137,7 @@ export default function SocialHealthStatementScreen({
             </Pressable>
           );
         })}
-      </View>
+      </AssessmentOptions>
     </SocialHealthAssessmentScreen>
   );
 }

@@ -37,9 +37,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.canvas,
     borderRadius: 12,
     flexGrow: 0,
-    height: 378,
-    maxHeight: 378,
-    marginTop: 18,
+    marginTop: 12,
   },
 
   options: {
@@ -51,9 +49,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    minHeight: 54,
+    minHeight: 48,
     paddingHorizontal: 10,
-    paddingVertical: 8,
+    paddingVertical: 6,
   },
 
   optionPressed: {

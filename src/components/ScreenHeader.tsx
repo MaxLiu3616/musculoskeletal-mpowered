@@ -21,14 +21,16 @@ export default function ScreenHeader({
   title,
   onBack,
   eyebrow,
+  compact = false,
 }: {
   title: string;
   onBack?: () => void;
   eyebrow?: string;
+  compact?: boolean;
 }) {
   return (
-    <View style={styles.header}>
-      <View style={styles.topRow}>
+    <View style={[styles.header, compact && styles.compactHeader]}>
+      <View style={[styles.topRow, compact && styles.compactTopRow]}>
         {onBack ? (
           <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={onBack}
             style={({ pressed }) => [styles.back, pressed && styles.pressed]}>
@@ -38,7 +40,7 @@ export default function ScreenHeader({
         ) : <BrandMark />}
         {eyebrow ? <Text style={styles.eyebrow}>{eyebrow}</Text> : null}
       </View>
-      <Text accessibilityRole="header" style={styles.title}>{title}</Text>
+      <Text accessibilityRole="header" style={[styles.title, compact && styles.compactTitle]}>{title}</Text>
     </View>
   );
 }
@@ -53,5 +55,8 @@ const styles = StyleSheet.create({
   backText: { color: colors.ink, fontSize: 14, fontWeight: '600' },
   eyebrow: { color: colors.muted, fontSize: 11, lineHeight: 16, letterSpacing: 1, textTransform: 'uppercase', flexShrink: 1, textAlign: 'right' },
   title: { color: colors.ink, fontFamily: fonts.display, fontSize: 36, lineHeight: 40, letterSpacing: -0.7 },
+  compactHeader: { paddingTop: 10, paddingBottom: 12 },
+  compactTopRow: { marginBottom: 6 },
+  compactTitle: { fontSize: 32, lineHeight: 36 },
   pressed: { opacity: 0.65 },
 });

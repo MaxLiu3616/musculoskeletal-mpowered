@@ -1,4 +1,5 @@
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import MotionPressable from '@/components/motion/MotionPressable';
 
 import { AppText as Text } from '@/components/typography';
 
@@ -36,7 +37,7 @@ export default function HomeSummaryCard({
         </Text>
       ) : null}
 
-      <Pressable
+      <MotionPressable
         accessibilityRole="button"
         onPress={onPress}
         style={({ pressed }) => [
@@ -47,7 +48,7 @@ export default function HomeSummaryCard({
         <Text style={styles.actionText}>
           {content.actionLabel}
         </Text>
-      </Pressable>
+      </MotionPressable>
     </View>
   );
 }

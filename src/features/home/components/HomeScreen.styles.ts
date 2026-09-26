@@ -105,9 +105,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 3,
     backgroundColor: '#849DC6',
+    overflow: 'hidden',
   },
-  progressSegmentComplete: {
+  progressSegmentFill: {
+    ...StyleSheet.absoluteFill,
     backgroundColor: '#FFFFFF',
+    transformOrigin: 'left center',
   },
   content: {
     paddingHorizontal: 17,
@@ -118,9 +121,12 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 10,
   },
-  assessmentCard: {
+  assessmentLayout: {
     width: '47%',
     flexGrow: 1,
+  },
+  assessmentCard: {
+    flex: 1,
     minHeight: 116,
     padding: 13,
     borderRadius: 10,
@@ -163,8 +169,10 @@ export const styles = StyleSheet.create({
     right: 13,
     top: 13,
   },
-  managementCard: {
+  managementLayout: {
     width: '100%',
+  },
+  managementCard: {
     minHeight: 71,
     flexDirection: 'row',
     alignItems: 'center',

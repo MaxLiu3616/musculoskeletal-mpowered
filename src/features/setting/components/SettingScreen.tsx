@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
 
 import { AppText as Text } from '@/components/typography';
 import HealthScreen from '@/features/my-health/components/HealthScreen';
@@ -29,7 +30,7 @@ export default function SettingScreen({
   ] as const;
 
   return (
-    <HealthScreen title="Settings">
+    <HealthScreen title="Settings" animateEntrance>
       <View style={styles.accountHero}>
         <Ionicons name="person-circle-outline" size={46} color={colors.surface} />
         <View style={styles.accountCopy}>
@@ -39,21 +40,21 @@ export default function SettingScreen({
       </View>
       <View style={styles.settingsMenu}>
         {items.map((item, index) => (
-          <Pressable key={item.label} accessibilityRole="button" accessibilityLabel={item.label}
+          <MotionPressable key={item.label} accessibilityRole="button" accessibilityLabel={item.label}
             onPress={item.onPress}
             style={({ pressed }) => [styles.settingsItem, index > 0 && styles.settingsDivider, pressed && styles.pressed]}>
             <View style={[styles.settingsIcon, index % 2 === 1 && styles.peachIcon]}>
               <Ionicons name={item.icon} size={24} color={colors.ink} />
             </View>
             <Text style={styles.settingsLabel}>{item.label}</Text>
-            <Ionicons name="chevron-forward" size={21} color={colors.muted} />
-          </Pressable>
+            <MotionArrow><Ionicons name="chevron-forward" size={21} color={colors.muted} /></MotionArrow>
+          </MotionPressable>
         ))}
       </View>
-      <Pressable accessibilityRole="button" onPress={onLogout} style={({ pressed }) => [styles.logoutButton, pressed && styles.pressed]}>
+      <MotionPressable accessibilityRole="button" onPress={onLogout} style={({ pressed }) => [styles.logoutButton, pressed && styles.pressed]}>
         <Ionicons name="log-out-outline" size={21} color={colors.danger} />
         <Text style={styles.logoutLabel}>Log out</Text>
-      </Pressable>
+      </MotionPressable>
     </HealthScreen>
   );
 }

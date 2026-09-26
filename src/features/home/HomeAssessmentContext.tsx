@@ -203,11 +203,9 @@ export function HomeAssessmentProvider({
   }, [state.cycleStart]);
 
   const cyclePeriodLabel =
-    state.cycleStart
-      ? formatAssessmentCyclePeriod(
-          state.cycleStart,
-        )
-      : undefined;
+    formatAssessmentCyclePeriod(
+      state.cycleStart,
+    );
 
   return (
     <HomeAssessmentContext.Provider

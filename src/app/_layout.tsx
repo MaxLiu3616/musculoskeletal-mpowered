@@ -4,6 +4,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BottomNavigation from '@/components/navigation/BottomNavigation';
+import { MotionProvider } from '@/components/motion/MotionProvider';
 import { getActiveBottomNavigationItem } from '@/components/navigation/BottomNavigation.data';
 
 import { CarePlannerProvider } from '@/features/care-planner/CarePlannerContext';
@@ -48,6 +49,7 @@ export default function RootLayout() {
   });
   if (!fontsLoaded && !fontError) return <View style={styles.container} />;
   return (
+    <MotionProvider>
       <OnboardingProvider>
         <HomeAssessmentProvider>
           <ReflectionProvider>
@@ -61,6 +63,7 @@ export default function RootLayout() {
           </ReflectionProvider>
         </HomeAssessmentProvider>
       </OnboardingProvider>
+    </MotionProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
 
 import { AppText as Text } from '@/components/typography';
 import InsightCard from '@/features/insights/components/InsightCard';
@@ -28,7 +29,7 @@ export default function MyHealthScreen({
   const { records, prescriptions } = useMyHealth();
   const completedTypes = new Set(records.map((record) => record.type)).size;
   return (
-    <HealthScreen title="My Health">
+    <HealthScreen title="My Health" animateEntrance>
       <View style={styles.profileHero}>
         <View style={styles.titleRow}>
           <Ionicons name="body-outline" size={34} color={colors.surface} />
@@ -43,32 +44,32 @@ export default function MyHealthScreen({
             Updated {new Date(records[0].completedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}
           </Text>
         ) : null}
-        <Pressable accessibilityRole="button" accessibilityLabel="View pain profile" onPress={onProfile}
+        <MotionPressable accessibilityRole="button" accessibilityLabel="View pain profile" onPress={onProfile}
           style={({ pressed }) => [styles.profileButton, pressed && styles.pressed]}>
           <Text style={styles.profileButtonText}>{completedTypes === 5 ? 'View your profile' : 'View profile'}</Text>
-          <Ionicons name="arrow-forward" size={21} color={colors.ink} />
-        </Pressable>
+          <MotionArrow><Ionicons name="arrow-forward" size={21} color={colors.ink} /></MotionArrow>
+        </MotionPressable>
       </View>
 
       <View style={styles.navigationGrid}>
-        <Pressable accessibilityRole="button" accessibilityLabel="Health history" onPress={onTracking}
+        <MotionPressable accessibilityRole="button" accessibilityLabel="Health history" onPress={onTracking}
           style={({ pressed }) => [styles.navigationTile, styles.historyTile, pressed && styles.pressed]}>
           <View style={styles.titleRow}>
             <Ionicons name="pulse-outline" size={30} color={colors.ink} />
-            <Ionicons name="arrow-forward" size={19} color={colors.ink} />
+            <MotionArrow><Ionicons name="arrow-forward" size={19} color={colors.ink} /></MotionArrow>
           </View>
           <Text style={styles.navigationTitle}>History</Text>
           <Text style={styles.navigationDescription}>{records.length} saved check-ins</Text>
-        </Pressable>
-        <Pressable accessibilityRole="button" accessibilityLabel="Prescriptions" onPress={onPrescriptions}
+        </MotionPressable>
+        <MotionPressable accessibilityRole="button" accessibilityLabel="Prescriptions" onPress={onPrescriptions}
           style={({ pressed }) => [styles.navigationTile, styles.prescriptionTile, pressed && styles.pressed]}>
           <View style={styles.titleRow}>
             <Ionicons name="medkit-outline" size={30} color={colors.ink} />
-            <Ionicons name="arrow-forward" size={19} color={colors.ink} />
+            <MotionArrow><Ionicons name="arrow-forward" size={19} color={colors.ink} /></MotionArrow>
           </View>
           <Text style={styles.navigationTitle}>Prescriptions</Text>
           <Text style={styles.navigationDescription}>{prescriptions.length} medications</Text>
-        </Pressable>
+        </MotionPressable>
       </View>
 
       <View style={styles.insightSection}>

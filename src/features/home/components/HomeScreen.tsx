@@ -1,21 +1,24 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import {
+  Animated,
   Image,
   ImageBackground,
   Platform,
-  Pressable,
   ScrollView,
   useWindowDimensions,
   View,
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
 import InsightCard from '@/features/insights/components/InsightCard';
 import type { PainInsight } from '@/features/insights/InsightCard.data';
 import { useSetting } from '@/features/setting/SettingContext';
 
 import HomeSummarySwipe from './HomeSummarySwipe';
+import HomeAssessmentArrow from './HomeAssessmentArrow';
+import useHomeMotion from './useHomeMotion';
 import type { HomeSummaryItem, HomeSummaryType } from './HomeSummaryCard.data';
 import {
   homeAssessments,
@@ -27,7 +30,7 @@ import { styles } from './HomeScreen.styles';
 
 type HomeScreenProps = {
   userName: string;
-  periodLabel: string;
+  periodLabel?: string;
   assessmentStatus: Record<HomeAssessmentId, HomeAssessmentStatus>;
   painInsight?: PainInsight | null;
   summaryItems?: HomeSummaryItem[];
@@ -56,6 +59,7 @@ export default function HomeScreen({
 }: HomeScreenProps) {
   const { width, fontScale } = useWindowDimensions();
   const { display } = useSetting();
+  const { completion, entranceStyle } = useHomeMotion(assessmentStatus);
   const useTopArrows = width < 360 || display.textSize === 'large' || fontScale > 1.1;
   const [fontsLoaded] = useFonts({
     HomeSerif: require('../../../../assets/fonts/DMSerifDisplay-Regular.ttf'),
@@ -85,7 +89,7 @@ export default function HomeScreen({
           imageStyle={styles.heroImage}
           accessible={false}
         >
-          <View style={styles.heroContent}>
+          <Animated.View style={[styles.heroContent, entranceStyle(0)]}>
             <View style={styles.brandRow}>
               <Text style={[styles.brand, strongFont]}>{homeScreenCopy.brand}</Text>
               <Image
@@ -107,16 +111,16 @@ export default function HomeScreen({
             >
               {homeScreenCopy.heading}
             </Text>
-          </View>
+          </Animated.View>
         </ImageBackground>
 
-        <View style={styles.progressPanel}>
+        <Animated.View style={[styles.progressPanel, entranceStyle(1)]}>
           <View style={styles.progressRow}>
             <View>
               <Text style={[styles.progressLabel, strongFont]}>
                 {homeScreenCopy.progressLabel}
               </Text>
-              <Text style={[styles.progressPeriod, regularFont]}>{periodLabel}</Text>
+              {periodLabel ? <Text style={[styles.progressPeriod, regularFont]}>{periodLabel}</Text> : null}
             </View>
             <Text style={[styles.progressCount, regularFont]}>
               {completedAssessments} of {homeAssessments.length} complete
@@ -135,17 +139,13 @@ export default function HomeScreen({
             }}
             style={styles.progressSegments}
           >
-            {homeAssessments.map((assessment) => (
-              <View
-                key={assessment.id}
-                style={[
-                  styles.progressSegment,
-                  assessmentStatus[assessment.id].completed && styles.progressSegmentComplete,
-                ]}
-              />
+            {homeAssessments.map((assessment, index) => (
+              <View key={assessment.id} style={styles.progressSegment}>
+                <Animated.View style={[styles.progressSegmentFill, { transform: [{ scaleX: completion[index] }] }]} />
+              </View>
             ))}
           </View>
-        </View>
+        </Animated.View>
 
         <View style={styles.content}>
           <HomeSummarySwipe items={summaryItems} onItemPress={onSummaryPress} />
@@ -158,21 +158,13 @@ export default function HomeScreen({
           />
 
           <View style={styles.assessmentGrid}>
-            {homeAssessments.map((assessment) => {
+            {homeAssessments.map((assessment, index) => {
               const status = assessmentStatus[assessment.id];
               const isManagement = assessment.id === 'management';
               const iconSize = assessment.id === 'personal-care' || assessment.id === 'social-health' ? 30 : 36;
               const arrow = (
-                <View style={[
-                  styles.assessmentArrow,
-                  !isManagement && (useTopArrows ? styles.topTileArrow : styles.tileArrow),
-                ]}>
-                  <MaterialCommunityIcons
-                    name={status.completed ? 'check' : 'arrow-right'}
-                    color="#082D6D"
-                    size={21}
-                  />
-                </View>
+                <HomeAssessmentArrow completion={completion[index]}
+                  style={!isManagement && (useTopArrows ? styles.topTileArrow : styles.tileArrow)} />
               );
               const copy = (
                 <>
@@ -194,43 +186,46 @@ export default function HomeScreen({
               );
 
               return (
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={`${homeScreenCopy.recordLabel} ${assessment.label}`}
-                  accessibilityHint={status.completed ? 'Completed this week. Opens your assessment to review or update.' : 'Opens the assessment.'}
-                  key={assessment.id}
-                  onPress={() => onAssessmentPress?.(assessment.id)}
-                  style={({ pressed }) => [
-                    styles.assessmentCard,
-                    { backgroundColor: assessment.backgroundColor },
-                    isManagement && styles.managementCard,
-                    pressed && styles.pressed,
-                  ]}
-                >
-                  {assessment.id === 'personal-care' ? (
-                    <MaterialCommunityIcons
-                      name={assessment.icon}
-                      color={assessment.color}
-                      size={iconSize}
-                      style={[styles.assessmentIcon, { lineHeight: iconSize }]}
-                    />
-                  ) : (
-                    <Ionicons
-                      name={assessment.icon}
-                      color={assessment.color}
-                      size={iconSize}
-                      style={[!isManagement && styles.assessmentIcon, { lineHeight: iconSize }]}
-                    />
-                  )}
-                  {!isManagement && useTopArrows && arrow}
-                  {isManagement ? <View style={styles.managementCopy}>{copy}</View> : copy}
-                  {isManagement && arrow}
-                </Pressable>
+                <Animated.View key={assessment.id} style={[
+                  styles.assessmentLayout, isManagement && styles.managementLayout, entranceStyle(index + 2),
+                ]}>
+                  <MotionPressable
+                    accessibilityRole="button"
+                    accessibilityLabel={`${homeScreenCopy.recordLabel} ${assessment.label}`}
+                    accessibilityHint={status.completed ? 'Completed this week. Opens your assessment to review or update.' : 'Opens the assessment.'}
+                    onPress={() => onAssessmentPress?.(assessment.id)}
+                    style={({ pressed }) => [
+                      styles.assessmentCard,
+                      { backgroundColor: assessment.backgroundColor },
+                      isManagement && styles.managementCard,
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    {assessment.id === 'personal-care' ? (
+                      <MaterialCommunityIcons
+                        name={assessment.icon}
+                        color={assessment.color}
+                        size={iconSize}
+                        style={[styles.assessmentIcon, { lineHeight: iconSize }]}
+                      />
+                    ) : (
+                      <Ionicons
+                        name={assessment.icon}
+                        color={assessment.color}
+                        size={iconSize}
+                        style={[!isManagement && styles.assessmentIcon, { lineHeight: iconSize }]}
+                      />
+                    )}
+                    {!isManagement && useTopArrows && arrow}
+                    {isManagement ? <View style={styles.managementCopy}>{copy}</View> : copy}
+                    {isManagement && arrow}
+                  </MotionPressable>
+                </Animated.View>
               );
             })}
           </View>
 
-          <Pressable
+          <MotionPressable
             accessibilityRole="button"
             accessibilityLabel={homeScreenCopy.reflectionLabel}
             onPress={onReflectionPress}
@@ -238,8 +233,8 @@ export default function HomeScreen({
           >
             <Ionicons name="pencil-outline" color="#082D6D" size={26} style={styles.reflectionIcon} />
             <Text style={[styles.reflectionLabel, strongFont]}>{homeScreenCopy.reflectionLabel}</Text>
-            <MaterialCommunityIcons name="arrow-right" color="#082D6D" size={23} />
-          </Pressable>
+            <MotionArrow><MaterialCommunityIcons name="arrow-right" color="#082D6D" size={23} /></MotionArrow>
+          </MotionPressable>
           <Text style={[styles.supportedBy, regularFont]}>{homeScreenCopy.supportedByLabel}</Text>
         </View>
       </ScrollView>
