@@ -8,5 +8,5 @@ export const styles = StyleSheet.create({
   iconContainer: { alignItems: 'center', height: 34, justifyContent: 'center', marginBottom: 3, width: 52 },
   label: { color: colors.muted, fontSize: 11, fontWeight: '500', textAlign: 'center' },
   labelActive: { color: colors.ink, fontWeight: '600' },
-  activeIndicator: { position: 'absolute', bottom: 0, width: 46, height: 3, borderRadius: 2, backgroundColor: colors.primary },
+  activeIndicator: { position: 'absolute', bottom: 8, width: 46, height: 3, borderRadius: 2, backgroundColor: colors.primary, pointerEvents: 'none' },
 });

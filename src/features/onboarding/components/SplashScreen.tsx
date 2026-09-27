@@ -8,9 +8,11 @@ import { colors } from '@/theme';
 import { splashSlides } from './SplashScreen.data';
 import { styles } from './SplashScreen.styles';
 
-export default function SplashScreen({ onGetStarted }: { onGetStarted: () => void }) {
+export default function SplashScreen({ onGetStarted, onSignIn }: {
+  onGetStarted: () => void;
+  onSignIn: () => void;
+}) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [actionMessage, setActionMessage] = useState('');
   const [galleryWidth, setGalleryWidth] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(true);
   const galleryRef = useRef<ScrollView>(null);
@@ -91,11 +93,10 @@ export default function SplashScreen({ onGetStarted }: { onGetStarted: () => voi
               <Text style={styles.primaryButtonText}>Get started</Text>
               <Ionicons name="arrow-forward" size={20} color={colors.surface} />
             </Pressable>
-            <Pressable accessibilityRole="link" onPress={() => setActionMessage('The sign-in screen will connect here.')}
+            <Pressable accessibilityRole="link" onPress={onSignIn}
               style={styles.signInButton}>
               <Text style={styles.signInText}>Sign in</Text>
             </Pressable>
-            {actionMessage ? <Text accessibilityLiveRegion="polite" style={styles.actionMessage}>{actionMessage}</Text> : null}
           </View>
           <Text style={styles.sponsor}>Supported by ABBVIE</Text>
         </View>

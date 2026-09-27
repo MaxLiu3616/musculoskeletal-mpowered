@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
   primaryButtonText: { color: colors.surface, fontSize: 15, lineHeight: 22, fontWeight: '600' },
   signInButton: { minHeight: 48, justifyContent: 'center', alignItems: 'center' },
   signInText: { color: colors.ink, fontSize: 13, lineHeight: 20, fontWeight: '600', textDecorationLine: 'underline' },
-  actionMessage: { color: colors.muted, fontSize: 13, lineHeight: 20, textAlign: 'center' },
   sponsor: { color: colors.muted, fontSize: 11, lineHeight: 17, textAlign: 'center', marginTop: 10 },
   pressed: { opacity: 0.75 },
 });

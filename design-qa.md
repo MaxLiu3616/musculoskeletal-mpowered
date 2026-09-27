@@ -221,3 +221,24 @@ Changes remain uncommitted on `design-idea`.
 Evidence: [period and reflection checks](../output/design-idea-layout-motion-20260926/reflection-period-checks.json), [Home before the first assessment](../output/design-idea-layout-motion-20260926/home-before-first-assessment.png), [Reflection after the first assessment](../output/design-idea-layout-motion-20260926/reflection-period-matched.png).
 
 Changes remain uncommitted on `design-idea`.
+
+## Sliding navigation and flowing questions — 26 September 2026
+
+- Replaced the separate active-tab underlines with one shared indicator that glides between all four destinations in 280 ms. Its position follows the measured navigation width, including after resizing, and rapid tab changes retarget the current animation.
+- Added a 260 ms slide and fade to the shared assessment question card: new questions enter from 18 px to the right; returning to an earlier question enters from the left. Headers, progress panels, and Continue stay outside the animated card.
+- Disabled the nested assessment stacks' full-screen transitions so they do not compete with the question animation. Existing routes, question validation, answer recording, and compact selection containers are retained.
+- Both effects use the existing Reduce Motion preference and React Native Animated; no dependencies were added.
+
+### Verification
+
+- Frame sampling confirmed indicator travel and precise final alignment across all four tabs, including three tab changes approximately 60 ms apart.
+- Sampled first-question and forward transitions in Pain, Movement, Personal care, Social health, and Management. Back transitions in Pain and Management used negative offsets and settled at zero; recorded Management text was retained after returning with Back.
+- Sampled headers and Continue during question transitions; their horizontal positions stayed fixed while the card moved and faded to full opacity.
+- With emulated Reduce Motion, tab selection updated instantly and question entry, Continue, and Back stayed at full opacity with zero translation.
+- At 320 × 740 with Large text, keyboard tab activation worked, the indicator stayed centered, and question transitions caused no horizontal overflow. The last Exercise option remained reachable and enabled Continue after selection. The existing page-scroll fallback remains available for long questions at this size.
+- Restored Medium text, removed viewport/media overrides, and closed the temporary QA tab. No assessment summaries or health records were created. Refreshed the user's Home preview.
+- TypeScript, all 24 tests, `git diff --check`, and web/iOS/Android exports passed. The final refreshed browser build reported no warnings or runtime errors. Native exports verify compilation; native-device animation testing was not performed.
+
+Evidence: [animation frame checks](../output/design-idea-navigation-flow-20260926/motion-checks.json), [question at 320 px with Large text](../output/design-idea-navigation-flow-20260926/question-320-large.png), [export log](../output/design-idea-navigation-flow-export-20260926.log).
+
+Changes remain uncommitted on `design-idea`.

@@ -1,10 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import type { ReactNode } from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useRef, type ReactNode } from 'react';
+import { Animated, Easing, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ScreenHeader from './ScreenHeader';
 import MotionPressable, { MotionArrow } from './motion/MotionPressable';
+import { useReducedMotion } from './motion/MotionProvider';
 import { AppText as Text } from './typography';
 import { colors } from '@/theme';
 
@@ -24,6 +26,24 @@ export default function AssessmentScreen({
   title, sectionTitle, step, totalSteps, canRecord, onBack, onRecord, children,
 }: Props) {
   const { top } = useSafeAreaInsets();
+  const reducedMotion = useReducedMotion();
+  const visited = useRef(false);
+  const questionOffset = useRef(new Animated.Value(18)).current;
+
+  useFocusEffect(useCallback(() => {
+    if (reducedMotion === null) return;
+    const offset = visited.current ? -18 : 18;
+    visited.current = true;
+    questionOffset.setValue(reducedMotion ? 0 : offset);
+    if (reducedMotion) return;
+    const animation = Animated.timing(questionOffset, {
+      toValue: 0, duration: 260, easing: Easing.out(Easing.cubic),
+      useNativeDriver: Platform.OS !== 'web', isInteraction: false,
+    });
+    animation.start();
+    return () => { animation.stop(); questionOffset.setValue(0); };
+  }, [questionOffset, reducedMotion]));
+
   return (
     <KeyboardAvoidingView style={styles.screen} keyboardVerticalOffset={top}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -43,11 +63,14 @@ export default function AssessmentScreen({
             ))}
           </View>
         </View>
-        <View style={styles.card}>
+        <Animated.View testID="assessment-question" style={[styles.card, {
+          opacity: reducedMotion ? 1 : questionOffset.interpolate({ inputRange: [-18, 0, 18], outputRange: [0, 1, 0], extrapolate: 'clamp' }),
+          transform: [{ translateX: reducedMotion ? 0 : questionOffset }],
+        }]}>
           <Text accessibilityRole="header" style={styles.questionTitle}>{sectionTitle}</Text>
           <View style={styles.divider} />
           {children}
-        </View>
+        </Animated.View>
       </ScrollView>
       <View style={styles.footer}>
         <MotionPressable accessibilityRole="button" accessibilityLabel={step === totalSteps ? 'View summary' : 'Continue'} accessibilityState={{ disabled: !canRecord }}
@@ -64,7 +87,7 @@ export default function AssessmentScreen({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.canvas },
+  screen: { flex: 1, backgroundColor: colors.canvas, overflow: 'hidden' },
   content: { flexGrow: 1, paddingBottom: 12 },
   progress: { marginHorizontal: 17, marginTop: 12, backgroundColor: colors.primary, borderRadius: 12, padding: 12, gap: 8 },
   progressLabels: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },

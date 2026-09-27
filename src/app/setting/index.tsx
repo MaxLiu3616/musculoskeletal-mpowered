@@ -8,7 +8,7 @@ export default function SettingRoute() {
 
     const logout = () => {
         setName('');
-        router.dismissTo('/onboarding/greeting');
+        router.dismissTo('/');
     };
 
     return (
