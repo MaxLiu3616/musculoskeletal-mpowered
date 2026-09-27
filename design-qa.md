@@ -263,3 +263,24 @@ Changes remain uncommitted on `design-idea`.
 Evidence: [frame checks](../output/design-idea-tile-morph-20260927/frame-checks.json), [mid-transition capture](../output/design-idea-tile-morph-20260927/pain-morph.png), [assessment screen](../output/design-idea-tile-morph-20260927/pain-question.png), [export log](../output/design-idea-tile-morph-export-20260927.log).
 
 Changes remain uncommitted on `design-idea`.
+
+## Anatomy with depth — 27 September 2026
+
+- Replaced Home's flattened hero with three independently moving layers: a peach backdrop, blue arch, and transparent anatomy foreground. The existing headline, greeting, brand, and page layout remain editable and follow normal scrolling.
+- The backdrop, arch, and anatomy compensate for 50%, 30%, and 12% of scroll travel respectively. The arch and anatomy also separate horizontally by up to 8 px each, while the anatomy gradually scales to 1.06. Travel clamps once the hero has scrolled away; there is no idle animation or added dependency.
+- React Native Animated connects the existing Home scroll event to native-driver transforms on mobile. The tile transition's scroll-position listener is preserved. Art is clipped to the hero and hidden from assistive technology.
+- Reduce Motion keeps all layers at their resting transforms, including after a live preference change. Hero measurements accommodate text scaling and resizing. SVG gradient identifiers are unique per mounted Home screen, fixing a rendering issue found when navigating back from Settings.
+- Used built-in imagegen to extract the existing anatomy into `assets/images/home-anatomy-foreground.png` (1579 × 996 RGBA, 769158 bytes). The original flattened image remains intact. [Asset provenance and final prompt](../output/imagegen/home-anatomy-foreground-provenance.md).
+
+### Verification
+
+- Measured the layers while scrolling. At 148 px of scroll on the 320 px/Large-text layout, backdrop, arch, and anatomy offsets were 74, 44.4, and 17.76 px. Deep scroll clamped the anatomy scale at 1.06, and scrolling to the top restored all transforms.
+- Emulated Reduce Motion while scrolled: every layer returned to zero translation and scale 1, stayed still through further scrolling, and resumed from the current scroll position when the preference was turned off.
+- Inspected Home at 320 × 740 with Large text: the title remained readable, all five assessment destinations remained available, and document width stayed at 320 px. Verified the blue layer after Settings → Home navigation and checked that gradient IDs remained unique across mounted screens.
+- Opened Pain from a scrolled Home and returned with Back. The tile morph completed, Home's scroll tracking stayed aligned with the art, and navigation re-enabled normally.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. The final browser preview reported no warnings or runtime errors. Native exports verify compilation; native-device motion and screen-reader testing were not performed.
+- Restored Medium text, reset viewport/media overrides, and left Home open. No health records or assessment answers were created.
+
+Evidence: [motion checks](../output/design-idea-anatomy-depth-20260927/motion-checks.json), [Large-text Home](../output/design-idea-anatomy-depth-20260927/home-320-large.png), [scrolled hero](../output/design-idea-anatomy-depth-20260927/home-320-large-scrolled.png), [final Home](../output/design-idea-anatomy-depth-20260927/home-final.png), [export log](../output/design-idea-anatomy-depth-export-20260927.log).
+
+Changes remain uncommitted on `design-idea`.

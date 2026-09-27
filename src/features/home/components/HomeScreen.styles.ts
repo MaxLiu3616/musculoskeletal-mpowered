@@ -20,10 +20,6 @@ export const styles = StyleSheet.create({
     minHeight: 246,
     backgroundColor: '#F8DAC6',
   },
-  heroImage: {
-    width: '100%',
-    height: '100%',
-  },
   heroContent: {
     paddingTop: 23,
     paddingHorizontal: 18,

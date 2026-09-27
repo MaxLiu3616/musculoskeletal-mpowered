@@ -5,11 +5,12 @@ import { useCallback, useRef } from 'react';
 import {
   Animated,
   Image,
-  ImageBackground,
   Platform,
-  ScrollView,
   useWindowDimensions,
   View,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  type ScrollView,
   type Text as NativeText,
 } from 'react-native';
 
@@ -22,6 +23,7 @@ import { useSetting } from '@/features/setting/SettingContext';
 
 import HomeSummarySwipe from './HomeSummarySwipe';
 import HomeAssessmentArrow from './HomeAssessmentArrow';
+import HomeAnatomyHero from './HomeAnatomyHero';
 import useHomeMotion from './useHomeMotion';
 import type { HomeSummaryItem, HomeSummaryType } from './HomeSummaryCard.data';
 import {
@@ -67,6 +69,7 @@ export default function HomeScreen({
   const { busy, scene, openTile, homeReady } = useAssessmentTransition();
   const scrollRef = useRef<ScrollView>(null);
   const scrollOffset = useRef(0);
+  const heroScroll = useRef(new Animated.Value(0)).current;
   const tileRefs = useRef<Partial<Record<HomeAssessmentId, { card: View | null; icon: View | null; title: NativeText | null }>>>({});
   const measureTile = useCallback<MeasureTile>(async (id, viewport) => {
     const nodes = tileRefs.current[id];
@@ -101,22 +104,19 @@ export default function HomeScreen({
 
   return (
     <View style={[styles.viewport, Platform.OS === 'web' && styles.webViewport]}>
-      <ScrollView
+      <Animated.ScrollView
         ref={scrollRef}
-        onScroll={event => { scrollOffset.current = event.nativeEvent.contentOffset.y; }}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: heroScroll } } }], {
+          useNativeDriver: Platform.OS !== 'web',
+          listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => { scrollOffset.current = event.nativeEvent.contentOffset.y; },
+        })}
         scrollEventThrottle={16}
         bounces={false}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         style={styles.screen}
       >
-        <ImageBackground
-          source={require('../../../../assets/images/home-anatomy-hero.png')}
-          resizeMode="cover"
-          style={styles.hero}
-          imageStyle={styles.heroImage}
-          accessible={false}
-        >
+        <HomeAnatomyHero scrollY={heroScroll}>
           <Animated.View style={[styles.heroContent, entranceStyle(0)]}>
             <View style={styles.brandRow}>
               <Text style={[styles.brand, strongFont]}>{homeScreenCopy.brand}</Text>
@@ -140,7 +140,7 @@ export default function HomeScreen({
               {homeScreenCopy.heading}
             </Text>
           </Animated.View>
-        </ImageBackground>
+        </HomeAnatomyHero>
 
         <Animated.View style={[styles.progressPanel, entranceStyle(1)]}>
           <View style={styles.progressRow}>
@@ -270,7 +270,7 @@ export default function HomeScreen({
           </MotionPressable>
           <Text style={[styles.supportedBy, regularFont]}>{homeScreenCopy.supportedByLabel}</Text>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 }
