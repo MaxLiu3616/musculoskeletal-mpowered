@@ -242,3 +242,24 @@ Changes remain uncommitted on `design-idea`.
 Evidence: [animation frame checks](../output/design-idea-navigation-flow-20260926/motion-checks.json), [question at 320 px with Large text](../output/design-idea-navigation-flow-20260926/question-320-large.png), [export log](../output/design-idea-navigation-flow-export-20260926.log).
 
 Changes remain uncommitted on `design-idea`.
+
+## Morphing assessment tiles — 27 September 2026
+
+- All five Home assessment tiles expand into their assessment in 420 ms, with the category icon and title travelling into the measured header positions. A 140 ms reveal brings in the question content. Returning Home contracts the surface back into its tile in 380 ms, including returns from a summary and the bottom navigation.
+- The shared overlay measures actual tile, title, icon, and viewport layouts. It follows text-size settings and scrolls a returning tile into view when needed. Home's entrance animation is suppressed during a morph return so the target stays still.
+- Navigation is protected from duplicate activation while the transition runs. Root assessment stack animations are disabled to avoid competing movement; existing question transitions, validation, answers, summaries, and weekly progress remain intact. No dependencies were added.
+- Reduce Motion skips the morph. Enabling it or resizing during an active transition clears the overlay and completes pending navigation.
+
+### Verification
+
+- Browser frame sampling confirmed expansion, icon/title movement, and contraction for Pain, Movement, Personal care, Social health, and Management. The overlay disappears and navigation re-enables after every completed transition.
+- Fixed a return timing issue found in browser testing, then rechecked all five assessment Back actions. Also verified bottom-tab and browser Back returns.
+- Completed Management with optional medication/emotion skipped and `0 days` selected. Continue remained disabled before selection, Back preserved the answer, the summary saved, and Close collapsed into Management. Home displayed `1 of 5` and the same period as the summary.
+- Inspected Personal care and Management at 320 × 640 with Large text, including an off-screen Management tile and bottom-tab return. Home had no horizontal overflow, and the final overlay bounds matched the visible tile within 0.02 px.
+- Emulated Reduce Motion produced no morph frames on entry or return. Switching it on mid-expansion and resizing mid-expansion both completed navigation without a stranded overlay. Keyboard Enter opened Movement successfully.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. Browser inspection reported no warnings or runtime errors. Native exports verify compilation; native-device animation and screen-reader testing were not performed.
+- Restored Medium text, cleared media/viewport overrides, and reloaded the preview to remove session-only QA answers. The Home preview remains open with `0 of 5` and no initial period.
+
+Evidence: [frame checks](../output/design-idea-tile-morph-20260927/frame-checks.json), [mid-transition capture](../output/design-idea-tile-morph-20260927/pain-morph.png), [assessment screen](../output/design-idea-tile-morph-20260927/pain-question.png), [export log](../output/design-idea-tile-morph-export-20260927.log).
+
+Changes remain uncommitted on `design-idea`.

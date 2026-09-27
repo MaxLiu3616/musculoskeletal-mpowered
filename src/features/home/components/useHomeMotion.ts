@@ -3,13 +3,17 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Platform } from 'react-native';
 
 import { useReducedMotion } from '@/components/motion/MotionProvider';
+import { useAssessmentTransition } from '@/components/motion/AssessmentTransitionContext';
 import useStaggeredEntrance from '@/components/motion/useStaggeredEntrance';
 import { homeAssessments, type HomeAssessmentId, type HomeAssessmentStatus } from './HomeScreen.data';
 
 export default function useHomeMotion(status: Record<HomeAssessmentId, HomeAssessmentStatus>) {
   const reducedMotion = useReducedMotion();
+  const { scene } = useAssessmentTransition();
+  const returnedFromAssessment = useRef(false);
+  if (scene?.direction === 'close') returnedFromAssessment.current = true;
   const [focused, setFocused] = useState(false);
-  const entranceStyle = useStaggeredEntrance();
+  const entranceStyle = useStaggeredEntrance(!returnedFromAssessment.current);
   const completion = useRef(homeAssessments.map(item => new Animated.Value(status[item.id].completed ? 1 : 0))).current;
   const completedKey = homeAssessments.map(item => status[item.id].completed ? '1' : '0').join('');
 

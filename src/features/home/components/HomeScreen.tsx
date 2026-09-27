@@ -1,5 +1,7 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useRef } from 'react';
 import {
   Animated,
   Image,
@@ -8,10 +10,12 @@ import {
   ScrollView,
   useWindowDimensions,
   View,
+  type Text as NativeText,
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
 import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
+import { measureMorphBox, useAssessmentTransition, type MeasureTile } from '@/components/motion/AssessmentTransitionContext';
 import InsightCard from '@/features/insights/components/InsightCard';
 import type { PainInsight } from '@/features/insights/InsightCard.data';
 import { useSetting } from '@/features/setting/SettingContext';
@@ -60,6 +64,27 @@ export default function HomeScreen({
   const { width, fontScale } = useWindowDimensions();
   const { display } = useSetting();
   const { completion, entranceStyle } = useHomeMotion(assessmentStatus);
+  const { busy, scene, openTile, homeReady } = useAssessmentTransition();
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollOffset = useRef(0);
+  const tileRefs = useRef<Partial<Record<HomeAssessmentId, { card: View | null; icon: View | null; title: NativeText | null }>>>({});
+  const measureTile = useCallback<MeasureTile>(async (id, viewport) => {
+    const nodes = tileRefs.current[id];
+    if (!nodes) return null;
+    let card = await measureMorphBox(nodes.card);
+    if (!card) return null;
+    if (viewport && (card.y < viewport.y + 12 || card.y + card.height > viewport.y + viewport.height - 12)) {
+      scrollRef.current?.scrollTo({ y: Math.max(0, scrollOffset.current + card.y - viewport.y - 16), animated: false });
+      await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      card = await measureMorphBox(nodes.card);
+    }
+    const [icon, title] = await Promise.all([measureMorphBox(nodes.icon), measureMorphBox(nodes.title)]);
+    return card && icon && title ? { card, icon, title } : null;
+  }, []);
+  const awaitingReturn = scene?.direction === 'close' && scene.phase === 'waiting';
+  useFocusEffect(useCallback(() => {
+    if (awaitingReturn) homeReady(measureTile);
+  }, [awaitingReturn, homeReady, measureTile]));
   const useTopArrows = width < 360 || display.textSize === 'large' || fontScale > 1.1;
   const [fontsLoaded] = useFonts({
     HomeSerif: require('../../../../assets/fonts/DMSerifDisplay-Regular.ttf'),
@@ -77,6 +102,9 @@ export default function HomeScreen({
   return (
     <View style={[styles.viewport, Platform.OS === 'web' && styles.webViewport]}>
       <ScrollView
+        ref={scrollRef}
+        onScroll={event => { scrollOffset.current = event.nativeEvent.contentOffset.y; }}
+        scrollEventThrottle={16}
         bounces={false}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -159,6 +187,7 @@ export default function HomeScreen({
 
           <View style={styles.assessmentGrid}>
             {homeAssessments.map((assessment, index) => {
+              const nodes = tileRefs.current[assessment.id] ??= { card: null, icon: null, title: null };
               const status = assessmentStatus[assessment.id];
               const isManagement = assessment.id === 'management';
               const iconSize = assessment.id === 'personal-care' || assessment.id === 'social-health' ? 30 : 36;
@@ -169,7 +198,7 @@ export default function HomeScreen({
               const copy = (
                 <>
                   <View style={[styles.assessmentTitleRow, (isManagement || useTopArrows) && styles.fullTitleRow]}>
-                    <Text style={[styles.assessmentTitle, strongFont, { color: assessment.color }]}>
+                    <Text ref={node => { nodes.title = node; }} style={[styles.assessmentTitle, strongFont, { color: assessment.color }]}>
                       {assessment.label}
                     </Text>
                     {!isManagement && !useTopArrows && arrow}
@@ -186,14 +215,15 @@ export default function HomeScreen({
               );
 
               return (
-                <Animated.View key={assessment.id} style={[
+                <Animated.View key={assessment.id} ref={node => { nodes.card = node as View | null; }} collapsable={false} style={[
                   styles.assessmentLayout, isManagement && styles.managementLayout, entranceStyle(index + 2),
                 ]}>
                   <MotionPressable
                     accessibilityRole="button"
                     accessibilityLabel={`${homeScreenCopy.recordLabel} ${assessment.label}`}
                     accessibilityHint={status.completed ? 'Completed this week. Opens your assessment to review or update.' : 'Opens the assessment.'}
-                    onPress={() => onAssessmentPress?.(assessment.id)}
+                    disabled={busy}
+                    onPress={() => openTile(assessment.id, measureTile, () => onAssessmentPress?.(assessment.id))}
                     style={({ pressed }) => [
                       styles.assessmentCard,
                       { backgroundColor: assessment.backgroundColor },
@@ -201,21 +231,24 @@ export default function HomeScreen({
                       pressed && styles.pressed,
                     ]}
                   >
+                    <View ref={node => { nodes.icon = node; }} collapsable={false}
+                      style={[{ width: iconSize, height: iconSize, alignSelf: isManagement ? 'center' : 'flex-start' }, !isManagement && styles.assessmentIcon]}>
                     {assessment.id === 'personal-care' ? (
                       <MaterialCommunityIcons
                         name={assessment.icon}
                         color={assessment.color}
                         size={iconSize}
-                        style={[styles.assessmentIcon, { lineHeight: iconSize }]}
+                        style={{ lineHeight: iconSize }}
                       />
                     ) : (
                       <Ionicons
                         name={assessment.icon}
                         color={assessment.color}
                         size={iconSize}
-                        style={[!isManagement && styles.assessmentIcon, { lineHeight: iconSize }]}
+                        style={{ lineHeight: iconSize }}
                       />
                     )}
+                    </View>
                     {!isManagement && useTopArrows && arrow}
                     {isManagement ? <View style={styles.managementCopy}>{copy}</View> : copy}
                     {isManagement && arrow}

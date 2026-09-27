@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Keyboard, Platform, Pressable, View } from 'react-native';
 
 import { useReducedMotion } from '@/components/motion/MotionProvider';
+import { useAssessmentTransition } from '@/components/motion/AssessmentTransitionContext';
 import { AppText as Text } from '@/components/typography';
 import { colors } from '@/theme';
 import { bottomNavigationItems, type BottomNavigationId } from './BottomNavigation.data';
@@ -11,6 +12,7 @@ import { styles } from './BottomNavigation.styles';
 
 export default function BottomNavigation({ activeItem }: { activeItem: BottomNavigationId }) {
   const reducedMotion = useReducedMotion();
+  const { busy } = useAssessmentTransition();
   const activeIndex = bottomNavigationItems.findIndex(item => item.id === activeItem);
   const position = useRef(new Animated.Value(activeIndex)).current;
   const [width, setWidth] = useState(0);
@@ -36,7 +38,7 @@ export default function BottomNavigation({ activeItem }: { activeItem: BottomNav
         const isActive = item.id === activeItem;
         return (
           <Pressable accessibilityRole="tab" accessibilityLabel={item.label}
-            accessibilityState={{ selected: isActive }} aria-selected={isActive}
+            accessibilityState={{ selected: isActive, disabled: busy }} aria-selected={isActive} disabled={busy}
             key={item.id} onPress={() => { Keyboard.dismiss(); router.navigate(item.href); }}
             style={({ pressed }) => [styles.item, pressed && styles.itemPressed]}>
             <View style={styles.iconContainer}>

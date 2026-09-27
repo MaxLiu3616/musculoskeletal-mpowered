@@ -5,6 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BottomNavigation from '@/components/navigation/BottomNavigation';
 import { MotionProvider } from '@/components/motion/MotionProvider';
+import AssessmentTransitionProvider from '@/components/motion/AssessmentTransitionProvider';
+import AssessmentTransitionLayer from '@/components/motion/AssessmentTransitionLayer';
+import { useAssessmentTransition } from '@/components/motion/AssessmentTransitionContext';
+import { homeAssessments } from '@/features/home/components/HomeScreen.data';
 import { getActiveBottomNavigationItem } from '@/components/navigation/BottomNavigation.data';
 
 import { CarePlannerProvider } from '@/features/care-planner/CarePlannerContext';
@@ -19,6 +23,7 @@ function AppNavigator() {
   const pathname = usePathname();
   const activeItem = getActiveBottomNavigationItem(pathname);
   const isHome = pathname === '/home';
+  const { busy } = useAssessmentTransition();
 
   return (
     <SafeAreaView
@@ -30,7 +35,13 @@ function AppNavigator() {
       ]}
     >
       <View style={styles.content}>
-        <Stack screenOptions={{ headerShown: false }} />
+        <View style={[styles.content, { pointerEvents: busy ? 'none' : 'auto' }]}
+          accessibilityElementsHidden={busy} importantForAccessibility={busy ? 'no-hide-descendants' : 'auto'} aria-hidden={busy}>
+          <Stack screenOptions={{ headerShown: false }}>
+            {homeAssessments.map(item => <Stack.Screen key={item.id} name={`assessment/${item.id}`} options={{ animation: 'none' }} />)}
+          </Stack>
+        </View>
+        <AssessmentTransitionLayer />
       </View>
       {activeItem ? (
         <SafeAreaView edges={['bottom']} style={[styles.navigation, isHome && styles.homeNavigation]}>
@@ -56,7 +67,9 @@ export default function RootLayout() {
             <MyHealthProvider>
               <CarePlannerProvider>
                 <SettingProvider>
-                  <AppNavigator />
+                  <AssessmentTransitionProvider>
+                    <AppNavigator />
+                  </AssessmentTransitionProvider>
                 </SettingProvider>
               </CarePlannerProvider>
             </MyHealthProvider>
