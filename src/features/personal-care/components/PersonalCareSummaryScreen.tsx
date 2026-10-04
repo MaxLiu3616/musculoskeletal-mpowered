@@ -1,3 +1,5 @@
+import ScreenHeader from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 import {
@@ -86,7 +88,7 @@ export default function PersonalCareSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="#FFFFFF"
+          backgroundColor={colors.peach}
         />
 
         <ScrollView
@@ -96,42 +98,9 @@ export default function PersonalCareSummaryScreen({
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.summaryScreen}>
-            <View style={styles.header}>
-              <Pressable
-                accessibilityRole="button"
-                hitSlop={4}
-                onPress={onBack}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed &&
-                    styles.backButtonPressed,
-                ]}
-              >
-                <Text
-                  style={styles.backButtonText}
-                >
-                  {
-                    personalCareAssessmentCopy.backLabel
-                  }
-                </Text>
-              </Pressable>
-
-              <Text
-                style={styles.trackerTitle}
-              >
-                {
-                  personalCareAssessmentCopy.trackerTitle
-                }
-              </Text>
+            <View style={{ marginHorizontal: -20, marginBottom: 18 }}>
+              <ScreenHeader title="Personal care summary" eyebrow="Weekly check-in" onBack={onBack} />
             </View>
-
-            <Text
-              style={styles.assessmentTitle}
-            >
-              {
-                personalCareAssessmentCopy.summaryScreenTitle
-              }
-            </Text>
 
             <Text
               style={styles.summaryIntro}
@@ -209,7 +178,7 @@ export default function PersonalCareSummaryScreen({
                   <Ionicons
                     name="search-outline"
                     size={15}
-                    color="#17151B"
+                    color={colors.ink}
                   />
 
                   <Text

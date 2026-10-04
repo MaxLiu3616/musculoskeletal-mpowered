@@ -1,3 +1,6 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { BrandMark } from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import type { ReactNode } from 'react';
 import {
   Keyboard,
@@ -12,7 +15,6 @@ import {
 
 import { AppText as Text } from '@/components/typography';
 
-import { nameScreenCopy } from './NameScreen.data';
 import { styles } from './NameScreen.styles';
 
 type OnboardingScreenProps = {
@@ -33,7 +35,7 @@ export default function OnboardingScreen({
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.peach} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -44,8 +46,10 @@ export default function OnboardingScreen({
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
+          <View style={styles.onboardingHeader}>
           <Pressable
             accessibilityRole="button"
+            accessibilityLabel="Back"
             hitSlop={4}
             onPress={goBack}
             style={({ pressed }) => [
@@ -53,10 +57,11 @@ export default function OnboardingScreen({
               pressed && styles.backButtonPressed,
             ]}
           >
-            <Text style={styles.backButtonText}>
-              {nameScreenCopy.backLabel}
-            </Text>
+            <Ionicons name="arrow-back" size={20} color={colors.ink} />
+            <Text style={styles.backButtonText}>Back</Text>
           </Pressable>
+          <BrandMark />
+          </View>
 
           <View
             style={[

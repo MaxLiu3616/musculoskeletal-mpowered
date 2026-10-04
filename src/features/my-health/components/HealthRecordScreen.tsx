@@ -12,7 +12,7 @@ export default function HealthRecordScreen({ id, onBack }: { id: string; onBack:
   const { records } = useMyHealth();
   const record = records.find((item) => item.id === id);
   return (
-    <HealthScreen title={record ? `${assessmentLabels[record.type]} Summary` : 'Assessment record'} onBack={onBack}>
+    <HealthScreen title={record ? `${assessmentLabels[record.type].replace(/^My /, '')} summary` : 'Assessment record'} onBack={onBack}>
       {record ? <>
         <Text style={styles.subtitle}>Period: {record.periodLabel ?? formatWeek(record.weekStart)}</Text>
         {record.sections.map((section) => <HealthSectionCard key={section.title} section={section} />)}

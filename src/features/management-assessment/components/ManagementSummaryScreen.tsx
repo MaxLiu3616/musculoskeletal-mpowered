@@ -1,3 +1,5 @@
+import ScreenHeader from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Platform,
@@ -55,7 +57,7 @@ export default function ManagementSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="#FFFFFF"
+          backgroundColor={colors.peach}
         />
 
         <ScrollView
@@ -65,42 +67,9 @@ export default function ManagementSummaryScreen({
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.summaryScreen}>
-            <View style={styles.header}>
-              <Pressable
-                accessibilityRole="button"
-                hitSlop={4}
-                onPress={onBack}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed &&
-                    styles.backButtonPressed,
-                ]}
-              >
-                <Text
-                  style={styles.backButtonText}
-                >
-                  {
-                    managementAssessmentCopy.backLabel
-                  }
-                </Text>
-              </Pressable>
-
-              <Text
-                style={styles.trackerTitle}
-              >
-                {
-                  managementAssessmentCopy.trackerTitle
-                }
-              </Text>
+            <View style={{ marginHorizontal: -20, marginBottom: 18 }}>
+              <ScreenHeader title="Management summary" eyebrow="Weekly check-in" onBack={onBack} />
             </View>
-
-            <Text
-              style={styles.assessmentTitle}
-            >
-              {
-                managementAssessmentCopy.summaryScreenTitle
-              }
-            </Text>
 
             <Text
               style={styles.summaryIntro}
@@ -166,7 +135,7 @@ export default function ManagementSummaryScreen({
                   ]}
                 >
                   <Ionicons
-                    color="#17151B"
+                    color={colors.ink}
                     name="search-outline"
                     size={15}
                   />

@@ -60,7 +60,7 @@ export default function SupportPeopleSettingsScreen(
                 onPress={onAddPerson}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12 },
                 ]}
             >

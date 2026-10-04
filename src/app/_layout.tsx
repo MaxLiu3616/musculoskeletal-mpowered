@@ -1,4 +1,5 @@
 import { Stack, usePathname } from 'expo-router';
+import { useFonts } from 'expo-font';
 import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,23 +12,27 @@ import { MyHealthProvider } from '@/features/my-health/MyHealthContext';
 import { OnboardingProvider } from '@/features/onboarding/OnboardingContext';
 import { ReflectionProvider } from '@/features/reflection/ReflectionContext';
 import { SettingProvider } from '@/features/setting/SettingContext';
+import { colors } from '@/theme';
 
 function AppNavigator() {
-  const activeItem = getActiveBottomNavigationItem(usePathname());
+  const pathname = usePathname();
+  const activeItem = getActiveBottomNavigationItem(pathname);
+  const isHome = pathname === '/home';
 
   return (
     <SafeAreaView
       edges={activeItem ? ['top', 'left', 'right'] : []}
       style={[
         styles.container,
-        activeItem && Platform.OS === 'web' && styles.webViewport,
+        isHome && styles.homeContainer,
+        Platform.OS === 'web' && styles.webViewport,
       ]}
     >
       <View style={styles.content}>
         <Stack screenOptions={{ headerShown: false }} />
       </View>
       {activeItem ? (
-        <SafeAreaView edges={['bottom']} style={styles.navigation}>
+        <SafeAreaView edges={['bottom']} style={[styles.navigation, isHome && styles.homeNavigation]}>
           <BottomNavigation activeItem={activeItem} />
         </SafeAreaView>
       ) : null}
@@ -36,6 +41,12 @@ function AppNavigator() {
 }
 
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    HomeSerif: require('../../assets/fonts/DMSerifDisplay-Regular.ttf'),
+    HomeRegular: require('../../assets/fonts/Inter-Regular.ttf'),
+    HomeSemiBold: require('../../assets/fonts/Inter-SemiBold.ttf'),
+  });
+  if (!fontsLoaded && !fontError) return <View style={styles.container} />;
   return (
       <OnboardingProvider>
         <HomeAssessmentProvider>
@@ -54,8 +65,10 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, width: '100%', alignSelf: 'center', backgroundColor: '#FFFFFF' },
+  container: { flex: 1, width: '100%', alignSelf: 'center', backgroundColor: colors.peach },
   content: { flex: 1, minHeight: 0 },
   webViewport: { maxWidth: 390, maxHeight: 844 },
-  navigation: { backgroundColor: '#F5EDF8', flexShrink: 0 },
+  navigation: { backgroundColor: colors.canvas, flexShrink: 0 },
+  homeContainer: { backgroundColor: '#F8DAC6' },
+  homeNavigation: { backgroundColor: '#FAF8F5' },
 });

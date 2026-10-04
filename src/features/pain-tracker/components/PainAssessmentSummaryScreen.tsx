@@ -1,3 +1,5 @@
+import ScreenHeader from '@/components/ScreenHeader';
+import { colors } from '@/theme';
 import {
   Platform,
   Pressable,
@@ -92,7 +94,7 @@ export default function PainAssessmentSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="#FFFFFF"
+          backgroundColor={colors.peach}
         />
 
         <ScrollView
@@ -102,42 +104,9 @@ export default function PainAssessmentSummaryScreen({
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.summaryScreen}>
-            <View style={styles.header}>
-              <Pressable
-                accessibilityRole="button"
-                hitSlop={4}
-                onPress={onBack}
-                style={({ pressed }) => [
-                  styles.backButton,
-                  pressed &&
-                    styles.backButtonPressed,
-                ]}
-              >
-                <Text
-                  style={styles.backButtonText}
-                >
-                  {
-                    painAssessmentCopy.backLabel
-                  }
-                </Text>
-              </Pressable>
-
-              <Text
-                style={styles.trackerTitle}
-              >
-                {
-                  painAssessmentCopy.trackerTitle
-                }
-              </Text>
+            <View style={{ marginHorizontal: -20, marginBottom: 18 }}>
+              <ScreenHeader title="Pain summary" eyebrow="Weekly check-in" onBack={onBack} />
             </View>
-
-            <Text
-              style={styles.assessmentTitle}
-            >
-              {
-                painAssessmentCopy.summaryTitle
-              }
-            </Text>
 
             <Text
               style={styles.summaryIntro}

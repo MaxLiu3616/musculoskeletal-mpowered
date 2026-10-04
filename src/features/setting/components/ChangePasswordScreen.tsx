@@ -153,7 +153,7 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
                     onPress={verify}
                     style={[
                         styles.cardButtonText,
-                        styles.card,
+                    styles.actionButton,
                         { textAlign: 'center', paddingVertical: 12, marginTop: 16 },
                     ]}
                 >
@@ -194,7 +194,7 @@ export default function ChangePasswordScreen(props: ChangePasswordScreenProps) {
                 onPress={save}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12 },
                     !canSave && styles.disabled,
                 ]}

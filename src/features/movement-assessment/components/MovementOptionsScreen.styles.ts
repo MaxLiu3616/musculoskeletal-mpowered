@@ -1,11 +1,12 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   instruction: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '600',
-    lineHeight: 17,
+    lineHeight: 21,
   },
 
   instructionEmphasis: {
@@ -14,7 +15,7 @@ export const styles = StyleSheet.create({
   },
 
   optionList: {
-    backgroundColor: '#FBF3FC',
+    backgroundColor: colors.canvas,
     borderRadius: 12,
     marginTop: 14,
     overflow: 'hidden',
@@ -22,7 +23,7 @@ export const styles = StyleSheet.create({
 
   optionRow: {
     alignItems: 'center',
-    borderBottomColor: '#D8CEE1',
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
     minHeight: 58,
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
   },
 
   optionRowSelected: {
-    backgroundColor: '#F3E8FA',
+    backgroundColor: colors.sky,
   },
 
   optionRowPressed: {
@@ -43,7 +44,7 @@ export const styles = StyleSheet.create({
   },
 
   optionText: {
-    color: '#342E3A',
+    color: colors.ink,
     flex: 1,
     fontSize: 14,
     fontWeight: '500',
@@ -56,7 +57,7 @@ export const styles = StyleSheet.create({
 
   selectionControl: {
     alignItems: 'center',
-    borderColor: '#635C68',
+    borderColor: colors.muted,
     borderWidth: 2,
     height: 22,
     justifyContent: 'center',
@@ -65,8 +66,8 @@ export const styles = StyleSheet.create({
   },
 
   selectionControlSelected: {
-    backgroundColor: '#6D50AC',
-    borderColor: '#6D50AC',
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
 
   checkbox: {
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
   },
 
   checkmark: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '700',
     lineHeight: 18,
@@ -85,7 +86,7 @@ export const styles = StyleSheet.create({
   },
 
   radioDot: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.surface,
     borderRadius: 5,
     height: 10,
     width: 10,

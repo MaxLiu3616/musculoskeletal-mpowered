@@ -1,236 +1,219 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   viewport: {
-    backgroundColor: '#FFFFFF',
-    overflow: 'hidden',
-    position: 'relative',
-    width: '100%',
-  },
-
-  webViewport: {
-    alignSelf: 'center',
-    maxWidth: 390,
-  },
-
-  screen: {
-    backgroundColor: '#FFFFFF',
     flex: 1,
-    width: '100%',
+    backgroundColor: '#FAF8F5',
   },
-
+  webViewport: {
+    width: '100%',
+    maxWidth: 390,
+    alignSelf: 'center',
+  },
+  screen: {
+    flex: 1,
+  },
   scrollContent: {
-    alignItems: 'center',
-    paddingBottom: 24,
+    flexGrow: 1,
+  },
+  hero: {
+    minHeight: 246,
+    backgroundColor: '#F8DAC6',
+  },
+  heroImage: {
     width: '100%',
-  },
-
-  content: {
-    paddingHorizontal: 20,
-    paddingTop: 42,
-    width: '100%',
-  },
-
-  greeting: {
-    color: '#17151B',
-    fontSize: 14,
-    fontWeight: '600',
-    marginBottom: 18,
-  },
-
-  heading: {
-    color: '#17151B',
-    fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 28,
-    marginBottom: 8,
-  },
-
-  subtitle: {
-    color: '#4F4B55',
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 18,
-  },
-
-  progressTrack: {
-    backgroundColor: '#DEDEDE',
-    borderRadius: 999,
-    height: 8,
-    overflow: 'hidden',
-    width: '100%',
-  },
-
-  progressFill: {
-    backgroundColor: '#17151B',
-    borderRadius: 999,
     height: '100%',
   },
-
-  taskRemaining: {
-    color: '#57418D',
-    fontSize: 11,
-    fontWeight: '600',
-    marginTop: 6,
+  heroContent: {
+    paddingTop: 23,
+    paddingHorizontal: 18,
+    paddingBottom: 56,
   },
-
-  progressRow: {
+  brandRow: {
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: 3,
+    marginBottom: 10,
+  },
+  brand: {
+    color: '#082D6D',
+    fontSize: 19,
+    lineHeight: 25,
+    letterSpacing: -0.8,
+  },
+  leafMark: {
+    width: 28,
+    height: 28,
+  },
+  greeting: {
+    color: '#173A70',
+    fontSize: 15,
+    lineHeight: 21,
+    marginBottom: 10,
+    maxWidth: '64%',
+  },
+  heading: {
+    color: '#082D6D',
+    fontFamily: Platform.select({ ios: 'Georgia', default: 'serif' }),
+    fontSize: 41,
+    lineHeight: 42,
+    letterSpacing: -1.2,
+    maxWidth: '65%',
+  },
+  compactHeading: {
+    fontSize: 35,
+    lineHeight: 36,
+  },
+  progressPanel: {
+    minHeight: 88,
+    paddingHorizontal: 22,
+    paddingVertical: 12,
+    backgroundColor: '#264A89',
+    borderRadius: 12,
+  },
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  progressLabel: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    lineHeight: 25,
+  },
+  progressPeriod: {
+    color: '#D8E4F8',
+    fontSize: 13,
+    lineHeight: 19,
+    marginTop: 2,
+  },
+  progressCount: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    lineHeight: 19,
+    flexShrink: 1,
+    textAlign: 'right',
+  },
+  progressSegments: {
+    flexDirection: 'row',
+    gap: 7,
+    marginTop: 10,
+  },
+  progressSegment: {
+    height: 8,
+    flex: 1,
+    borderRadius: 3,
+    backgroundColor: '#849DC6',
+  },
+  progressSegmentComplete: {
+    backgroundColor: '#FFFFFF',
+  },
+  content: {
+    paddingHorizontal: 17,
+    paddingTop: 12,
+  },
+  assessmentGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-    justifyContent: 'space-between',
-    marginBottom: 24,
-    marginTop: 6,
-  },
-
-  progressLabel: {
-    color: '#17151B',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-
-  progressCount: {
-    color: '#17151B',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-
-  insightSection: {
-    marginTop: 18,
-    marginBottom: 18,
-  },
-
-  assessmentSection: {
-    backgroundColor: '#F5F2F8',
-    borderRadius: 14,
-    padding: 14,
-  },
-
-  assessmentSectionTitle: {
-    color: '#17151B',
-    fontSize: 16,
-    fontWeight: '700',
-    marginBottom: 14,
-  },
-
-  assessmentList: {
     gap: 10,
   },
-
   assessmentCard: {
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    width: '47%',
+    flexGrow: 1,
+    minHeight: 116,
+    padding: 13,
+    borderRadius: 10,
+  },
+  assessmentIcon: {
+    marginBottom: 4,
+  },
+  assessmentTitleRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    minHeight: 54,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-  },
-
-  assessmentTextGroup: {
-    flex: 1,
-    paddingRight: 12,
-  },
-
-  assessmentLabel: {
-    color: '#17151B',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-
-  assessmentUpdatedAt: {
-    color: '#77717D',
-    fontSize: 10,
-    marginTop: 3,
-  },
-
-  recordButton: {
     alignItems: 'center',
-    borderColor: '#D8D1DE',
-    borderRadius: 18,
-    borderWidth: 1,
-    flexDirection: 'row',
-    gap: 8,
-    justifyContent: 'center',
-    minWidth: 92,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingRight: 30,
+    marginBottom: 3,
   },
-
-  recordButtonPressed: {
-    opacity: 0.7,
+  assessmentTitle: {
+    fontSize: 16,
+    lineHeight: 21,
+    letterSpacing: -0.4,
+    flexShrink: 1,
   },
-
-  recordButtonText: {
-    color: '#4F4B55',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-
-  recordArrow: {
-    color: '#4F4B55',
-    fontSize: 18,
-    lineHeight: 18,
-  },
-
-  reflectionButton: {
-    alignItems: 'center',
-    backgroundColor: '#F5F2F8',
-    borderRadius: 12,
-    flexDirection: 'row',
-    marginTop: 14,
-    minHeight: 48,
-    paddingHorizontal: 16,
-  },
-
-  reflectionButtonPressed: {
-    opacity: 0.75,
-  },
-
-  reflectionPlus: {
-    color: '#563B9F',
-    fontSize: 22,
-    fontWeight: '700',
-    marginRight: 8,
-  },
-
-  reflectionText: {
-    color: '#17151B',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-
-  supportedBy: {
-    color: '#17151B',
-    fontSize: 10,
-    fontWeight: '600',
-    marginTop: 24,
-    textAlign: 'center',
-  },
-
-  scrollHint: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    backgroundColor: '#D9D9D9',
-    borderRadius: 12,
-    bottom: 6,
-    flexDirection: 'row',
-    gap: 8,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    position: 'absolute',
-    zIndex: 20,
-  },
-
-  scrollHintPressed: {
-    opacity: 0.75,
-  },
-
-  scrollHintText: {
-    color: '#17151B',
+  assessmentDescription: {
     fontSize: 12,
-    fontWeight: '600',
+    lineHeight: 16,
+  },
+  assessmentArrow: {
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 14,
+    backgroundColor: '#FFFFFF',
+    flexShrink: 0,
+  },
+  tileArrow: {
+    position: 'absolute',
+    right: 0,
+    top: -3,
+  },
+  topTileArrow: {
+    position: 'absolute',
+    right: 13,
+    top: 13,
+  },
+  managementCard: {
+    width: '100%',
+    minHeight: 71,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 13,
+    borderWidth: 1,
+    borderColor: '#EFEAE5',
+  },
+  managementCopy: {
+    flex: 1,
+    gap: 3,
+  },
+  fullTitleRow: {
+    paddingRight: 0,
+  },
+  updatedLabel: {
+    fontSize: 10,
+    lineHeight: 14,
+    marginTop: 6,
+  },
+  pressed: {
+    opacity: 0.72,
+  },
+  reflection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 48,
+    gap: 12,
+    marginTop: 14,
+    paddingHorizontal: 7,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#DEDBD8',
+  },
+  reflectionLabel: {
+    color: '#082D6D',
+    fontSize: 15,
+    lineHeight: 20,
+    flex: 1,
+  },
+  reflectionIcon: {
+    lineHeight: 26,
+  },
+  supportedBy: {
+    color: '#586B91',
+    fontSize: 10,
+    lineHeight: 14,
+    letterSpacing: 1.1,
+    textAlign: 'center',
+    paddingVertical: 14,
   },
 });

@@ -1,3 +1,5 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -106,22 +108,26 @@ export default function AddSupportPersonScreen(
 
                 <Pressable
                     accessibilityRole="checkbox"
+                    accessibilityLabel="Add questions"
                     accessibilityState={{ checked: canAddQuestions }}
+                    aria-checked={canAddQuestions}
                     onPress={() => setCanAddQuestions((value) => !value)}
                     style={styles.row}
                 >
                     <Text style={styles.rowText}>Add questions</Text>
-                    {canAddQuestions ? <Text style={styles.value}>✓</Text> : null}
+                    <Ionicons name={canAddQuestions ? "checkbox" : "square-outline"} size={24} color={colors.primary} />
                 </Pressable>
 
                 <Pressable
                     accessibilityRole="checkbox"
+                    accessibilityLabel="View doctor's answers"
                     accessibilityState={{ checked: canViewAnswers }}
+                    aria-checked={canViewAnswers}
                     onPress={() => setCanViewAnswers((value) => !value)}
                     style={styles.row}
                 >
                     <Text style={styles.rowText}>View doctor's answers</Text>
-                    {canViewAnswers ? <Text style={styles.value}>✓</Text> : null}
+                    <Ionicons name={canViewAnswers ? "checkbox" : "square-outline"} size={24} color={colors.primary} />
                 </Pressable>
             </View>
 
@@ -132,7 +138,7 @@ export default function AddSupportPersonScreen(
                 onPress={save}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12 },
                     !canSave && styles.disabled,
                 ]}

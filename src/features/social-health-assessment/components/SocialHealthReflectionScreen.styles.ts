@@ -1,18 +1,20 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   question: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '700',
-    lineHeight: 17,
+    lineHeight: 21,
   },
 
   input: {
-    borderColor: '#D5CFD8',
-    borderRadius: 8,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 12,
     borderWidth: 1,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 17,

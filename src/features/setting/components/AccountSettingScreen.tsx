@@ -7,6 +7,7 @@ import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { useOnboarding } from '@/features/onboarding/OnboardingContext';
 import { useSetting } from '@/features/setting/SettingContext';
 import {conditionOptions, conditionSelectionScreenCopy, type ConditionOptionId,} from '@/features/onboarding/components/HealthConditionsScreen.data';
+import { colors } from '@/theme';
 
 import { styles } from './SettingScreen.styles';
 
@@ -100,11 +101,8 @@ export default function AccountSettingsScreen(
                     onPress={onChangePhone}
                     style={styles.row}
                 >
-                    <View>
-                        <Text style={styles.rowText}>
-                            Phone number
-                        </Text>
-
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.rowText}>Phone number</Text>
                         <Text style={styles.muted}>
                             {phone || 'Not set'}
                         </Text>
@@ -124,11 +122,8 @@ export default function AccountSettingsScreen(
                     }
                     style={styles.row}
                 >
-                    <View>
-                        <Text style={styles.rowText}>
-                            Password
-                        </Text>
-
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.rowText}>Password</Text>
                         <Text style={styles.muted}>
                             {hasPassword
                                 ? '••••••••'
@@ -166,9 +161,9 @@ export default function AccountSettingsScreen(
                         placeholder={
                             conditionSelectionScreenCopy.searchPlaceholder
                         }
-                        placeholderTextColor="#7A747D"
+                        placeholderTextColor={colors.muted}
                         returnKeyType="search"
-                        selectionColor="#6D50AC"
+                        selectionColor={colors.primary}
                         style={styles.searchInput}
                         value={query}
                     />
@@ -214,9 +209,11 @@ export default function AccountSettingsScreen(
                                 <Pressable
                                     key={condition.id}
                                     accessibilityRole="checkbox"
+                                    accessibilityLabel={condition.label}
                                     accessibilityState={{
                                         checked: isSelected,
                                     }}
+                                    aria-checked={isSelected}
                                     onPress={() =>
                                         toggleCondition(
                                             condition.id,

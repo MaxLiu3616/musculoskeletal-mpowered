@@ -21,7 +21,7 @@ export default function ChangePhoneScreen(props: ChangePhoneScreenProps) {
     const canContinue = newPhone.replace(/\D/g, '').length > 0;
 
     return (
-        <HealthScreen title="Change Phone Number" onBack={onBack}>
+        <HealthScreen title="Change phone" onBack={onBack}>
             <View style={styles.field}>
                 <Text style={styles.label}>Current phone number</Text>
                 <Text style={styles.value}>{phone || 'Not set'}</Text>
@@ -43,7 +43,7 @@ export default function ChangePhoneScreen(props: ChangePhoneScreenProps) {
                 onPress={() => canContinue && onContinue(newPhone)}
                 style={[
                     styles.cardButtonText,
-                    styles.card,
+                    styles.actionButton,
                     { textAlign: 'center', paddingVertical: 12 },
                     !canContinue && styles.disabled,
                 ]}

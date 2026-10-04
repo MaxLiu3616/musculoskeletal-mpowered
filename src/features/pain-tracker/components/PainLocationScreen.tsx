@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import {
   Keyboard,
@@ -252,9 +253,9 @@ export default function PainLocationScreen({
                 placeholder={
                   painAssessmentCopy.otherLocationPlaceholder
                 }
-                placeholderTextColor="#8B858D"
+                placeholderTextColor={colors.muted}
                 returnKeyType="done"
-                selectionColor="#6D50AC"
+                selectionColor={colors.primary}
                 style={styles.modalInput}
                 value={otherDraft}
               />

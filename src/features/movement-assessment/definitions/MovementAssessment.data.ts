@@ -58,7 +58,7 @@ export const movementAssessmentCopy = {
     'My reflections:',
 
   savedLabel:
-    'Saved to Care Journal',
+    'Saved to My Health',
 
   closeLabel:
     'Close',

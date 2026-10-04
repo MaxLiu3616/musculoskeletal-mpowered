@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
@@ -41,7 +42,7 @@ export default function MovementReflectionScreen({
         multiline
         onChangeText={setReflection}
         placeholder={movementAssessmentCopy.reflectionPlaceholder}
-        placeholderTextColor="#7A747D"
+        placeholderTextColor={colors.muted}
         style={styles.input}
         value={reflection}
       />

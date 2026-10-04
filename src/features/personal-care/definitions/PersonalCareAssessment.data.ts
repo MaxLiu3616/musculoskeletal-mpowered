@@ -48,7 +48,7 @@ export const personalCareAssessmentCopy = {
     'This helps guide your treatment and support your recovery.',
 
   summarySessionNote:
-    'Saved to Care Journal',
+    'Saved to My Health',
 } as const;
 
 export const generalActivityImpactOptions: {

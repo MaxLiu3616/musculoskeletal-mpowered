@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -20,7 +21,7 @@ export default function AppointmentReviewScreen({ plan, onBack, onSave, onQuesti
   const [activeQuestion, setActiveQuestion] = useState<AppointmentQuestion | null>(null);
   const questions = selectedQuestions(plan);
   const categories = [...new Set(questions.map((question) => question.category))];
-  return <HealthScreen title={onSave ? 'Review My Plan' : 'Review My Appointment Plan'} onBack={onBack} footer={<View style={styles.footer}>
+  return <HealthScreen title={onSave ? 'Review plan' : 'My appointment'} onBack={onBack} footer={<View style={styles.footer}>
     <CareButton label={onSave ? 'Save' : 'Modify questions'} outline={!onSave} disabled={onSave ? !isValidPlan(plan) : false} onPress={onSave ?? onQuestions} />
   </View>}>
     <View style={styles.panel}>
@@ -29,7 +30,7 @@ export default function AppointmentReviewScreen({ plan, onBack, onSave, onQuesti
       {onConsent ? <View style={styles.group}>
         <Pressable accessibilityRole="button" onPress={onConsent} style={styles.checkRow}>
           <Text style={styles.checkText}>{plan.consent ? 'Recording consent obtained' : 'Ask consent for recording answers'}</Text>
-          <Ionicons name={plan.consent ? 'checkbox' : 'square-outline'} size={22} color="#6850A1" />
+          <Ionicons name={plan.consent ? 'checkbox' : 'square-outline'} size={22} color={colors.primary} />
         </Pressable>
         {!plan.consent ? <Text style={styles.muted}>Ask your healthcare practitioner to sign before adding their answers.</Text> : null}
       </View> : null}
@@ -38,7 +39,7 @@ export default function AppointmentReviewScreen({ plan, onBack, onSave, onQuesti
         {questions.filter((question) => question.category === category).map((question) => <View key={question.id} style={styles.card}>
           {onConsent ? <Pressable accessibilityRole="button" accessibilityLabel={`${plan.answers[question.id] ? 'View' : 'Add'} doctor’s answer: ${question.text}`} accessibilityState={{ disabled: !plan.consent }} disabled={!plan.consent} onPress={() => setActiveQuestion(question)} style={[styles.titleRow, styles.answerButton, !plan.consent && styles.disabled]}>
             <Text style={styles.outlineText}>{plan.answers[question.id] ? 'View doctor’s answer' : 'Add doctor’s answer'}</Text>
-            <Ionicons name="pencil-outline" size={20} color="#51465F" />
+            <Ionicons name="pencil-outline" size={20} color={colors.muted} />
           </Pressable> : null}
           <Text style={styles.value}>{question.text}</Text>
         </View>)}

@@ -1,3 +1,4 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -10,15 +11,17 @@ export const styles = StyleSheet.create({
     paddingTop: 142,
   },
   introTitle: {
-    color: '#17151B',
-    fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 30,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 32,
+    fontWeight: '400',
+    lineHeight: 38,
     maxWidth: 310,
     textAlign: 'center',
   },
   introMessage: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 20,
     fontWeight: '700',
     lineHeight: 30,
@@ -27,8 +30,9 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
   primaryButton: {
+    minHeight: 48,
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
@@ -36,18 +40,18 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButtonDisabled: {
-    backgroundColor: '#E7D8FF',
+    backgroundColor: colors.sky,
   },
   primaryButtonPressed: {
     opacity: 0.82,
   },
   primaryButtonText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '600',
   },
   primaryButtonTextDisabled: {
-    color: '#554766',
+    color: colors.muted,
   },
   introButton: {
     marginTop: 56,
@@ -56,18 +60,23 @@ export const styles = StyleSheet.create({
     paddingTop: 130,
   },
   title: {
-    color: '#17151B',
-    fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 30,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 32,
+    fontWeight: '400',
+    lineHeight: 38,
     maxWidth: 310,
     textAlign: 'center',
   },
   phoneInput: {
-    backgroundColor: '#EAE6EF',
-    borderBottomColor: '#5E5862',
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.muted,
     borderBottomWidth: 1,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 18,
     height: 58,
     marginTop: 40,
@@ -77,7 +86,7 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   phoneHelper: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 16,
     lineHeight: 23,
     marginTop: 44,
@@ -91,11 +100,13 @@ export const styles = StyleSheet.create({
     paddingTop: 104,
   },
   verificationTitle: {
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
     alignSelf: 'center',
-    color: '#17151B',
-    fontSize: 21,
-    fontWeight: '700',
-    lineHeight: 30,
+    color: colors.ink,
+    fontSize: 32,
+    fontWeight: '400',
+    lineHeight: 38,
     maxWidth: 282,
     textAlign: 'left',
     width: '100%',
@@ -116,8 +127,8 @@ export const styles = StyleSheet.create({
   },
   codeBox: {
     alignItems: 'center',
-    backgroundColor: '#EAE6EF',
-    borderColor: '#7A747D',
+    backgroundColor: colors.sky,
+    borderColor: colors.muted,
     borderRadius: 7,
     borderWidth: 1,
     height: 58,
@@ -125,11 +136,11 @@ export const styles = StyleSheet.create({
     width: 54,
   },
   codeBoxActive: {
-    borderColor: '#6D50AC',
+    borderColor: colors.primary,
     borderWidth: 2,
   },
   codeDigit: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 22,
     fontWeight: '600',
   },
@@ -151,19 +162,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   resendButtonPressed: {
-    backgroundColor: '#F2EEF8',
+    backgroundColor: colors.sky,
   },
   resendButtonText: {
-    color: '#57418D',
+    color: colors.primary,
     fontSize: 15,
     fontWeight: '600',
     textDecorationLine: 'underline',
   },
   resendButtonTextDisabled: {
-    color: '#77717B',
+    color: colors.muted,
   },
   resendHelper: {
-    color: '#77717B',
+    color: colors.muted,
     fontSize: 13,
     marginTop: 2,
     textAlign: 'center',

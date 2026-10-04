@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
@@ -54,7 +55,7 @@ export default function SocialHealthReflectionScreen({
         placeholder={
           socialHealthAssessmentCopy.reflectionHelper
         }
-        placeholderTextColor="#A6A0A9"
+        placeholderTextColor={colors.muted}
         style={styles.input}
         textAlignVertical="top"
         value={reflection}

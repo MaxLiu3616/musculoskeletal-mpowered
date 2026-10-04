@@ -1,11 +1,24 @@
+import { colors, fonts } from '@/theme';
 import {
   StyleSheet,
 } from 'react-native';
 
 export const styles =
   StyleSheet.create({
+    profileHero: { backgroundColor: colors.primary, borderRadius: 16, padding: 20, gap: 12 },
+    profileTitle: { color: colors.surface, fontFamily: fonts.display, fontSize: 29, lineHeight: 34 },
+    profileDescription: { color: colors.surface, fontSize: 14, lineHeight: 21 },
+    profileStatus: { color: colors.sky, fontSize: 12, lineHeight: 18 },
+    profileButton: { backgroundColor: colors.surface, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginTop: 4 },
+    profileButtonText: { color: colors.ink, fontSize: 15, lineHeight: 22, fontWeight: '600', flexShrink: 1 },
+    navigationGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+    navigationTile: { flex: 1, minWidth: 160, minHeight: 132, borderRadius: 14, padding: 15, gap: 8 },
+    historyTile: { backgroundColor: colors.sky },
+    prescriptionTile: { backgroundColor: colors.peach },
+    navigationTitle: { color: colors.ink, fontSize: 16, lineHeight: 22, fontWeight: '600' },
+    navigationDescription: { color: colors.ink, fontSize: 12, lineHeight: 18 },
     viewport: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.canvas,
       overflow: 'hidden',
       position: 'relative',
       width: '100%',
@@ -16,53 +29,23 @@ export const styles =
       maxWidth: 390,
     },
 
-    safeArea: {
-      flex: 1,
-    },
-
     keyboard: {
       flex: 1,
     },
 
-    header: {
-      paddingHorizontal: 20,
-      paddingTop: 26,
-      paddingBottom: 18,
-      gap: 14,
-    },
-
-    title: {
-      color: '#17151B',
-      fontSize: 22,
-      fontWeight: '700',
-      lineHeight: 28,
-    },
-
     subtitle: {
-      color: '#4F4B55',
+      color: colors.muted,
       fontSize: 14,
       lineHeight: 21,
     },
 
     titleRow: {
+    flexWrap: 'wrap',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent:
         'space-between',
-      gap: 12,
-    },
-
-    backButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      alignSelf: 'flex-start',
-      gap: 6,
-      minHeight: 44,
-    },
-
-    backText: {
-      color: '#51465F',
-      fontSize: 15,
+      gap: 8,
     },
 
     scroll: {
@@ -70,28 +53,31 @@ export const styles =
     },
 
     content: {
-      paddingHorizontal: 20,
-      paddingBottom: 0,
+    paddingTop: 18,
+      paddingHorizontal: 17,
+      paddingBottom: 24,
       flexGrow: 1,
       gap: 14,
     },
 
     card: {
-      backgroundColor: '#F4F2F8',
+    borderColor: colors.softBorder,
+    borderWidth: 1,
+      backgroundColor: colors.surface,
       borderRadius: 14,
       padding: 18,
       gap: 14,
     },
 
     cardTitle: {
-      color: '#17151B',
+      color: colors.ink,
       fontSize: 17,
       fontWeight: '600',
       lineHeight: 24,
     },
 
     divider: {
-      borderBottomColor: '#D8D1DE',
+      borderBottomColor: colors.border,
       borderBottomWidth: 1,
     },
 
@@ -106,21 +92,21 @@ export const styles =
     },
 
     insightSection: {
-      flexGrow: 1,
+      flexGrow: 0,
       justifyContent: 'flex-end',
-      marginTop: 10,
-      paddingBottom: 60,
+      marginTop: 4,
+      paddingBottom: 0,
     },
 
     label: {
-      color: '#38313F',
+      color: colors.ink,
       fontSize: 13,
       fontWeight: '600',
       lineHeight: 18,
     },
 
     value: {
-      color: '#17151B',
+      color: colors.ink,
       fontSize: 14,
       lineHeight: 21,
     },
@@ -130,21 +116,21 @@ export const styles =
     },
 
     muted: {
-      color: '#716979',
+      color: colors.muted,
       fontSize: 12,
       lineHeight: 18,
     },
 
     sessionNote: {
-      color: '#716979',
+      color: colors.muted,
       fontSize: 12,
       lineHeight: 18,
       marginTop: 6,
     },
 
     primaryButton: {
-      backgroundColor: '#6850A1',
-      borderRadius: 24,
+      backgroundColor: colors.primary,
+      borderRadius: 12,
       minHeight: 48,
       paddingHorizontal: 20,
       paddingVertical: 12,
@@ -153,14 +139,14 @@ export const styles =
     },
 
     primaryText: {
-      color: '#FFFFFF',
+      color: colors.surface,
       fontSize: 14,
       fontWeight: '600',
       textAlign: 'center',
     },
 
     secondaryButton: {
-      backgroundColor: '#F4F2F8',
+      backgroundColor: colors.sky,
       borderRadius: 14,
       minHeight: 48,
       padding: 14,
@@ -169,7 +155,7 @@ export const styles =
     },
 
     secondaryText: {
-      color: '#362945',
+      color: colors.ink,
       fontSize: 14,
       fontWeight: '600',
       textAlign: 'center',
@@ -177,10 +163,10 @@ export const styles =
     },
 
     outlineButton: {
-      borderColor: '#CFC5DA',
+      borderColor: colors.border,
       borderWidth: 1,
-      borderRadius: 22,
-      minHeight: 44,
+      borderRadius: 12,
+      minHeight: 48,
       paddingHorizontal: 16,
       paddingVertical: 10,
       alignItems: 'center',
@@ -188,13 +174,9 @@ export const styles =
     },
 
     outlineText: {
-      color: '#4D3A67',
+      color: colors.ink,
       fontSize: 13,
       fontWeight: '600',
-    },
-
-    alignEnd: {
-      alignSelf: 'flex-end',
     },
 
     pressed: {
@@ -215,7 +197,7 @@ export const styles =
     },
 
     emptyTitle: {
-      color: '#77717D',
+      color: colors.muted,
       fontSize: 16,
       lineHeight: 24,
       textAlign: 'center',
@@ -228,21 +210,22 @@ export const styles =
     footer: {
       paddingHorizontal: 20,
       paddingVertical: 12,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.canvas,
     },
 
     prescriptionList: {
-      borderColor: '#D2CBD8',
+    backgroundColor: colors.surface,
+      borderColor: colors.border,
       borderWidth: 1,
       borderRadius: 14,
       paddingHorizontal: 14,
-      flexGrow: 1,
+      flexGrow: 0,
     },
 
     prescriptionRow: {
       flexDirection: 'row',
       alignItems: 'center',
-      borderBottomColor: '#E0DAE7',
+      borderBottomColor: colors.border,
       borderBottomWidth: 1,
       paddingVertical: 14,
       gap: 4,
@@ -261,17 +244,17 @@ export const styles =
     },
 
     deleteText: {
-      color: '#AE283D',
+      color: colors.danger,
       fontSize: 14,
       fontWeight: '600',
     },
 
     input: {
-      backgroundColor: '#FCF8FF',
-      borderColor: '#BDB3C8',
+      backgroundColor: colors.surface,
+      borderColor: colors.border,
       borderWidth: 1,
-      borderRadius: 6,
-      color: '#17151B',
+      borderRadius: 12,
+      color: colors.ink,
       fontSize: 15,
       minHeight: 48,
       paddingHorizontal: 12,
@@ -298,12 +281,12 @@ export const styles =
     modalBackdrop: {
       flex: 1,
       justifyContent: 'center',
-      backgroundColor: '#17151B66',
+      backgroundColor: colors.overlay,
       padding: 24,
     },
 
     modalCard: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.surface,
       borderRadius: 18,
       maxHeight: '80%',
       padding: 20,
@@ -324,13 +307,13 @@ export const styles =
     },
 
     selectedOption: {
-      backgroundColor: '#ECE2FF',
+      backgroundColor: colors.sky,
     },
 
     tabs: {
       flexDirection: 'row',
-      backgroundColor: '#FBF6FF',
-      borderBottomColor: '#E0DAE7',
+      backgroundColor: colors.canvas,
+      borderBottomColor: colors.border,
       borderBottomWidth: 1,
     },
 
@@ -344,24 +327,24 @@ export const styles =
     },
 
     activeTab: {
-      borderBottomColor: '#7554B8',
+      borderBottomColor: colors.primary,
     },
 
     tabText: {
-      color: '#4F4B55',
+      color: colors.muted,
       fontSize: 14,
     },
 
     activeTabText: {
-      color: '#6846A4',
+      color: colors.primary,
       fontWeight: '600',
     },
 
     metricTabs: {
       flexDirection: 'row',
       borderWidth: 1,
-      borderColor: '#D8D1DE',
-      borderRadius: 22,
+      borderColor: colors.border,
+      borderRadius: 12,
       overflow: 'hidden',
     },
 
@@ -373,18 +356,18 @@ export const styles =
     },
 
     metricSelected: {
-      backgroundColor: '#EADDFF',
+      backgroundColor: colors.sky,
     },
 
     table: {
-      borderColor: '#D8D1DE',
+      borderColor: colors.border,
       borderWidth: 1,
     },
 
     tableRow: {
       flexDirection: 'row',
       minHeight: 44,
-      borderBottomColor: '#E0DAE7',
+      borderBottomColor: colors.border,
       borderBottomWidth: 1,
       alignItems: 'center',
     },
@@ -393,7 +376,7 @@ export const styles =
       flex: 1.5,
       padding: 8,
       fontSize: 11,
-      color: '#4F4B55',
+      color: colors.muted,
     },
 
     tableCell: {
@@ -401,11 +384,11 @@ export const styles =
       textAlign: 'center',
       paddingVertical: 8,
       fontSize: 12,
-      color: '#17151B',
+      color: colors.ink,
     },
 
     toast: {
-      backgroundColor: '#EADDFF',
+      backgroundColor: colors.sky,
       borderRadius: 10,
       padding: 12,
     },
@@ -425,13 +408,13 @@ export const styles =
       justifyContent:
         'space-between',
       gap: 8,
-      borderTopColor: '#DED7E7',
+      borderTopColor: colors.border,
       borderTopWidth: 1,
       paddingVertical: 16,
     },
 
     error: {
-      color: '#AE283D',
+      color: colors.danger,
       fontSize: 13,
       lineHeight: 19,
     },

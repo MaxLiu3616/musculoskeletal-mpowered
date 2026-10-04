@@ -12,16 +12,16 @@ export type PainInsight = {
 
 export const insightCardCopy = {
   heading:
-    'New insights for your MPowered plan.',
+    'Your insights',
 
   checkPainHistoryLabel:
-    'Check pain history',
+    'Pain history',
 
   planAppointmentLabel:
-    'Plan Appointment with doctors',
+    'Plan a visit',
 
   checkPainGuideLabel:
-    'Check Pain Guide',
+    'Pain guide',
 
   dismissAccessibilityLabel:
     'Dismiss insight',

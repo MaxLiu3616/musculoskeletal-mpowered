@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import { Modal, Pressable, ScrollView, View } from 'react-native';
@@ -20,7 +21,7 @@ export default function HealthSelect<T extends string>({ label, value, options, 
       <Text style={styles.label}>{label}</Text>
       <Pressable accessibilityRole="button" accessibilityLabel={`${label}: ${value}`} accessibilityState={{ expanded: open }} onPress={() => setOpen(true)} style={[styles.input, styles.selectButton]}>
         <Text style={styles.value}>{value}</Text>
-        <Ionicons name="chevron-down" size={16} color="#716979" />
+        <Ionicons name="chevron-down" size={16} color={colors.muted} />
       </Pressable>
       <Modal animationType="fade" transparent visible={open} onRequestClose={() => setOpen(false)}>
         <View style={styles.modalBackdrop}>
@@ -30,7 +31,7 @@ export default function HealthSelect<T extends string>({ label, value, options, 
               {options.map((option) => (
                 <Pressable key={option} accessibilityRole="radio" accessibilityLabel={option} accessibilityState={{ checked: value === option }} onPress={() => { onChange(option); setOpen(false); }} style={[styles.option, option === value && styles.selectedOption]}>
                   <Text style={styles.value}>{option}</Text>
-                  {option === value ? <Ionicons name="checkmark" size={20} color="#6850A1" /> : null}
+                  {option === value ? <Ionicons name="checkmark" size={20} color={colors.primary} /> : null}
                 </Pressable>
               ))}
             </ScrollView>

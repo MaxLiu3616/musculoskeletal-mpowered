@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { Keyboard, Pressable, View } from 'react-native';
 
@@ -48,8 +49,8 @@ export default function OtherConditionsScreen({
         multiline
         onChangeText={updateConditions}
         placeholder={otherConditionsScreenCopy.inputPlaceholder}
-        placeholderTextColor="#7A747D"
-        selectionColor="#6D50AC"
+        placeholderTextColor={colors.muted}
+        selectionColor={colors.primary}
         style={styles.otherInput}
         value={conditions}
       />

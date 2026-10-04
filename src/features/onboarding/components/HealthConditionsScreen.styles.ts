@@ -1,3 +1,4 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -8,10 +9,12 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    color: '#17151B',
-    fontSize: 19,
-    fontWeight: '700',
-    lineHeight: 27,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 26,
+    fontWeight: '400',
+    lineHeight: 32,
     maxWidth: 330,
     textAlign: 'center',
   },
@@ -22,30 +25,30 @@ export const styles = StyleSheet.create({
   },
   diagnosisOption: {
     alignItems: 'center',
-    backgroundColor: '#F6F0F9',
-    borderBottomColor: '#7357AD',
+    backgroundColor: colors.sky,
+    borderBottomColor: colors.primary,
     borderBottomWidth: 1,
     borderRadius: 8,
     height: 48,
     justifyContent: 'center',
   },
   diagnosisOptionSelected: {
-    backgroundColor: '#6D50AC',
-    borderBottomColor: '#6D50AC',
+    backgroundColor: colors.primary,
+    borderBottomColor: colors.primary,
   },
   optionPressed: {
     opacity: 0.82,
   },
   diagnosisOptionText: {
-    color: '#57418D',
+    color: colors.primary,
     fontSize: 15,
     fontWeight: '600',
   },
   diagnosisOptionTextSelected: {
-    color: '#FFFFFF',
+    color: colors.surface,
   },
   information: {
-    color: '#4F4B55',
+    color: colors.muted,
     fontSize: 15,
     lineHeight: 22,
     marginTop: 45,
@@ -53,8 +56,9 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   primaryButton: {
+    minHeight: 48,
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
@@ -63,32 +67,35 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButtonDisabled: {
-    backgroundColor: '#E7D8FF',
+    backgroundColor: colors.sky,
   },
   primaryButtonPressed: {
     opacity: 0.82,
   },
   primaryButtonText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '600',
   },
   primaryButtonTextDisabled: {
-    color: '#554766',
+    color: colors.muted,
   },
   selectionContent: {
     paddingTop: 54,
   },
   selectionHelper: {
-    color: '#4F4B55',
+    color: colors.muted,
     fontSize: 14,
     marginTop: 16,
     textAlign: 'center',
   },
   searchContainer: {
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
     alignItems: 'center',
-    backgroundColor: '#F1EDF4',
-    borderBottomColor: '#5E5862',
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.muted,
     borderBottomWidth: 1,
     flexDirection: 'row',
     height: 48,
@@ -98,7 +105,7 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   searchInput: {
-    color: '#17151B',
+    color: colors.ink,
     flex: 1,
     fontSize: 15,
     height: '100%',
@@ -111,15 +118,15 @@ export const styles = StyleSheet.create({
     width: 44,
   },
   clearSearchButtonPressed: {
-    backgroundColor: '#E4DCEB',
+    backgroundColor: colors.border,
   },
   clearSearchText: {
-    color: '#57418D',
+    color: colors.primary,
     fontSize: 24,
     lineHeight: 26,
   },
   conditionsList: {
-    borderColor: '#E3DCE6',
+    borderColor: colors.border,
     borderWidth: 1,
     height: 310,
     marginTop: 14,
@@ -130,8 +137,8 @@ export const styles = StyleSheet.create({
     paddingBottom: 1,
   },
   conditionOption: {
-    backgroundColor: '#FFFFFF',
-    borderBottomColor: '#E3DCE6',
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     justifyContent: 'center',
     minHeight: 44,
@@ -139,19 +146,19 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   conditionOptionSelected: {
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
   },
   conditionOptionText: {
-    color: '#342E3A',
+    color: colors.ink,
     fontSize: 14,
     lineHeight: 20,
   },
   conditionOptionTextSelected: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontWeight: '600',
   },
   noResults: {
-    color: '#6A646E',
+    color: colors.muted,
     fontSize: 14,
     paddingHorizontal: 16,
     paddingVertical: 24,
@@ -169,10 +176,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
   skipButtonPressed: {
-    backgroundColor: '#F2EEF8',
+    backgroundColor: colors.sky,
   },
   skipButtonText: {
-    color: '#57418D',
+    color: colors.primary,
     fontSize: 14,
     fontWeight: '600',
     textDecorationLine: 'underline',
@@ -181,10 +188,13 @@ export const styles = StyleSheet.create({
     paddingTop: 102,
   },
   otherInput: {
-    backgroundColor: '#EAE6EF',
-    borderBottomColor: '#5E5862',
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.muted,
     borderBottomWidth: 1,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 15,
     height: 132,
     marginTop: 46,

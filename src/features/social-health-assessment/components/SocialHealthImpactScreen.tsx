@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Slider from '@react-native-community/slider';
 import { useState } from 'react';
 import {
@@ -170,7 +171,7 @@ export default function SocialHealthImpactScreen({
           maxLength={2}
           onChangeText={handleTextChange}
           placeholder="0 to 10"
-          placeholderTextColor="#B8B4BB"
+          placeholderTextColor={colors.muted}
           style={styles.scoreInput}
           value={
             selectedScore === null

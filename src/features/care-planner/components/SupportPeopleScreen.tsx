@@ -35,7 +35,7 @@ export default function SupportPeopleScreen({ onBack, onContinue }: { onBack: ()
     updateDraft({ supportPeople: people.map((person) => ({ ...person, name: person.name.trim(), phone: person.phone.trim(), email: person.email.trim() })) });
     onContinue();
   };
-  return <HealthScreen title="Add a Support Person" onBack={onBack} footer={<View style={styles.footerRow}>
+  return <HealthScreen title="Support people" onBack={onBack} footer={<View style={styles.footerRow}>
     <View style={styles.flex}><CareButton label="Skip" outline onPress={() => { updateDraft({ supportPeople: [] }); onContinue(); }} /></View>
     <View style={styles.flex}><CareButton label="Save" disabled={!people.every(isValidSupportPerson) || busy} onPress={save} /></View>
   </View>}>

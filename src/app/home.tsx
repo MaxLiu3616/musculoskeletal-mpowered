@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import { Linking } from 'react-native';
 
+import { formatAssessmentCyclePeriod, toLocalDateKey } from '@/features/assessment-cycle/AssessmentCycle.data';
 import { useCarePlanner } from '@/features/care-planner/CarePlannerContext';
 import { useHomeAssessment } from '@/features/home/HomeAssessmentContext';
 import HomeScreen from '@/features/home/components/HomeScreen';
@@ -94,7 +95,12 @@ export default function HomeRoute() {
 
   const {
     assessmentStatus,
+    cyclePeriodLabel,
   } = useHomeAssessment();
+
+  const weekStart = new Date();
+  weekStart.setDate(weekStart.getDate() - (weekStart.getDay() + 6) % 7);
+  const periodLabel = cyclePeriodLabel ?? formatAssessmentCyclePeriod(toLocalDateKey(weekStart));
 
   const {
     startPlan,
@@ -302,6 +308,7 @@ export default function HomeRoute() {
 
   return (
     <HomeScreen
+      periodLabel={periodLabel.replace(/-/g, '–')}
       assessmentStatus={
         assessmentStatus
       }

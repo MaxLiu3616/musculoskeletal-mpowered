@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
@@ -56,7 +57,7 @@ export default function MovementStayActiveScreen({
           keyboardType="numeric"
         onChangeText={handleChangeText}
         placeholder={movementAssessmentCopy.generalImpactsPlaceholder}
-        placeholderTextColor="#7A747D"
+        placeholderTextColor={colors.muted}
         style={styles.input}
         value={hoursActive}
       />

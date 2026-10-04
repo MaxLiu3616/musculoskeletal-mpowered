@@ -1,3 +1,4 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -8,10 +9,12 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    color: '#17151B',
-    fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 30,
+    fontFamily: fonts.display,
+    letterSpacing: -0.5,
+    color: colors.ink,
+    fontSize: 32,
+    fontWeight: '400',
+    lineHeight: 38,
     marginBottom: 38,
   },
   options: {
@@ -20,32 +23,32 @@ export const styles = StyleSheet.create({
   },
   option: {
     alignItems: 'center',
-    backgroundColor: '#F6F0F9',
-    borderColor: '#E3DCE6',
+    backgroundColor: colors.sky,
+    borderColor: colors.border,
     borderRadius: 12,
     borderWidth: 1,
-    boxShadow: '0 2px 2px rgba(0, 0, 0, 0.20)',
     height: 44,
     justifyContent: 'center',
   },
   optionSelected: {
-    backgroundColor: '#6D50AC',
-    borderColor: '#6D50AC',
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
   optionPressed: {
     opacity: 0.82,
   },
   optionText: {
-    color: '#6543A4',
+    color: colors.primary,
     fontSize: 14,
     fontWeight: '600',
   },
   optionTextSelected: {
-    color: '#FFFFFF',
+    color: colors.surface,
   },
   continueButton: {
+    minHeight: 48,
     alignItems: 'center',
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
@@ -54,30 +57,26 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   continueButtonDisabled: {
-    backgroundColor: '#E7D8FF',
+    backgroundColor: colors.sky,
   },
   continueButtonPressed: {
     opacity: 0.82,
   },
   continueButtonText: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 15,
     fontWeight: '600',
   },
   continueButtonTextDisabled: {
-    color: '#554766',
+    color: colors.muted,
   },
   research: {
     alignItems: 'center',
     marginTop: 89,
     maxWidth: 270,
   },
-  researchIcon: {
-    height: 28,
-    width: 24,
-  },
   researchMessage: {
-    color: '#4F4B55',
+    color: colors.muted,
     fontSize: 16,
     lineHeight: 23,
     textAlign: 'center',

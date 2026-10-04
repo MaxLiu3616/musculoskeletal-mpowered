@@ -14,7 +14,7 @@ import SignaturePad from './SignaturePad';
 export default function RecordingConsentScreen({ plan, onBack, onSave }: { plan: AppointmentPlan; onBack: () => void; onSave: (paths: string[]) => void }) {
   const [paths, setPaths] = useState<string[]>([]);
   const signed = !!plan.consent;
-  return <HealthScreen title="Ask for Recording Consent" onBack={onBack} footer={<View style={styles.footer}>
+  return <HealthScreen title="Recording consent" onBack={onBack} footer={<View style={styles.footer}>
     <CareButton label={signed ? 'Close' : 'Save'} disabled={!signed && !hasSignature(paths)} onPress={() => signed ? onBack() : onSave(paths)} />
   </View>}>
     <View style={styles.panel}>

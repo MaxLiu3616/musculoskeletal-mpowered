@@ -1,9 +1,10 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   viewport: {
     alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.canvas,
     overflow: 'hidden',
     width: '100%',
   },
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
   },
 
   safeArea: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.canvas,
     flex: 1,
   },
 
@@ -28,78 +29,40 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
 
-  header: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    minHeight: 48,
-  },
-
-  backButton: {
-    alignItems: 'center',
-    borderRadius: 6,
-    justifyContent: 'center',
-    minHeight: 36,
-    paddingHorizontal: 4,
-  },
-
-  backButtonPressed: {
-    backgroundColor: '#F5F0F8',
-  },
-
-  backButtonText: {
-    color: '#514D57',
-    fontSize: 12,
-    fontWeight: '500',
-  },
-
-  trackerTitle: {
-    color: '#17151B',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-
-  screenTitle: {
-    color: '#17151B',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 27,
-    marginBottom: 18,
-    marginTop: 4,
-  },
-
   helper: {
-    color: '#6C6472',
-    fontSize: 12,
+    color: colors.muted,
+    fontSize: 13,
     fontWeight: '400',
-    lineHeight: 17,
+    lineHeight: 19,
     marginBottom: 14,
     marginTop: -10,
   },
 
   summaryCard: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#BEB8C2',
-    borderRadius: 8,
+    backgroundColor: colors.surface,
+    borderColor: colors.softBorder,
+    borderRadius: 14,
     borderWidth: 1,
     padding: 12,
   },
 
   titleRow: {
+    flexWrap: 'wrap',
+    gap: 8,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
   cardTitle: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 14,
     fontWeight: '700',
     lineHeight: 20,
   },
 
   period: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 11,
     fontWeight: '600',
     marginLeft: 10,
@@ -107,28 +70,28 @@ export const styles = StyleSheet.create({
   },
 
   divider: {
-    backgroundColor: '#D5CFD8',
+    backgroundColor: colors.border,
     height: 1,
     marginBottom: 14,
     marginTop: 9,
   },
 
   sectionTitle: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 17,
     fontWeight: '700',
-    lineHeight: 18,
+    lineHeight: 24,
   },
 
   scorePanel: {
-    backgroundColor: '#F3F0F5',
+    backgroundColor: colors.canvas,
     borderRadius: 8,
     marginTop: 12,
     overflow: 'hidden',
   },
 
   scoreMessage: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 18,
@@ -143,7 +106,7 @@ export const styles = StyleSheet.create({
 
   tipsButton: {
     alignItems: 'center',
-    backgroundColor: '#C9C5CA',
+    backgroundColor: colors.border,
     flexDirection: 'row',
     justifyContent: 'center',
     minHeight: 44,
@@ -155,7 +118,7 @@ export const styles = StyleSheet.create({
   },
 
   tipsButtonText: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '700',
     marginLeft: 8,
@@ -166,7 +129,7 @@ export const styles = StyleSheet.create({
   },
 
   resultsTitle: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '700',
     lineHeight: 18,
@@ -182,17 +145,17 @@ export const styles = StyleSheet.create({
   },
 
   resultLabel: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 11,
     fontWeight: '700',
     lineHeight: 17,
   },
 
   resultText: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '400',
-    lineHeight: 18,
+    lineHeight: 21,
     marginTop: 2,
   },
 
@@ -206,7 +169,7 @@ export const styles = StyleSheet.create({
   },
 
   footerDivider: {
-    backgroundColor: '#D5CFD8',
+    backgroundColor: colors.border,
     height: 1,
     marginTop: 10,
   },
@@ -219,7 +182,7 @@ export const styles = StyleSheet.create({
   },
 
   savedText: {
-    color: '#817B83',
+    color: colors.muted,
     flex: 1,
     fontSize: 11,
     fontWeight: '500',
@@ -228,22 +191,22 @@ export const styles = StyleSheet.create({
 
   closeButton: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#CFC5D7',
-    borderRadius: 20,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 12,
     borderWidth: 1,
     justifyContent: 'center',
-    minHeight: 38,
+    minHeight: 48,
     minWidth: 100,
     paddingHorizontal: 20,
   },
 
   closeButtonPressed: {
-    backgroundColor: '#F3ECF7',
+    backgroundColor: colors.sky,
   },
 
   closeButtonText: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 13,
     fontWeight: '600',
   },

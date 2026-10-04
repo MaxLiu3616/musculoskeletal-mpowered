@@ -1,59 +1,84 @@
+import { colors, fonts } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    viewport: { alignSelf: 'center', backgroundColor: '#FFFFFF', flex: 1, width: '100%' },
+    accountHero: { backgroundColor: colors.primary, borderRadius: 16, padding: 20, flexDirection: 'row', alignItems: 'center', gap: 14 },
+    accountCopy: { flex: 1, gap: 6 },
+    accountName: { color: colors.surface, fontFamily: fonts.display, fontSize: 28, lineHeight: 34 },
+    accountDescription: { color: colors.sky, fontSize: 13, lineHeight: 20 },
+    settingsMenu: { backgroundColor: colors.surface, borderRadius: 14, borderWidth: 1, borderColor: colors.softBorder, paddingHorizontal: 14 },
+    settingsItem: { flexDirection: 'row', alignItems: 'center', gap: 13, minHeight: 78, paddingVertical: 14 },
+    settingsDivider: { borderTopColor: colors.softBorder, borderTopWidth: 1 },
+    settingsIcon: { backgroundColor: colors.sky, borderRadius: 12, width: 42, height: 42, alignItems: 'center', justifyContent: 'center' },
+    peachIcon: { backgroundColor: colors.peach },
+    settingsLabel: { flex: 1, color: colors.ink, fontSize: 16, lineHeight: 23, fontWeight: '600' },
+    logoutButton: { flexDirection: 'row', alignSelf: 'center', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48, paddingHorizontal: 20, marginTop: 6 },
+    logoutLabel: { color: colors.danger, fontSize: 15, lineHeight: 22, fontWeight: '600' },
+    pressed: { opacity: 0.7 },
+    actionButton: { backgroundColor: colors.primary, borderRadius: 12, minHeight: 48, padding: 14 },
+    viewport: { alignSelf: 'center', backgroundColor: colors.canvas, flex: 1, width: '100%' },
     webViewport: { maxWidth: 390 },
     keyboard: { flex: 1 },
     header: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 18, gap: 14 },
-    title: { color: '#17151B', fontSize: 22, fontWeight: '700', lineHeight: 28 },
-    subtitle: { color: '#4F4B55', fontSize: 14, lineHeight: 21 },
+    title: {
+    fontFamily: fonts.display,
+    letterSpacing: -0.5, color: colors.ink, fontSize: 32, fontWeight: '400', lineHeight: 38 },
+    subtitle: { color: colors.muted, fontSize: 14, lineHeight: 21 },
     backButton: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 6, minHeight: 44 },
-    backText: { color: '#51465F', fontSize: 15 },
+    backText: { color: colors.muted, fontSize: 15 },
     scroll: { flex: 1 },
     content: { paddingHorizontal: 20, paddingBottom: 24, flexGrow: 1, gap: 16 },
-    card: { backgroundColor: '#F4F2F8', borderRadius: 14, padding: 18, gap: 14 },
-    cardButtonText: { color: '#4D3A67', fontSize: 14, fontWeight: '600', lineHeight: 20 },
-    previewTitle: { color: '#17151B', fontSize: 18, fontWeight: '700', lineHeight: 25 },
-    label: { color: '#38313F', fontSize: 13, fontWeight: '600', lineHeight: 18 },
-    value: { color: '#17151B', fontSize: 14, lineHeight: 21 },
-    muted: { color: '#716979', fontSize: 12, lineHeight: 18 },
+    card: {
+    borderColor: colors.softBorder,
+    borderWidth: 1, backgroundColor: colors.surface, borderRadius: 14, padding: 18, gap: 14 },
+    cardButtonText: { color: colors.surface, fontSize: 15, fontWeight: '600', lineHeight: 22 },
+    previewTitle: { color: colors.ink, fontSize: 18, fontWeight: '700', lineHeight: 25 },
+    label: { color: colors.ink, fontSize: 13, fontWeight: '600', lineHeight: 18 },
+    value: { color: colors.ink, fontSize: 14, lineHeight: 21 },
+    muted: { color: colors.muted, fontSize: 12, lineHeight: 18 },
     disabled: { opacity: 0.4 },
-    input: { backgroundColor: '#FCF8FF', borderColor: '#BDB3C8', borderWidth: 1, borderRadius: 6, color: '#17151B', fontSize: 15, minHeight: 48, paddingHorizontal: 12, paddingVertical: 12 },
+    input: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 12, color: colors.ink, fontSize: 15, minHeight: 48, paddingHorizontal: 12, paddingVertical: 12 },
     field: { gap: 8 },
-    error: { color: '#AE283D', fontSize: 13, lineHeight: 19 },
-    row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 56, paddingVertical: 14, paddingHorizontal: 4, borderBottomColor: '#E0DAE7', borderBottomWidth: 1 },
-    rowText: { color: '#17151B', fontSize: 15, fontWeight: '600' },
-    deleteText: { color: '#AE283D', fontSize: 13, fontWeight: '600' },
-    logoutText: { color: '#AE283D', fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 24, minHeight: 44, textAlignVertical: 'center' },
+    error: { color: colors.danger, fontSize: 13, lineHeight: 19 },
+    row: {
+    gap: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 56, paddingVertical: 14, paddingHorizontal: 4, borderBottomColor: colors.border, borderBottomWidth: 1 },
+    rowText: {
+    flex: 1,
+    flexShrink: 1,
+    lineHeight: 22, color: colors.ink, fontSize: 15, fontWeight: '600' },
+    deleteText: { color: colors.danger, fontSize: 13, fontWeight: '600' },
     codeInputArea: { height: 58, marginTop: 24, maxWidth: 282, position: 'relative', width: '100%', alignSelf: 'center' },
     codeBoxes: { flexDirection: 'row', gap: 12, height: 58, justifyContent: 'center', pointerEvents: 'none' },
-    codeBox: { alignItems: 'center', backgroundColor: '#EAE6EF', borderColor: '#7A747D', borderRadius: 7, borderWidth: 1, height: 58, justifyContent: 'center', width: 54 },
-    codeBoxActive: { borderColor: '#6D50AC', borderWidth: 2 },
-    codeDigit: { color: '#17151B', fontSize: 22, fontWeight: '600' },
+    codeBox: { alignItems: 'center', backgroundColor: colors.sky, borderColor: colors.muted, borderRadius: 7, borderWidth: 1, height: 58, justifyContent: 'center', width: 54 },
+    codeBoxActive: { borderColor: colors.primary, borderWidth: 2 },
+    codeDigit: { color: colors.ink, fontSize: 22, fontWeight: '600' },
     codeInput: { color: 'transparent', height: 58, left: 0, opacity: 0.02, position: 'absolute', top: 0, width: '100%' },
-    assessmentCard: { backgroundColor: '#F4F2F8', borderRadius: 14, padding: 12, gap: 10 },
-    assessmentRow: { backgroundColor: '#FFFFFF', borderRadius: 12, minHeight: 56, justifyContent: 'center', paddingHorizontal: 16 },
-    assessmentRowText: { color: '#17151B', fontSize: 15, fontWeight: '700' },
-    greeting: { color: '#17151B', fontSize: 18, fontWeight: '700', marginBottom: 8 },
+    greeting: {
+    fontFamily: fonts.display,
+    lineHeight: 32,
+    letterSpacing: -0.5, color: colors.ink, fontSize: 26, fontWeight: '400', marginBottom: 8 },
+    assessmentCard: { backgroundColor: colors.sky, borderRadius: 14, padding: 12, gap: 10 },
+    assessmentRow: { backgroundColor: colors.surface, borderRadius: 12, minHeight: 56, justifyContent: 'center', paddingHorizontal: 16, paddingVertical: 12 },
+    assessmentRowText: { color: colors.ink, fontSize: 15, fontWeight: '600', lineHeight: 22 },
     supportSection: {
         gap: 16,
     },
 
     supportTitle: {
-        color: '#17151B',
+        color: colors.ink,
         fontSize: 17,
         fontWeight: '700',
         lineHeight: 24,
     },
 
     supportDescription: {
-        color: '#4F4B55',
+        color: colors.muted,
         fontSize: 14,
         lineHeight: 20,
     },
 
     contactButton: {
-        backgroundColor: '#6D50AC',
+        backgroundColor: colors.primary,
         borderRadius: 12,
         minHeight: 52,
         justifyContent: 'center',
@@ -62,7 +87,7 @@ export const styles = StyleSheet.create({
     },
 
     contactButtonText: {
-        color: '#FFFFFF',
+        color: colors.surface,
         fontSize: 15,
         fontWeight: '600',
     },
@@ -72,14 +97,14 @@ export const styles = StyleSheet.create({
     },
 
     conditionsTitle: {
-        color: '#17151B',
+        color: colors.ink,
         fontSize: 17,
         fontWeight: '700',
         marginBottom: 6,
     },
 
     conditionsHelper: {
-        color: '#4F4B55',
+        color: colors.muted,
         fontSize: 14,
         lineHeight: 20,
     },
@@ -87,9 +112,10 @@ export const styles = StyleSheet.create({
     searchContainer: {
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#F1EDF4',
-        borderBottomColor: '#5E5862',
-        borderBottomWidth: 1,
+        backgroundColor: colors.surface,
+        borderColor: colors.border,
+        borderWidth: 1,
+        borderRadius: 12,
         flexDirection: 'row',
         height: 48,
         marginTop: 20,
@@ -99,7 +125,7 @@ export const styles = StyleSheet.create({
     },
 
     searchInput: {
-        color: '#17151B',
+        color: colors.ink,
         flex: 1,
         fontSize: 15,
         height: '100%',
@@ -114,17 +140,17 @@ export const styles = StyleSheet.create({
     },
 
     clearSearchButtonPressed: {
-        backgroundColor: '#E4DCEB',
+        backgroundColor: colors.border,
     },
 
     clearSearchText: {
-        color: '#57418D',
+        color: colors.primary,
         fontSize: 24,
         lineHeight: 26,
     },
 
     conditionsList: {
-        borderColor: '#E3DCE6',
+        borderColor: colors.border,
         borderWidth: 1,
         height: 330,
         marginTop: 14,
@@ -138,8 +164,8 @@ export const styles = StyleSheet.create({
     },
 
     conditionOption: {
-        backgroundColor: '#FFFFFF',
-        borderBottomColor: '#E3DCE6',
+        backgroundColor: colors.surface,
+        borderBottomColor: colors.border,
         borderBottomWidth: 1,
         justifyContent: 'center',
         minHeight: 44,
@@ -148,17 +174,17 @@ export const styles = StyleSheet.create({
     },
 
     conditionOptionSelected: {
-        backgroundColor: '#6D50AC',
+        backgroundColor: colors.primary,
     },
 
     conditionOptionText: {
-        color: '#342E3A',
+        color: colors.ink,
         fontSize: 14,
         lineHeight: 20,
     },
 
     conditionOptionTextSelected: {
-        color: '#FFFFFF',
+        color: colors.surface,
         fontWeight: '600',
     },
 
@@ -167,7 +193,7 @@ export const styles = StyleSheet.create({
     },
 
     noResults: {
-        color: '#6A646E',
+        color: colors.muted,
         fontSize: 14,
         paddingHorizontal: 16,
         paddingVertical: 24,

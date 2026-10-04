@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, View, type TextInputProps } from 'react-native';
 
@@ -16,19 +17,19 @@ export function CareButton({ label, onPress, outline = false, disabled = false }
 export function CareField({ label, ...props }: TextInputProps & { label: string }) {
   return <View style={styles.field}>
     <Text style={styles.label}>{label}</Text>
-    <TextInput accessibilityLabel={label} placeholderTextColor="#79717F" {...props} style={[styles.input, props.style]} />
+    <TextInput accessibilityLabel={label} placeholderTextColor={colors.muted} {...props} style={[styles.input, props.style]} />
   </View>;
 }
 
 export function CareCheck({ label, checked, onPress }: { label: string; checked: boolean; onPress: () => void }) {
   return <Pressable accessibilityRole="checkbox" accessibilityLabel={label} accessibilityState={{ checked }} onPress={onPress} style={[styles.checkRow, checked && styles.checkedRow]}>
     <Text style={styles.checkText}>{label}</Text>
-    <Ionicons name={checked ? 'checkbox' : 'square-outline'} color={checked ? '#6850A1' : '#716979'} size={22} />
+    <Ionicons name={checked ? 'checkbox' : 'square-outline'} color={checked ? colors.primary : colors.muted} size={22} />
   </Pressable>;
 }
 
 export function CareNotice({ text }: { text: string }) {
-  return <View style={styles.notice}><Ionicons name="bulb-outline" color="#51465F" size={22} /><Text style={styles.noticeText}>{text}</Text></View>;
+  return <View style={styles.notice}><Ionicons name="bulb-outline" color={colors.muted} size={22} /><Text style={styles.noticeText}>{text}</Text></View>;
 }
 
 export function AppointmentOverview({ plan }: { plan: AppointmentPlan }) {

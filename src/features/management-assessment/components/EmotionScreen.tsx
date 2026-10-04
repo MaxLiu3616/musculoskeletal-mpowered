@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
@@ -45,8 +46,8 @@ export default function EmotionScreen({
         multiline
         onChangeText={setStrategy}
         placeholder={managementAssessmentCopy.emotionPlaceholder}
-        placeholderTextColor="#7A747D"
-        selectionColor="#6D50AC"
+        placeholderTextColor={colors.muted}
+        selectionColor={colors.primary}
         style={styles.textArea}
         value={strategy}
       />

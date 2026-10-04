@@ -1,17 +1,17 @@
 export const splashSlides = [
   {
     id: 'consultation',
-    image: require('../../../../assets/images/splash-consultation.jpg'),
-    title: 'Get tailored questions to assist your medical consultation',
+    icon: 'chatbubble-ellipses-outline',
+    title: 'Feel ready for your next appointment.',
   },
   {
     id: 'tracking',
-    image: require('../../../../assets/images/splash-tracking.jpg'),
-    title: 'Track your pain and its impacts weekly',
+    icon: 'pulse-outline',
+    title: 'Check in with your body each week.',
   },
   {
     id: 'insights',
-    image: require('../../../../assets/images/splash-insights.jpg'),
-    title: 'See your progress and health insights in one place',
+    icon: 'stats-chart-outline',
+    title: 'Your progress, all in one place.',
   },
 ] as const;

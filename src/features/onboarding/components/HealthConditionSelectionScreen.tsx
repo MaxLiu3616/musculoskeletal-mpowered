@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 
@@ -70,9 +71,9 @@ export default function HealthConditionSelectionScreen({
           autoCorrect={false}
           onChangeText={setQuery}
           placeholder={conditionSelectionScreenCopy.searchPlaceholder}
-          placeholderTextColor="#7A747D"
+          placeholderTextColor={colors.muted}
           returnKeyType="search"
-          selectionColor="#6D50AC"
+          selectionColor={colors.primary}
           style={styles.searchInput}
           value={query}
         />

@@ -13,7 +13,7 @@ import { CareButton, CareField } from './CarePlannerUI';
 
 export default function AppointmentFormScreen({ onBack, onContinue }: { onBack: () => void; onContinue: () => void }) {
   const { draft, updateDraft } = useCarePlanner();
-  return <HealthScreen title="Plan My Appointment" onBack={onBack} footer={<View style={styles.footer}><CareButton label="Save" disabled={!isValidAppointmentDate(draft.appointmentDate)} onPress={() => { updateDraft({ doctorName: draft.doctorName.trim() }); onContinue(); }} /></View>}>
+  return <HealthScreen title="My appointment" onBack={onBack} footer={<View style={styles.footer}><CareButton label="Save" disabled={!isValidAppointmentDate(draft.appointmentDate)} onPress={() => { updateDraft({ doctorName: draft.doctorName.trim() }); onContinue(); }} /></View>}>
     <Text style={styles.subtitle}>{carePlannerCopy.bookingNote}</Text>
     <View style={styles.panel}>
       <AppointmentDatePicker value={draft.appointmentDate} onChange={(appointmentDate) => updateDraft({ appointmentDate })} />

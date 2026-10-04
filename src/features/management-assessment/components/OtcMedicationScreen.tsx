@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 
@@ -41,8 +42,8 @@ export default function OtcMedicationScreen({
         multiline
         onChangeText={setMedication}
         placeholder={managementAssessmentCopy.otcPlaceholder}
-        placeholderTextColor="#7A747D"
-        selectionColor="#6D50AC"
+        placeholderTextColor={colors.muted}
+        selectionColor={colors.primary}
         style={styles.textArea}
         value={medication}
       />

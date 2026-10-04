@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -47,9 +48,9 @@ export default function YearOfBirthScreen({
         onChangeText={updateYear}
         onSubmitEditing={continueToHealthConditions}
         placeholder={yearOfBirthScreenCopy.placeholder}
-        placeholderTextColor="#9A95A0"
+        placeholderTextColor={colors.muted}
         returnKeyType="done"
-        selectionColor="#6D50AC"
+        selectionColor={colors.primary}
         style={styles.input}
         value={year}
       />

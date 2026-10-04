@@ -1,9 +1,10 @@
+import { colors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   viewport: {
     alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.canvas,
     overflow: 'hidden',
     width: '100%',
   },
@@ -13,105 +14,27 @@ export const styles = StyleSheet.create({
   },
 
   safeArea: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.canvas,
     flex: 1,
-  },
-
-  keyboardView: {
-    flex: 1,
-  },
-
-  scrollContent: {
-    flexGrow: 1,
-  },
-
-  screen: {
-    flexGrow: 1,
-    paddingBottom: 24,
-    paddingHorizontal: 20,
-    width: '100%',
-  },
-
-  header: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    minHeight: 48,
-  },
-
-  backButton: {
-    alignItems: 'center',
-    borderRadius: 6,
-    justifyContent: 'center',
-    minHeight: 36,
-    paddingHorizontal: 4,
-  },
-
-  backButtonPressed: {
-    backgroundColor: '#F5F0F8',
-  },
-
-  backButtonText: {
-    color: '#514D57',
-    fontSize: 12,
-    fontWeight: '500',
-  },
-
-  trackerTitle: {
-    color: '#17151B',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-
-  assessmentTitle: {
-    color: '#17151B',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 27,
-    marginBottom: 18,
-    marginTop: 4,
-  },
-
-  questionCard: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#BEB8C2',
-    borderRadius: 8,
-    borderWidth: 1,
-    flex: 1,
-    padding: 12,
-  },
-
-  sectionTitle: {
-    color: '#17151B',
-    fontSize: 14,
-    fontWeight: '700',
-    lineHeight: 20,
-  },
-
-  divider: {
-    backgroundColor: '#D5CFD8',
-    height: 1,
-    marginBottom: 12,
-    marginTop: 9,
   },
 
   prompt: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '600',
-    lineHeight: 18,
+    lineHeight: 21,
   },
 
   helper: {
-    color: '#6C6472',
-    fontSize: 11,
+    color: colors.muted,
+    fontSize: 13,
     fontStyle: 'italic',
-    lineHeight: 16,
+    lineHeight: 19,
     marginTop: 6,
   },
 
   sourceLabel: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 11,
     fontWeight: '700',
     lineHeight: 17,
@@ -119,8 +42,8 @@ export const styles = StyleSheet.create({
   },
 
   medicationList: {
-    backgroundColor: '#FBF3FC',
-    borderRadius: 6,
+    backgroundColor: colors.canvas,
+    borderRadius: 12,
     flexGrow: 0,
     height: 250,
     marginTop: 12,
@@ -130,7 +53,7 @@ export const styles = StyleSheet.create({
 
   medicationOption: {
     alignItems: 'center',
-    borderBottomColor: '#D9D0DE',
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
     minHeight: 58,
@@ -139,7 +62,7 @@ export const styles = StyleSheet.create({
   },
 
   optionPressed: {
-    backgroundColor: '#F1E4F7',
+    backgroundColor: colors.sky,
   },
 
   medicationTextGroup: {
@@ -148,14 +71,14 @@ export const styles = StyleSheet.create({
   },
 
   medicationName: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '600',
-    lineHeight: 17,
+    lineHeight: 21,
   },
 
   medicationSchedule: {
-    color: '#6C6472',
+    color: colors.muted,
     fontSize: 11,
     lineHeight: 16,
     marginTop: 1,
@@ -163,8 +86,8 @@ export const styles = StyleSheet.create({
 
   checkbox: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#514D57',
+    backgroundColor: colors.surface,
+    borderColor: colors.muted,
     borderRadius: 3,
     borderWidth: 1.5,
     height: 18,
@@ -173,22 +96,23 @@ export const styles = StyleSheet.create({
   },
 
   checkboxSelected: {
-    backgroundColor: '#6D50AC',
-    borderColor: '#6D50AC',
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
 
   checkmark: {
-    color: '#FFFFFF',
+    color: colors.surface,
     fontSize: 12,
     fontWeight: '700',
     lineHeight: 15,
   },
 
   textArea: {
-    borderColor: '#D5CFD8',
-    borderRadius: 8,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 12,
     borderWidth: 1,
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     lineHeight: 18,
     marginTop: 18,
@@ -198,15 +122,15 @@ export const styles = StyleSheet.create({
   },
 
   choiceList: {
-    backgroundColor: '#FBF3FC',
-    borderRadius: 6,
+    backgroundColor: colors.canvas,
+    borderRadius: 12,
     marginTop: 18,
     overflow: 'hidden',
   },
 
   choiceOption: {
     alignItems: 'center',
-    borderBottomColor: '#D9D0DE',
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
     minHeight: 54,
@@ -215,8 +139,8 @@ export const styles = StyleSheet.create({
 
   radio: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#514D57',
+    backgroundColor: colors.surface,
+    borderColor: colors.muted,
     borderRadius: 9,
     borderWidth: 1.5,
     height: 18,
@@ -226,74 +150,21 @@ export const styles = StyleSheet.create({
   },
 
   radioSelected: {
-    borderColor: '#6D50AC',
+    borderColor: colors.primary,
   },
 
   radioDot: {
-    backgroundColor: '#6D50AC',
+    backgroundColor: colors.primary,
     borderRadius: 4,
     height: 8,
     width: 8,
   },
 
   choiceLabel: {
-    color: '#17151B',
-    fontSize: 12,
-    fontWeight: '600',
-    lineHeight: 17,
-  },
-
-  actionRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 'auto',
-    paddingTop: 18,
-  },
-
-  stepBadge: {
-    alignItems: 'center',
-    borderColor: '#CFC6D5',
-    borderRadius: 5,
-    borderWidth: 1,
-    justifyContent: 'center',
-    minHeight: 30,
-    minWidth: 38,
-    paddingHorizontal: 7,
-  },
-
-  stepText: {
-    color: '#514D57',
-    fontSize: 11,
-    fontWeight: '600',
-  },
-
-  recordButton: {
-    alignItems: 'center',
-    backgroundColor: '#6D50AC',
-    borderRadius: 10,
-    justifyContent: 'center',
-    minHeight: 44,
-    minWidth: 112,
-    paddingHorizontal: 18,
-  },
-
-  recordButtonDisabled: {
-    backgroundColor: '#E7D8FF',
-  },
-
-  recordButtonPressed: {
-    opacity: 0.82,
-  },
-
-  recordButtonText: {
-    color: '#FFFFFF',
+    color: colors.ink,
     fontSize: 14,
     fontWeight: '600',
-  },
-
-  recordButtonTextDisabled: {
-    color: '#554766',
+    lineHeight: 21,
   },
 
   // Summary
@@ -309,30 +180,32 @@ export const styles = StyleSheet.create({
   },
 
   summaryIntro: {
-    color: '#6C6472',
-    fontSize: 12,
+    color: colors.muted,
+    fontSize: 13,
     fontWeight: '400',
-    lineHeight: 17,
+    lineHeight: 19,
     marginBottom: 14,
     marginTop: -10,
   },
 
   summaryCard: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#BEB8C2',
-    borderRadius: 8,
+    backgroundColor: colors.surface,
+    borderColor: colors.softBorder,
+    borderRadius: 14,
     borderWidth: 1,
     padding: 12,
   },
 
   summaryTitleRow: {
+    flexWrap: 'wrap',
+    gap: 8,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
   summaryCardTitle: {
-    color: '#17151B',
+    color: colors.ink,
     flex: 1,
     fontSize: 14,
     fontWeight: '700',
@@ -340,7 +213,7 @@ export const styles = StyleSheet.create({
   },
 
   summaryPeriod: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 11,
     fontWeight: '600',
     marginLeft: 10,
@@ -348,28 +221,28 @@ export const styles = StyleSheet.create({
   },
 
   summaryDivider: {
-    backgroundColor: '#D5CFD8',
+    backgroundColor: colors.border,
     height: 1,
     marginBottom: 14,
     marginTop: 9,
   },
 
   summarySectionTitle: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '700',
     lineHeight: 18,
   },
 
   overviewPanel: {
-    backgroundColor: '#F3F0F5',
+    backgroundColor: colors.canvas,
     borderRadius: 8,
     marginTop: 12,
     overflow: 'hidden',
   },
 
   overviewText: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 18,
@@ -380,7 +253,7 @@ export const styles = StyleSheet.create({
 
   tipsButton: {
     alignItems: 'center',
-    backgroundColor: '#C9C5CA',
+    backgroundColor: colors.border,
     flexDirection: 'row',
     justifyContent: 'center',
     minHeight: 44,
@@ -392,7 +265,7 @@ export const styles = StyleSheet.create({
   },
 
   tipsButtonText: {
-    color: '#17151B',
+    color: colors.ink,
     fontSize: 12,
     fontWeight: '700',
     marginLeft: 8,
@@ -412,22 +285,22 @@ export const styles = StyleSheet.create({
   },
 
   resultLabel: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 11,
     fontWeight: '700',
     lineHeight: 17,
   },
 
   resultText: {
-    color: '#17151B',
-    fontSize: 12,
+    color: colors.ink,
+    fontSize: 14,
     fontWeight: '400',
-    lineHeight: 18,
+    lineHeight: 21,
     marginTop: 3,
   },
 
   summaryFooterDivider: {
-    backgroundColor: '#D5CFD8',
+    backgroundColor: colors.border,
     height: 1,
     marginTop: 4,
   },
@@ -440,7 +313,7 @@ export const styles = StyleSheet.create({
   },
 
   journalStatus: {
-    color: '#817B83',
+    color: colors.muted,
     flex: 1,
     fontSize: 11,
     fontWeight: '500',
@@ -449,22 +322,22 @@ export const styles = StyleSheet.create({
 
   closeButton: {
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderColor: '#CFC5D7',
-    borderRadius: 20,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 12,
     borderWidth: 1,
     justifyContent: 'center',
-    minHeight: 38,
+    minHeight: 48,
     minWidth: 100,
     paddingHorizontal: 20,
   },
 
   closeButtonPressed: {
-    backgroundColor: '#F3ECF7',
+    backgroundColor: colors.sky,
   },
 
   closeButtonText: {
-    color: '#514D57',
+    color: colors.muted,
     fontSize: 13,
     fontWeight: '600',
   },
