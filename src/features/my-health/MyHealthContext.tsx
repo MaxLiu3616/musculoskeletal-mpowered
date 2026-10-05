@@ -37,6 +37,8 @@ type MyHealthContextValue = {
   removePrescription: (
     id: string,
   ) => void;
+
+  reset: () => void;
 };
 
 const MyHealthContext =
@@ -131,6 +133,12 @@ export function MyHealthProvider({
     );
   };
 
+  const reset = () => {
+    setRecords([]);
+    setPrescriptions([]);
+    nextPrescriptionId.current = 0;
+  };
+
   return (
     <MyHealthContext.Provider
       value={{
@@ -139,6 +147,7 @@ export function MyHealthProvider({
         saveAssessment,
         savePrescription,
         removePrescription,
+        reset,
       }}
     >
       {children}

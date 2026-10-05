@@ -1,8 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, ImageBackground, Pressable, SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
+import { AccessibilityInfo, ImageBackground, Pressable, SafeAreaView, ScrollView, StatusBar, View, useWindowDimensions } from 'react-native';
 
 import { BrandMark } from '@/components/ScreenHeader';
+import { TABLET_BREAKPOINT } from '@/components/layout';
 import { AppText as Text } from '@/components/typography';
 import { colors } from '@/theme';
 import { splashSlides } from './SplashScreen.data';
@@ -13,6 +14,8 @@ export default function SplashScreen({ onGetStarted, onSignIn }: {
   onSignIn: () => void;
 }) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const { width } = useWindowDimensions();
+  const isTablet = width >= TABLET_BREAKPOINT;
   const [galleryWidth, setGalleryWidth] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(true);
   const galleryRef = useRef<ScrollView>(null);
@@ -46,14 +49,14 @@ export default function SplashScreen({ onGetStarted, onSignIn }: {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.peach} />
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[styles.scrollContent, isTablet && styles.tabletScrollContent]} showsVerticalScrollIndicator={false}>
         <ImageBackground source={require('../../../../assets/images/home-anatomy-hero.png')}
-          resizeMode="cover" style={styles.hero} imageStyle={styles.heroImage}>
+          resizeMode="cover" style={[styles.hero, isTablet && styles.tabletHero]} imageStyle={styles.heroImage}>
           <BrandMark />
           <Text accessibilityRole="header" style={styles.heroTitle}>Care for{ '\n' }all of you.</Text>
         </ImageBackground>
 
-        <View style={styles.content}>
+        <View style={[styles.content, isTablet && styles.tabletContent]}>
           <View onLayout={event => setGalleryWidth(event.nativeEvent.layout.width)} style={styles.gallery}>
             <ScrollView horizontal pagingEnabled bounces={false} ref={galleryRef}
               showsHorizontalScrollIndicator={false}

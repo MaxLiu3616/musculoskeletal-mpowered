@@ -76,6 +76,8 @@ type HomeAssessmentContextValue = {
   markAssessmentComplete: (
     assessmentId: HomeAssessmentId,
   ) => void;
+
+  reset: () => void;
 };
 
 const HomeAssessmentContext =
@@ -219,6 +221,8 @@ export function HomeAssessmentProvider({
         cyclePeriodLabel,
 
         markAssessmentComplete,
+
+        reset: () => setState(initialState),
       }}
     >
       {children}

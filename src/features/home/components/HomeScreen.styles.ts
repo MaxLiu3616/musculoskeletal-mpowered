@@ -5,17 +5,21 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAF8F5',
   },
-  webViewport: {
-    width: '100%',
-    maxWidth: 390,
-    alignSelf: 'center',
-  },
   screen: {
     flex: 1,
   },
   scrollContent: {
     flexGrow: 1,
   },
+  tabletScrollContent: { width: '100%', maxWidth: 1200, alignSelf: 'center', padding: 24, gap: 24 },
+  wideScrollContent: { flexDirection: 'row', alignItems: 'flex-start' },
+  tabletOverview: { gap: 16 },
+  overviewColumn: { flex: 0.9, minWidth: 0 },
+  mainColumn: { flex: 1.1, minWidth: 0 },
+  tabletContent: { paddingHorizontal: 0, paddingTop: 0 },
+  tabletCard: { minHeight: 148, padding: 18 },
+  tabletManagementCard: { minHeight: 88 },
+  tabletDescription: { fontSize: 14, lineHeight: 20 },
   hero: {
     minHeight: 246,
     backgroundColor: '#F8DAC6',

@@ -40,6 +40,7 @@ type SettingContextValue = {
     addSupportPerson: (person: Omit<SupportPerson, 'id'>) => void;
     updateSupportPerson: (id: string, changes: Partial<SupportPerson>) => void;
     removeSupportPerson: (id: string) => void;
+    reset: () => void;
 };
 
 const SettingContext = createContext<SettingContextValue | null>(null);
@@ -48,7 +49,6 @@ type SettingProviderProps = {
     children: ReactNode;
 };
 
-let nextSupportPersonId = 1;
 const textSizeStorageKey = '@mpowered:text-size';
 
 export function SettingProvider({ children }: SettingProviderProps) {
@@ -62,6 +62,7 @@ export function SettingProvider({ children }: SettingProviderProps) {
         textSize: 'medium',
     });
     const [supportPeople, setSupportPeople] = useState<SupportPerson[]>([]);
+    const nextSupportPersonId = useRef(1);
     const displayChanged = useRef(false);
 
     useEffect(() => {
@@ -96,8 +97,8 @@ export function SettingProvider({ children }: SettingProviderProps) {
     };
 
     const addSupportPerson = (person: Omit<SupportPerson, 'id'>) => {
-        const id = String(nextSupportPersonId);
-        nextSupportPersonId += 1;
+        const id = String(nextSupportPersonId.current);
+        nextSupportPersonId.current += 1;
         setSupportPeople((current) => [...current, { ...person, id }]);
     };
 
@@ -113,6 +114,14 @@ export function SettingProvider({ children }: SettingProviderProps) {
         setSupportPeople((current) =>
             current.filter((person) => person.id !== id),
         );
+    };
+
+    const reset = () => {
+        setPhone('');
+        setPasswordState('');
+        setNotifications({ weeklyReminders: true, appointmentReminders: true });
+        setSupportPeople([]);
+        nextSupportPersonId.current = 1;
     };
 
     return (
@@ -131,6 +140,7 @@ export function SettingProvider({ children }: SettingProviderProps) {
                 addSupportPerson,
                 updateSupportPerson,
                 removeSupportPerson,
+                reset,
             }}
         >
             {children}

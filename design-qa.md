@@ -1,5 +1,14 @@
 # MPowered design implementation QA
 
+## Logout cleanup — 29 September 2026
+
+- Reproduced the original bug by saving a synthetic reflection, logging out, signing in again, and reopening the reflection. The previous note remained visible.
+- Regression procedure: populate the account name and health conditions, reflection, support people, notification preferences, prescription, completed Management assessment, and an appointment with support details. Select Large text, log out, then revisit the screens without reloading.
+- Passed: name and conditions cleared; progress returned to 0/5; reflection, prescription list, assessment history, appointments, support people, and Management draft cleared; notification preferences returned to their defaults. Large text survived logout. Restored Medium text after testing.
+- A fresh demo sign-in also opened an empty reflection. Browser Back can reopen a route, but the checked session data stays cleared; this change does not add authentication guards.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. Browser logs contained no warnings or errors. Native-device logout testing was not performed.
+- Evidence: [regression results](../output/logout-cleanup-20260929/checks.json), [cleared My Health screen](../output/logout-cleanup-20260929/cleared-health.png).
+
 Date: 23 September 2026
 
 Branch: `design-idea`

@@ -1,8 +1,8 @@
 import MotionPressable from '@/components/motion/MotionPressable';
 import ScreenHeader from '@/components/ScreenHeader';
+import { readableWidth } from '@/components/layout';
 import { colors } from '@/theme';
 import {
-  Platform,
   ScrollView,
   StatusBar,
   View,
@@ -86,8 +86,7 @@ export default function PainAssessmentSummaryScreen({
     <View
       style={[
         styles.viewport,
-        Platform.OS === 'web' &&
-          styles.webViewport,
+        readableWidth,
         { flex: 1 },
       ]}
     >

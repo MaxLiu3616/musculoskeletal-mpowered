@@ -1,12 +1,15 @@
 import { useId, useState, type ReactNode } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
 
 import { useReducedMotion } from '@/components/motion/MotionProvider';
+import { TABLET_BREAKPOINT } from '@/components/layout';
 import { styles } from './HomeScreen.styles';
 
 export default function HomeAnatomyHero({ scrollY, children }: { scrollY: Animated.Value; children: ReactNode }) {
   const reducedMotion = useReducedMotion();
+  const { width } = useWindowDimensions();
+  const isTablet = width >= TABLET_BREAKPOINT;
   const gradientId = useId();
   const [height, setHeight] = useState(246);
   const travel = (distance: number) => reducedMotion !== false ? 0 : scrollY.interpolate({
@@ -14,7 +17,7 @@ export default function HomeAnatomyHero({ scrollY, children }: { scrollY: Animat
   });
 
   return (
-    <View testID="home-anatomy-hero" style={styles.hero} onLayout={event => setHeight(event.nativeEvent.layout.height)}>
+    <View testID="home-anatomy-hero" style={[styles.hero, isTablet && art.tabletHero]} onLayout={event => setHeight(event.nativeEvent.layout.height)}>
       <View style={art.clip} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" aria-hidden>
         <Animated.View testID="anatomy-backdrop" style={[art.backdrop, { top: -height / 2, bottom: -height / 2, transform: [{ translateY: travel(height * 0.5) }] }]}>
           <Svg width="100%" height="100%">
@@ -51,6 +54,7 @@ export default function HomeAnatomyHero({ scrollY, children }: { scrollY: Animat
 }
 
 const art = StyleSheet.create({
+  tabletHero: { minHeight: 330, borderRadius: 20, overflow: 'hidden' },
   clip: { ...StyleSheet.absoluteFill, overflow: 'hidden', pointerEvents: 'none' },
   backdrop: { position: 'absolute', left: 0, right: 0 },
   layer: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },

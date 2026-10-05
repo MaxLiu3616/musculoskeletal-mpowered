@@ -1,9 +1,11 @@
 import { Stack, usePathname } from 'expo-router';
 import { useFonts } from 'expo-font';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BottomNavigation from '@/components/navigation/BottomNavigation';
+import SideNavigation from '@/components/navigation/SideNavigation';
+import { WIDE_LAYOUT_BREAKPOINT } from '@/components/layout';
 import { MotionProvider } from '@/components/motion/MotionProvider';
 import AssessmentTransitionProvider from '@/components/motion/AssessmentTransitionProvider';
 import AssessmentTransitionLayer from '@/components/motion/AssessmentTransitionLayer';
@@ -23,31 +25,34 @@ function AppNavigator() {
   const pathname = usePathname();
   const activeItem = getActiveBottomNavigationItem(pathname);
   const isHome = pathname === '/home';
+  const { width } = useWindowDimensions();
+  const showSidebar = width >= WIDE_LAYOUT_BREAKPOINT && activeItem !== null;
   const { busy } = useAssessmentTransition();
 
   return (
     <SafeAreaView
-      edges={activeItem ? ['top', 'left', 'right'] : []}
+      edges={activeItem ? (showSidebar ? ['top', 'bottom', 'left', 'right'] : ['top', 'left', 'right']) : []}
       style={[
         styles.container,
         isHome && styles.homeContainer,
-        Platform.OS === 'web' && styles.webViewport,
+        showSidebar && styles.wideContainer,
       ]}
     >
+      {activeItem ? (
+        <SafeAreaView edges={showSidebar ? [] : ['bottom']}
+          style={[styles.navigation, isHome && styles.homeNavigation, showSidebar && styles.sideNavigation]}>
+          {showSidebar ? <SideNavigation activeItem={activeItem} /> : <BottomNavigation activeItem={activeItem} />}
+        </SafeAreaView>
+      ) : null}
       <View style={styles.content}>
         <View style={[styles.content, { pointerEvents: busy ? 'none' : 'auto' }]}
           accessibilityElementsHidden={busy} importantForAccessibility={busy ? 'no-hide-descendants' : 'auto'} aria-hidden={busy}>
-          <Stack screenOptions={{ headerShown: false }}>
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.canvas } }}>
             {homeAssessments.map(item => <Stack.Screen key={item.id} name={`assessment/${item.id}`} options={{ animation: 'none' }} />)}
           </Stack>
         </View>
         <AssessmentTransitionLayer />
       </View>
-      {activeItem ? (
-        <SafeAreaView edges={['bottom']} style={[styles.navigation, isHome && styles.homeNavigation]}>
-          <BottomNavigation activeItem={activeItem} />
-        </SafeAreaView>
-      ) : null}
     </SafeAreaView>
   );
 }
@@ -81,9 +86,10 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, width: '100%', alignSelf: 'center', backgroundColor: colors.peach },
-  content: { flex: 1, minHeight: 0 },
-  webViewport: { maxWidth: 390, maxHeight: 844 },
+  container: { flex: 1, flexDirection: 'column-reverse', width: '100%', backgroundColor: colors.canvas },
+  content: { flex: 1, minHeight: 0, minWidth: 0 },
+  wideContainer: { flexDirection: 'row' },
+  sideNavigation: { width: 216 },
   navigation: { backgroundColor: colors.canvas, flexShrink: 0 },
   homeContainer: { backgroundColor: '#F8DAC6' },
   homeNavigation: { backgroundColor: '#FAF8F5' },

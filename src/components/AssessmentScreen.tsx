@@ -1,13 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useRef, type ReactNode } from 'react';
-import { Animated, Easing, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, Easing, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ScreenHeader from './ScreenHeader';
 import MotionPressable, { MotionArrow } from './motion/MotionPressable';
 import { useReducedMotion } from './motion/MotionProvider';
 import { AppText as Text } from './typography';
+import { readableWidth, TABLET_BREAKPOINT } from './layout';
 import { colors } from '@/theme';
 
 type Props = {
@@ -26,6 +27,7 @@ export default function AssessmentScreen({
   title, sectionTitle, step, totalSteps, canRecord, onBack, onRecord, children,
 }: Props) {
   const { top } = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const reducedMotion = useReducedMotion();
   const visited = useRef(false);
   const questionOffset = useRef(new Animated.Value(18)).current;
@@ -47,7 +49,7 @@ export default function AssessmentScreen({
   return (
     <KeyboardAvoidingView style={styles.screen} keyboardVerticalOffset={top}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView bounces={false} showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, readableWidth]} keyboardShouldPersistTaps="handled">
         <ScreenHeader title={title} compact eyebrow="Weekly check-in" onBack={() => { Keyboard.dismiss(); onBack(); }} />
         <View style={styles.progress}>
           <View style={styles.progressLabels}>
@@ -63,7 +65,7 @@ export default function AssessmentScreen({
             ))}
           </View>
         </View>
-        <Animated.View testID="assessment-question" style={[styles.card, {
+        <Animated.View testID="assessment-question" style={[styles.card, width >= TABLET_BREAKPOINT && styles.tabletCard, {
           opacity: reducedMotion ? 1 : questionOffset.interpolate({ inputRange: [-18, 0, 18], outputRange: [0, 1, 0], extrapolate: 'clamp' }),
           transform: [{ translateX: reducedMotion ? 0 : questionOffset }],
         }]}>
@@ -72,7 +74,7 @@ export default function AssessmentScreen({
           {children}
         </Animated.View>
       </ScrollView>
-      <View style={styles.footer}>
+      <View style={[styles.footer, readableWidth]}>
         <MotionPressable accessibilityRole="button" accessibilityLabel={step === totalSteps ? 'View summary' : 'Continue'} accessibilityState={{ disabled: !canRecord }}
           disabled={!canRecord} onPress={() => { Keyboard.dismiss(); onRecord(); }}
           style={({ pressed }) => [styles.button, !canRecord && styles.disabled, pressed && styles.pressed]}>
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
   segment: { flex: 1, height: 5, borderRadius: 3, backgroundColor: '#849DC6' },
   segmentActive: { backgroundColor: colors.surface },
   card: { backgroundColor: colors.surface, marginHorizontal: 17, marginTop: 12, borderRadius: 14, borderWidth: 1, borderColor: colors.softBorder, padding: 14, flexGrow: 1 },
+  tabletCard: { flexGrow: 0, padding: 24 },
   questionTitle: { color: colors.ink, fontSize: 19, lineHeight: 26, fontWeight: '600' },
   divider: { height: 1, backgroundColor: colors.border, marginTop: 8, marginBottom: 10 },
   footer: { backgroundColor: colors.canvas, paddingHorizontal: 17, paddingVertical: 12, borderTopWidth: 1, borderTopColor: colors.softBorder },

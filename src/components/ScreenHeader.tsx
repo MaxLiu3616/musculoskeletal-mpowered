@@ -5,6 +5,7 @@ import { useCallback, useLayoutEffect, useRef } from 'react';
 import { Image, Pressable, StyleSheet, View, useWindowDimensions, type Text as NativeText } from 'react-native';
 
 import { AppText as Text } from './typography';
+import { readableWidth } from './layout';
 import { measureMorphBox, useAssessmentTransition, type HeaderGeometry } from './motion/AssessmentTransitionContext';
 import { homeAssessments } from '@/features/home/components/HomeScreen.data';
 import { useSetting } from '@/features/setting/SettingContext';
@@ -59,7 +60,7 @@ export default function ScreenHeader({
   }, [display.textSize, fontScale, height, measureHeader, width]);
 
   return (
-    <View onLayout={measureHeader} style={[styles.header, compact && styles.compactHeader]}>
+    <View onLayout={measureHeader} style={[styles.header, readableWidth, compact && styles.compactHeader]}>
       <View style={[styles.topRow, compact && styles.compactTopRow]}>
         {onBack ? (
           <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={onBack}

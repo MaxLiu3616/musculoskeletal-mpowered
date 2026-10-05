@@ -28,9 +28,12 @@ export default function useStaggeredEntrance(enabled = true) {
 
   return (index: number) => {
     const delay = Math.min(index, 6) * 0.075;
+    const samples = [0, 0.25, 0.5, 0.75, 1];
+    // Native interpolation supports ranges, but not an easing function.
     const progress = entrance.interpolate({
-      inputRange: [delay, delay + 0.55], outputRange: [0, 1],
-      extrapolate: 'clamp', easing: Easing.out(Easing.cubic),
+      inputRange: samples.map(value => delay + value * 0.55),
+      outputRange: samples.map(Easing.out(Easing.cubic)),
+      extrapolate: 'clamp',
     });
     return {
       opacity: reducedMotion || !enabled ? 1 : progress,

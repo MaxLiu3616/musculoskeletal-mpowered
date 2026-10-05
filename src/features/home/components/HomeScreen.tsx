@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import { TABLET_BREAKPOINT, WIDE_LAYOUT_BREAKPOINT } from '@/components/layout';
 import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
 import { measureMorphBox, useAssessmentTransition, type MeasureTile } from '@/components/motion/AssessmentTransitionContext';
 import InsightCard from '@/features/insights/components/InsightCard';
@@ -64,6 +65,8 @@ export default function HomeScreen({
   onSummaryPress,
 }: HomeScreenProps) {
   const { width, fontScale } = useWindowDimensions();
+  const isTablet = width >= TABLET_BREAKPOINT;
+  const isWide = width >= WIDE_LAYOUT_BREAKPOINT;
   const { display } = useSetting();
   const { completion, entranceStyle } = useHomeMotion(assessmentStatus);
   const { busy, scene, openTile, homeReady } = useAssessmentTransition();
@@ -103,7 +106,7 @@ export default function HomeScreen({
   ).length;
 
   return (
-    <View style={[styles.viewport, Platform.OS === 'web' && styles.webViewport]}>
+    <View style={styles.viewport}>
       <Animated.ScrollView
         ref={scrollRef}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: heroScroll } } }], {
@@ -112,10 +115,11 @@ export default function HomeScreen({
         })}
         scrollEventThrottle={16}
         bounces={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, isTablet && styles.tabletScrollContent, isWide && styles.wideScrollContent]}
         showsVerticalScrollIndicator={false}
         style={styles.screen}
       >
+        <View style={[isTablet && styles.tabletOverview, isWide && styles.overviewColumn]}>
         <HomeAnatomyHero scrollY={heroScroll}>
           <Animated.View style={[styles.heroContent, entranceStyle(0)]}>
             <View style={styles.brandRow}>
@@ -174,8 +178,9 @@ export default function HomeScreen({
             ))}
           </View>
         </Animated.View>
+        </View>
 
-        <View style={styles.content}>
+        <View style={[styles.content, isTablet && styles.tabletContent, isWide && styles.mainColumn]}>
           <HomeSummarySwipe items={summaryItems} onItemPress={onSummaryPress} />
           <InsightCard
             insight={painInsight}
@@ -203,7 +208,7 @@ export default function HomeScreen({
                     </Text>
                     {!isManagement && !useTopArrows && arrow}
                   </View>
-                  <Text style={[styles.assessmentDescription, regularFont, { color: assessment.color }]}>
+                  <Text style={[styles.assessmentDescription, isTablet && styles.tabletDescription, regularFont, { color: assessment.color }]}>
                     {assessment.description}
                   </Text>
                   {status.updatedAt ? (
@@ -226,8 +231,10 @@ export default function HomeScreen({
                     onPress={() => openTile(assessment.id, measureTile, () => onAssessmentPress?.(assessment.id))}
                     style={({ pressed }) => [
                       styles.assessmentCard,
+                      isTablet && styles.tabletCard,
                       { backgroundColor: assessment.backgroundColor },
                       isManagement && styles.managementCard,
+                      isManagement && isTablet && styles.tabletManagementCard,
                       pressed && styles.pressed,
                     ]}
                   >

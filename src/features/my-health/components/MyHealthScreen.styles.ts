@@ -24,11 +24,6 @@ export const styles =
       width: '100%',
     },
 
-    webViewport: {
-      alignSelf: 'center',
-      maxWidth: 390,
-    },
-
     keyboard: {
       flex: 1,
     },
