@@ -1,6 +1,7 @@
 import { colors } from '@/theme';
 import { useState } from 'react';
 import { Keyboard, Pressable, View } from 'react-native';
+import { isValidAuMobile, toE164 } from '@/utils/validation';
 
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
 import { useOnboarding } from '../OnboardingContext';
@@ -13,12 +14,6 @@ type PhoneNumberScreenProps = {
     onContinue: () => void;
 };
 
-const toE164 = (rawNumber: string) => {
-    const digits = rawNumber.replace(/\D/g, '');
-    const withoutLeadingZero = digits.startsWith('0') ? digits.slice(1) : digits;
-    return `+61${withoutLeadingZero}`;
-};
-
 export default function PhoneNumberScreen({
                                               onContinue,
                                           }: PhoneNumberScreenProps) {
@@ -26,7 +21,8 @@ export default function PhoneNumberScreen({
     const [phoneNumber, setLocalPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const canContinue = phoneNumber.replace(/\D/g, '').length > 0 && !loading;
+    const isValidNumber = isValidAuMobile(phoneNumber);
+    const canContinue = isValidNumber && !loading;
 
     const continueToVerification = async () => {
         if (!canContinue) {
@@ -73,6 +69,12 @@ export default function PhoneNumberScreen({
 
             <Text style={styles.phoneHelper}>{phoneNumberScreenCopy.helper}</Text>
 
+            {phoneNumber.length > 0 && !isValidNumber && (
+                <Text style={{ color: colors.danger, fontSize: 13, marginTop: 4 }}>
+                    Enter a valid Australian mobile number.
+                </Text>
+            )}
+
             {error && (
                 <Text style={{ color: '#D64545', fontSize: 13, marginTop: 4 }}>
                     {error}
@@ -97,7 +99,7 @@ export default function PhoneNumberScreen({
                         !canContinue && styles.primaryButtonTextDisabled,
                     ]}
                 >
-                    {loading ? '发送中...' : phoneNumberScreenCopy.continueLabel}
+                    {loading ? 'Sending...' : phoneNumberScreenCopy.continueLabel}
                 </Text>
             </Pressable>
         </View>

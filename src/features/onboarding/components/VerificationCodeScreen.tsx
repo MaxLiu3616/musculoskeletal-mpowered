@@ -50,7 +50,7 @@ export default function VerificationCodeScreen({
 
     const updateCode = (value: string) => {
         setCode(value.replace(/\D/g, '').slice(0, 4));
-        setError(null); // 用户重新输入时清掉旧的报错
+        setError(null);
     };
 
     const resendCode = async () => {
@@ -94,7 +94,7 @@ export default function VerificationCodeScreen({
         setVerifying(false);
 
         if (verifyError) {
-            setError(verifyError.message);
+            setError('That code is invalid or has expired. Please try again.');
             return;
         }
 
@@ -162,7 +162,7 @@ export default function VerificationCodeScreen({
                         !canResend && styles.resendButtonTextDisabled,
                     ]}
                 >
-                    {resending ? '发送中...' : verificationCodeScreenCopy.resendLabel}
+                    {resending ? 'Sending...' : verificationCodeScreenCopy.resendLabel}
                 </Text>
             </Pressable>
 
@@ -192,7 +192,7 @@ export default function VerificationCodeScreen({
                         !canVerify && styles.primaryButtonTextDisabled,
                     ]}
                 >
-                    {verifying ? '验证中...' : verificationCodeScreenCopy.verifyLabel}
+                    {verifying ? 'Verifying...' : verificationCodeScreenCopy.verifyLabel}
                 </Text>
             </Pressable>
 
