@@ -61,20 +61,13 @@ export default function AccountSettingsScreen(
         );
     }, [query]);
 
-    // Update condition
     const toggleCondition = (conditionId: ConditionOptionId) => {
-        setSelectedConditions((currentSelection) => {
-            const updatedSelection = currentSelection.includes(conditionId)
-                ? currentSelection.filter((id) => id !== conditionId)
-                : [...currentSelection, conditionId];
+        const updatedSelection = selectedConditions.includes(conditionId)
+            ? selectedConditions.filter((id) => id !== conditionId)
+            : [...selectedConditions, conditionId];
 
-            // Immediately save the new conditions
-            updateProfile({
-                conditions: updatedSelection,
-            });
-
-            return updatedSelection;
-        });
+        setSelectedConditions(updatedSelection);
+        updateProfile({ conditions: updatedSelection });
     };
 
     return (
@@ -87,8 +80,11 @@ export default function AccountSettingsScreen(
                     value={draftName}
                     onChangeText={(value) => {
                         setDraftName(value);
-                        setName(value);
+                        if (value.trim().length > 0) {
+                            setName(value.trim());
+                        }
                     }}
+                    onBlur={() => setDraftName(name)}
                     placeholder="Your name"
                     style={styles.input}
                 />

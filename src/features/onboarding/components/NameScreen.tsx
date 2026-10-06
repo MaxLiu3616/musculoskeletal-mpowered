@@ -4,6 +4,8 @@ import { Keyboard } from 'react-native';
 import NameEntryScreen from './NameEntryScreen';
 import OnboardingScreen from './OnboardingScreen';
 
+import { useOnboarding } from '../OnboardingContext';
+
 type NameScreenProps = {
   onBack: () => void;
   onContinue: (name: string) => void;
@@ -13,7 +15,8 @@ export default function NameScreen({
   onBack,
   onContinue,
 }: NameScreenProps) {
-  const [name, setName] = useState('');
+  const { name: savedName } = useOnboarding();
+  const [name, setName] = useState(savedName);
   const trimmedName = name.trim();
   const canContinue = trimmedName.length > 0;
 
