@@ -8,6 +8,8 @@ import {
     type ReactNode,
 } from 'react';
 
+import { supabase } from '@/services/supabase';
+
 export type NotificationPreferences = {
     weeklyReminders: boolean;
     appointmentReminders: boolean;
@@ -76,6 +78,19 @@ export function SettingProvider({ children }: SettingProviderProps) {
         }).catch((error) => console.warn('Could not load text size', error));
 
         return () => { active = false; };
+    }, []);
+
+    useEffect(() => {
+        const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+            const userPhone = session?.user?.phone;
+            setPhone(
+                userPhone
+                    ? userPhone.startsWith('+') ? userPhone : `+${userPhone}`
+                    : '',
+            );
+        });
+
+        return () => data.subscription.unsubscribe();
     }, []);
 
     const setPassword = (value: string) => {

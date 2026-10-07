@@ -19,6 +19,8 @@ export type HealthProfileDetails = {
 type OnboardingContextValue = {
   name: string;
   setName: (name: string) => void;
+  phoneNumber: string;
+  setPhoneNumber: (phoneNumber: string) => void;
   profile: HealthProfileDetails;
   updateProfile: (details: Partial<HealthProfileDetails>) => void;
   reset: () => void;
@@ -36,7 +38,10 @@ const initialProfile: HealthProfileDetails = {
 
 export function OnboardingProvider({ children }: OnboardingProviderProps) {
   const [name, setName] = useState('');
-  const [profile, setProfile] = useState<HealthProfileDetails>(initialProfile);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [profile, setProfile] = useState<HealthProfileDetails>({
+    sex: null, yearOfBirth: '', diagnosis: null, conditions: [], otherConditions: '',
+  });
   const updateProfile = (details: Partial<HealthProfileDetails>) => {
     setProfile((current) => ({ ...current, ...details }));
   };
@@ -46,9 +51,11 @@ export function OnboardingProvider({ children }: OnboardingProviderProps) {
   };
 
   return (
-    <OnboardingContext.Provider value={{ name, setName, profile, updateProfile, reset }}>
-      {children}
-    </OnboardingContext.Provider>
+      <OnboardingContext.Provider
+          value={{ name, setName, phoneNumber, setPhoneNumber, profile, updateProfile }}
+      >
+        {children}
+      </OnboardingContext.Provider>
   );
 }
 

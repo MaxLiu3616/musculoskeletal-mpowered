@@ -5,6 +5,7 @@ import { AppText as Text, AppTextInput as TextInput } from '@/components/typogra
 
 import HealthScreen from '@/features/my-health/components/HealthScreen';
 import { useSetting } from '@/features/setting/SettingContext';
+import { isValidAuMobile, toE164 } from '@/utils/validation';
 
 import { styles } from './SettingScreen.styles';
 
@@ -18,7 +19,8 @@ export default function ChangePhoneScreen(props: ChangePhoneScreenProps) {
     const { phone } = useSetting();
 
     const [newPhone, setNewPhone] = useState('');
-    const canContinue = newPhone.replace(/\D/g, '').length > 0;
+    const isValidNumber = isValidAuMobile(newPhone);
+    const canContinue = isValidNumber;
 
     return (
         <HealthScreen title="Change phone" onBack={onBack}>
@@ -36,11 +38,14 @@ export default function ChangePhoneScreen(props: ChangePhoneScreenProps) {
                     keyboardType="phone-pad"
                     style={styles.input}
                 />
+                {newPhone.length > 0 && !isValidNumber ? (
+                    <Text style={styles.error}>Enter a valid Australian mobile number.</Text>
+                ) : null}
             </View>
 
             <Text
                 accessibilityRole="button"
-                onPress={() => canContinue && onContinue(newPhone)}
+                onPress={() => canContinue && onContinue(toE164(newPhone))}
                 style={[
                     styles.cardButtonText,
                     styles.actionButton,
