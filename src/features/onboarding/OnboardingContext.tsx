@@ -23,12 +23,17 @@ type OnboardingContextValue = {
   setPhoneNumber: (phoneNumber: string) => void;
   profile: HealthProfileDetails;
   updateProfile: (details: Partial<HealthProfileDetails>) => void;
+  reset: () => void;
 };
 
 const OnboardingContext = createContext<OnboardingContextValue | null>(null);
 
 type OnboardingProviderProps = {
   children: ReactNode;
+};
+
+const initialProfile: HealthProfileDetails = {
+  sex: null, yearOfBirth: '', diagnosis: null, conditions: [], otherConditions: '',
 };
 
 export function OnboardingProvider({ children }: OnboardingProviderProps) {
@@ -39,6 +44,10 @@ export function OnboardingProvider({ children }: OnboardingProviderProps) {
   });
   const updateProfile = (details: Partial<HealthProfileDetails>) => {
     setProfile((current) => ({ ...current, ...details }));
+  };
+  const reset = () => {
+    setName('');
+    setProfile(initialProfile);
   };
 
   return (

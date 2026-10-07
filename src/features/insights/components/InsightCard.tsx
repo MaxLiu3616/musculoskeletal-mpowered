@@ -1,3 +1,4 @@
+import MotionPressable from '@/components/motion/MotionPressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from '@/theme';
 import {
@@ -6,7 +7,6 @@ import {
 } from 'react';
 
 import {
-  Pressable,
   View,
 } from 'react-native';
 
@@ -76,7 +76,7 @@ export default function InsightCard({
         </Text>
 
         {showDismiss ? (
-          <Pressable
+          <MotionPressable
             accessibilityLabel={
               insightCardCopy.dismissAccessibilityLabel
             }
@@ -89,7 +89,7 @@ export default function InsightCard({
             ]}
           >
             <Ionicons name="close" size={22} color={colors.ink} />
-          </Pressable>
+          </MotionPressable>
         ) : null}
       </View>
 
@@ -129,7 +129,7 @@ export default function InsightCard({
         <View
           style={styles.actionsRow}
         >
-          <Pressable
+          <MotionPressable
             accessibilityRole="button"
             onPress={
               onCheckPainHistory
@@ -148,9 +148,9 @@ export default function InsightCard({
                 insightCardCopy.checkPainHistoryLabel
               }
             </Text>
-          </Pressable>
+          </MotionPressable>
 
-          <Pressable
+          <MotionPressable
             accessibilityRole="button"
             onPress={
               onPlanAppointment
@@ -169,9 +169,9 @@ export default function InsightCard({
                 insightCardCopy.planAppointmentLabel
               }
             </Text>
-          </Pressable>
+          </MotionPressable>
 
-          <Pressable
+          <MotionPressable
             accessibilityRole="button"
             onPress={
               onCheckPainGuide
@@ -189,7 +189,7 @@ export default function InsightCard({
                 insightCardCopy.checkPainGuideLabel
               }
             </Text>
-          </Pressable>
+          </MotionPressable>
         </View>
       </View>
     </View>

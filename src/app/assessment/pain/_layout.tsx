@@ -5,7 +5,7 @@ import { PainAssessmentProvider } from '@/features/pain-tracker/PainAssessmentCo
 export default function PainAssessmentLayout() {
   return (
     <PainAssessmentProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false, animation: 'none' }} />
     </PainAssessmentProvider>
   );
 }

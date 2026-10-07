@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
-import { Linking, Pressable, View } from 'react-native';
+import { Linking, View } from 'react-native';
+import MotionPressable, { MotionArrow } from '@/components/motion/MotionPressable';
 
 import { AppText as Text } from '@/components/typography';
 import HealthScreen from '@/features/my-health/components/HealthScreen';
@@ -19,27 +20,27 @@ export default function CarePlannerScreen({ onNew, onView }: Props) {
     catch { setError('The pain guide could not be opened. Please try again.'); }
   };
   return (
-    <HealthScreen title="Care Planner">
+    <HealthScreen title="Care Planner" animateEntrance>
       <View style={styles.planningHero}>
         <Ionicons name="calendar-outline" size={34} color={colors.surface} />
         <Text style={styles.planningTitle}>Make the most{ '\n' }of your visit.</Text>
         <Text style={styles.planningDescription}>Prepare your questions and keep your appointment notes together.</Text>
-        <Pressable accessibilityRole="button" accessibilityLabel="Plan appointment" onPress={onNew}
+        <MotionPressable accessibilityRole="button" accessibilityLabel="Plan appointment" onPress={onNew}
           style={({ pressed }) => [styles.profileButton, pressed && styles.pressed]}>
           <Text style={styles.profileButtonText}>Plan appointment</Text>
-          <Ionicons name="arrow-forward" size={21} color={colors.ink} />
-        </Pressable>
+          <MotionArrow><Ionicons name="arrow-forward" size={21} color={colors.ink} /></MotionArrow>
+        </MotionPressable>
       </View>
 
-      <Pressable accessibilityRole="button" accessibilityLabel="Explore pain-management tips" onPress={openTips}
+      <MotionPressable accessibilityRole="button" accessibilityLabel="Explore pain-management tips" onPress={openTips}
         style={({ pressed }) => [styles.tipsRow, pressed && styles.pressed]}>
         <Ionicons name="leaf-outline" size={28} color={colors.ink} />
         <View style={styles.flex}>
           <Text style={styles.cardTitle}>Everyday care</Text>
           <Text style={styles.muted}>Explore pain-management tips</Text>
         </View>
-        <Ionicons name="arrow-forward" size={22} color={colors.ink} />
-      </Pressable>
+        <MotionArrow><Ionicons name="arrow-forward" size={22} color={colors.ink} /></MotionArrow>
+      </MotionPressable>
       {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
 
       <View style={styles.appointmentsHeading}>
@@ -47,7 +48,7 @@ export default function CarePlannerScreen({ onNew, onView }: Props) {
         <Text style={styles.appointmentCount}>{plans.length}</Text>
       </View>
       {plans.length ? plans.map((plan) => (
-        <Pressable key={plan.id} accessibilityRole="button"
+        <MotionPressable key={plan.id} accessibilityRole="button"
           accessibilityLabel={`View appointment on ${formatAppointmentDate(plan.appointmentDate)} with ${plan.doctorName || 'healthcare practitioner'}`}
           onPress={() => onView(plan.id)} style={({ pressed }) => [styles.appointmentRow, pressed && styles.pressed]}>
           <Ionicons name="calendar-number-outline" size={27} color={colors.ink} />
@@ -55,8 +56,8 @@ export default function CarePlannerScreen({ onNew, onView }: Props) {
             <Text style={styles.label}>{plan.doctorName || (plan.service === 'Not specified' ? 'Healthcare appointment' : plan.service)}</Text>
             <Text style={styles.muted}>{formatAppointmentDate(plan.appointmentDate)}</Text>
           </View>
-          <Ionicons name="arrow-forward" size={21} color={colors.ink} />
-        </Pressable>
+          <MotionArrow><Ionicons name="arrow-forward" size={21} color={colors.ink} /></MotionArrow>
+        </MotionPressable>
       )) : (
         <View style={styles.appointmentEmpty}>
           <Ionicons name="calendar-clear-outline" size={32} color={colors.muted} />

@@ -1,4 +1,6 @@
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { AppText as Text } from '@/components/typography';
 
@@ -21,10 +23,8 @@ export default function PainOptionList<T extends string>({
   onToggle,
 }: PainOptionListProps<T>) {
   return (
-    <ScrollView
+    <AssessmentOptions
       contentContainerStyle={styles.options}
-      nestedScrollEnabled
-      showsVerticalScrollIndicator
       style={styles.optionsScroll}
     >
       {options.map((option) => {
@@ -62,6 +62,6 @@ export default function PainOptionList<T extends string>({
           </Pressable>
         );
       })}
-    </ScrollView>
+    </AssessmentOptions>
   );
 }

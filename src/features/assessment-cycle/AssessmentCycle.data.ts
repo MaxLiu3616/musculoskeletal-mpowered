@@ -78,8 +78,12 @@ export function isDateInAssessmentCycle(
 }
 
 export function formatAssessmentCyclePeriod(
-  cycleStart: string,
+  cycleStart: string | null,
 ) {
+  if (cycleStart === null) {
+    return undefined;
+  }
+
   const start =
     parseLocalDateKey(cycleStart);
 

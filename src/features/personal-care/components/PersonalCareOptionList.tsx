@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Pressable, View } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { styles } from './PersonalCareAssessmentScreen.styles';
 
@@ -20,7 +21,7 @@ export default function PersonalCareOptionList<T extends string>({
                                                                  }: PersonalCareOptionListProps<T>) {
     if (multiSelect) {
         return (
-            <View style={styles.optionList}>
+            <AssessmentOptions style={styles.optionList}>
                 {options.map((option, index) => {
                     const isSelected = selectedIds.includes(option.id);
 
@@ -52,12 +53,12 @@ export default function PersonalCareOptionList<T extends string>({
                         </Pressable>
                     );
                 })}
-            </View>
+            </AssessmentOptions>
         );
     }
 
     return (
-        <View style={styles.optionList}>
+        <AssessmentOptions style={styles.optionList}>
             {options.map((option, index) => {
                 const isSelected = selectedIds.includes(option.id);
 
@@ -84,6 +85,6 @@ export default function PersonalCareOptionList<T extends string>({
                     </Pressable>
                 );
             })}
-        </View>
+        </AssessmentOptions>
     );
 }

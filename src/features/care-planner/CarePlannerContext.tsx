@@ -14,6 +14,7 @@ type CarePlannerContextValue = {
   saveQuestions: (id: string, questionIds: string[]) => void;
   saveConsent: (id: string, paths: string[]) => void;
   saveAnswer: (id: string, questionId: string, answer: AppointmentAnswer) => void;
+  reset: () => void;
 };
 
 const CarePlannerContext = createContext<CarePlannerContextValue | null>(null);
@@ -43,8 +44,13 @@ export function CarePlannerProvider({ children }: { children: ReactNode }) {
     setPlans((current) => current.map((plan) => plan.id === id && plan.consent && plan.selectedIds.includes(questionId)
       ? { ...plan, answers: { ...plan.answers, [questionId]: { ...answer, text: answer.text.trim() } } } : plan));
   };
+  const reset = () => {
+    setPlans([]);
+    setDraft(createAppointmentDraft('appointment-1', []));
+    nextId.current = 1;
+  };
 
-  return <CarePlannerContext.Provider value={{ plans, draft, startPlan, updateDraft, saveDraft, saveQuestions, saveConsent, saveAnswer }}>{children}</CarePlannerContext.Provider>;
+  return <CarePlannerContext.Provider value={{ plans, draft, startPlan, updateDraft, saveDraft, saveQuestions, saveConsent, saveAnswer, reset }}>{children}</CarePlannerContext.Provider>;
 }
 
 export function useCarePlanner() {

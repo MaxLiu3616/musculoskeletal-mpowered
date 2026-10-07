@@ -9,10 +9,6 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
 
-  webViewport: {
-    maxWidth: 390,
-  },
-
   safeArea: {
     backgroundColor: colors.canvas,
     flex: 1,
@@ -45,9 +41,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.canvas,
     borderRadius: 12,
     flexGrow: 0,
-    height: 250,
     marginTop: 12,
-    maxHeight: 250,
     overflow: 'hidden',
   },
 
@@ -56,9 +50,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    minHeight: 58,
+    minHeight: 48,
     paddingHorizontal: 10,
-    paddingVertical: 8,
+    paddingVertical: 6,
   },
 
   optionPressed: {
@@ -133,7 +127,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    minHeight: 54,
+    minHeight: 48,
     paddingHorizontal: 10,
   },
 

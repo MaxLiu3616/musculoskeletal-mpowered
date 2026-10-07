@@ -3,15 +3,16 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, View, type TextInputProps } from 'react-native';
 
 import { AppText as Text, AppTextInput as TextInput } from '@/components/typography';
+import MotionPressable from '@/components/motion/MotionPressable';
 
 import { formatAppointmentDate } from '../CarePlanner.data';
 import type { AppointmentPlan } from '../CarePlanner.types';
 import { styles } from './CarePlanner.styles';
 
 export function CareButton({ label, onPress, outline = false, disabled = false }: { label: string; onPress: () => void; outline?: boolean; disabled?: boolean }) {
-  return <Pressable accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} style={({ pressed }) => [outline ? styles.outlineButton : styles.primaryButton, disabled && styles.disabled, pressed && styles.pressed]}>
+  return <MotionPressable accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} style={({ pressed }) => [outline ? styles.outlineButton : styles.primaryButton, disabled && styles.disabled, pressed && styles.pressed]}>
     <Text style={outline ? styles.outlineText : styles.primaryText}>{label}</Text>
-  </Pressable>;
+  </MotionPressable>;
 }
 
 export function CareField({ label, ...props }: TextInputProps & { label: string }) {

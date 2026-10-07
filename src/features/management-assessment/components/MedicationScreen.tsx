@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   Pressable,
-  ScrollView,
   View,
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { useMyHealth } from '@/features/my-health/MyHealthContext';
 import { prescriptionName, prescriptionSchedule } from '@/features/my-health/MyHealth.data';
@@ -94,9 +94,7 @@ export default function MedicationScreen({
         }
       </Text>
 
-      <ScrollView
-        nestedScrollEnabled
-        showsVerticalScrollIndicator
+      <AssessmentOptions
         style={styles.medicationList}
       >
         {prescriptions.length === 0 ? <Text style={styles.helper}>Your prescriptions list is empty. Add prescriptions in My Health, or continue without selecting medication.</Text> : null}
@@ -169,7 +167,7 @@ export default function MedicationScreen({
             );
           },
         )}
-      </ScrollView>
+      </AssessmentOptions>
     </ManagementAssessmentScreen>
   );
 }

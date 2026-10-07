@@ -76,6 +76,8 @@ type HomeAssessmentContextValue = {
   markAssessmentComplete: (
     assessmentId: HomeAssessmentId,
   ) => void;
+
+  reset: () => void;
 };
 
 const HomeAssessmentContext =
@@ -203,11 +205,9 @@ export function HomeAssessmentProvider({
   }, [state.cycleStart]);
 
   const cyclePeriodLabel =
-    state.cycleStart
-      ? formatAssessmentCyclePeriod(
-          state.cycleStart,
-        )
-      : undefined;
+    formatAssessmentCyclePeriod(
+      state.cycleStart,
+    );
 
   return (
     <HomeAssessmentContext.Provider
@@ -221,6 +221,8 @@ export function HomeAssessmentProvider({
         cyclePeriodLabel,
 
         markAssessmentComplete,
+
+        reset: () => setState(initialState),
       }}
     >
       {children}

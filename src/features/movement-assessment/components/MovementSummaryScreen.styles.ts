@@ -9,10 +9,6 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
 
-  webViewport: {
-    maxWidth: 390,
-  },
-
   safeArea: {
     backgroundColor: colors.canvas,
     flex: 1,

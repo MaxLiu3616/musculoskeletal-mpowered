@@ -6,6 +6,7 @@ export default function SplashRoute() {
   return (
     <SplashScreen
       onGetStarted={() => router.push('/onboarding/name')}
+      onSignIn={() => router.push('/onboarding/login-information/phone-number')}
     />
   );
 }

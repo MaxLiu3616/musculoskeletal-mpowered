@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
+import AssessmentOptions from '@/components/AssessmentOptions';
 
 import { useMovementAssessment } from '@/features/movement-assessment/MovementAssessmentContext';
 import {
@@ -71,7 +72,7 @@ export default function MovementGeneralImpactsScreen({
         relevant statements:
       </Text>
 
-      <View style={styles.optionList}>
+      <AssessmentOptions style={styles.optionList}>
         {generalMovementImpactOptions.map(
           (option, index) => {
             const isSelected =
@@ -122,7 +123,7 @@ export default function MovementGeneralImpactsScreen({
             );
           },
         )}
-      </View>
+      </AssessmentOptions>
     </MovementAssessmentScreen>
   );
 }

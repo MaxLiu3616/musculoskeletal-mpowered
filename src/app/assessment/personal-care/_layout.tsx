@@ -6,7 +6,7 @@ import { PersonalCareAssessmentProvider } from '@/features/personal-care/Persona
 export default function PersonalCareAssessmentLayout() {
     return (
         <PersonalCareAssessmentProvider>
-            <Stack screenOptions={{ headerShown: false }} />
+            <Stack screenOptions={{ headerShown: false, animation: 'none' }} />
         </PersonalCareAssessmentProvider>
     );
 }

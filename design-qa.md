@@ -1,5 +1,14 @@
 # MPowered design implementation QA
 
+## Logout cleanup — 29 September 2026
+
+- Reproduced the original bug by saving a synthetic reflection, logging out, signing in again, and reopening the reflection. The previous note remained visible.
+- Regression procedure: populate the account name and health conditions, reflection, support people, notification preferences, prescription, completed Management assessment, and an appointment with support details. Select Large text, log out, then revisit the screens without reloading.
+- Passed: name and conditions cleared; progress returned to 0/5; reflection, prescription list, assessment history, appointments, support people, and Management draft cleared; notification preferences returned to their defaults. Large text survived logout. Restored Medium text after testing.
+- A fresh demo sign-in also opened an empty reflection. Browser Back can reopen a route, but the checked session data stays cleared; this change does not add authentication guards.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. Browser logs contained no warnings or errors. Native-device logout testing was not performed.
+- Evidence: [regression results](../output/logout-cleanup-20260929/checks.json), [cleared My Health screen](../output/logout-cleanup-20260929/cleared-health.png).
+
 Date: 23 September 2026
 
 Branch: `design-idea`
@@ -164,3 +173,123 @@ QA inputs were entered only in the local 127.0.0.1 browser session. Reloading re
 - Branch: `design-idea`
 - Changes remain uncommitted.
 - The Expo preview remains running.
+
+## Motion pass — 26 September 2026
+
+Implemented animation ideas 1, 2 and 3 on `design-idea` using React Native Animated, with no added dependencies.
+
+- Home greeting, progress panel and cards enter in a 440 ms stagger with an 8 px rise. Returning from an assessment summary does not replay the entrance.
+- Main cards and action buttons compress to 98% on press, spring back on release/cancel, and move their arrows 3 px. Shared assessment, Care Planner, reflection, insight and summary actions retain their handlers and disabled states.
+- Each newly completed assessment fills its own weekly segment over 420 ms and reveals a checkmark with a small pop. Playback waits until Home regains focus; scoring and saved-answer logic are unchanged.
+- A shared Reduce Motion preference disables these movements, including live preference changes. Completion uses instant state changes in this mode.
+
+### Verification
+
+- Frame sampling confirmed staggered opacity from 0 to 1, translation from 8 px to 0, held press scale 0.98, arrow travel 3 px, and release returning to scale 1.
+- Completed the Management flow with optional medication/emotion skipped and `0 days` selected. Continue remained disabled before an exercise answer, the summary saved to My Health, and Home updated to 1 of 5. Sampled the segment filling from 0 to 1 and the checkmark scaling above 1 before settling at 1.
+- Repeated the flow with emulated Reduce Motion: entrance and presses stayed still, and completion had no intermediate fill or pop frames. OS-level/native-device accessibility testing was not performed.
+- Verified keyboard activation of Reflection, Settings → Display, and Care Planner → appointment details; the empty appointment Save action stayed disabled.
+- Inspected Home and My Health at 320 × 740 with Large text. Home document width stayed at 320 px with all five assessment destinations retained. Restored Medium text and cleared the viewport and media overrides; local QA data was reset.
+- `npx tsc --noEmit`, all 21 existing tests, `git diff --check`, and web/iOS/Android exports passed. Exports verify bundle compilation, not native-device rendering.
+- Browser checks reported no warnings or runtime errors.
+
+Evidence: [frame checks](../output/design-idea-motion-20260926/frame-checks.json), [live preference check](../output/design-idea-motion-20260926/live-preference-check.json), [Home at 320 px](../output/design-idea-motion-20260926/home-320-large.png), [completed Home](../output/design-idea-motion-20260926/home-completed.png), [export log](../output/design-idea-motion-20260926/export.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Main-page entrances and compact assessments — 26 September 2026
+
+- Shared the existing 440 ms entrance between Home, My Health, Care Planner, and Settings. Headers and content sections fade in and rise in sequence on their first focused visit. Existing press and completion effects are retained.
+- Shortened assessment headers, progress panels, and spacing. Selection rows now have a 48 px minimum height and less vertical padding; wrapped labels still grow naturally.
+- Added a shared selection container capped at 132–260 px according to available screen height and safe-area insets. Long lists scroll within this box while Continue remains fixed. Short lists and empty medication lists use their natural height.
+- Preserved question wording, routes, validation, scoring, answer state, and the page-scroll fallback needed for larger text, smaller screens, and keyboard use.
+
+### Verification
+
+- Walked the actual assessment flows to inspect all 28 question pages at 390 × 844 and 390 × 720 with Medium text. Final results showed no outer-page overflow or horizontal overflow. Management Exercise initially overflowed by 28 px at the shorter size; reducing the selection height resolved it and the page was rechecked.
+- Selected bottom-of-list answers in Pain, Movement, Personal care, Social health, and Management. The inner list scrolls to these answers and required Continue actions enable after selection.
+- Checked 11 representative question pages and the three additional main pages at 320 × 740 with Large text. No horizontal overflow was measured. Long questions intentionally retain outer scrolling; Management Exercise needs 140 px at this size. No text-size setting or option was removed to force a fit.
+- Frame sampling on all four main pages confirmed sequential opacity/translation and a fully visible, settled state. Repeated with emulated Reduce Motion; every sampled entrance element stayed at opacity 1 and zero translation.
+- Restored Medium text and cleared emulated media and viewport overrides. Test answers were confined to the temporary QA tab; no summaries or new health records were saved.
+- TypeScript, all 21 existing tests, whitespace checks, and web/iOS/Android exports passed. Browser inspection found no runtime errors; the existing slider `pointerEvents` deprecation warning remains. Native exports verify compilation, not device rendering or native keyboard behavior.
+
+Evidence: [layout and animation checks](../output/design-idea-layout-motion-20260926/layout-checks.json), [compact Pain screen](../output/design-idea-layout-motion-20260926/pain-390-medium.png), [Pain with Large text](../output/design-idea-layout-motion-20260926/pain-320-large.png), [Movement with Large text](../output/design-idea-layout-motion-20260926/movement-320-large.png), [export log](../output/design-idea-layout-motion-export-20260926.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Home, Reflection, and summary date consistency — 26 September 2026
+
+- Reproduced the reported mismatch: a fresh Home showed `21–27 Sept`, then the first Management summary showed `26 Sept-2 Oct`.
+- Home now hides its period until the first assessment is completed. Removed the Monday–Sunday fallback and initial date preview; an absent assessment cycle produces no period label.
+- Reflection uses the same assessment context as Home and all five assessment summary routes. Removed its independent Monday–Sunday formatter and hide the calendar row until a cycle exists. Active-cycle timing and historical snapshots are unchanged.
+- Verified that a fresh Home and Reflection show no date. Saving and reopening a reflection before an assessment preserved the note and left Home at `0 of 5` with no period.
+- Completed Management through the actual question flow. Its summary, Home, and Reflection all displayed `26 Sept-2 Oct`. Saving and reopening Reflection retained the note, the period, and Home's `1 of 5` completion state.
+- Inspected the rendered Reflection date and confirmed no horizontal overflow at the existing preview size. Test notes and records were confined to a temporary tab, which was closed. Refreshed the user's Home preview and confirmed its initial date is hidden.
+- Regression tests cover an absent cycle, an established period remaining anchored as the current date changes, and month/year/leap-year boundaries. TypeScript, all 24 tests, and `git diff --check` passed.
+
+Evidence: [period and reflection checks](../output/design-idea-layout-motion-20260926/reflection-period-checks.json), [Home before the first assessment](../output/design-idea-layout-motion-20260926/home-before-first-assessment.png), [Reflection after the first assessment](../output/design-idea-layout-motion-20260926/reflection-period-matched.png).
+
+Changes remain uncommitted on `design-idea`.
+
+## Sliding navigation and flowing questions — 26 September 2026
+
+- Replaced the separate active-tab underlines with one shared indicator that glides between all four destinations in 280 ms. Its position follows the measured navigation width, including after resizing, and rapid tab changes retarget the current animation.
+- Added a 260 ms slide and fade to the shared assessment question card: new questions enter from 18 px to the right; returning to an earlier question enters from the left. Headers, progress panels, and Continue stay outside the animated card.
+- Disabled the nested assessment stacks' full-screen transitions so they do not compete with the question animation. Existing routes, question validation, answer recording, and compact selection containers are retained.
+- Both effects use the existing Reduce Motion preference and React Native Animated; no dependencies were added.
+
+### Verification
+
+- Frame sampling confirmed indicator travel and precise final alignment across all four tabs, including three tab changes approximately 60 ms apart.
+- Sampled first-question and forward transitions in Pain, Movement, Personal care, Social health, and Management. Back transitions in Pain and Management used negative offsets and settled at zero; recorded Management text was retained after returning with Back.
+- Sampled headers and Continue during question transitions; their horizontal positions stayed fixed while the card moved and faded to full opacity.
+- With emulated Reduce Motion, tab selection updated instantly and question entry, Continue, and Back stayed at full opacity with zero translation.
+- At 320 × 740 with Large text, keyboard tab activation worked, the indicator stayed centered, and question transitions caused no horizontal overflow. The last Exercise option remained reachable and enabled Continue after selection. The existing page-scroll fallback remains available for long questions at this size.
+- Restored Medium text, removed viewport/media overrides, and closed the temporary QA tab. No assessment summaries or health records were created. Refreshed the user's Home preview.
+- TypeScript, all 24 tests, `git diff --check`, and web/iOS/Android exports passed. The final refreshed browser build reported no warnings or runtime errors. Native exports verify compilation; native-device animation testing was not performed.
+
+Evidence: [animation frame checks](../output/design-idea-navigation-flow-20260926/motion-checks.json), [question at 320 px with Large text](../output/design-idea-navigation-flow-20260926/question-320-large.png), [export log](../output/design-idea-navigation-flow-export-20260926.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Morphing assessment tiles — 27 September 2026
+
+- All five Home assessment tiles expand into their assessment in 420 ms, with the category icon and title travelling into the measured header positions. A 140 ms reveal brings in the question content. Returning Home contracts the surface back into its tile in 380 ms, including returns from a summary and the bottom navigation.
+- The shared overlay measures actual tile, title, icon, and viewport layouts. It follows text-size settings and scrolls a returning tile into view when needed. Home's entrance animation is suppressed during a morph return so the target stays still.
+- Navigation is protected from duplicate activation while the transition runs. Root assessment stack animations are disabled to avoid competing movement; existing question transitions, validation, answers, summaries, and weekly progress remain intact. No dependencies were added.
+- Reduce Motion skips the morph. Enabling it or resizing during an active transition clears the overlay and completes pending navigation.
+
+### Verification
+
+- Browser frame sampling confirmed expansion, icon/title movement, and contraction for Pain, Movement, Personal care, Social health, and Management. The overlay disappears and navigation re-enables after every completed transition.
+- Fixed a return timing issue found in browser testing, then rechecked all five assessment Back actions. Also verified bottom-tab and browser Back returns.
+- Completed Management with optional medication/emotion skipped and `0 days` selected. Continue remained disabled before selection, Back preserved the answer, the summary saved, and Close collapsed into Management. Home displayed `1 of 5` and the same period as the summary.
+- Inspected Personal care and Management at 320 × 640 with Large text, including an off-screen Management tile and bottom-tab return. Home had no horizontal overflow, and the final overlay bounds matched the visible tile within 0.02 px.
+- Emulated Reduce Motion produced no morph frames on entry or return. Switching it on mid-expansion and resizing mid-expansion both completed navigation without a stranded overlay. Keyboard Enter opened Movement successfully.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. Browser inspection reported no warnings or runtime errors. Native exports verify compilation; native-device animation and screen-reader testing were not performed.
+- Restored Medium text, cleared media/viewport overrides, and reloaded the preview to remove session-only QA answers. The Home preview remains open with `0 of 5` and no initial period.
+
+Evidence: [frame checks](../output/design-idea-tile-morph-20260927/frame-checks.json), [mid-transition capture](../output/design-idea-tile-morph-20260927/pain-morph.png), [assessment screen](../output/design-idea-tile-morph-20260927/pain-question.png), [export log](../output/design-idea-tile-morph-export-20260927.log).
+
+Changes remain uncommitted on `design-idea`.
+
+## Anatomy with depth — 27 September 2026
+
+- Replaced Home's flattened hero with three independently moving layers: a peach backdrop, blue arch, and transparent anatomy foreground. The existing headline, greeting, brand, and page layout remain editable and follow normal scrolling.
+- The backdrop, arch, and anatomy compensate for 50%, 30%, and 12% of scroll travel respectively. The arch and anatomy also separate horizontally by up to 8 px each, while the anatomy gradually scales to 1.06. Travel clamps once the hero has scrolled away; there is no idle animation or added dependency.
+- React Native Animated connects the existing Home scroll event to native-driver transforms on mobile. The tile transition's scroll-position listener is preserved. Art is clipped to the hero and hidden from assistive technology.
+- Reduce Motion keeps all layers at their resting transforms, including after a live preference change. Hero measurements accommodate text scaling and resizing. SVG gradient identifiers are unique per mounted Home screen, fixing a rendering issue found when navigating back from Settings.
+- Used built-in imagegen to extract the existing anatomy into `assets/images/home-anatomy-foreground.png` (1579 × 996 RGBA, 769158 bytes). The original flattened image remains intact. [Asset provenance and final prompt](../output/imagegen/home-anatomy-foreground-provenance.md).
+
+### Verification
+
+- Measured the layers while scrolling. At 148 px of scroll on the 320 px/Large-text layout, backdrop, arch, and anatomy offsets were 74, 44.4, and 17.76 px. Deep scroll clamped the anatomy scale at 1.06, and scrolling to the top restored all transforms.
+- Emulated Reduce Motion while scrolled: every layer returned to zero translation and scale 1, stayed still through further scrolling, and resumed from the current scroll position when the preference was turned off.
+- Inspected Home at 320 × 740 with Large text: the title remained readable, all five assessment destinations remained available, and document width stayed at 320 px. Verified the blue layer after Settings → Home navigation and checked that gradient IDs remained unique across mounted screens.
+- Opened Pain from a scrolled Home and returned with Back. The tile morph completed, Home's scroll tracking stayed aligned with the art, and navigation re-enabled normally.
+- TypeScript, all 24 existing tests, `git diff --check`, and web/iOS/Android exports passed. The final browser preview reported no warnings or runtime errors. Native exports verify compilation; native-device motion and screen-reader testing were not performed.
+- Restored Medium text, reset viewport/media overrides, and left Home open. No health records or assessment answers were created.
+
+Evidence: [motion checks](../output/design-idea-anatomy-depth-20260927/motion-checks.json), [Large-text Home](../output/design-idea-anatomy-depth-20260927/home-320-large.png), [scrolled hero](../output/design-idea-anatomy-depth-20260927/home-320-large-scrolled.png), [final Home](../output/design-idea-anatomy-depth-20260927/home-final.png), [export log](../output/design-idea-anatomy-depth-export-20260927.log).
+
+Changes remain uncommitted on `design-idea`.

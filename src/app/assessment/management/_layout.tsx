@@ -5,7 +5,7 @@ import { ManagementAssessmentProvider } from '@/features/management-assessment/M
 export default function ManagementAssessmentLayout() {
   return (
     <ManagementAssessmentProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false, animation: 'none' }} />
     </ManagementAssessmentProvider>
   );
 }

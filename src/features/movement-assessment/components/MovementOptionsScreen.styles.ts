@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   optionList: {
     backgroundColor: colors.canvas,
     borderRadius: 12,
-    marginTop: 14,
+    marginTop: 10,
     overflow: 'hidden',
   },
 
@@ -26,9 +26,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    minHeight: 58,
+    minHeight: 48,
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 6,
   },
 
   optionRowLast: {

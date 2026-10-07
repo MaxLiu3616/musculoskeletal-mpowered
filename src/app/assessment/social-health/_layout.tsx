@@ -5,7 +5,7 @@ import { SocialHealthAssessmentProvider } from '@/features/social-health-assessm
 export default function SocialHealthAssessmentLayout() {
   return (
     <SocialHealthAssessmentProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false, animation: 'none' }} />
     </SocialHealthAssessmentProvider>
   );
 }

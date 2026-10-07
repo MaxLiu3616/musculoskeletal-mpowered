@@ -4,6 +4,9 @@ import { colors, fonts } from '@/theme';
 export const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.canvas },
   scrollContent: { flexGrow: 1 },
+  tabletScrollContent: { flexDirection: 'row', alignItems: 'center', gap: 32, padding: 32, width: '100%', maxWidth: 1200, alignSelf: 'center' },
+  tabletHero: { flex: 1, minHeight: 460, borderRadius: 20, overflow: 'hidden' },
+  tabletContent: { flex: 1, minWidth: 0, paddingHorizontal: 0, paddingVertical: 0 },
   hero: { backgroundColor: colors.peach, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 34, minHeight: 316 },
   heroImage: { width: '100%', height: '100%' },
   heroTitle: { color: colors.ink, fontFamily: fonts.display, fontSize: 43, lineHeight: 45, letterSpacing: -1, width: '58%', marginTop: 80 },
@@ -25,7 +28,6 @@ export const styles = StyleSheet.create({
   primaryButtonText: { color: colors.surface, fontSize: 15, lineHeight: 22, fontWeight: '600' },
   signInButton: { minHeight: 48, justifyContent: 'center', alignItems: 'center' },
   signInText: { color: colors.ink, fontSize: 13, lineHeight: 20, fontWeight: '600', textDecorationLine: 'underline' },
-  actionMessage: { color: colors.muted, fontSize: 13, lineHeight: 20, textAlign: 'center' },
   sponsor: { color: colors.muted, fontSize: 11, lineHeight: 17, textAlign: 'center', marginTop: 10 },
   pressed: { opacity: 0.75 },
 });

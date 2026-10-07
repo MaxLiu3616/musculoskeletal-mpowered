@@ -5,6 +5,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  formatAssessmentCyclePeriod,
+} from '../src/features/assessment-cycle/AssessmentCycle.data';
+
+import {
   emptyPrescription,
   formatWeek,
   isValidPrescription,
@@ -110,6 +114,38 @@ test(
       ),
       /29 Dec.*4 Jan 2026/,
     );
+  },
+);
+
+test(
+  'the period is absent before an assessment cycle exists',
+  () => {
+    assert.equal(formatAssessmentCyclePeriod(null), undefined);
+  },
+);
+
+test(
+  'the active assessment period stays anchored when reflection is opened later',
+  (t) => {
+    t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 8, 30, 12).getTime() });
+    assert.equal(formatAssessmentCyclePeriod('2026-09-26'), '26 Sept-2 Oct');
+    t.mock.timers.setTime(new Date(2026, 9, 2, 23, 55).getTime());
+    assert.equal(formatAssessmentCyclePeriod('2026-09-26'), '26 Sept-2 Oct');
+    assert.equal(formatAssessmentCyclePeriod(null), undefined);
+  },
+);
+
+test(
+  'assessment periods handle month, year and leap-year boundaries',
+  () => {
+    const cases = [
+      { start: '2026-09-26', expected: '26 Sept-2 Oct' },
+      { start: '2026-12-29', expected: '29 Dec 2026-4 Jan 2027' },
+      { start: '2024-02-28', expected: '28 Feb-5 Mar' },
+    ];
+    for (const { start, expected } of cases) {
+      assert.equal(formatAssessmentCyclePeriod(start), expected);
+    }
   },
 );
 

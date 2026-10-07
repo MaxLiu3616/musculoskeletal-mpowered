@@ -5,7 +5,7 @@ import { MovementAssessmentProvider } from '@/features/movement-assessment/Movem
 export default function MovementAssessmentLayout() {
   return (
     <MovementAssessmentProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false, animation: 'none' }} />
     </MovementAssessmentProvider>
   );
 }
