@@ -29,6 +29,13 @@ import {
   saveAssessmentSummary,
 } from '@/services/assessment';
 
+import {
+  createPrescription,
+  deletePrescription,
+  loadPrescriptions,
+  updatePrescription,
+} from '@/services/prescriptions';
+
 import { supabase } from '@/services/supabase';
 
 type MyHealthContextValue = {
@@ -44,11 +51,11 @@ type MyHealthContextValue = {
   savePrescription: (
     input: PrescriptionInput,
     id?: string,
-  ) => void;
+  ) => Promise<boolean>;
 
   removePrescription: (
     id: string,
-  ) => void;
+  ) => Promise<boolean>;
 
   reset: () => void;
 };
@@ -73,45 +80,85 @@ export function MyHealthProvider({
     setPrescriptions,
   ] = useState<Prescription[]>([]);
 
-  const nextPrescriptionId =
-    useRef(0);
+  const activeUserId =
+    useRef<string | null>(
+      null,
+    );
 
-  const loadRecords =
-    useCallback(async () => {
-      try {
-        const storedRecords =
-          await loadAssessmentRecords();
+  const loadHealthData =
+    useCallback(
+      async (
+        userId: string,
+      ) => {
+        try {
+          const [
+            storedRecords,
+            storedPrescriptions,
+          ] = await Promise.all([
+            loadAssessmentRecords(),
+            loadPrescriptions(),
+          ]);
 
-        setRecords(storedRecords);
-      } catch (error) {
-        console.error(
-          'Failed to load assessment records:',
-          error,
-        );
-      }
-    }, []);
+          if (
+            activeUserId.current !==
+            userId
+          ) {
+            return;
+          }
+
+          setRecords(
+            storedRecords,
+          );
+
+          setPrescriptions(
+            storedPrescriptions,
+          );
+        } catch (error) {
+          console.error(
+            'Failed to load My Health data:',
+            error,
+          );
+        }
+      },
+      [],
+    );
 
   useEffect(() => {
     const {
       data: { subscription },
     } =
       supabase.auth.onAuthStateChange(
-        (event, session) => {
-          if (
-            event === 'SIGNED_OUT' ||
-            !session
-          ) {
+        (
+          event,
+          session,
+        ) => {
+          activeUserId.current =
+            session?.user.id ??
+            null;
+
+          if (!session) {
             setRecords([]);
+            setPrescriptions([]);
             return;
           }
 
           if (
-            event === 'INITIAL_SESSION' ||
-            event === 'SIGNED_IN'
+            event ===
+              'INITIAL_SESSION' ||
+            event ===
+              'SIGNED_IN'
           ) {
-            setTimeout(() => {
-              void loadRecords();
-            }, 0);
+            const userId =
+              session.user.id;
+
+            setTimeout(
+              () => {
+                void loadHealthData(
+                  userId,
+                );
+              },
+              0,
+            );
           }
         },
       );
@@ -119,7 +166,9 @@ export function MyHealthProvider({
     return () => {
       subscription.unsubscribe();
     };
-  }, [loadRecords]);
+  }, [
+    loadHealthData,
+  ]);
 
   const saveAssessment =
     useCallback(
@@ -133,30 +182,33 @@ export function MyHealthProvider({
             new Date(),
           );
 
-        setRecords((current) =>
-          updateAssessmentRecords(
-            current,
-            record,
-            recordCycleStart,
-          ),
+        setRecords(
+          (current) =>
+            updateAssessmentRecords(
+              current,
+              record,
+              recordCycleStart,
+            ),
         );
 
         void saveAssessmentSummary(
           record,
           recordCycleStart,
-        ).catch((error) => {
-          console.error(
-            'Failed to save assessment:',
-            error,
-          );
-        });
+        ).catch(
+          (error) => {
+            console.error(
+              'Failed to save assessment:',
+              error,
+            );
+          },
+        );
       },
       [],
     );
 
   const savePrescription =
     useCallback(
-      (
+      async (
         input: PrescriptionInput,
         id?: string,
       ) => {
@@ -165,10 +217,11 @@ export function MyHealthProvider({
             input,
           )
         ) {
-          return;
+          return false;
         }
 
-        const prescription: Prescription = {
+        const normalizedInput:
+          PrescriptionInput = {
           ...input,
 
           name:
@@ -182,40 +235,81 @@ export function MyHealthProvider({
 
           repeatEvery:
             input.repeatEvery.trim(),
-
-          id:
-            id ??
-            `prescription-${++nextPrescriptionId.current}`,
         };
 
-        setPrescriptions(
-          (current) =>
-            id
-              ? current.map(
+        try {
+          if (id) {
+            const updated =
+              await updatePrescription(
+                id,
+                normalizedInput,
+              );
+
+            setPrescriptions(
+              (current) =>
+                current.map(
                   (item) =>
                     item.id === id
-                      ? prescription
+                      ? updated
                       : item,
-                )
-              : [
-                  ...current,
-                  prescription,
-                ],
-        );
+                ),
+            );
+
+            return true;
+          }
+
+          const created =
+            await createPrescription(
+              normalizedInput,
+            );
+
+          setPrescriptions(
+            (current) => [
+              ...current,
+              created,
+            ],
+          );
+
+          return true;
+        } catch (error) {
+          console.error(
+            'Failed to save prescription:',
+            error,
+          );
+
+          return false;
+        }
       },
       [],
     );
 
   const removePrescription =
     useCallback(
-      (id: string) => {
-        setPrescriptions(
-          (current) =>
-            current.filter(
-              (item) =>
-                item.id !== id,
-            ),
-        );
+      async (
+        id: string,
+      ) => {
+        try {
+          await deletePrescription(
+            id,
+          );
+
+          setPrescriptions(
+            (current) =>
+              current.filter(
+                (item) =>
+                  item.id !== id,
+              ),
+          );
+
+          return true;
+        } catch (error) {
+          console.error(
+            'Failed to remove prescription:',
+            error,
+          );
+
+          return false;
+        }
       },
       [],
     );
@@ -225,8 +319,8 @@ export function MyHealthProvider({
       setRecords([]);
       setPrescriptions([]);
 
-      nextPrescriptionId.current =
-        0;
+      activeUserId.current =
+        null;
     }, []);
 
   return (
