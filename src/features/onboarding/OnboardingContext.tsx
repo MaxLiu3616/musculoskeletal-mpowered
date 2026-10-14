@@ -1,6 +1,8 @@
 import {
   createContext,
+  useCallback,
   useContext,
+  useMemo,
   useState,
   type ReactNode,
 } from 'react';
@@ -59,19 +61,22 @@ type OnboardingProviderProps = {
   children: ReactNode;
 };
 
-const initialProfile: HealthProfileDetails = {
-  sex: null,
-  yearOfBirth: '',
-  diagnosis: null,
-  conditions: [],
-  otherConditions: '',
-};
+const createInitialProfile =
+  (): HealthProfileDetails => ({
+    sex: null,
+    yearOfBirth: '',
+    diagnosis: null,
+    conditions: [],
+    otherConditions: '',
+  });
 
 export function OnboardingProvider({
   children,
 }: OnboardingProviderProps) {
-  const [name, setName] =
-    useState('');
+  const [
+    name,
+    setName,
+  ] = useState('');
 
   const [
     phoneNumber,
@@ -87,38 +92,54 @@ export function OnboardingProvider({
     profile,
     setProfile,
   ] = useState<HealthProfileDetails>(
-    initialProfile,
+    createInitialProfile,
   );
 
-  const updateProfile = (
-    details: Partial<HealthProfileDetails>,
-  ) => {
-    setProfile((current) => ({
-      ...current,
-      ...details,
-    }));
-  };
+  const updateProfile = useCallback(
+    (
+      details:
+        Partial<HealthProfileDetails>,
+    ) => {
+      setProfile((current) => ({
+        ...current,
+        ...details,
+      }));
+    },
+    [],
+  );
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setName('');
     setPhoneNumber('');
     setAuthMode(null);
-    setProfile(initialProfile);
-  };
+    setProfile(createInitialProfile());
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      name,
+      setName,
+      phoneNumber,
+      setPhoneNumber,
+      authMode,
+      setAuthMode,
+      profile,
+      updateProfile,
+      reset,
+    }),
+    [
+      name,
+      phoneNumber,
+      authMode,
+      profile,
+      updateProfile,
+      reset,
+    ],
+  );
 
   return (
     <OnboardingContext.Provider
-      value={{
-        name,
-        setName,
-        phoneNumber,
-        setPhoneNumber,
-        authMode,
-        setAuthMode,
-        profile,
-        updateProfile,
-        reset,
-      }}
+      value={value}
     >
       {children}
     </OnboardingContext.Provider>

@@ -1,17 +1,39 @@
 import { router } from 'expo-router';
 
-import { useOnboarding } from '@/features/onboarding/OnboardingContext';
 import LoadingBridgeScreen from '@/features/onboarding/components/LoadingBridgeScreen';
+import { useOnboarding } from '@/features/onboarding/OnboardingContext';
+import { createUserProfile } from '@/services/userProfile';
 
 export default function LoadingBridgeRoute() {
-  const { name } = useOnboarding();
+  const {
+    name,
+    profile,
+  } = useOnboarding();
 
-  const continueToHome = () => {
-    router.replace({
-      pathname: '/home',
-      params: { name },
-    });
+  const continueToHome = async () => {
+    try {
+      await createUserProfile({
+        name,
+        profile,
+      });
+
+      router.replace({
+        pathname: '/home',
+        params: {
+          name,
+        },
+      });
+    } catch (error) {
+      console.error(
+        'Failed to create user profile:',
+        error,
+      );
+    }
   };
 
-  return <LoadingBridgeScreen onContinue={continueToHome} />;
+  return (
+    <LoadingBridgeScreen
+      onContinue={continueToHome}
+    />
+  );
 }
