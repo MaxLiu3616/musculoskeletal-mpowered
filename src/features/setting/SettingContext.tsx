@@ -10,6 +10,14 @@ import {
   type ReactNode,
 } from 'react';
 
+import {
+  createSupportPerson,
+  deleteSupportPerson,
+  loadSupportPeople,
+  updateSupportPerson as updateSupportPersonInDatabase,
+  type SupportPerson,
+} from '@/services/supportPeople';
+
 import { supabase } from '@/services/supabase';
 
 import {
@@ -17,6 +25,10 @@ import {
   loadUserSettings,
   updateUserSettings,
 } from '@/services/userSettings';
+
+export type {
+  SupportPerson,
+} from '@/services/supportPeople';
 
 export type NotificationPreferences = {
   weeklyReminders: boolean;
@@ -28,15 +40,6 @@ export type DisplayPreferences = {
     | 'small'
     | 'medium'
     | 'large';
-};
-
-export type SupportPerson = {
-  id: string;
-  name: string;
-  phone: string;
-  email: string;
-  canAddQuestions: boolean;
-  canViewAnswers: boolean;
 };
 
 type SettingContextValue = {
@@ -146,13 +149,13 @@ export function SettingProvider({
   ] =
     useState<SupportPerson[]>([]);
 
-  const nextSupportPersonId =
-    useRef(1);
-
   const notificationChanged =
     useRef(false);
 
   const displayChanged =
+    useRef(false);
+
+  const supportPeopleChanged =
     useRef(false);
 
   const displayLoadedFromServer =
@@ -210,8 +213,14 @@ export function SettingProvider({
         userId: string,
       ) => {
         try {
-          const settings =
-            await loadUserSettings();
+          const [
+            settings,
+            storedSupportPeople,
+          ] =
+            await Promise.all([
+              loadUserSettings(),
+              loadSupportPeople(),
+            ]);
 
           if (
             activeUserId.current !==
@@ -242,6 +251,14 @@ export function SettingProvider({
               textSize:
                 settings.textSize,
             });
+          }
+
+          if (
+            !supportPeopleChanged.current
+          ) {
+            setSupportPeople(
+              storedSupportPeople,
+            );
           }
 
           await AsyncStorage.setItem(
@@ -291,6 +308,9 @@ export function SettingProvider({
             displayChanged.current =
               false;
 
+            supportPeopleChanged.current =
+              false;
+
             displayLoadedFromServer.current =
               false;
 
@@ -301,6 +321,8 @@ export function SettingProvider({
               appointmentReminders:
                 defaultUserSettings.appointmentReminders,
             });
+
+            setSupportPeople([]);
 
             return;
           }
@@ -315,6 +337,9 @@ export function SettingProvider({
               false;
 
             displayChanged.current =
+              false;
+
+            supportPeopleChanged.current =
               false;
 
             displayLoadedFromServer.current =
@@ -424,23 +449,44 @@ export function SettingProvider({
         'id'
       >,
   ) => {
-    const id =
-      String(
-        nextSupportPersonId.current,
-      );
+    supportPeopleChanged.current =
+      true;
 
-    nextSupportPersonId.current +=
-      1;
+    const requestUserId =
+      activeUserId.current;
 
-    setSupportPeople(
-      (current) => [
-        ...current,
-        {
-          ...person,
-          id,
+    if (!requestUserId) {
+      return;
+    }
+
+    void createSupportPerson(
+      person,
+    )
+      .then(
+        (created) => {
+          if (
+            activeUserId.current !==
+            requestUserId
+          ) {
+            return;
+          }
+
+          setSupportPeople(
+            (current) => [
+              ...current,
+              created,
+            ],
+          );
         },
-      ],
-    );
+      )
+      .catch(
+        (error) => {
+          console.error(
+            'Failed to add support person:',
+            error,
+          );
+        },
+      );
   };
 
   const updateSupportPerson = (
@@ -448,30 +494,124 @@ export function SettingProvider({
     changes:
       Partial<SupportPerson>,
   ) => {
-    setSupportPeople(
-      (current) =>
-        current.map(
-          (person) =>
-            person.id === id
-              ? {
-                  ...person,
-                  ...changes,
-                }
-              : person,
-        ),
-    );
+    const existing =
+      supportPeople.find(
+        (person) =>
+          person.id === id,
+      );
+
+    if (!existing) {
+      return;
+    }
+
+    supportPeopleChanged.current =
+      true;
+
+    const requestUserId =
+      activeUserId.current;
+
+    if (!requestUserId) {
+      return;
+    }
+
+    const input = {
+      name:
+        changes.name ??
+        existing.name,
+
+      phone:
+        changes.phone ??
+        existing.phone,
+
+      email:
+        changes.email ??
+        existing.email,
+
+      canAddQuestions:
+        changes.canAddQuestions ??
+        existing.canAddQuestions,
+
+      canViewAnswers:
+        changes.canViewAnswers ??
+        existing.canViewAnswers,
+    };
+
+    void updateSupportPersonInDatabase(
+      id,
+      input,
+    )
+      .then(
+        (updated) => {
+          if (
+            activeUserId.current !==
+            requestUserId
+          ) {
+            return;
+          }
+
+          setSupportPeople(
+            (current) =>
+              current.map(
+                (person) =>
+                  person.id === id
+                    ? updated
+                    : person,
+              ),
+          );
+        },
+      )
+      .catch(
+        (error) => {
+          console.error(
+            'Failed to update support person:',
+            error,
+          );
+        },
+      );
   };
 
   const removeSupportPerson = (
     id: string,
   ) => {
-    setSupportPeople(
-      (current) =>
-        current.filter(
-          (person) =>
-            person.id !== id,
-        ),
-    );
+    supportPeopleChanged.current =
+      true;
+
+    const requestUserId =
+      activeUserId.current;
+
+    if (!requestUserId) {
+      return;
+    }
+
+    void deleteSupportPerson(
+      id,
+    )
+      .then(
+        () => {
+          if (
+            activeUserId.current !==
+            requestUserId
+          ) {
+            return;
+          }
+
+          setSupportPeople(
+            (current) =>
+              current.filter(
+                (person) =>
+                  person.id !== id,
+              ),
+          );
+        },
+      )
+      .catch(
+        (error) => {
+          console.error(
+            'Failed to remove support person:',
+            error,
+          );
+        },
+      );
   };
 
   const reset = () => {
@@ -489,13 +629,13 @@ export function SettingProvider({
 
     setSupportPeople([]);
 
-    nextSupportPersonId.current =
-      1;
-
     notificationChanged.current =
       false;
 
     displayChanged.current =
+      false;
+
+    supportPeopleChanged.current =
       false;
 
     displayLoadedFromServer.current =
