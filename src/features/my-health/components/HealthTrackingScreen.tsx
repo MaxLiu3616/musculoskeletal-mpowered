@@ -320,9 +320,7 @@ export default function HealthTrackingScreen({
                         styles.tableCell
                       }
                     >
-                      {
-                        item.label
-                      }
+                      {item.label}
                     </Text>
                   ),
                 )}
@@ -576,14 +574,15 @@ export default function HealthTrackingScreen({
           </View>
         ))
       ) : (
-        <View style={styles.empty}>
+        <View
+          style={styles.empty}
+        >
           <Text
             style={
               styles.emptyTitle
             }
           >
-            No assessment history
-            yet
+            No assessment history yet
           </Text>
 
           <Text
@@ -598,12 +597,6 @@ export default function HealthTrackingScreen({
           </Text>
         </View>
       )}
-
-      <Text
-        style={styles.sessionNote}
-      >
-        {myHealthCopy.sessionNote}
-      </Text>
     </HealthScreen>
   );
 }

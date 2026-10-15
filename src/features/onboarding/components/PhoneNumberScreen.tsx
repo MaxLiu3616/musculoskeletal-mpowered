@@ -12,6 +12,7 @@ import {
 
 import { supabase } from '@/services/supabase';
 import { colors } from '@/theme';
+
 import {
   isValidAuMobile,
   toE164,
@@ -29,10 +30,12 @@ import {
 
 type PhoneNumberScreenProps = {
   onContinue: () => void;
+  initialError?: string | null;
 };
 
 export default function PhoneNumberScreen({
   onContinue,
+  initialError = null,
 }: PhoneNumberScreenProps) {
   const {
     authMode,
@@ -52,7 +55,9 @@ export default function PhoneNumberScreen({
   const [
     error,
     setError,
-  ] = useState<string | null>(null);
+  ] = useState<string | null>(
+    initialError,
+  );
 
   const isValidNumber =
     isValidAuMobile(phoneNumber);
@@ -60,6 +65,13 @@ export default function PhoneNumberScreen({
   const canContinue =
     isValidNumber &&
     !loading;
+
+  const updatePhoneNumber = (
+    value: string,
+  ) => {
+    setLocalPhoneNumber(value);
+    setError(null);
+  };
 
   const continueToVerification =
     async () => {
@@ -95,13 +107,16 @@ export default function PhoneNumberScreen({
             'No account was found with this phone number. Please sign up first.',
           );
         } else {
-          setError(sendError.message);
+          setError(
+            sendError.message,
+          );
         }
 
         return;
       }
 
       setPhoneNumber(e164Number);
+
       onContinue();
     };
 
@@ -113,7 +128,9 @@ export default function PhoneNumberScreen({
       ]}
     >
       <Text style={styles.title}>
-        {phoneNumberScreenCopy.title}
+        {
+          phoneNumberScreenCopy.title
+        }
       </Text>
 
       <TextInput
@@ -124,7 +141,7 @@ export default function PhoneNumberScreen({
         inputMode="tel"
         keyboardType="phone-pad"
         onChangeText={
-          setLocalPhoneNumber
+          updatePhoneNumber
         }
         onSubmitEditing={
           continueToVerification
@@ -133,13 +150,21 @@ export default function PhoneNumberScreen({
         selectionColor={
           colors.primary
         }
-        style={styles.phoneInput}
+        style={
+          styles.phoneInput
+        }
         textContentType="telephoneNumber"
         value={phoneNumber}
       />
 
-      <Text style={styles.phoneHelper}>
-        {phoneNumberScreenCopy.helper}
+      <Text
+        style={
+          styles.phoneHelper
+        }
+      >
+        {
+          phoneNumberScreenCopy.helper
+        }
       </Text>
 
       {phoneNumber.length > 0 &&
@@ -171,7 +196,8 @@ export default function PhoneNumberScreen({
       <Pressable
         accessibilityRole="button"
         accessibilityState={{
-          disabled: !canContinue,
+          disabled:
+            !canContinue,
         }}
         disabled={!canContinue}
         onPress={

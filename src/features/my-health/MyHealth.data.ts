@@ -20,8 +20,6 @@ export const myHealthCopy = {
     'This pain profile is updated each time you complete your assessments.',
   profileEmpty:
     'Complete your weekly assessments to build your pain profile.',
-  sessionNote:
-    'Available during this session. Records reset when the app restarts.',
   trackingTitle:
     'Health history',
   trackingEmpty:
@@ -214,7 +212,7 @@ export function updateAssessmentRecords(
 
     id,
 
-    // This field now stores the assessment cycle start.
+    // This field stores the assessment cycle start.
     weekStart:
       recordCycleStart,
 
