@@ -11,6 +11,7 @@ import {
 } from '@/components/typography';
 
 import { supabase } from '@/services/supabase';
+import { userProfileExists } from '@/services/userProfile';
 
 import { useOnboarding } from '../OnboardingContext';
 
@@ -25,6 +26,7 @@ import {
 
 type VerificationCodeScreenProps = {
   onVerify: () => void;
+  onExistingAccount: () => void;
 };
 
 const formatCountdown = (
@@ -43,6 +45,7 @@ const formatCountdown = (
 
 export default function VerificationCodeScreen({
   onVerify,
+  onExistingAccount,
 }: VerificationCodeScreenProps) {
   const {
     phoneNumber,
@@ -182,9 +185,9 @@ export default function VerificationCodeScreen({
         type: 'sms',
       });
 
-    setVerifying(false);
-
     if (verifyError) {
+      setVerifying(false);
+
       setError(
         'That code is invalid or has expired. Please try again.',
       );
@@ -192,7 +195,35 @@ export default function VerificationCodeScreen({
       return;
     }
 
-    onVerify();
+    try {
+      if (authMode === 'signup') {
+        const exists =
+          await userProfileExists();
+
+        if (exists) {
+          await supabase.auth.signOut();
+
+          setVerifying(false);
+
+          onExistingAccount();
+          return;
+        }
+      }
+
+      setVerifying(false);
+      onVerify();
+    } catch (checkError) {
+      setVerifying(false);
+
+      console.error(
+        'Failed to check user profile:',
+        checkError,
+      );
+
+      setError(
+        'Unable to verify your account right now. Please try again.',
+      );
+    }
   };
 
   return (

@@ -42,13 +42,14 @@ export default function SettingRoute() {
   } = useSetting();
 
   const {
-    saveNotes,
+    reset: resetReflection,
   } = useReflection();
 
   const logout = async () => {
     const {
       error,
-    } = await supabase.auth.signOut();
+    } =
+      await supabase.auth.signOut();
 
     if (error) {
       console.error(
@@ -64,10 +65,11 @@ export default function SettingRoute() {
     resetHealth();
     resetPlanner();
     resetSettings();
-    saveNotes('');
+    resetReflection();
 
     navigation.reset({
       index: 0,
+
       routes: [
         {
           name: 'index',
