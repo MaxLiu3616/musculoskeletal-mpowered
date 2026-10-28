@@ -22,8 +22,8 @@ export function CareField({ label, ...props }: TextInputProps & { label: string 
   </View>;
 }
 
-export function CareCheck({ label, checked, onPress }: { label: string; checked: boolean; onPress: () => void }) {
-  return <Pressable accessibilityRole="checkbox" accessibilityLabel={label} accessibilityState={{ checked }} onPress={onPress} style={[styles.checkRow, checked && styles.checkedRow]}>
+export function CareCheck({ label, checked, onPress, disabled = false }: { label: string; checked: boolean; onPress: () => void; disabled?: boolean }) {
+  return <Pressable accessibilityRole="checkbox" accessibilityLabel={label} accessibilityState={{ checked, disabled }} aria-checked={checked} disabled={disabled} onPress={onPress} style={[styles.checkRow, checked && styles.checkedRow]}>
     <Text style={styles.checkText}>{label}</Text>
     <Ionicons name={checked ? 'checkbox' : 'square-outline'} color={checked ? colors.primary : colors.muted} size={22} />
   </Pressable>;

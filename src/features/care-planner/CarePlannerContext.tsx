@@ -151,9 +151,13 @@ export function CarePlannerProvider({
           event,
           session,
         ) => {
-          activeUserId.current =
-            session?.user.id ??
-            null;
+          const nextUserId = session?.user.id ?? null;
+          if (activeUserId.current && nextUserId && activeUserId.current !== nextUserId) {
+            setPlans([]);
+            setDraft(createAppointmentDraft('draft-0', []));
+            draftCounter.current = 0;
+          }
+          activeUserId.current = nextUserId;
 
           if (!session) {
             setPlans([]);

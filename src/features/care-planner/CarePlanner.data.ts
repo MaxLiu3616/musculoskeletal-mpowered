@@ -1,5 +1,6 @@
 import { painLocations } from '@/features/my-health/HealthRecord.data';
 import type { AssessmentRecord } from '@/features/my-health/MyHealth.types';
+import { getSupportPersonError } from '@/features/setting/SupportPeople.data';
 
 import type {
   AppointmentPlan,
@@ -56,27 +57,7 @@ export function emptySupportPerson():
 export function isValidSupportPerson(
   person: SupportPerson,
 ) {
-  const digits =
-    person.phone.replace(
-      /\D/g,
-      '',
-    );
-
-  return (
-    person.name.trim().length >
-      0 &&
-    digits.length >= 6 &&
-    digits.length <= 15 &&
-    /^[+\d\s().-]+$/.test(
-      person.phone.trim(),
-    ) &&
-    (
-      !person.email.trim() ||
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-        person.email.trim(),
-      )
-    )
-  );
+  return !getSupportPersonError(person);
 }
 
 export function localDateKey(
