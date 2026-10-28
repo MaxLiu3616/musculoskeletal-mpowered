@@ -27,3 +27,18 @@ Run `npm start`, press `Shift+i`, and select an iPad simulator. The existing Exp
 Layouts adapt to the current window width. At 768 points, Home and the welcome screen use tablet spacing, and assessments use the full page scroll area. At 1024 points, the main sections use a sidebar and Home uses two columns. Smaller windows keep bottom navigation. Forms and summaries are capped at 760 points for readability.
 
 Verification details and screenshots are in [ipad-qa.md](ipad-qa.md).
+
+## GitHub Pages
+
+The web app is hosted at https://maxliu3616.github.io/musculoskeletal-mpowered/.
+
+With the project's `EXPO_PUBLIC_SUPABASE_URL` and public `EXPO_PUBLIC_SUPABASE_ANON_KEY` in your ignored `.env` file, run:
+
+```bash
+npm ci
+npm run deploy:pages
+```
+
+This builds the checked-out source and publishes only `dist` to the `gh-pages` branch. GitHub Pages serves that branch's root directory. Deployment requires Git push access; pushes to source branches alone do not update the website.
+
+The Pages build uses the repository URL prefix and includes a fallback page so direct links and refreshes can load the app. Local development and native builds keep their normal paths. Supabase continues to handle sign-in and account data; never use a service-role key or database password in public environment variables.
