@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { getSupportPersonError } from '@/features/setting/SupportPeople.data';
 
 export type SupportPerson = {
   id: string;
@@ -24,7 +25,7 @@ type SupportPersonRow = {
   updated_at: string;
 };
 
-async function getCurrentUserId() {
+async function getCurrentUserId(expectedUserId: string) {
   const {
     data: { user },
     error,
@@ -34,9 +35,9 @@ async function getCurrentUserId() {
     throw error;
   }
 
-  if (!user) {
+  if (!user || user.id !== expectedUserId) {
     throw new Error(
-      'No authenticated user.',
+      'Your account has changed. Sign in again before saving support people.',
     );
   }
 
@@ -61,6 +62,9 @@ function mapSupportPerson(
 function toDatabasePayload(
   input: SupportPersonInput,
 ) {
+  const error = getSupportPersonError(input);
+  if (error) throw new Error(error);
+
   return {
     name: input.name.trim(),
 
@@ -80,10 +84,10 @@ function toDatabasePayload(
   };
 }
 
-export async function loadSupportPeople():
+export async function loadSupportPeople(expectedUserId: string):
   Promise<SupportPerson[]> {
   const userId =
-    await getCurrentUserId();
+    await getCurrentUserId(expectedUserId);
 
   const {
     data,
@@ -115,9 +119,11 @@ export async function loadSupportPeople():
 
 export async function createSupportPerson(
   input: SupportPersonInput,
+  expectedUserId: string,
 ): Promise<SupportPerson> {
+  const payload = toDatabasePayload(input);
   const userId =
-    await getCurrentUserId();
+    await getCurrentUserId(expectedUserId);
 
   const {
     data,
@@ -127,9 +133,7 @@ export async function createSupportPerson(
     .insert({
       user_id: userId,
 
-      ...toDatabasePayload(
-        input,
-      ),
+      ...payload,
     })
     .select('*')
     .single();
@@ -146,9 +150,11 @@ export async function createSupportPerson(
 export async function updateSupportPerson(
   id: string,
   input: SupportPersonInput,
+  expectedUserId: string,
 ): Promise<SupportPerson> {
+  const payload = toDatabasePayload(input);
   const userId =
-    await getCurrentUserId();
+    await getCurrentUserId(expectedUserId);
 
   const {
     data,
@@ -156,9 +162,7 @@ export async function updateSupportPerson(
   } = await supabase
     .from('support_people')
     .update(
-      toDatabasePayload(
-        input,
-      ),
+      payload,
     )
     .eq(
       'id',
@@ -182,9 +186,10 @@ export async function updateSupportPerson(
 
 export async function deleteSupportPerson(
   id: string,
+  expectedUserId: string,
 ) {
   const userId =
-    await getCurrentUserId();
+    await getCurrentUserId(expectedUserId);
 
   const { error } =
     await supabase
@@ -197,7 +202,9 @@ export async function deleteSupportPerson(
       .eq(
         'user_id',
         userId,
-      );
+      )
+      .select('id')
+      .single();
 
   if (error) {
     throw error;

@@ -76,23 +76,29 @@ type SettingContextValue = {
   supportPeople:
     SupportPerson[];
 
+  supportPeopleLoading: boolean;
+  supportPeopleAccountId: string | null;
+  supportPeopleError: string;
+  supportPeopleSaving: boolean;
+  reloadSupportPeople: () => Promise<void>;
+
   addSupportPerson: (
     person:
       Omit<
         SupportPerson,
         'id'
       >,
-  ) => void;
+  ) => Promise<void>;
 
   updateSupportPerson: (
     id: string,
     changes:
       Partial<SupportPerson>,
-  ) => void;
+  ) => Promise<void>;
 
   removeSupportPerson: (
     id: string,
-  ) => void;
+  ) => Promise<void>;
 
   reset: () => void;
 };
@@ -155,8 +161,13 @@ export function SettingProvider({
   const displayChanged =
     useRef(false);
 
-  const supportPeopleChanged =
-    useRef(false);
+  const [supportPeopleLoading, setSupportPeopleLoading] = useState(true);
+  const [supportPeopleAccountId, setSupportPeopleAccountId] = useState<string | null>(null);
+  const [supportPeopleError, setSupportPeopleError] = useState('');
+  const [supportPeopleSaving, setSupportPeopleSaving] = useState(false);
+  const supportRequest = useRef(0);
+  const supportSession = useRef(0);
+  const supportWritePending = useRef(false);
 
   const displayLoadedFromServer =
     useRef(false);
@@ -213,14 +224,7 @@ export function SettingProvider({
         userId: string,
       ) => {
         try {
-          const [
-            settings,
-            storedSupportPeople,
-          ] =
-            await Promise.all([
-              loadUserSettings(),
-              loadSupportPeople(),
-            ]);
+          const settings = await loadUserSettings();
 
           if (
             activeUserId.current !==
@@ -253,14 +257,6 @@ export function SettingProvider({
             });
           }
 
-          if (
-            !supportPeopleChanged.current
-          ) {
-            setSupportPeople(
-              storedSupportPeople,
-            );
-          }
-
           await AsyncStorage.setItem(
             textSizeStorageKey,
             settings.textSize,
@@ -275,6 +271,30 @@ export function SettingProvider({
       [],
     );
 
+  const reloadSupportPeople = useCallback(async () => {
+    const userId = activeUserId.current;
+    if (supportWritePending.current) return;
+    const request = ++supportRequest.current;
+    setSupportPeopleError('');
+    if (!userId) {
+      setSupportPeople([]);
+      setSupportPeopleLoading(false);
+      setSupportPeopleError('Sign in to save and manage support people.');
+      return;
+    }
+    setSupportPeopleLoading(true);
+    try {
+      const people = await loadSupportPeople(userId);
+      if (request === supportRequest.current) setSupportPeople(people);
+    } catch {
+      if (request === supportRequest.current) {
+        setSupportPeopleError('Could not load support people. Check your connection and try again.');
+      }
+    } finally {
+      if (request === supportRequest.current) setSupportPeopleLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     const { data } =
       supabase.auth.onAuthStateChange(
@@ -285,8 +305,18 @@ export function SettingProvider({
           const user =
             session?.user;
 
-          activeUserId.current =
-            user?.id ?? null;
+          const nextUserId = user?.id ?? null;
+          if (activeUserId.current !== nextUserId) {
+            supportSession.current += 1;
+            supportRequest.current += 1;
+            supportWritePending.current = false;
+            setSupportPeople([]);
+            setSupportPeopleError('');
+            setSupportPeopleSaving(false);
+            setSupportPeopleLoading(!!nextUserId);
+          }
+          activeUserId.current = nextUserId;
+          setSupportPeopleAccountId(nextUserId);
 
           const userPhone =
             user?.phone;
@@ -308,9 +338,6 @@ export function SettingProvider({
             displayChanged.current =
               false;
 
-            supportPeopleChanged.current =
-              false;
-
             displayLoadedFromServer.current =
               false;
 
@@ -322,7 +349,10 @@ export function SettingProvider({
                 defaultUserSettings.appointmentReminders,
             });
 
+            supportRequest.current += 1;
             setSupportPeople([]);
+            setSupportPeopleLoading(false);
+            setSupportPeopleError('Sign in to save and manage support people.');
 
             return;
           }
@@ -339,9 +369,6 @@ export function SettingProvider({
             displayChanged.current =
               false;
 
-            supportPeopleChanged.current =
-              false;
-
             displayLoadedFromServer.current =
               false;
 
@@ -350,9 +377,9 @@ export function SettingProvider({
 
             setTimeout(
               () => {
-                void restoreSettings(
-                  userId,
-                );
+                if (activeUserId.current !== userId) return;
+                void restoreSettings(userId);
+                void reloadSupportPeople();
               },
               0,
             );
@@ -362,9 +389,12 @@ export function SettingProvider({
 
     return () => {
       data.subscription.unsubscribe();
+      supportRequest.current += 1;
+      supportSession.current += 1;
     };
   }, [
     restoreSettings,
+    reloadSupportPeople,
   ]);
 
   const setPassword = (
@@ -442,177 +472,56 @@ export function SettingProvider({
     );
   };
 
-  const addSupportPerson = (
-    person:
-      Omit<
-        SupportPerson,
-        'id'
-      >,
+  const renderedSupportSession = supportSession.current;
+  const mutateSupportPeople = async <T,>(
+    write: (userId: string) => Promise<T>,
+    apply: (result: T, people: SupportPerson[]) => SupportPerson[],
   ) => {
-    supportPeopleChanged.current =
-      true;
-
-    const requestUserId =
-      activeUserId.current;
-
-    if (!requestUserId) {
-      return;
+    const userId = supportPeopleAccountId;
+    if (!userId || userId !== activeUserId.current || renderedSupportSession !== supportSession.current) {
+      throw new Error('Your account has changed. Reopen support people to continue.');
     }
-
-    void createSupportPerson(
-      person,
-    )
-      .then(
-        (created) => {
-          if (
-            activeUserId.current !==
-            requestUserId
-          ) {
-            return;
-          }
-
-          setSupportPeople(
-            (current) => [
-              ...current,
-              created,
-            ],
-          );
-        },
-      )
-      .catch(
-        (error) => {
-          console.error(
-            'Failed to add support person:',
-            error,
-          );
-        },
-      );
+    if (supportWritePending.current) throw new Error('Wait for the current change to finish.');
+    const session = supportSession.current;
+    supportWritePending.current = true;
+    supportRequest.current += 1;
+    setSupportPeopleLoading(false);
+    setSupportPeopleSaving(true);
+    try {
+      const result = await write(userId);
+      if (session !== supportSession.current) {
+        throw new Error('Your account has changed. Reopen support people to continue.');
+      }
+      setSupportPeople((current) => apply(result, current));
+      setSupportPeopleError('');
+    } finally {
+      if (session === supportSession.current) {
+        supportWritePending.current = false;
+        setSupportPeopleSaving(false);
+      }
+    }
   };
 
-  const updateSupportPerson = (
-    id: string,
-    changes:
-      Partial<SupportPerson>,
-  ) => {
-    const existing =
-      supportPeople.find(
-        (person) =>
-          person.id === id,
-      );
+  const addSupportPerson = (person: Omit<SupportPerson, 'id'>) =>
+    mutateSupportPeople(
+      (userId) => createSupportPerson(person, userId),
+      (created, current) => [...current, created],
+    );
 
-    if (!existing) {
-      return;
-    }
-
-    supportPeopleChanged.current =
-      true;
-
-    const requestUserId =
-      activeUserId.current;
-
-    if (!requestUserId) {
-      return;
-    }
-
-    const input = {
-      name:
-        changes.name ??
-        existing.name,
-
-      phone:
-        changes.phone ??
-        existing.phone,
-
-      email:
-        changes.email ??
-        existing.email,
-
-      canAddQuestions:
-        changes.canAddQuestions ??
-        existing.canAddQuestions,
-
-      canViewAnswers:
-        changes.canViewAnswers ??
-        existing.canViewAnswers,
-    };
-
-    void updateSupportPersonInDatabase(
-      id,
-      input,
-    )
-      .then(
-        (updated) => {
-          if (
-            activeUserId.current !==
-            requestUserId
-          ) {
-            return;
-          }
-
-          setSupportPeople(
-            (current) =>
-              current.map(
-                (person) =>
-                  person.id === id
-                    ? updated
-                    : person,
-              ),
-          );
-        },
-      )
-      .catch(
-        (error) => {
-          console.error(
-            'Failed to update support person:',
-            error,
-          );
-        },
-      );
+  const updateSupportPerson = async (id: string, changes: Partial<SupportPerson>) => {
+    const existing = supportPeople.find((person) => person.id === id);
+    if (!existing) throw new Error('This support person is no longer available. Refresh the list.');
+    await mutateSupportPeople(
+      (userId) => updateSupportPersonInDatabase(id, { ...existing, ...changes }, userId),
+      (updated, current) => current.map((person) => person.id === id ? updated : person),
+    );
   };
 
-  const removeSupportPerson = (
-    id: string,
-  ) => {
-    supportPeopleChanged.current =
-      true;
-
-    const requestUserId =
-      activeUserId.current;
-
-    if (!requestUserId) {
-      return;
-    }
-
-    void deleteSupportPerson(
-      id,
-    )
-      .then(
-        () => {
-          if (
-            activeUserId.current !==
-            requestUserId
-          ) {
-            return;
-          }
-
-          setSupportPeople(
-            (current) =>
-              current.filter(
-                (person) =>
-                  person.id !== id,
-              ),
-          );
-        },
-      )
-      .catch(
-        (error) => {
-          console.error(
-            'Failed to remove support person:',
-            error,
-          );
-        },
-      );
-  };
+  const removeSupportPerson = (id: string) =>
+    mutateSupportPeople(
+      (userId) => deleteSupportPerson(id, userId),
+      (_, current) => current.filter((person) => person.id !== id),
+    );
 
   const reset = () => {
     setPhone('');
@@ -635,8 +544,13 @@ export function SettingProvider({
     displayChanged.current =
       false;
 
-    supportPeopleChanged.current =
-      false;
+    supportRequest.current += 1;
+    supportSession.current += 1;
+    supportWritePending.current = false;
+    setSupportPeopleLoading(false);
+    setSupportPeopleSaving(false);
+    setSupportPeopleError('');
+    setSupportPeopleAccountId(null);
 
     displayLoadedFromServer.current =
       false;
@@ -665,6 +579,11 @@ export function SettingProvider({
         updateDisplay,
 
         supportPeople,
+        supportPeopleLoading,
+        supportPeopleAccountId,
+        supportPeopleError,
+        supportPeopleSaving,
+        reloadSupportPeople,
         addSupportPerson,
         updateSupportPerson,
         removeSupportPerson,
