@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build:pages": "GITHUB_PAGES=true expo export --platform web && cp dist/index.html dist/404.html",
-    "deploy:pages": "npm run build:pages && gh-pages --nojekyll -d dist"
+    "deploy:pages": "npm run build:pages && gh-pages --nojekyll -d dist --remove '{**/*,**/.*,.!(git)/**/*}'"
   },
   "dependencies": {
     "@expo/metro-runtime": "~57.0.9",
