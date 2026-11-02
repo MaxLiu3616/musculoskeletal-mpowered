@@ -56,7 +56,6 @@ export default function ManagementSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={colors.peach}
         />
 
         <ScrollView

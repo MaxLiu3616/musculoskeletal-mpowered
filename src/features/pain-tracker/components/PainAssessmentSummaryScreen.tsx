@@ -1,7 +1,6 @@
 import MotionPressable from '@/components/motion/MotionPressable';
 import ScreenHeader from '@/components/ScreenHeader';
 import { readableWidth } from '@/components/layout';
-import { colors } from '@/theme';
 import {
   ScrollView,
   StatusBar,
@@ -93,7 +92,6 @@ export default function PainAssessmentSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={colors.peach}
         />
 
         <ScrollView

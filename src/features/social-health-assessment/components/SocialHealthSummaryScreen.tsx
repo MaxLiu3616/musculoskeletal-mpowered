@@ -186,7 +186,6 @@ export default function SocialHealthSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={colors.peach}
         />
 
         <ScrollView

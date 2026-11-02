@@ -87,7 +87,6 @@ export default function PersonalCareSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={colors.peach}
         />
 
         <ScrollView

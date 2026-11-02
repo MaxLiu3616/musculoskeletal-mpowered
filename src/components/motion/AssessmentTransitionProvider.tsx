@@ -1,6 +1,6 @@
 import { usePathname } from 'expo-router';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { Animated, BackHandler, Easing, View } from 'react-native';
+import { Animated, BackHandler, Easing, View, type ViewInstance } from 'react-native';
 
 import type { HomeAssessmentId } from '@/features/home/components/HomeScreen.data';
 import { useReducedMotion } from './MotionProvider';
@@ -18,7 +18,7 @@ export default function AssessmentTransitionProvider({ children }: { children: R
   const [scene, setScene] = useState<MorphScene | null>(null);
   const current = useRef<MorphScene | null>(null);
   const locked = useRef(false);
-  const viewportRef = useRef<View>(null);
+  const viewportRef = useRef<ViewInstance>(null);
   const viewport = useRef<MorphBox | null>(null);
   const origin = useRef<MorphScene | null>(null);
   const activeHeader = useRef<{ id: HomeAssessmentId; geometry: HeaderGeometry } | null>(null);

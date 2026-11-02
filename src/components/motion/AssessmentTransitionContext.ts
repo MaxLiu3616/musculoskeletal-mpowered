@@ -1,5 +1,5 @@
 import { createContext, useContext, type RefObject } from 'react';
-import { Animated, type View } from 'react-native';
+import { Animated, type ViewInstance } from 'react-native';
 
 import type { HomeAssessmentId } from '@/features/home/components/HomeScreen.data';
 
@@ -16,7 +16,7 @@ export type MorphScene = {
   header?: HeaderGeometry;
 };
 
-export function measureMorphBox(node: Pick<View, 'measureInWindow'> | null): Promise<MorphBox | null> {
+export function measureMorphBox(node: Pick<ViewInstance, 'measureInWindow'> | null): Promise<MorphBox | null> {
   return new Promise(resolve => {
     if (!node) { resolve(null); return; }
     node.measureInWindow((x, y, width, height) => {
@@ -30,7 +30,7 @@ type AssessmentTransitionValue = {
   scene: MorphScene | null;
   progress: Animated.Value;
   reveal: Animated.Value;
-  viewportRef: RefObject<View | null>;
+  viewportRef: RefObject<ViewInstance | null>;
   onViewportLayout: () => void;
   openTile: (id: HomeAssessmentId, measureTile: MeasureTile, navigate: () => void) => void;
   homeReady: (measureTile: MeasureTile) => void;

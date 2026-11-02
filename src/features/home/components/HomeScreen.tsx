@@ -10,8 +10,9 @@ import {
   View,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
-  type ScrollView,
-  type Text as NativeText,
+  type ScrollViewInstance,
+  type TextInstance,
+  type ViewInstance,
 } from 'react-native';
 
 import { AppText as Text } from '@/components/typography';
@@ -70,10 +71,10 @@ export default function HomeScreen({
   const { display } = useSetting();
   const { completion, entranceStyle } = useHomeMotion(assessmentStatus);
   const { busy, scene, openTile, homeReady } = useAssessmentTransition();
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   const heroScroll = useRef(new Animated.Value(0)).current;
-  const tileRefs = useRef<Partial<Record<HomeAssessmentId, { card: View | null; icon: View | null; title: NativeText | null }>>>({});
+  const tileRefs = useRef<Partial<Record<HomeAssessmentId, { card: ViewInstance | null; icon: ViewInstance | null; title: TextInstance | null }>>>({});
   const measureTile = useCallback<MeasureTile>(async (id, viewport) => {
     const nodes = tileRefs.current[id];
     if (!nodes) return null;
@@ -220,7 +221,7 @@ export default function HomeScreen({
               );
 
               return (
-                <Animated.View key={assessment.id} ref={node => { nodes.card = node as View | null; }} collapsable={false} style={[
+                <Animated.View key={assessment.id} ref={node => { nodes.card = node; }} collapsable={false} style={[
                   styles.assessmentLayout, isManagement && styles.managementLayout, entranceStyle(index + 2),
                 ]}>
                   <MotionPressable

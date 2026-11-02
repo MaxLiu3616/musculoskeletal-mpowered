@@ -6,6 +6,7 @@ import {
 import { useFonts } from 'expo-font';
 
 import {
+  Platform,
   StyleSheet,
   View,
   useWindowDimensions,
@@ -97,7 +98,7 @@ function AppNavigator() {
   return (
     <SafeAreaView
       edges={
-        activeItem
+        Platform.OS === 'web' ? [] : activeItem
           ? showSidebar
             ? [
                 'top',
@@ -118,12 +119,14 @@ function AppNavigator() {
           styles.homeContainer,
         showSidebar &&
           styles.wideContainer,
+        Platform.OS === 'web' && activeItem && styles.webSafeArea,
+        Platform.OS === 'web' && showSidebar && styles.webBottomInset,
       ]}
     >
       {activeItem ? (
         <SafeAreaView
           edges={
-            showSidebar
+            showSidebar || Platform.OS === 'web'
               ? []
               : ['bottom']
           }
@@ -133,6 +136,7 @@ function AppNavigator() {
               styles.homeNavigation,
             showSidebar &&
               styles.sideNavigation,
+            Platform.OS === 'web' && !showSidebar && styles.webBottomInset,
           ]}
         >
           {showSidebar ? (
@@ -265,6 +269,17 @@ const styles =
       width: '100%',
       backgroundColor:
         colors.canvas,
+    },
+
+    // Expo Router 58 leaves web insets at zero; the browser supplies these values.
+    webSafeArea: {
+      paddingTop: 'env(safe-area-inset-top, 0px)',
+      paddingLeft: 'env(safe-area-inset-left, 0px)',
+      paddingRight: 'env(safe-area-inset-right, 0px)',
+    },
+
+    webBottomInset: {
+      paddingBottom: 'env(safe-area-inset-bottom, 0px)',
     },
 
     content: {

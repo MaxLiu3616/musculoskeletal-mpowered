@@ -67,14 +67,18 @@ export default function SettingRoute() {
     resetSettings();
     resetReflection();
 
-    navigation.reset({
-      index: 0,
+    navigation.dispatch({
+      type: 'RESET',
+      payload: {
+        ...navigation.getState(),
+        index: 0,
 
-      routes: [
-        {
-          name: 'index',
-        },
-      ],
+        routes: [
+          {
+            name: 'index',
+          },
+        ],
+      },
     });
   };
 

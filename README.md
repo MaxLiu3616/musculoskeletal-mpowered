@@ -2,6 +2,10 @@
 
 An Expo TypeScript application for Android, iPhone, iPad, and web.
 
+## Handover
+
+See the [MPOWERED handover page](HANDOVER.md) for user guides, architecture, development conventions, requirements and ownership/licensing information.
+
 ## Run the application
 
 Use Node.js 24 (24.3 or newer) and npm. Run these commands from the repository root, where `package.json` is located.

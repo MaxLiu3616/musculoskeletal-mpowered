@@ -1,6 +1,6 @@
 import { Children, useCallback, useRef, type ReactNode } from 'react';
 import { useFocusEffect } from 'expo-router';
-import { Animated, Keyboard, KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
+import { Animated, Keyboard, KeyboardAvoidingView, Platform, ScrollView, TextInput, View, type ScrollViewInstance } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ScreenHeader from '@/components/ScreenHeader';
@@ -18,7 +18,7 @@ type HealthScreenProps = {
 
 export default function HealthScreen({ title, children, onBack, footer, animateEntrance = false }: HealthScreenProps) {
   const { top } = useSafeAreaInsets();
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const footerHeight = useRef(0);
   const focused = useRef(false);
   const revealInput = useCallback(() => {

@@ -93,7 +93,6 @@ export default function MovementSummaryScreen({
       <View style={styles.safeArea}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={colors.peach}
         />
 
         <ScrollView

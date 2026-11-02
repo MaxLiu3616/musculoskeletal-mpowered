@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { usePathname } from 'expo-router';
 import { useCallback, useLayoutEffect, useRef } from 'react';
-import { Image, Pressable, StyleSheet, View, useWindowDimensions, type Text as NativeText } from 'react-native';
+import { Image, Pressable, StyleSheet, View, useWindowDimensions, type TextInstance, type ViewInstance } from 'react-native';
 
 import { AppText as Text } from './typography';
 import { readableWidth } from './layout';
@@ -42,8 +42,8 @@ export default function ScreenHeader({
   const { width, height, fontScale } = useWindowDimensions();
   const { display } = useSetting();
   const { reportHeader } = useAssessmentTransition();
-  const titleRef = useRef<NativeText>(null);
-  const iconRef = useRef<View>(null);
+  const titleRef = useRef<TextInstance>(null);
+  const iconRef = useRef<ViewInstance>(null);
   const assessment = homeAssessments.find(item => title === item.label || title === `${item.label} summary`);
   const measureHeader = useCallback(async () => {
     if (!assessment || (!onTransitionMeasured && pathname !== mountedPath)) return;

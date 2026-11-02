@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, ImageBackground, Pressable, SafeAreaView, ScrollView, StatusBar, View, useWindowDimensions } from 'react-native';
+import { AccessibilityInfo, ImageBackground, Pressable, SafeAreaView, ScrollView, StatusBar, View, useWindowDimensions, type ScrollViewInstance } from 'react-native';
 
 import { BrandMark } from '@/components/ScreenHeader';
 import { TABLET_BREAKPOINT } from '@/components/layout';
@@ -18,7 +18,7 @@ export default function SplashScreen({ onGetStarted, onSignIn }: {
   const isTablet = width >= TABLET_BREAKPOINT;
   const [galleryWidth, setGalleryWidth] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(true);
-  const galleryRef = useRef<ScrollView>(null);
+  const galleryRef = useRef<ScrollViewInstance>(null);
 
   useEffect(() => {
     let active = true;
@@ -48,7 +48,7 @@ export default function SplashScreen({ onGetStarted, onSignIn }: {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.peach} />
+      <StatusBar barStyle="dark-content" />
       <ScrollView contentContainerStyle={[styles.scrollContent, isTablet && styles.tabletScrollContent]} showsVerticalScrollIndicator={false}>
         <ImageBackground source={require('../../../../assets/images/home-anatomy-hero.png')}
           resizeMode="cover" style={[styles.hero, isTablet && styles.tabletHero]} imageStyle={styles.heroImage}>

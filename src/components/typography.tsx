@@ -4,7 +4,9 @@ import {
   Text,
   TextInput,
   type StyleProp,
+  type TextInputInstance,
   type TextInputProps,
+  type TextInstance,
   type TextProps,
   type TextStyle,
 } from 'react-native';
@@ -31,7 +33,7 @@ function useScaledTextStyle(style: StyleProp<TextStyle>) {
   }];
 }
 
-export const AppText = forwardRef<Text, TextProps>(function AppText(
+export const AppText = forwardRef<TextInstance, TextProps>(function AppText(
   { style, ...props },
   ref,
 ) {
@@ -39,7 +41,7 @@ export const AppText = forwardRef<Text, TextProps>(function AppText(
   return <Text {...props} ref={ref} style={scaledStyle} />;
 });
 
-export const AppTextInput = forwardRef<TextInput, TextInputProps>(function AppTextInput(
+export const AppTextInput = forwardRef<TextInputInstance, TextInputProps>(function AppTextInput(
   { style, ...props },
   ref,
 ) {
