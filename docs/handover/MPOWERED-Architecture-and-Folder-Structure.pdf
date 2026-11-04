@@ -1,0 +1,368 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 4 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+/Outlines 10 0 R
+>>
+endobj
+4 0 obj
+<<
+/Contents 5 0 R
+/MediaBox [ 0 0 595.2756 841.8898 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
+/Annots [ ]
+>>
+endobj
+5 0 obj
+<<
+/Length 4460
+>>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+1 0 0 1 52 763.8898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 4 Tm
+/F2 21 Tf
+25 TL
+(MPOWERED Architecture Guide) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 713.8898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 4 Tm
+/F2 13 Tf
+17 TL
+(Overview) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 665.7898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 31.4 Tm
+/F1 9.7 Tf
+13.7 TL
+-0.11813 Tw
+(MPOWERED is a React Native app built with Expo 57 and TypeScript\056 The same codebase supports iOS\054 Android\054) Tj
+T*
+0 Tw
+(and web\056 Expo Router handles navigation\054 React Context holds shared state\054 and Supabase provides) Tj
+T*
+(authentication and a PostgreSQL database\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 644.0898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 4 Tm
+/F1 9.7 Tf
+13.7 TL
+(Most database work follows this path\072) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 625.6898 cm
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 2.2 Tm
+/F3 8.2 Tf
+10.4 TL
+(Route \055\076 Feature screen\057context \055\076 Service \055\076 Supabase) Tj
+T*
+ET
+Q
+q
+1 0 0 1 52 588.2898 cm
+q
+BT
+1 0 0 1 0 17.7 Tm
+13.7 TL
+/F1 9.7 Tf
+0.0 0.0 0.0 rg
+(There is no separate application server\056 Database calls live in ) Tj
+/F3 8.4 Tf
+(src\057services\057) Tj
+/F1 9.7 Tf
+(\054 while sign\055in and session handling) Tj
+T*
+(also call Supabase directly from screens and providers\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 562.2898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 4 Tm
+/F2 13 Tf
+17 TL
+(Project layout) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 541.5898 cm
+q
+BT
+1 0 0 1 0 4 Tm
+13.7 TL
+/F1 9.7 Tf
+0.0 0.0 0.0 rg
+(Paths below are relative to ) Tj
+/F3 8.4 Tf
+(musculoskeletal\055mpowered\057) Tj
+/F1 9.7 Tf
+(\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 377.5898 cm
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 147.8 Tm
+/F3 8.2 Tf
+10.4 TL
+(src\057) Tj
+T*
+(\174\055\055 app\057                 Routes and navigation layouts) Tj
+T*
+(\174\055\055 features\057            Screens\054 state\054 and logic for each feature) Tj
+T*
+(\174\055\055 components\057          Shared UI\054 navigation\054 typography\054 and motion) Tj
+T*
+(\174\055\055 services\057            Database calls and native\057web adapters) Tj
+T*
+(\174\055\055 utils\057validation\056ts  Phone validation and formatting) Tj
+T*
+(\140\055\055 theme\056ts             Shared colours and design tokens) Tj
+T*
+(assets\057                  Images\054 fonts\054 and font licences) Tj
+T*
+(supabase\057) Tj
+T*
+(\174\055\055 config\056toml          Local backend configuration) Tj
+T*
+(\140\055\055 migrations\057          Database schema and access policies) Tj
+T*
+(tests\057                   TypeScript tests and a separate SQL RLS test) Tj
+T*
+(app\056json                 Expo targets\054 plugins\054 and permissions) Tj
+T*
+(app\056config\056js            GitHub Pages base\055path setting) Tj
+T*
+(package\056json             Dependencies and scripts) Tj
+T*
+ET
+Q
+q
+1 0 0 1 52 312.7898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 45.1 Tm
+/F1 9.7 Tf
+13.7 TL
+(Features include onboarding\054 Home\054 the five assessment areas\054 My Health\054 reflections\054 Care Planner\054 and) Tj
+T*
+(settings\056 Each feature keeps its screens\054 context\054 types\054 and data helpers together\056 A route usually selects a) Tj
+T*
+(feature screen and supplies navigation callbacks\056 New database operations belong in the relevant service rather) Tj
+T*
+(than in screen layout code\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 286.7898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 4 Tm
+/F2 13 Tf
+17 TL
+(Navigation and state) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 252.3898 cm
+q
+BT
+1 0 0 1 0 17.7 Tm
+13.7 TL
+/F3 8.4 Tf
+0.0 0.0 0.0 rg
+(src\057app\057\137layout\056tsx) Tj
+/F1 9.7 Tf
+( loads fonts and runs ) Tj
+/F3 8.4 Tf
+(SessionLoader) Tj
+/F1 9.7 Tf
+( before showing the app\056 It wraps the navigator in) Tj
+T*
+(providers for onboarding\054 Home progress\054 reflections\054 My Health\054 Care Planner\054 settings\054 and motion\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 216.9898 cm
+q
+0.0 0.0 0.0 rg
+BT
+1 0 0 1 0 17.7 Tm
+/F1 9.7 Tf
+13.7 TL
+(The five assessment groups each have a nested layout and their own context for unfinished answers\056 The root) Tj
+T*
+(providers hold data needed across sections\054 such as saved assessments and appointment plans\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 52 181.5898 cm
+q
+BT
+1 0 0 1 0 17.7 Tm
+13.7 TL
+/F1 9.7 Tf
+0.0 0.0 0.0 rg
+(The main destinations are Pain Tracker \050) Tj
+/F3 8.4 Tf
+(\057home) Tj
+/F1 9.7 Tf
+(\051\054 My Health\054 Care Planner\054 and Settings\056 They use bottom) Tj
+T*
+(navigation on smaller screens and a sidebar from 1024 logical pixels\056 Splash and onboarding have neither\056) Tj
+T*
+ET
+Q
+Q
+
+endstream
+endobj
+6 0 obj
+<<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+>>
+endobj
+7 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+8 0 obj
+<<
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+9 0 obj
+<<
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+10 0 obj
+<<
+>>
+endobj
+11 0 obj
+<<
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057github\056com\057MaxLiu3616\057musculoskeletal\055mpowered\057tree\057da00332cb37e0b385e7712bb1b8c4c974d0a0fd3)
+>>
+/Border [ 0 0 0 ]
+/Rect [ 195.9469 744.9298 257.7736 754.8898 ]
+/Subtype /Link
+/Type /Annot
+>>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000054 00000 n 
+0000000113 00000 n 
+0000000179 00000 n 
+0000000390 00000 n 
+0000004902 00000 n 
+0000004953 00000 n 
+0000005060 00000 n 
+0000005172 00000 n 
+0000005277 00000 n 
+0000005299 00000 n 
+trailer
+<<
+/Size 12
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+5579
+%%EOF
